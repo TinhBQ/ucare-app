@@ -13,5 +13,7 @@ abstract class BaseAuthRepository {
   Future<bool> confirmRegister ({
     required String code,
   });
+
+  Future<bool> isLoggined ();
   Future<void> signOut();
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/cubits/cubits.dart';
+import 'package:mobile_advanced_project_fe/screens/main/main_screen.dart';
 import 'package:mobile_advanced_project_fe/screens/screens.dart';
 import 'package:mobile_advanced_project_fe/widgets/widgets.dart';
 
@@ -39,7 +40,7 @@ class _ConfirmRegisterScreenState extends State<ConfirmRegisterScreen> {
       listener: (context, state) {
         if (state.status == ConfirmRegisterStatus.success) {
           Navigator.pushAndRemoveUntil(
-              context, SplashScreen.route(), (route) => false);
+              context, MainScreen.route(), (route) => false);
         }
         if (state.status == ConfirmRegisterStatus.error) {}
       },
@@ -75,7 +76,7 @@ class _ConfirmRegisterScreenState extends State<ConfirmRegisterScreen> {
 
                           Column(
                             children: [
-                              CustomOTPField(
+                              CustomOTP(
                                 label: 'OTP',
                                 controller: codeController,
                                 onChanged: (value) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/screens/screens.dart';
+import 'package:mobile_advanced_project_fe/screens/signup/confirm_register.dart';
 import 'package:mobile_advanced_project_fe/widgets/widgets.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -42,7 +43,7 @@ class _SignupScreenState extends State<SignupScreen> {
       listener: (context, state) {
         if (state.status == SignupStatus.success) {
           Navigator.pushAndRemoveUntil(
-              context, SplashScreen.route(), (route) => false);
+              context, ConfirmRegisterScreen.route(), (route) => false);
         }
         if (state.status == SignupStatus.error) {}
       },
@@ -119,7 +120,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       //CTA sign up
                       CustomInkwell(
                         description: 'Bạn đã có sẵn tài khoản?',
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context, SignInScreen.route());
+                        },
                         descriptionInkwell: 'Đăng nhập',
                         textStyle: Theme.of(context).textTheme.bodyMedium!,
                       )

@@ -2,3 +2,8 @@ export 'splash/splash_screen.dart';
 export 'signin/signin_screen.dart';
 export 'signup/signup_screen.dart';
 export 'signup/confirm_register.dart';
+export 'forgot_pass/forgot_pass_screen.dart';
+export 'forgot_pass/forgot_pass_send_OTP_screen.dart';
+export 'home/home_screen.dart';
+export 'profile/profile_screen.dart';
+export 'main/main_screen.dart';

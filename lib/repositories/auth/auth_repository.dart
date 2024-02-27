@@ -57,6 +57,7 @@ class AuthRepository extends BaseAuthRepository {
       url,
       headers: requestHeaders,
       body: jsonEncode({
+        'email': email,
         'phone': phoneNumber,
         'password': password,
         'confirm_password': confirmPassword
@@ -86,6 +87,17 @@ class AuthRepository extends BaseAuthRepository {
       return true;
     } else {
       return false;
+    }
+  }
+  
+  @override
+  Future<bool> isLoggined() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    if (token == null) {
+      return false;
+    } else {
+      return true;
     }
   }
 }

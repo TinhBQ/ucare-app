@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
+  final bool disabled;
 
-  const CustomButton({super.key, required this.title, required this.onPressed});
+  const CustomButton(
+      {super.key,
+      required this.title,
+      required this.onPressed,
+      this.disabled = false});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +19,7 @@ class CustomButton extends StatelessWidget {
         children: [
           Expanded(
             child: ElevatedButton(
-              onPressed: onPressed,
+              onPressed: disabled ? null : onPressed,
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
@@ -24,10 +29,15 @@ class CustomButton extends StatelessWidget {
               ),
               child: Text(
                 title,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge!
-                    .copyWith(color: Colors.white),
+                style: disabled
+                    ? Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(color: Theme.of(context).colorScheme.outline)
+                    : Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(color: Colors.white),
               ),
             ),
           ),
