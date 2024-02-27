@@ -89,15 +89,59 @@ class AuthRepository extends BaseAuthRepository {
       return false;
     }
   }
-  
+
   @override
-  Future<bool> isLoggined() async{
+  Future<bool> isLoggined() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
     if (token == null) {
       return false;
     } else {
       return true;
+    }
+  }
+
+  @override
+  Future<bool> createOTP({required String email}) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+    var url = Uri.http(Config.apiURL, '${Config.API}/auth/createOTP');
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode({
+        'email': email,
+      }),
+    );
+    if (response.statusCode == 200 &&
+        jsonDecode(response.body)['status'] == 'success') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> forgotPass(
+      {required String code,
+      required String newPass,
+      required String confirmPass}) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+    var url = Uri.http(Config.apiURL, '${Config.API}/auth/forgotPass');
+    var response = await client.patch(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(
+          {'code': code, 'new_pass': newPass, 'confirm_pass': confirmPass}),
+    );
+    if (response.statusCode == 200 &&
+        jsonDecode(response.body)['status'] == 'success') {
+      return true;
+    } else {
+      return false;
     }
   }
 }

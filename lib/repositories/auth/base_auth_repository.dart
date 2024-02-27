@@ -16,4 +16,13 @@ abstract class BaseAuthRepository {
 
   Future<bool> isLoggined ();
   Future<void> signOut();
+  Future<bool> createOTP({
+    required String email,
+  });
+
+  Future<bool> forgotPass ({
+    required String code,
+    required String newPass,
+    required String confirmPass,
+  });
 }

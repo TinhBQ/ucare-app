@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/screens/screens.dart';
+import 'package:mobile_advanced_project_fe/screens/signin/signin_screen.dart';
 import 'package:mobile_advanced_project_fe/widgets/widgets.dart';
 
 class ForgotPassSendOTPScreen extends StatefulWidget {
@@ -28,21 +29,23 @@ class _ForgotPassSendOTPScreenState extends State<ForgotPassSendOTPScreen> {
 
   bool checked = false;
 
+  late ForgotPassCubit _forgotPassCubit;
   @override
   void initState() {
     super.initState();
+    _forgotPassCubit = BlocProvider.of(context);
   }
 
   @override
   Widget build(BuildContext context) {
     final currentHeight = MediaQuery.of(context).size.height;
-    return BlocListener<SignInCubit, SigninState>(
+    return BlocListener<ForgotPassCubit, ForgotPassState>(
       listener: (context, state) {
-        if (state.status == SigninStatus.success) {
+        if (state.status == ForgotPassStatus.success) {
           Navigator.pushAndRemoveUntil(
-              context, SplashScreen.route(), (route) => false);
+              context, SignInScreen.route(), (route) => false);
         }
-        if (state.status == SigninStatus.error) {}
+        if (state.status == ForgotPassStatus.error) {}
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
@@ -76,28 +79,39 @@ class _ForgotPassSendOTPScreenState extends State<ForgotPassSendOTPScreen> {
                           CustomOTP(
                               label: "",
                               controller: otpController,
-                              onChanged: (value) {}),
+                              onChanged: (value) {
+                                _forgotPassCubit.codeChanged(value);
+                              }),
                           //button confirm OTP
-                          CustomButton(title: "XÁC NHẬN", onPressed: () {}),
                           //input new pass
                           CustomTextfieldPassword(
                             label: "Mật khẩu",
                             controller: passwordController,
-                            onChanged: (value) {},
-                            disabled: true,
+                            onChanged: (value) {
+                              _forgotPassCubit.newPassChanged(value);
+                            },
                           ),
                           CustomTextfieldPassword(
                             label: "Nhập lại mật khẩu",
                             controller: confirmPasswordController,
-                            onChanged: (value) {},
-                            disabled: true,
+                            onChanged: (value) {
+                              _forgotPassCubit.confirmPassChanged(value);
+                            },
                           ),
                           //button confirm new password
                           //button confirm OTP
-                          CustomButton(
-                            title: "XÁC NHẬN",
-                            onPressed: () {},
-                            disabled: true,
+                          BlocBuilder<ForgotPassCubit, ForgotPassState>(
+                            buildWhen: (previous, current) =>
+                                previous.status != current.status,
+                            builder: (context, state) {
+                              return state.status == ForgotPassStatus.submitting
+                                  ? const CircularProgressIndicator()
+                                  : CustomButton(
+                                      title: "Xác nhận",
+                                      onPressed: () {
+                                        _forgotPassCubit.getForgotPass();
+                                      });
+                            },
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 16),

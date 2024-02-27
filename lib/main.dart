@@ -42,6 +42,18 @@ class _MyAppState extends State<MyApp> {
           child: const ConfirmRegisterScreen(),
         ),
         BlocProvider(
+          create: (_) => CreateOTPCubit(
+            authRepository: AuthRepository(),
+          ),
+          child: const ForgotPassScreen(),
+        ),
+        BlocProvider(
+          create: (_) => ForgotPassCubit(
+            authRepository: AuthRepository(),
+          ),
+          child: const ForgotPassSendOTPScreen(),
+        ),
+        BlocProvider(
           create: (_) => AuthBloc(
             authRepository: AuthRepository(),
           )..add(AuthEventStarted()),

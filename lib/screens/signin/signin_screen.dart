@@ -112,7 +112,9 @@ class _SignInScreenState extends State<SignInScreen> {
                           //forgot pass
                           CustomInkwell(
                             description: '',
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(context, ForgotPassScreen.route());
+                            },
                             descriptionInkwell:
                                 'Quên tài khoản hoặc quên mật khẩu?',
                             textStyle: Theme.of(context).textTheme.titleSmall!,
