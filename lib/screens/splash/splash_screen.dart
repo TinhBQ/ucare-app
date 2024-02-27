@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:mobile_advanced_project_fe/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -14,6 +16,12 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Timer(
+      const Duration(seconds: 2),
+      () => Navigator.pushNamedAndRemoveUntil(
+          context, MainScreen.routeName, (route) => false),
+    );
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: const Column(

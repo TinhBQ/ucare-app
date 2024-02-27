@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 
-class CustomOTPField extends StatelessWidget {
+class CustomOTP extends StatelessWidget {
   final String label;
   final TextEditingController controller;
   final Function(String) onChanged;
 
-  const CustomOTPField(
+  const CustomOTP(
       {super.key,
       required this.label,
       required this.controller,
@@ -40,6 +40,7 @@ class CustomOTPField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: Pinput(
+        onChanged: onChanged,
           controller: controller,
           length: 6,
           autofocus: true,

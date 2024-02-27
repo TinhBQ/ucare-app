@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_advanced_project_fe/blocs/auth/auth_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/app_router.dart';
 import 'package:mobile_advanced_project_fe/configs/themes/light_theme.dart';
 import 'package:mobile_advanced_project_fe/cubits/cubits.dart';
@@ -40,13 +41,18 @@ class _MyAppState extends State<MyApp> {
           ),
           child: const ConfirmRegisterScreen(),
         ),
+        BlocProvider(
+          create: (_) => AuthBloc(
+            authRepository: AuthRepository(),
+          )..add(AuthEventStarted()),
+        ),
       ],
       child: MaterialApp(
         title: 'U Care',
         theme: lightTheme,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: SignInScreen.routeName,
+        initialRoute: SplashScreen.routeName,
       ),
     );
   }
