@@ -7,7 +7,7 @@ import 'package:mobile_advanced_project_fe/widgets/widgets.dart';
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
-  static const String routeName = '/';
+  static const String routeName = '/main';
 
   static Route route() {
     return MaterialPageRoute(
@@ -17,15 +17,32 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is AuthInitial || state is UnAuthenticateState) {
-          Navigator.pushAndRemoveUntil(context, SignInScreen.route(), (route) => false);
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        print(state);
+        if (state is AuthInitial) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
+        if (state is UnAuthenticateState) {
+          // Sử dụng Future.delayed để chuyển hướng sau khi giao diện đã được xây dựng
+          Future.delayed(Duration.zero, () {
+            Navigator.pushReplacement(
+              context,
+              SignInScreen.route(),
+            );
+          });
+        }
+        if (state is AuthenticateState) {
+          // Nếu trạng thái là AuthenticateState, trả về MainPage
+          return const Scaffold(
+            body: MainPage(),
+          );
+        }
+        // Mặc định, trả về một Text hiển thị "Something went wrong"
+        return const Center(child: CircularProgressIndicator());
       },
-      child: const Scaffold(
-        body: MainPage(),
-      ),
     );
   }
 }

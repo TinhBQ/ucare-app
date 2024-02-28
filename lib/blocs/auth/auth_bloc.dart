@@ -9,7 +9,6 @@ part 'auth_event.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository _authRepository;
-  StreamSubscription? _authUserSubscription;
 
   AuthBloc({
     required AuthRepository authRepository,
@@ -40,11 +39,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _onAuthEventLoggedOut(
-      AuthEventLoggedOut event, Emitter<AuthState> emit) async {}
+      AuthEventLoggedOut event, Emitter<AuthState> emit) async {
+        await _authRepository.signOut();
+        add(AuthEventStarted());
+      }
 
-  @override
-  Future<void> close() {
-    _authUserSubscription?.cancel();
-    return super.close();
-  }
+  
 }

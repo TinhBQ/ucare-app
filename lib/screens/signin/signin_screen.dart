@@ -1,5 +1,8 @@
+import 'dart:js_util';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_advanced_project_fe/blocs/blocs.dart';
 import 'package:mobile_advanced_project_fe/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/screens/screens.dart';
 import 'package:mobile_advanced_project_fe/widgets/widgets.dart';
@@ -26,11 +29,15 @@ class _SignInScreenState extends State<SignInScreen> {
   final passwordController = TextEditingController();
   bool checked = false;
   late SignInCubit _signinCubit;
+  late AuthBloc _authBloc;
 
   @override
   void initState() {
     super.initState();
     _signinCubit = BlocProvider.of(context);
+    _authBloc = BlocProvider.of<AuthBloc>(context);
+
+
   }
 
   @override
@@ -38,9 +45,10 @@ class _SignInScreenState extends State<SignInScreen> {
     final currentHeight = MediaQuery.of(context).size.height;
     return BlocListener<SignInCubit, SigninState>(
       listener: (context, state) {
+        
         if (state.status == SigninStatus.success) {
-          Navigator.pushAndRemoveUntil(
-              context, SplashScreen.route(), (route) => false);
+          _authBloc.add(AuthEventStarted());
+          Navigator.pushReplacement(context, MainScreen.route());
         }
         if (state.status == SigninStatus.error) {}
       },

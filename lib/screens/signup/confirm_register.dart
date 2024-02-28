@@ -39,8 +39,7 @@ class _ConfirmRegisterScreenState extends State<ConfirmRegisterScreen> {
     return BlocListener<ConfirmRegisterCubit, ConfirmRegisterState>(
       listener: (context, state) {
         if (state.status == ConfirmRegisterStatus.success) {
-          Navigator.pushAndRemoveUntil(
-              context, MainScreen.route(), (route) => false);
+          Navigator.pop(context);
         }
         if (state.status == ConfirmRegisterStatus.error) {}
       },
