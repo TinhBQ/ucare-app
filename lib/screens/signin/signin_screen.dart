@@ -1,5 +1,3 @@
-import 'dart:js_util';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/blocs/blocs.dart';
@@ -36,8 +34,6 @@ class _SignInScreenState extends State<SignInScreen> {
     super.initState();
     _signinCubit = BlocProvider.of(context);
     _authBloc = BlocProvider.of<AuthBloc>(context);
-
-
   }
 
   @override
@@ -45,7 +41,6 @@ class _SignInScreenState extends State<SignInScreen> {
     final currentHeight = MediaQuery.of(context).size.height;
     return BlocListener<SignInCubit, SigninState>(
       listener: (context, state) {
-        
         if (state.status == SigninStatus.success) {
           _authBloc.add(AuthEventStarted());
           Navigator.pushReplacement(context, MainScreen.route());
@@ -72,8 +67,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           //introduce
                           const Padding(
                             padding: EdgeInsets.only(bottom: 8.0),
-                            child: CustomTextIntroduce(
-                                description: ""),
+                            child: CustomTextIntroduce(description: ""),
                           ),
                           //information signin
                           CustomTextfield(
@@ -81,7 +75,6 @@ class _SignInScreenState extends State<SignInScreen> {
                             icon: Icons.phone_android,
                             controller: phoneController,
                             onChanged: (value) {
-                              
                               _signinCubit.phoneNumberChanged(value);
                             },
                           ),
