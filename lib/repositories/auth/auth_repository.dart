@@ -10,8 +10,9 @@ class AuthRepository extends BaseAuthRepository {
   static var client = http.Client();
 
   @override
-  Future<void> signOut() {
-    throw UnimplementedError();
+  Future<void> signOut() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('token');
   }
 
   @override
@@ -94,6 +95,7 @@ class AuthRepository extends BaseAuthRepository {
   Future<bool> isLoggined() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
+    print(token);
     if (token == null) {
       return false;
     } else {

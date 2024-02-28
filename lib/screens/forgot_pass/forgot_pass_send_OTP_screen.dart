@@ -28,12 +28,15 @@ class _ForgotPassSendOTPScreenState extends State<ForgotPassSendOTPScreen> {
   final confirmPasswordController = TextEditingController();
 
   bool checked = false;
+  late CreateOTPCubit _createOTPCubit;
 
   late ForgotPassCubit _forgotPassCubit;
   @override
   void initState() {
     super.initState();
     _forgotPassCubit = BlocProvider.of(context);
+    _createOTPCubit = BlocProvider.of(context);
+
   }
 
   @override
@@ -120,14 +123,19 @@ class _ForgotPassSendOTPScreenState extends State<ForgotPassSendOTPScreen> {
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ),
-                          Text(
-                            "Gửi lại",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
+                          InkWell(
+                            onTap: () {
+                              _createOTPCubit.getCreateOTP();
+                            },
+                            child: Text(
+                              "Gửi lại",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                    color: Theme.of(context).colorScheme.primary,
+                                  ),
+                            ),
                           ),
                         ],
                       ),

@@ -23,6 +23,28 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 16, bottom: 16, right: 20, left: 20),
+            child: Row(
+              children: [
+                Text(
+                  'Chào mừng đến với',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Text(
+                  ' ',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Text(
+                  'U Care',
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                ),
+              ],
+            ),
+          ),
           Expanded(
             child: GridView.count(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 20),

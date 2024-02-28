@@ -3,9 +3,9 @@ import 'package:mobile_advanced_project_fe/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
-  static const String routeName = '/splash';
-
   const SplashScreen({super.key});
+
+  static const String routeName = '/splash';
 
   static Route route() {
     return MaterialPageRoute(
@@ -16,12 +16,8 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer(
-      const Duration(seconds: 2),
-      () => Navigator.pushNamedAndRemoveUntil(
-          context, MainScreen.routeName, (route) => false),
-    );
-
+    Timer(const Duration(seconds: 2),
+        () => Navigator.pushReplacement(context, MainScreen.route()));
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: const Column(
@@ -30,6 +26,8 @@ class SplashScreen extends StatelessWidget {
           Center(
             child: Image(
               image: AssetImage('assets/logo/logo.png'),
+              height: 70,
+              width: 70,
             ),
           ),
         ],

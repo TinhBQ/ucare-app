@@ -20,9 +20,19 @@ class AppRouter {
         return ForgotPassSendOTPScreen.route();
       case HomeScreen.routeName:
         return HomeScreen.route();
-      
+      case ProfileScreen.routeName:
+        return ProfileScreen.route();
       default:
-        return SplashScreen.route();
+        return _errorRoute();
     }
+  }
+  static Route _errorRoute() {
+    return MaterialPageRoute(
+        settings: const RouteSettings(name: '/error'),
+        builder: (_) => Scaffold(
+              appBar: AppBar(
+                title: const Text('Error'),
+              ),
+            ));
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/blocs/auth/auth_bloc.dart';
+import 'package:mobile_advanced_project_fe/blocs/blocs.dart';
 import 'package:mobile_advanced_project_fe/configs/app_router.dart';
 import 'package:mobile_advanced_project_fe/configs/themes/light_theme.dart';
 import 'package:mobile_advanced_project_fe/cubits/cubits.dart';
@@ -18,6 +18,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -65,6 +67,8 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.onGenerateRoute,
         initialRoute: SplashScreen.routeName,
+        navigatorKey: navigatorKey,
+
       ),
     );
   }

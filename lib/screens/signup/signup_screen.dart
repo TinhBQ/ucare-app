@@ -42,8 +42,10 @@ class _SignupScreenState extends State<SignupScreen> {
     return BlocListener<SignUpCubit, SignupState>(
       listener: (context, state) {
         if (state.status == SignupStatus.success) {
-          Navigator.pushAndRemoveUntil(
-              context, ConfirmRegisterScreen.route(), (route) => false);
+          Navigator.pushReplacementNamed(
+            context,
+            ConfirmRegisterScreen.routeName,
+          );
         }
         if (state.status == SignupStatus.error) {}
       },
