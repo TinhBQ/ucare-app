@@ -8,3 +8,4 @@ export 'custom_otp.dart';
 export 'custom_button_semi_row.dart';
 export 'custom_navbar.dart';
 export 'home/custom_category_card.dart';
+export 'news/custom_slide_news.dart';
