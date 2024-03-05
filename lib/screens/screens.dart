@@ -7,3 +7,5 @@ export 'forgot_pass/forgot_pass_send_OTP_screen.dart';
 export 'home/home_screen.dart';
 export 'profile/profile_screen.dart';
 export 'main/main_screen.dart';
+export 'choose_profile/choose_profile_screen.dart';
+export 'create_new_profile/create_new_profile.dart';

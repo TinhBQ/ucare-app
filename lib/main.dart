@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
         theme: lightTheme,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: SplashScreen.routeName,
+        initialRoute: CreateNewProfile.routeName,
         navigatorKey: navigatorKey,
 
       ),

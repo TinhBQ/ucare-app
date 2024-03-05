@@ -22,6 +22,10 @@ class AppRouter {
         return HomeScreen.route();
       case ProfileScreen.routeName:
         return ProfileScreen.route();
+      case ChooseProflieScreen.routeName:
+        return ChooseProflieScreen.route();
+      case CreateNewProfile.routeName:
+        return CreateNewProfile.route();
       default:
         return _errorRoute();
     }

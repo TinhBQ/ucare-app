@@ -19,7 +19,6 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        print(state);
         if (state is AuthInitial) {
           return const Center(
             child: CircularProgressIndicator(),
