@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/cubits/cubits.dart';
-import 'package:mobile_advanced_project_fe/screens/main/main_screen.dart';
-import 'package:mobile_advanced_project_fe/screens/screens.dart';
 import 'package:mobile_advanced_project_fe/widgets/widgets.dart';
 
 class ConfirmRegisterScreen extends StatefulWidget {

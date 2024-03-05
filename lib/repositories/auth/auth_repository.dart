@@ -95,7 +95,6 @@ class AuthRepository extends BaseAuthRepository {
   Future<bool> isLoggined() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
-    print(token);
     if (token == null) {
       return false;
     } else {
