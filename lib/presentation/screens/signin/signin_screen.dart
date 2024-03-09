@@ -1,29 +1,13 @@
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
+import 'package:elegant_notification/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/logic/blocs/blocs.dart';
 import 'package:mobile_advanced_project_fe/logic/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
 import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
-
-bool isEmail(String em) {
-  String p =
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-  RegExp regExp = RegExp(p);
-  return regExp.hasMatch(em);
-}
-
-bool isPassword(String password) {
-  String p = r'^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$)';
-  RegExp regExp = RegExp(p);
-  return regExp.hasMatch(password);
-}
-
-const Color inforColor = Color(0xff0066FF);
-const Color successColor = Color(0xff01CB67);
-const Color errorColor = Color(0xffFE355C);
-const Color greyColor = Color(0xffF3F3F3);
+import 'package:mobile_advanced_project_fe/utils/validate.dart';
 
 class SignInScreen extends StatefulWidget {
   static const String routeName = '/signin';
