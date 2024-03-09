@@ -5,6 +5,22 @@ import 'package:mobile_advanced_project_fe/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/screens/screens.dart';
 import 'package:mobile_advanced_project_fe/widgets/widgets.dart';
 
+bool isEmail(String em) {
+  String p =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+
+  RegExp regExp = RegExp(p);
+
+  return regExp.hasMatch(em);
+}
+
+bool isPassword(String password) {
+  String p = r'^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$)';
+  RegExp regExp = RegExp(p);
+
+  return regExp.hasMatch(password);
+}
+
 class SignInScreen extends StatefulWidget {
   static const String routeName = '/signin';
 
@@ -22,10 +38,15 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final formField = GlobalKey<FormState>();
-  final phoneController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _formField = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  bool _passwordVisible = true;
+
   bool checked = false;
+  bool _isButtonDisabled = true;
+
   late SignInCubit _signinCubit;
   late AuthBloc _authBloc;
 
@@ -36,9 +57,23 @@ class _SignInScreenState extends State<SignInScreen> {
     _authBloc = BlocProvider.of<AuthBloc>(context);
   }
 
+  void onSetDisableButton(String text) {
+    if ((_emailController.text.isEmpty || _passwordController.text.isEmpty) ||
+        !_formField.currentState!.validate()) {
+      setState(() {
+        _isButtonDisabled = true;
+      });
+    } else {
+      setState(() {
+        _isButtonDisabled = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final currentHeight = MediaQuery.of(context).size.height;
+    final Size appBarSize = AppBar().preferredSize;
+
     return BlocListener<SignInCubit, SigninState>(
       listener: (context, state) {
         if (state.status == SigninStatus.success) {
@@ -48,82 +83,113 @@ class _SignInScreenState extends State<SignInScreen> {
         if (state.status == SigninStatus.error) {}
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).colorScheme.background,
-        body: SingleChildScrollView(
-          child: Center(
-            child: SizedBox(
-              height: currentHeight,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 16, right: 20, bottom: 16, left: 20),
-                child: Form(
-                  key: formField,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          //introduce
-                          const Padding(
-                            padding: EdgeInsets.only(bottom: 8.0),
-                            child: CustomTextIntroduce(description: ""),
-                          ),
-                          //information signin
-                          CustomTextfield(
-                            label: 'Số điện thoại',
-                            icon: Icons.phone_android,
-                            controller: phoneController,
-                            onChanged: (value) {
-                              _signinCubit.phoneNumberChanged(value);
-                            },
-                          ),
-                          CustomTextfieldPassword(
-                            label: 'Mật khẩu',
-                            controller: passwordController,
-                            onChanged: (value) {
-                              _signinCubit.passwordChanged(value);
-                            },
-                          ),
-                          CustomCheckbox(
-                            description: 'Lưu thông tin đăng nhập',
-                            checked: checked,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                checked = value!;
-                              });
-                            },
-                            descriptionInkwell: '',
-                            onTap: () {},
-                          ),
-                          //button signin
-                          BlocBuilder<SignInCubit, SigninState>(
-                            buildWhen: (previous, current) =>
-                                previous.status != current.status,
-                            builder: (context, state) {
-                              return state.status == SigninStatus.submitting
-                                  ? const CircularProgressIndicator()
-                                  : CustomButton(
-                                      title: "ĐĂNG NHẬP",
-                                      onPressed: () {
-                                        _signinCubit.login();
-                                      });
-                            },
-                          ),
-                          //forgot pass
-                          CustomInkwell(
-                            description: '',
-                            onTap: () {
-                              Navigator.push(context, ForgotPassScreen.route());
-                            },
-                            descriptionInkwell:
-                                'Quên tài khoản hoặc quên mật khẩu?',
-                            textStyle: Theme.of(context).textTheme.titleSmall!,
-                          ),
-                        ],
+        body: SafeArea(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height - appBarSize.height,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top: 16, right: 20, bottom: 16, left: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      //introduce
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 8.0),
+                        child: CustomTextIntroduce(description: ""),
                       ),
-                      //CTA sign up
+                      //information signin
+                      SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: Form(
+                            key: _formField,
+                            child: Column(
+                              children: [
+                                CustomTextfield(
+                                  label: 'Email',
+                                  icon: Icons.email,
+                                  controller: _emailController,
+                                  onChanged: (value) {
+                                    onSetDisableButton(value);
+                                    _signinCubit.emailChanged(value);
+                                  },
+                                  validator: (input) =>
+                                      isEmail(input.toString())
+                                          ? null
+                                          : "Check your email",
+                                ),
+                                CustomTextfield(
+                                  label: 'Mật khẩu',
+                                  icon: Icons.lock,
+                                  controller: _passwordController,
+                                  isObscureText: _passwordVisible,
+                                  suffixIcon: _passwordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  onSuffixIcon: () {
+                                    setState(() {
+                                      _passwordVisible = !_passwordVisible;
+                                    });
+                                  },
+                                  onChanged: (value) {
+                                    onSetDisableButton(value);
+                                    _signinCubit.passwordChanged(value);
+                                  },
+                                  validator: (input) =>
+                                      isPassword(input.toString())
+                                          ? null
+                                          : "Mật khẩu không hợp lệ",
+                                ),
+                                CustomCheckbox(
+                                  description: 'Lưu thông tin đăng nhập',
+                                  checked: checked,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      checked = value!;
+                                    });
+                                  },
+                                  descriptionInkwell: '',
+                                  onTap: () {},
+                                ),
+                                BlocBuilder<SignInCubit, SigninState>(
+                                  buildWhen: (previous, current) =>
+                                      previous.status != current.status,
+                                  builder: (context, state) {
+                                    return state.status ==
+                                            SigninStatus.submitting
+                                        ? const CircularProgressIndicator()
+                                        : CustomButton(
+                                            title: "ĐĂNG NHẬP",
+                                            disabled: _isButtonDisabled,
+                                            onPressed: () {
+                                              _signinCubit.login();
+                                            });
+                                  },
+                                ),
+                              ],
+                            )),
+                      ),
+                      const SizedBox(height: 24),
                       CustomInkwell(
+                        description: '',
+                        onTap: () {
+                          Navigator.push(context, ForgotPassScreen.route());
+                        },
+                        descriptionInkwell:
+                            'Quên tài khoản hoặc quên mật khẩu?',
+                        textStyle: Theme.of(context).textTheme.titleSmall!,
+                      ),
+                    ],
+                  ),
+                  //CTA sign up
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: CustomInkwell(
                         description: 'Bạn chưa có tài khoản?',
                         onTap: () {
                           Navigator.push(context, SignupScreen.route());
@@ -131,9 +197,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         descriptionInkwell: 'Đăng ký',
                         textStyle: Theme.of(context).textTheme.bodyMedium!,
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           ),

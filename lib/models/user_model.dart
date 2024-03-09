@@ -26,6 +26,7 @@ class User extends Equatable {
     required this.enable,
     required this.active,
   });
+
   @override
   List<Object?> get props => [
         id,

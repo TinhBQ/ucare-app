@@ -10,14 +10,14 @@ class AuthRepository extends BaseAuthRepository {
   static var client = http.Client();
 
   @override
-  Future<void> signOut() async{
+  Future<void> signOut() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('token');
   }
 
   @override
   Future<bool> signin({
-    required String phoneNumber,
+    required String email,
     required String password,
   }) async {
     Map<String, String> requestHeaders = {
@@ -28,7 +28,7 @@ class AuthRepository extends BaseAuthRepository {
       url,
       headers: requestHeaders,
       body: jsonEncode({
-        'phone': phoneNumber,
+        'email': email,
         'password': password,
       }),
     );
@@ -76,13 +76,16 @@ class AuthRepository extends BaseAuthRepository {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
     };
+
     var url = Uri.http(Config.apiURL, '${Config.API}/auth/confirmRegister', {
       'token': code,
     });
+
     var response = await client.get(
       url,
       headers: requestHeaders,
     );
+
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['status'] == 'success') {
       return true;

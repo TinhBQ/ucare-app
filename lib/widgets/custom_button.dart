@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomButton extends StatefulWidget {
   final String title;
   final VoidCallback onPressed;
   final bool disabled;
@@ -12,14 +12,19 @@ class CustomButton extends StatelessWidget {
       this.disabled = false});
 
   @override
+  State<CustomButton> createState() => _CustomButtonState();
+}
+
+class _CustomButtonState extends State<CustomButton> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 24),
+      padding: const EdgeInsets.only(top: 16),
       child: Row(
         children: [
           Expanded(
             child: ElevatedButton(
-              onPressed: disabled ? null : onPressed,
+              onPressed: widget.disabled ? null : widget.onPressed,
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
@@ -28,8 +33,8 @@ class CustomButton extends StatelessWidget {
                 backgroundColor: Theme.of(context).colorScheme.primary,
               ),
               child: Text(
-                title,
-                style: disabled
+                widget.title,
+                style: widget.disabled
                     ? Theme.of(context)
                         .textTheme
                         .labelLarge!

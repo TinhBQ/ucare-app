@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/blocs/blocs.dart';
 import 'package:mobile_advanced_project_fe/configs/app_router.dart';
-import 'package:mobile_advanced_project_fe/configs/themes/light_theme.dart';
 import 'package:mobile_advanced_project_fe/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/repositories/repositories.dart';
 import 'package:mobile_advanced_project_fe/screens/screens.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,12 +63,42 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         title: 'U Care',
-        theme: lightTheme,
+        theme: FlexThemeData.light(
+          scheme: FlexScheme.tealM3,
+          surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+          blendLevel: 7,
+          subThemesData: const FlexSubThemesData(
+            blendOnLevel: 10,
+            blendOnColors: false,
+            useTextTheme: true,
+            useM2StyleDividerInM3: true,
+            alignedDropdown: true,
+            useInputDecoratorThemeInDialogs: true,
+          ),
+          visualDensity: FlexColorScheme.comfortablePlatformDensity,
+          useMaterial3: true,
+          swapLegacyOnMaterial3: true,
+        ),
+        darkTheme: FlexThemeData.dark(
+          scheme: FlexScheme.tealM3,
+          surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+          blendLevel: 13,
+          subThemesData: const FlexSubThemesData(
+            blendOnLevel: 20,
+            useTextTheme: true,
+            useM2StyleDividerInM3: true,
+            alignedDropdown: true,
+            useInputDecoratorThemeInDialogs: true,
+          ),
+          visualDensity: FlexColorScheme.comfortablePlatformDensity,
+          useMaterial3: true,
+          swapLegacyOnMaterial3: true,
+        ),
+        themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: CreateNewProfile.routeName,
+        initialRoute: SplashScreen.routeName,
         navigatorKey: navigatorKey,
-
       ),
     );
   }

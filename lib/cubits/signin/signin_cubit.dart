@@ -9,12 +9,13 @@ class SignInCubit extends Cubit<SigninState> {
 
   SignInCubit({
     required AuthRepository authRepository,
-  }) : _authRepository = authRepository,
+  })  : _authRepository = authRepository,
         super(SigninState.initial());
-  void phoneNumberChanged(String value) {
+
+  void emailChanged(String value) {
     emit(
       state.copyWith(
-        phoneNumber: value,
+        email: value,
         status: SigninStatus.initial,
       ),
     );
@@ -31,9 +32,13 @@ class SignInCubit extends Cubit<SigninState> {
 
   Future<void> login() async {
     if (state.status == SigninStatus.submitting) return;
+
     emit(state.copyWith(status: SigninStatus.submitting));
+
     try {
-      final credential = await _authRepository.signin(phoneNumber: state.phoneNumber, password: state.password);
+      final credential = await _authRepository.signin(
+          email: state.email, password: state.password);
+
       if (credential == true) {
         emit(state.copyWith(status: SigninStatus.success));
       } else {

@@ -4,7 +4,7 @@ class CustomTextIntroduce extends StatelessWidget {
   final String description;
 
   const CustomTextIntroduce({super.key, required this.description});
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,20 +17,25 @@ class CustomTextIntroduce extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(right: 4),
               child: Image(
-                image: 
-                AssetImage('assets/logo/logo.png'),
+                image: AssetImage('assets/logo/logo.png'),
                 width: 68,
-                height: 68, 
+                height: 68,
               ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Chào mừng đến với', style: Theme.of(context).textTheme.headlineMedium,),
                 Text(
-                  'U Care', 
-                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Theme.of(context).colorScheme.primary),
+                  'Chào mừng đến với',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                Text(
+                  'U Care',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium!
+                      .copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
               ],
             )
@@ -38,10 +43,15 @@ class CustomTextIntroduce extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(top: 8),
-          child: Text(description, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.secondary),),
+          child: Text(
+            description,
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(color: Theme.of(context).colorScheme.secondary),
+          ),
         ),
       ],
     );
   }
-  
 }
