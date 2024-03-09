@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/screens/screens.dart';
+import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
@@ -30,6 +30,7 @@ class AppRouter {
         return _errorRoute();
     }
   }
+
   static Route _errorRoute() {
     return MaterialPageRoute(
         settings: const RouteSettings(name: '/error'),
