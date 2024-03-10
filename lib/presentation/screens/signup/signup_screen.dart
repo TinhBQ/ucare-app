@@ -1,11 +1,10 @@
-import 'package:elegant_notification/elegant_notification.dart';
-import 'package:elegant_notification/resources/arrays.dart';
-import 'package:elegant_notification/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/logic/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
 import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/utils/exception_massage.dart';
+import 'package:mobile_advanced_project_fe/utils/show_snackbar.dart';
 import 'package:mobile_advanced_project_fe/utils/validate.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -31,11 +30,10 @@ class _SignupScreenState extends State<SignupScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  // bool _checked = false;
-  late SignUpCubit _signupCubit;
-
   bool _passwordVisible = true;
   bool _isButtonDisabled = true;
+
+  late SignUpCubit _signupCubit;
 
   @override
   void initState() {
@@ -43,12 +41,19 @@ class _SignupScreenState extends State<SignupScreen> {
     _signupCubit = BlocProvider.of(context);
   }
 
+  bool onCheckedConfirmPassword(String text) {
+    return text.trim().toString() == _passwordController.text.trim().toString();
+  }
+
   void onSetDisableButton() {
     if (_emailController.text.isEmpty ||
         _phoneController.text.isEmpty ||
         _passwordController.text.isEmpty ||
         _confirmPasswordController.text.isEmpty ||
-        !_formField.currentState!.validate()) {
+        !isEmail(_emailController.text) ||
+        !isPhone(_phoneController.text) ||
+        !isPassword(_passwordController.text) ||
+        !onCheckedConfirmPassword(_confirmPasswordController.text)) {
       setState(() {
         _isButtonDisabled = true;
       });
@@ -74,20 +79,7 @@ class _SignupScreenState extends State<SignupScreen> {
         }
 
         if (state.status == SignupStatus.error) {
-          ElegantNotification.error(
-            width: sizeScreen.width,
-            position: Alignment.topLeft,
-            animation: AnimationType.fromTop,
-            title: Text(state.status.name.toUpperCase(),
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: errorColor,
-                    )),
-            description: const Text(
-              'Đăng ký không thành công!',
-            ),
-            showProgressIndicator: true,
-          ).show(context);
+          ShowSnackBar.error(ExceptionMassage.signupFailure, context);
         }
       },
       child: Scaffold(
@@ -108,7 +100,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       //introduce
                       const Padding(
                         padding: EdgeInsets.only(bottom: 8.0),
-                        child: CustomTextIntroduce(description: ""),
+                        child: CustomTextIntroduce(
+                            description: "Đăng ký tài khoản bằng Email"),
                       ),
                       SingleChildScrollView(
                         physics: const BouncingScrollPhysics(),
@@ -126,7 +119,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 },
                                 validator: (input) => isEmail(input.toString())
                                     ? null
-                                    : "Email không hợp lệ",
+                                    : ExceptionMassage.emailValid,
                               ),
                               CustomTextfield(
                                 label: 'Số điện thoại',
@@ -138,7 +131,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 },
                                 validator: (input) => isPhone(input.toString())
                                     ? null
-                                    : "Số điện thoại không hợp lệ",
+                                    : ExceptionMassage.phoneNumberValid,
                               ),
                               CustomTextfield(
                                 label: 'Mật khẩu',
@@ -160,7 +153,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 validator: (input) =>
                                     isPassword(input.toString())
                                         ? null
-                                        : "Mật khẩu không hợp lệ",
+                                        : ExceptionMassage.passwordValid,
                               ),
                               CustomTextfield(
                                 label: 'Xác nhận mật khẩu',
@@ -180,16 +173,19 @@ class _SignupScreenState extends State<SignupScreen> {
                                   _signupCubit.confirmPasswordChanged(value);
                                 },
                                 validator: (input) =>
-                                    isPassword(input.toString())
+                                    onCheckedConfirmPassword(input.toString())
                                         ? null
-                                        : "Mật khẩu không hợp lệ",
+                                        : ExceptionMassage.confirmPasswordValid,
                               ),
                               BlocBuilder<SignUpCubit, SignupState>(
                                 buildWhen: (previous, current) =>
                                     previous.status != current.status,
                                 builder: (context, state) {
                                   return state.status == SignupStatus.submitting
-                                      ? const CircularProgressIndicator()
+                                      ? const Padding(
+                                          padding: EdgeInsets.only(top: 24),
+                                          child: CircularProgressIndicator(),
+                                        )
                                       : CustomButton(
                                           title: "ĐĂNG KÝ TÀI KHOẢN",
                                           disabled: _isButtonDisabled,

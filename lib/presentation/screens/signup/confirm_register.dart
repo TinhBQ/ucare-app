@@ -7,6 +7,8 @@ import 'package:lottie/lottie.dart';
 import 'package:mobile_advanced_project_fe/logic/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/signin/signin_screen.dart';
 import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/utils/exception_massage.dart';
+import 'package:mobile_advanced_project_fe/utils/show_snackbar.dart';
 
 class ConfirmRegisterScreen extends StatefulWidget {
   static const String routeName = '/signup/confirm';
@@ -57,37 +59,11 @@ class _ConfirmRegisterScreenState extends State<ConfirmRegisterScreen> {
     return BlocListener<ConfirmRegisterCubit, ConfirmRegisterState>(
       listener: (context, state) {
         if (state.status == ConfirmRegisterStatus.success) {
-          ElegantNotification.success(
-            width: sizeScreen.width,
-            position: Alignment.topLeft,
-            animation: AnimationType.fromTop,
-            title: Text(state.status.name.toUpperCase(),
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: successColor,
-                    )),
-            description: const Text(
-              'Đăng ký thành công!',
-            ),
-            showProgressIndicator: true,
-          ).show(context);
+          ShowSnackBar.success(ExceptionMassage.signupSuccess, context);
           Navigator.pop(context);
         }
         if (state.status == ConfirmRegisterStatus.error) {
-          ElegantNotification.error(
-            width: sizeScreen.width,
-            position: Alignment.topLeft,
-            animation: AnimationType.fromTop,
-            title: Text(state.status.name.toUpperCase(),
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: errorColor,
-                    )),
-            description: const Text(
-              'Xác thực không thành công!',
-            ),
-            showProgressIndicator: true,
-          ).show(context);
+          ShowSnackBar.error(ExceptionMassage.authenticationFailed, context);
         }
       },
       child: Scaffold(
@@ -112,7 +88,8 @@ class _ConfirmRegisterScreenState extends State<ConfirmRegisterScreen> {
                         //introduce
                         const Padding(
                           padding: EdgeInsets.only(bottom: 8.0),
-                          child: CustomTextIntroduce(description: ""),
+                          child: CustomTextIntroduce(
+                              description: "Xác thực đăng ký tài khoản"),
                         ),
 
                         Form(
@@ -123,7 +100,7 @@ class _ConfirmRegisterScreenState extends State<ConfirmRegisterScreen> {
                                 padding:
                                     const EdgeInsets.only(right: 32, left: 32),
                                 child: Text(
-                                  "Nhập mã OTP được gửi qua email đăng ký của bạn",
+                                  "Nhập mã OTP được gửi qua email đăng ký của bạn.",
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme
@@ -151,7 +128,10 @@ class _ConfirmRegisterScreenState extends State<ConfirmRegisterScreen> {
                                 builder: (context, state) {
                                   return state.status ==
                                           ConfirmRegisterStatus.submitting
-                                      ? const CircularProgressIndicator()
+                                      ? const Padding(
+                                          padding: EdgeInsets.only(top: 24),
+                                          child: CircularProgressIndicator(),
+                                        )
                                       : CustomButton(
                                           title: "XÁC NHẬN",
                                           disabled: _isButtonDisabled,

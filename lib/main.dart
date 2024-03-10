@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:mobile_advanced_project_fe/configs/app_router.dart';
 import 'package:mobile_advanced_project_fe/configs/themes/themes.dart';
-
 import 'package:mobile_advanced_project_fe/data/repositories/repositories.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/logic/blocs/blocs.dart';
 import 'package:mobile_advanced_project_fe/logic/cubits/cubits.dart';
-
 import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
 
 void main() {
@@ -72,7 +68,7 @@ class _MyAppState extends State<MyApp> {
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: ConfirmRegisterScreen.routeName,
+        initialRoute: SplashScreen.routeName,
         navigatorKey: navigatorKey,
       ),
     );
