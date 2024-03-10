@@ -73,7 +73,7 @@ class _SignInScreenState extends State<SignInScreen> {
         }
 
         if (state.status == SigninStatus.error) {
-          ShowSnackBar.success(ExceptionMassage.loginFailure, context);
+          ShowSnackBar.error(ExceptionMassage.loginFailure, context);
         }
       },
       child: Scaffold(

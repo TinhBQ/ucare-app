@@ -52,6 +52,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
     return BlocListener<CreateOTPCubit, CreateOTPState>(
         listener: (context, state) {
           if (state.status == CreateOTPStatus.success) {
+            ShowSnackBar.success(ExceptionMassage.otpSentSuccessfully, context);
             Navigator.pushReplacement(context, ForgotPassSendOTPScreen.route());
           }
           if (state.status == CreateOTPStatus.error) {
