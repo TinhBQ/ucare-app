@@ -156,10 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     'Tin tức nổi bật',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Colors.black),
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
                     height: 9,

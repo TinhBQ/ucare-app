@@ -14,3 +14,4 @@ export 'custom_textfield_profile.dart';
 export 'custom_textfield_datetime.dart';
 export 'custom_select_value_dialog.dart';
 export 'custom_textfield_dropdown.dart';
+export 'profile/custom_inkwell_item_profile.dart';
