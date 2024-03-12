@@ -1,12 +1,11 @@
-import 'package:elegant_notification/elegant_notification.dart';
-import 'package:elegant_notification/resources/arrays.dart';
-import 'package:elegant_notification/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/logic/blocs/blocs.dart';
 import 'package:mobile_advanced_project_fe/logic/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
 import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/utils/exception_massage.dart';
+import 'package:mobile_advanced_project_fe/utils/show_snackbar.dart';
 import 'package:mobile_advanced_project_fe/utils/validate.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -31,7 +30,6 @@ class _SignInScreenState extends State<SignInScreen> {
   final _passwordController = TextEditingController();
 
   bool _passwordVisible = true;
-
   bool checked = false;
   bool _isButtonDisabled = true;
 
@@ -46,8 +44,10 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void onSetDisableButton(String text) {
-    if ((_emailController.text.isEmpty || _passwordController.text.isEmpty) ||
-        !_formField.currentState!.validate()) {
+    if (_emailController.text.isEmpty ||
+        _passwordController.text.isEmpty ||
+        !isEmail(_emailController.text) ||
+        !isPassword(_passwordController.text)) {
       setState(() {
         _isButtonDisabled = true;
       });
@@ -63,44 +63,17 @@ class _SignInScreenState extends State<SignInScreen> {
     final Size appBarSize = AppBar().preferredSize;
     final sizeScreen = MediaQuery.of(context).size;
     final hightSreen = sizeScreen.height;
-    final widthSreen = sizeScreen.width;
 
     return BlocListener<SignInCubit, SigninState>(
       listener: (context, state) {
         if (state.status == SigninStatus.success) {
           _authBloc.add(AuthEventStarted());
-          ElegantNotification.success(
-            width: widthSreen,
-            position: Alignment.topLeft,
-            animation: AnimationType.fromTop,
-            title: Text(state.status.name.toUpperCase(),
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: successColor,
-                    )),
-            description: const Text(
-              'Đăng nhập thành công!',
-            ),
-            showProgressIndicator: true,
-          ).show(context);
+          ShowSnackBar.success(ExceptionMassage.loginSuccess, context);
           Navigator.pushReplacement(context, MainScreen.route());
         }
 
         if (state.status == SigninStatus.error) {
-          ElegantNotification.error(
-            width: widthSreen,
-            position: Alignment.topLeft,
-            animation: AnimationType.fromTop,
-            title: Text(state.status.name.toUpperCase(),
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: errorColor,
-                    )),
-            description: const Text(
-              'Đăng nhập không thành công!',
-            ),
-            showProgressIndicator: true,
-          ).show(context);
+          ShowSnackBar.error(ExceptionMassage.loginFailure, context);
         }
       },
       child: Scaffold(
@@ -121,7 +94,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       //introduce
                       const Padding(
                         padding: EdgeInsets.only(bottom: 8.0),
-                        child: CustomTextIntroduce(description: ""),
+                        child: CustomTextIntroduce(
+                            description: "Vui lòng đăng nhập để xử dụng"),
                       ),
                       //information signin
                       SingleChildScrollView(
@@ -141,7 +115,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   validator: (input) =>
                                       isEmail(input.toString())
                                           ? null
-                                          : "Check your email",
+                                          : ExceptionMassage.emailValid,
                                 ),
                                 CustomTextfield(
                                   label: 'Mật khẩu',
@@ -163,7 +137,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   validator: (input) =>
                                       isPassword(input.toString())
                                           ? null
-                                          : "Mật khẩu không hợp lệ",
+                                          : ExceptionMassage.passwordValid,
                                 ),
                                 CustomCheckbox(
                                   description: 'Lưu thông tin đăng nhập',
@@ -182,7 +156,10 @@ class _SignInScreenState extends State<SignInScreen> {
                                   builder: (context, state) {
                                     return state.status ==
                                             SigninStatus.submitting
-                                        ? const CircularProgressIndicator()
+                                        ? const Padding(
+                                            padding: EdgeInsets.only(top: 24),
+                                            child: CircularProgressIndicator(),
+                                          )
                                         : CustomButton(
                                             title: "ĐĂNG NHẬP",
                                             disabled: _isButtonDisabled,
