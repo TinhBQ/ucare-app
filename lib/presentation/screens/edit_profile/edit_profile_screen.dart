@@ -18,6 +18,7 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  final _formField = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _phoneController = TextEditingController();
   final _emailController = TextEditingController();
@@ -28,14 +29,54 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: 'Chỉnh sửa thông tin',
       ),
       body: Center(
         child: Form(
-          child: Column(
-            children: [
-            ],
+          key: _formField,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 20,
+            ),
+            child: Column(
+              children: [
+                CustomTextFieldProfile(
+                  controller: _nameController,
+                  label: 'Họ và tên',
+                  hint: 'VD',
+                  content: "Bùi Quốc Tĩnh",
+                ),
+                CustomTextFieldProfile(
+                  controller: _phoneController,
+                  label: 'Số điện thoại',
+                  content: "0938049556",
+                  disabled: true,
+                ),
+                CustomTextFieldProfile(
+                  controller: _emailController,
+                  label: 'Email',
+                  content: "mytran070202@gmail.com",
+                  disabled: true,
+                ),
+                CustomTextfieldDatetime(
+                  label: 'Ngày sinh',
+                  controller: _dateOfBirthController,
+                  content: DateTime.utc(1989, 11, 9),
+                ),
+                CustomTextfieldDropdown(
+                  controller: _genderController,
+                  label: 'Giới tính',
+                  listOption: const ['Nữ', 'Nam'],
+                  content: 'Nữ',
+                ),
+                CustomButton(
+                  title: 'CẬP NHẬT',
+                  onPressed: () {},
+                ),
+              ],
+            ),
           ),
         ),
       ),

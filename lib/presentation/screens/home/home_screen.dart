@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
 import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -120,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: 'Đặt khám',
                   icon: Icons.local_hospital,
                   onPressed: () {
-                    print('object');
+                    Navigator.pushNamed(context, ChooseProflieScreen.routeName);
                   },
                 ),
                 CustomCategoryCard(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/presentation/screens/create_new_profile/create_new_profile.dart';
 import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
 
 class ChooseProflieScreen extends StatelessWidget {
@@ -66,7 +67,9 @@ class ChooseProflieScreen extends StatelessWidget {
         ),
         child: CustomButton(
           title: 'TẠO HỒ SƠ MỚI',
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, CreateNewProfile.routeName);
+          },
         ),
       ), // Tuỳ chỉnh màu sắc của nút
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

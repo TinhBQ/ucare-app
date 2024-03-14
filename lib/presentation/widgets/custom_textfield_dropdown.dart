@@ -7,11 +7,13 @@ class CustomTextfieldDropdown extends StatefulWidget {
     required this.controller,
     required this.label,
     required this.listOption,
+    this.content,
   });
 
   final TextEditingController controller;
   final String label;
   final List<String> listOption;
+  final String? content;
 
   @override
   State<StatefulWidget> createState() => _CustomTextfieldDropdown();
@@ -24,7 +26,7 @@ class _CustomTextfieldDropdown extends State<CustomTextfieldDropdown> {
       builder: (BuildContext context) {
         return CustomSelectValueDialog(
           onSelect: (value) => Navigator.pop(context, value),
-          listOption: const ['Nữ', 'Nam', 'Khác'],
+          listOption: widget.listOption,
           title: widget.label,
         );
       },
@@ -33,6 +35,14 @@ class _CustomTextfieldDropdown extends State<CustomTextfieldDropdown> {
       setState(() {
         widget.controller.text = selectedValue;
       });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.content != null) {
+      widget.controller.text = widget.content!;
     }
   }
 

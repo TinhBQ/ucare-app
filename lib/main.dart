@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp> {
         // themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: ProfilesScreen.routeName,
+        initialRoute: ProfileScreen.routeName,
         navigatorKey: navigatorKey,
       ),
     );
