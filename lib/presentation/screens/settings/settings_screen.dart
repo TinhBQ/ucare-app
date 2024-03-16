@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/configs/themes/themes.dart';
+import 'package:mobile_advanced_project_fe/core/themes/dark_theme.dart';
+import 'package:mobile_advanced_project_fe/core/themes/theme_provider.dart';
 import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
