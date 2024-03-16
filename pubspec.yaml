@@ -47,6 +47,7 @@ dependencies:
   elegant_notification: ^1.13.1
   intl: ^0.19.0
   transparent_image: ^2.0.1
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

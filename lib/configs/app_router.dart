@@ -28,6 +28,14 @@ class AppRouter {
         return CreateNewProfile.route();
       case MedicalAppointmentScheduleScreen.routeName:
         return MedicalAppointmentScheduleScreen.route();
+      case ProfilesScreen.routeName:
+        return ProfilesScreen.route();
+      case SettingsScreen.routeName:
+        return SettingsScreen.route();
+      case ChangePasswordScreen.routeName:
+        return ChangePasswordScreen.route();
+      case EditProfileScreen.routeName:
+        return EditProfileScreen.route();
       default:
         return _errorRoute();
     }

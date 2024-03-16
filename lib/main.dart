@@ -6,9 +6,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/logic/blocs/blocs.dart';
 import 'package:mobile_advanced_project_fe/logic/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -63,9 +69,9 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         title: 'U Care',
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        themeMode: ThemeMode.system,
+        theme: Provider.of<ThemeProvider>(context).themeData,
+        // darkTheme: darkTheme,
+        // themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.onGenerateRoute,
         initialRoute: MedicalAppointmentScheduleScreen.routeName,

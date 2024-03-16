@@ -6,9 +6,11 @@ class CustomTextfieldDatetime extends StatefulWidget {
     super.key,
     required this.label,
     required this.controller,
+    this.content,
   });
   final String label;
   final TextEditingController controller;
+  final DateTime? content;
 
   @override
   State<StatefulWidget> createState() => _CustomTextfieldDatetimeState();
@@ -16,7 +18,6 @@ class CustomTextfieldDatetime extends StatefulWidget {
 
 class _CustomTextfieldDatetimeState extends State<CustomTextfieldDatetime> {
   DateTime selectedDate = DateTime.now();
-  final TextEditingController _dateController = TextEditingController();
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -34,6 +35,14 @@ class _CustomTextfieldDatetimeState extends State<CustomTextfieldDatetime> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.content != null) {
+      widget.controller.text = DateFormat('dd-MM-yyyy').format(widget.content!);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
@@ -41,7 +50,7 @@ class _CustomTextfieldDatetimeState extends State<CustomTextfieldDatetime> {
         controller: widget.controller,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-          labelText: 'Select Date',
+          labelText: widget.label,
           suffixIcon: IconButton(
             onPressed: () => _selectDate(context),
             icon: const Icon(Icons.calendar_today),
