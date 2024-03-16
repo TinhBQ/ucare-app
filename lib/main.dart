@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: SplashScreen.routeName,
+        initialRoute: MedicalAppointmentScheduleScreen.routeName,
         navigatorKey: navigatorKey,
       ),
     );

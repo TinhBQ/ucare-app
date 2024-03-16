@@ -1,7 +1,6 @@
 part of 'create_OTP_cubit.dart';
 
-
-enum CreateOTPStatus {initial, submitting, success, error}
+enum CreateOTPStatus { initial, submitting, success, error }
 
 class CreateOTPState extends Equatable {
   final String email;
@@ -22,13 +21,13 @@ class CreateOTPState extends Equatable {
   CreateOTPState copyWith({
     String? email,
     CreateOTPStatus? status,
-  }){
+  }) {
     return CreateOTPState(
       email: email ?? this.email,
       status: status ?? this.status,
     );
   }
+
   @override
   List<Object?> get props => [email, status];
-  
 }

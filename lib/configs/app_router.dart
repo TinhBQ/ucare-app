@@ -26,6 +26,8 @@ class AppRouter {
         return ChooseProflieScreen.route();
       case CreateNewProfile.routeName:
         return CreateNewProfile.route();
+      case MedicalAppointmentScheduleScreen.routeName:
+        return MedicalAppointmentScheduleScreen.route();
       default:
         return _errorRoute();
     }

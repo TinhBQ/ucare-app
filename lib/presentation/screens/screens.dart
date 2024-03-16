@@ -9,3 +9,4 @@ export 'profile/profile_screen.dart';
 export 'main/main_screen.dart';
 export 'choose_profile/choose_profile_screen.dart';
 export 'create_new_profile/create_new_profile.dart';
+export 'medical_appointment_schedule/medical_appointment_schedule_screen.dart';
