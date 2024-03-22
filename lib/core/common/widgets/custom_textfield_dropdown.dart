@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 
 class CustomTextfieldDropdown extends StatefulWidget {
   const CustomTextfieldDropdown({

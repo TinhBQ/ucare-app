@@ -11,6 +11,7 @@ class CreateOTPCubit extends Cubit<CreateOTPState> {
     required AuthRepository authRepository,
   })  : _authRepository = authRepository,
         super(CreateOTPState.initial());
+
   void emailChanged(String value) {
     emit(
       state.copyWith(

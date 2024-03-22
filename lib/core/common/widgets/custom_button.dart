@@ -5,11 +5,12 @@ class CustomButton extends StatefulWidget {
   final VoidCallback onPressed;
   final bool disabled;
 
-  const CustomButton(
-      {super.key,
-      required this.title,
-      required this.onPressed,
-      this.disabled = false});
+  const CustomButton({
+    super.key,
+    required this.title,
+    required this.onPressed,
+    this.disabled = false,
+  });
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -27,7 +28,7 @@ class _CustomButtonState extends State<CustomButton> {
               onPressed: widget.disabled ? null : widget.onPressed,
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 backgroundColor: Theme.of(context).colorScheme.primary,

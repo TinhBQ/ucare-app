@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/logic/blocs/blocs.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});

@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
-import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatefulWidget {

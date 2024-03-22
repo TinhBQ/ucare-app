@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/logic/cubits/cubits.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
-import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/utils/exception_massage.dart';
 import 'package:mobile_advanced_project_fe/utils/show_snackbar.dart';
 import 'package:mobile_advanced_project_fe/utils/validate.dart';

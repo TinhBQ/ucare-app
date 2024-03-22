@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 
 class CustomCheckbox extends StatefulWidget {
   final String description;
-  final String descriptionInkwell;
   final bool checked;
   final Function(bool?)? onChanged;
-  final VoidCallback onTap;
+  final String? descriptionInkwell;
+  final VoidCallback? onTap;
 
-  const CustomCheckbox({super.key, required this.description, required this.checked, required this.onChanged, required this.descriptionInkwell, required this.onTap});
-  
+  const CustomCheckbox({
+    super.key,
+    required this.description,
+    required this.checked,
+    required this.onChanged,
+    this.descriptionInkwell = '',
+    this.onTap,
+  });
+
   @override
   State<StatefulWidget> createState() => _CustomCheckbox();
-
-  
 }
 
 class _CustomCheckbox extends State<CustomCheckbox> {
@@ -21,7 +26,7 @@ class _CustomCheckbox extends State<CustomCheckbox> {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: Row(
-      children: <Widget>[
+        children: <Widget>[
           Checkbox(
             value: widget.checked,
             onChanged: widget.onChanged,
@@ -31,21 +36,22 @@ class _CustomCheckbox extends State<CustomCheckbox> {
             widget.description,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          Text(
-            ' ',
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
+          if (widget.descriptionInkwell!.isNotEmpty)
+            Text(
+              ' ',
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
           InkWell(
-            onTap: widget.onTap,
+            onTap: widget.descriptionInkwell!.isNotEmpty ? widget.onTap! : null,
             child: Text(
-              widget.descriptionInkwell,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.primary),
+              widget.descriptionInkwell!,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
             ),
           ),
-      ],
-    ),
+        ],
+      ),
     );
-
   }
-  
 }

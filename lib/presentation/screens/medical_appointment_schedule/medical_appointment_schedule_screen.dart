@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/medical_appointment_schedule/doctor_item.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/medical_appointment_schedule/medical_appointment_schedule_option.dart';
-import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 
 import 'choose_option.dart';
 

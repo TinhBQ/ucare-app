@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_advanced_project_fe/core/themes/dark_theme.dart';
 import 'package:mobile_advanced_project_fe/core/themes/theme_provider.dart';
-import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatelessWidget {

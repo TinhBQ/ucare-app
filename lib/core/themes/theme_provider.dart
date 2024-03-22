@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/configs/themes/themes.dart';
+
+import 'dark_theme.dart';
+import 'light_theme.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeData _themeData = lightTheme;

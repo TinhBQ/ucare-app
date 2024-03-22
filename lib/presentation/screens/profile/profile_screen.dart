@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/logic/blocs/blocs.dart';
 import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
-import 'package:mobile_advanced_project_fe/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -83,7 +83,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         IconButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, EditProfileScreen.routeName);
+                            Navigator.pushNamed(
+                                context, EditProfileScreen.routeName);
                           },
                           icon: Icon(
                             Icons.edit,
@@ -129,7 +130,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     icon: Icons.lock,
                     title: 'Đổi mật khẩu',
                     ontap: () {
-                      Navigator.pushNamed(context, ChangePasswordScreen.routeName);
+                      Navigator.pushNamed(
+                          context, ChangePasswordScreen.routeName);
                     },
                   ),
                   Padding(
@@ -146,7 +148,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: 'Đăng xuất',
                     ontap: () {
                       _authBloc.add(AuthEventLoggedOut());
-                      Navigator.pushAndRemoveUntil(context, SignInScreen.route(), (route) => false);
+                      Navigator.pushAndRemoveUntil(
+                          context, SignInScreen.route(), (route) => false);
                     },
                     hideIconNavigation: true,
                   )
