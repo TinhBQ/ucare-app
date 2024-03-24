@@ -52,9 +52,9 @@ dependencies:
   dio: ^5.4.1
   jwt_decode: ^0.3.1
   internet_connection_checker_plus: ^2.2.0
-  flutter_easyloading: ^3.0.5
   chalk: ^1.2.1
   get_it: ^7.6.7
+  dots_indicator: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -81,8 +81,10 @@ flutter:
   assets:
     - assets/
     - assets/logo/
+    - assets/logo/no-image.png
     - assets/images/
     - assets/lottie/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

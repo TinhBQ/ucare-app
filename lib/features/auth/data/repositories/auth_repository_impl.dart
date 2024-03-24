@@ -1,6 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/failures.dart';
+import 'package:mobile_advanced_project_fe/core/items/user_item.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/repository/auth_repository.dart';
@@ -59,6 +60,26 @@ class AuthRepositoryImpl implements AuthRepository {
       ForgotPasswordRequest body) async {
     try {
       final message = await remoteDataSource.forgotPassword(body);
+      return right(message);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserItem>> currentUser() async {
+    try {
+      final UserItem? userItem = await remoteDataSource.getCurrentUserData();
+      return right(userItem!);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> logout() async {
+    try {
+      final message = await remoteDataSource.logout();
       return right(message);
     } on ServerException catch (e) {
       return left(Failure(e.message));

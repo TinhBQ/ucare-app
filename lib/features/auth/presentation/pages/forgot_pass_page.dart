@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mobile_advanced_project_fe/core/routes/routes.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/utils/exception_massage.dart';
-import 'package:mobile_advanced_project_fe/utils/show_snackbar.dart';
-import 'package:mobile_advanced_project_fe/utils/validate.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
 
 import '../bloc/auth_bloc.dart';
 
@@ -52,27 +49,24 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthLoading) {
-          EasyLoading.show(
-            status: 'Loading...',
-          );
+          LoadingOverlay.showLoading(context);
         }
 
         if (state is AuthFailure) {
           _clearFields();
-          EasyLoading.dismiss();
+          LoadingOverlay.dismissLoading();
           ShowSnackBar.error(state.message, context);
         }
 
         if (state is AuthSuccess) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
+          Navigator.of(context).pushReplacementNamed(
             AppRoutes.FORGOT_PASSWORD_SEND_OTP,
-            (route) => false,
             arguments: {
               'email': _emailController.text.trim().toString(),
             },
           );
-          EasyLoading.dismiss();
-          ShowSnackBar.success(state.massage, context);
+          LoadingOverlay.dismissLoading();
+          ShowSnackBar.success(state.message, context);
         }
       },
       builder: (context, state) {
@@ -108,7 +102,7 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
                           },
                           validator: (input) => isEmail(input.toString())
                               ? null
-                              : ExceptionMassage.emailValid,
+                              : InforMassage.emailValid,
                         ),
                         //button
                         CustomButton(

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:mobile_advanced_project_fe/core/routes/routes.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/utils/exception_massage.dart';
-import 'package:mobile_advanced_project_fe/utils/show_snackbar.dart';
-import 'package:mobile_advanced_project_fe/utils/validate.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
 
 import '../bloc/auth_bloc.dart';
 
@@ -77,21 +74,19 @@ class _SignUpPageState extends State<SignUpPage> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthLoading) {
-          EasyLoading.show(
-            status: 'Loading...',
-          );
+          LoadingOverlay.showLoading(context);
         }
 
         if (state is AuthFailure) {
-          EasyLoading.dismiss();
+          _clearFields();
+          LoadingOverlay.dismissLoading();
           ShowSnackBar.error(state.message, context);
         }
 
         if (state is AuthSuccess) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              AppRoutes.CONFIRM_SIGN_UP, (route) => false);
-          EasyLoading.dismiss();
-          ShowSnackBar.success(state.massage, context);
+          Navigator.of(context).pushReplacementNamed(AppRoutes.CONFIRM_SIGN_UP);
+          LoadingOverlay.dismissLoading();
+          ShowSnackBar.success(state.message, context);
         }
       },
       builder: (context, state) {
@@ -117,7 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                     validator: (input) => isEmail(input.toString())
                         ? null
-                        : ExceptionMassage.emailValid,
+                        : InforMassage.emailValid,
                   ),
                   CustomTextfield(
                     label: 'Số điện thoại',
@@ -128,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                     validator: (input) => isPhone(input.toString())
                         ? null
-                        : ExceptionMassage.phoneNumberValid,
+                        : InforMassage.phoneNumberValid,
                   ),
                   CustomTextfield(
                     label: 'Mật khẩu',
@@ -148,7 +143,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                     validator: (input) => isPassword(input.toString())
                         ? null
-                        : ExceptionMassage.passwordValid,
+                        : InforMassage.passwordValid,
                   ),
                   CustomTextfield(
                     label: 'Xác nhận mật khẩu',
@@ -169,7 +164,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     validator: (input) =>
                         onCheckedConfirmPassword(input.toString())
                             ? null
-                            : ExceptionMassage.confirmPasswordValid,
+                            : InforMassage.confirmPasswordValid,
                   ),
                   CustomButton(
                       title: "ĐĂNG KÝ TÀI KHOẢN",
@@ -191,7 +186,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       .toString(),
                                 ),
                               );
-                          _clearFields();
                         }
                       }),
                 ],
@@ -201,11 +195,11 @@ class _SignUpPageState extends State<SignUpPage> {
         );
 
         final Widget navigateLogin = Align(
-          // alignment: Alignment.bottomCenter,
           child: CustomInkwell(
             description: 'Bạn đã có sẵn tài khoản?',
             onTap: () {
-              Navigator.of(context).pushNamed(AppRoutes.SING_IN);
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(AppRoutes.SING_IN, (route) => false);
             },
             descriptionInkwell: 'Đăng nhập',
             textStyle: Theme.of(context).textTheme.bodyMedium!,

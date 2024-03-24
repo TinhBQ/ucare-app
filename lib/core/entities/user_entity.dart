@@ -1,27 +1,23 @@
-class UserEntity {
-  final String id;
-  final String phone;
-  final String password;
-  final String fullName;
-  final String role;
-  final String email;
-  final String avatar;
-  final String birthday;
-  final bool male;
-  final bool enable;
-  final bool active;
+// ignore_for_file: non_constant_identifier_names
 
-  const UserEntity({
-    required this.id,
-    required this.phone,
-    required this.password,
-    required this.fullName,
-    required this.role,
+class UserEntity {
+  final String user_id;
+  final String user_name;
+  final String email;
+  final String phone;
+  final String birthday;
+  final String male;
+  final String avatar;
+  final String role;
+
+  UserEntity({
+    required this.user_id,
+    required this.user_name,
     required this.email,
-    required this.avatar,
+    required this.phone,
     required this.birthday,
     required this.male,
-    required this.enable,
-    required this.active,
+    required this.avatar,
+    required this.role,
   });
 }

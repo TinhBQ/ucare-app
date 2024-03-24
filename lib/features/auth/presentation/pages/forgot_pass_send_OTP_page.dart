@@ -2,12 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:mobile_advanced_project_fe/core/routes/routes.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/utils/exception_massage.dart';
-import 'package:mobile_advanced_project_fe/utils/show_snackbar.dart';
-import 'package:mobile_advanced_project_fe/utils/validate.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
 
 import '../bloc/auth_bloc.dart';
 
@@ -57,23 +54,21 @@ class _ForgotPassSendOTPPageState extends State<ForgotPassSendOTPPage> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthLoading) {
-          EasyLoading.show(
-            status: 'Loading...',
-          );
+          LoadingOverlay.showLoading(context);
         }
 
         if (state is AuthFailure) {
-          EasyLoading.dismiss();
+          LoadingOverlay.dismissLoading();
           ShowSnackBar.error(state.message, context);
         }
 
         if (state is AuthSuccess) {
-          EasyLoading.dismiss();
+          LoadingOverlay.dismissLoading();
           if (state.onAuthEvent == OnAuthEvent.onAuthForgotPassword) {
             Navigator.of(context)
                 .pushNamedAndRemoveUntil(AppRoutes.SING_IN, (route) => false);
           }
-          ShowSnackBar.success(state.massage, context);
+          ShowSnackBar.success(state.message, context);
         }
       },
       builder: (context, state) {
@@ -142,7 +137,7 @@ class _ForgotPassSendOTPPageState extends State<ForgotPassSendOTPPage> {
                             },
                             validator: (input) => isPassword(input.toString())
                                 ? null
-                                : ExceptionMassage.passwordValid,
+                                : InforMassage.passwordValid,
                           ),
                           CustomTextfield(
                             label: 'Xác nhận mật khẩu',
@@ -163,7 +158,7 @@ class _ForgotPassSendOTPPageState extends State<ForgotPassSendOTPPage> {
                             validator: (input) =>
                                 _onCheckedConfirmPassword(input.toString())
                                     ? null
-                                    : ExceptionMassage.confirmPasswordValid,
+                                    : InforMassage.confirmPasswordValid,
                           ),
                           //button confirm new password
                           //button confirm OTP

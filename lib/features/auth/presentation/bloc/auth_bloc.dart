@@ -1,6 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/cubit/app_user_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
+import 'package:mobile_advanced_project_fe/core/usecase/usecase.dart';
+import 'package:mobile_advanced_project_fe/core/utils/infor_massage.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/usecases.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/user_forgot_password.dart';
 
@@ -13,6 +18,8 @@ enum OnAuthEvent {
   onAuthConfirmSignUp,
   onAuthCreateOTP,
   onAuthForgotPassword,
+  onAuthLogout,
+  onAuthUserLoggedIn,
 }
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -21,6 +28,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserConfirmSignUp _userConfirmSignUp;
   final UserCreateOTP _userCreateOTP;
   final UserForgotPassword _userForgotPassword;
+  final CurrentUser _currentUser;
+  final UserLogout _userLogout;
+
+  final AppUserCubit _appUserCubit;
 
   AuthBloc({
     required UserLogin userLogin,
@@ -28,11 +39,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required UserConfirmSignUp userConfirmSignUp,
     required UserCreateOTP userCreateOTP,
     required UserForgotPassword userForgotPassword,
+    required CurrentUser currentUser,
+    required UserLogout userLogout,
+    required AppUserCubit appUserCubit,
   })  : _userLogin = userLogin,
         _userSignUp = userSignUp,
         _userConfirmSignUp = userConfirmSignUp,
         _userCreateOTP = userCreateOTP,
         _userForgotPassword = userForgotPassword,
+        _currentUser = currentUser,
+        _userLogout = userLogout,
+        _appUserCubit = appUserCubit,
         super(AuthInitial()) {
     on<AuthEvent>((_, emit) => emit(AuthLoading()));
     on<AuthLogin>(_onAuthLogin);
@@ -40,6 +57,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthConfirmSignUp>(_onAuthConfirmSignUp);
     on<AuthCreateOTP>(_onAuthCreateOTP);
     on<AuthForgotPassword>(_onAuthForgotPassword);
+    on<AuthLogout>(_onAuthLogout);
+    on<AuthUserLoggedIn>(_onAuthUserLoggedIn);
   }
 
   void _onAuthLogin(
@@ -54,7 +73,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
     res.fold(
-      (failure) => emit(AuthFailure(failure.message.toString())),
+      (failure) => emit(AuthFailure(
+        failure.message.toString(),
+        OnAuthEvent.onAuthLogin,
+      )),
       (massage) => emit(AuthSuccess(
         massage.toString(),
         OnAuthEvent.onAuthLogin,
@@ -76,7 +98,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
     res.fold(
-      (failure) => emit(AuthFailure(failure.message.toString())),
+      (failure) => emit(AuthFailure(
+        failure.message.toString(),
+        OnAuthEvent.onAuthSignUp,
+      )),
       (massage) => emit(AuthSuccess(
         massage.toString(),
         OnAuthEvent.onAuthSignUp,
@@ -93,7 +118,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
     res.fold(
-      (failure) => emit(AuthFailure(failure.message.toString())),
+      (failure) => emit(AuthFailure(
+        failure.message.toString(),
+        OnAuthEvent.onAuthConfirmSignUp,
+      )),
       (massage) => emit(AuthSuccess(
         massage.toString(),
         OnAuthEvent.onAuthConfirmSignUp,
@@ -108,7 +136,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final res = await _userCreateOTP(CreateOTPRequest(email: event.email));
 
     res.fold(
-      (failure) => emit(AuthFailure(failure.message.toString())),
+      (failure) => emit(AuthFailure(
+        failure.message.toString(),
+        OnAuthEvent.onAuthCreateOTP,
+      )),
       (massage) => emit(AuthSuccess(
         massage.toString(),
         OnAuthEvent.onAuthCreateOTP,
@@ -127,11 +158,67 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     ));
 
     res.fold(
-      (failure) => emit(AuthFailure(failure.message.toString())),
+      (failure) => emit(AuthFailure(
+        failure.message.toString(),
+        OnAuthEvent.onAuthForgotPassword,
+      )),
       (massage) => emit(AuthSuccess(
         massage.toString(),
         OnAuthEvent.onAuthForgotPassword,
       )),
+    );
+  }
+
+  void _onAuthUserLoggedIn(
+    AuthUserLoggedIn event,
+    Emitter<AuthState> emit,
+  ) async {
+    final res = await _currentUser(NoParams());
+
+    res.fold(
+      (l) => emit(AuthFailure(
+        l.message,
+        OnAuthEvent.onAuthUserLoggedIn,
+      )),
+      (r) => _emitAuthSuccess(
+        r,
+        emit,
+        InforMassage.GET_INFO_SUCCESS,
+        OnAuthEvent.onAuthUserLoggedIn,
+      ),
+    );
+  }
+
+  void _onAuthLogout(
+    AuthLogout event,
+    Emitter<AuthState> emit,
+  ) async {
+    final res = await _userLogout(NoParams());
+
+    res.fold(
+      (failure) => emit(AuthFailure(
+        failure.message.toString(),
+        OnAuthEvent.onAuthLogout,
+      )),
+      (massage) {
+        _appUserCubit.updateUser(null);
+        return emit(AuthSuccess(
+          massage.toString(),
+          OnAuthEvent.onAuthLogout,
+        ));
+      },
+    );
+  }
+
+  void _emitAuthSuccess(
+    UserItem? userItem,
+    Emitter<AuthState> emit,
+    String massage,
+    OnAuthEvent onAuthEvent,
+  ) {
+    _appUserCubit.updateUser(userItem);
+    emit(
+      AuthSuccess(massage, onAuthEvent),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:mobile_advanced_project_fe/core/values/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,16 +27,19 @@ class StorageService {
     return _prefs.getBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME) ?? false;
   }
 
-  // Kiểm tra đã login chưa
-  bool getIsLoggedIn() {
-    return _prefs.getString(AppConstants.STORAGE_USER_ACCESS_TOKEN_KEY) == null
-        ? false
-        : true;
-  }
-
   // Lấy tokens
   String getUserAccessTokenKey() {
     return _prefs.getString(AppConstants.STORAGE_USER_ACCESS_TOKEN_KEY) ?? "";
+  }
+
+  // Kiểm tra đã login chưa
+  bool getIsLoggedIn() {
+    String accessToken = getUserAccessTokenKey();
+    if (accessToken.isEmpty || !getRemembersLogin()) {
+      return false;
+    }
+
+    return !Jwt.isExpired(accessToken);
   }
 
   // Lấy refresh tokens

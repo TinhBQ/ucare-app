@@ -8,6 +8,15 @@ import 'package:jwt_decode/jwt_decode.dart';
 import 'package:mobile_advanced_project_fe/core/values/constant.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
 
+const noToken = [
+  AppConstants.SERVER_API_URL + AppConstants.SERVER_REFRESH_TOKEN,
+  AppConstants.SERVER_API_URL + AppConstants.SERVER_LOGIN,
+  AppConstants.SERVER_API_URL + AppConstants.SERVER_SIGN_UP,
+  AppConstants.SERVER_API_URL + AppConstants.SERVER_CONFIRM_SIGN_UP,
+  AppConstants.SERVER_API_URL + AppConstants.SERVER_CREATE_OTP,
+  AppConstants.SERVER_API_URL + AppConstants.SERVER_FORGOT_PASS,
+];
+
 class HttpUtil {
   static final HttpUtil _instance = HttpUtil._internal();
 
@@ -32,9 +41,13 @@ class HttpUtil {
 
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
-      print('options $options');
+      print('options ${options.path}');
       if (!options.path.contains('http')) {
         options.path = AppConstants.SERVER_API_URL + options.path;
+      }
+
+      if (noToken.any((element) => element == options.path)) {
+        return handler.next(options);
       }
 
       print('options.path ${options.path}');
@@ -60,14 +73,18 @@ class HttpUtil {
       Map<String, dynamic> decodedAccessToken = Jwt.parseJwt(accessToken);
       print("Decoded access token: $decodedAccessToken");
       if (Jwt.isExpired(accessToken)) {
+        print("next 2");
         try {
+          print("next 3");
           final response = await dio.post(
             AppConstants.SERVER_REFRESH_TOKEN,
             data: refreshToken,
           );
+          print("next 4");
 
           print("response: $response");
           if (response.statusCode == 200) {
+            print("next 5");
             //! EXPIRED SESSION
             if (response.data != false) {
               options.headers['Authorization'] =
@@ -169,6 +186,29 @@ class HttpUtil {
     requestOptions.headers = requestOptions.headers ?? {};
 
     var response = await dio.patch(
+      path,
+      data: mydata,
+      queryParameters: queryParameters,
+      options: requestOptions,
+    );
+
+    print("my response is ${response.toString()}");
+    print("my status code is ${response.statusCode}");
+    print("my body is ${response.data}");
+    print("my headers are ${response.headers}");
+    return response;
+  }
+
+  Future delete(
+    String path, {
+    dynamic mydata,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
+    Options requestOptions = options ?? Options();
+    requestOptions.headers = requestOptions.headers ?? {};
+
+    var response = await dio.delete(
       path,
       data: mydata,
       queryParameters: queryParameters,

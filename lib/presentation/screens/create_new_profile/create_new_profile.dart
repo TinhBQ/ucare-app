@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/core/common/widgets/custom_textfield_dropdown.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 
 class CreateNewProfile extends StatefulWidget {

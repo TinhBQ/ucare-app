@@ -79,11 +79,11 @@ class AuthApi {
     }
   }
 
-  // Forgot password
+  //* Forgot password
   static forgotPassword(ForgotPasswordRequest body) async {
     try {
       var response = await HttpUtil().patch(
-        AppConstants.SERVER_CREATE_OTP,
+        AppConstants.SERVER_FORGOT_PASS,
         mydata: body.toJson(),
       );
 
@@ -94,6 +94,23 @@ class AuthApi {
       }
     } catch (e) {
       throw ServerException(ServerException.FORGOT_PASSWORD_FAILUARE);
+    }
+  }
+
+  // * User Logout
+  static logout() async {
+    try {
+      var response = await HttpUtil().delete(
+        AppConstants.SERVER_LOGOUT,
+      );
+
+      if (response.statusCode == HttpStatusCode.OK) {
+        return BaseReponseModel.fromJson(response.data);
+      } else {
+        throw ServerException(ServerException.LOGOUT_FAILURE);
+      }
+    } catch (e) {
+      throw ServerException(ServerException.LOGOUT_FAILURE);
     }
   }
 }

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/core/routes/names.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/names.dart';
+import 'package:mobile_advanced_project_fe/core/utils/infor_massage.dart';
+import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
 import 'package:mobile_advanced_project_fe/core/utils/show_snackbar.dart';
 import 'package:mobile_advanced_project_fe/core/values/constant.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
-import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/utils/exception_massage.dart';
-import 'package:mobile_advanced_project_fe/utils/validate.dart';
-
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:mobile_advanced_project_fe/core/utils/validate.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -67,21 +65,37 @@ class _SignInPageState extends State<SignInPage> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthLoading) {
-          EasyLoading.show(
-            status: 'Loading...',
-          );
+          LoadingOverlay.showLoading(context);
         }
 
         if (state is AuthFailure) {
-          EasyLoading.dismiss();
-          ShowSnackBar.error(state.message, context);
+          if (state.onAuthEvent == OnAuthEvent.onAuthUserLoggedIn) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                AppRoutes.APPLICATION, (route) => false);
+            LoadingOverlay.dismissLoading();
+            ShowSnackBar.success(InforMassage.LOGIN_SUCCESS, context);
+          } else {
+            _clearFields();
+            LoadingOverlay.dismissLoading();
+            ShowSnackBar.error(state.message, context);
+          }
         }
 
         if (state is AuthSuccess) {
-          Global.storageService
-              .setBool(AppConstants.STORAGE_USER_REMEMBERS_LOGIN, _checked);
-          EasyLoading.dismiss();
-          ShowSnackBar.success(state.massage, context);
+          if (state.onAuthEvent == OnAuthEvent.onAuthUserLoggedIn) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                AppRoutes.APPLICATION, (route) => false);
+            LoadingOverlay.dismissLoading();
+            ShowSnackBar.success(InforMassage.LOGIN_SUCCESS, context);
+          }
+
+          if (state.onAuthEvent == OnAuthEvent.onAuthLogin) {
+            Global.storageService
+                .setBool(AppConstants.STORAGE_USER_REMEMBERS_LOGIN, _checked);
+            context.read<AuthBloc>().add(
+                  AuthUserLoggedIn(),
+                );
+          }
         }
       },
       builder: (context, state) {
@@ -123,7 +137,7 @@ class _SignInPageState extends State<SignInPage> {
                                     validator: (input) =>
                                         isEmail(input.toString())
                                             ? null
-                                            : ExceptionMassage.emailValid,
+                                            : InforMassage.emailValid,
                                   ),
                                   CustomTextfield(
                                     label: 'Mật khẩu',
@@ -144,7 +158,7 @@ class _SignInPageState extends State<SignInPage> {
                                     validator: (input) =>
                                         isPassword(input.toString())
                                             ? null
-                                            : ExceptionMassage.passwordValid,
+                                            : InforMassage.passwordValid,
                                   ),
                                   CustomCheckbox(
                                     description: 'Lưu thông tin đăng nhập',
@@ -170,7 +184,6 @@ class _SignInPageState extends State<SignInPage> {
                                                     .trim(),
                                               ),
                                             );
-                                        _clearFields();
                                       }
                                     },
                                   ),
