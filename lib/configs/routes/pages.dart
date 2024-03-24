@@ -1,0 +1,116 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_advanced_project_fe/core/entities/page_entity.dart';
+import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
+import 'package:mobile_advanced_project_fe/core/values/constant.dart';
+import 'package:mobile_advanced_project_fe/features/application/presentation/pages/application_page.dart';
+import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/auth/presentation/pages/pages.dart';
+import 'package:mobile_advanced_project_fe/features/home/presentation/pages/home_page.dart';
+import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/pages.dart';
+import 'package:mobile_advanced_project_fe/features/settings/presentation/pages/settings_page.dart';
+import 'package:mobile_advanced_project_fe/features/splash/presentation/splash_page.dart';
+import 'package:mobile_advanced_project_fe/global.dart';
+
+import 'names.dart';
+
+class AppPages {
+  static List<PageEntity> routes() {
+    return [
+      PageEntity(
+        route: AppRoutes.INITIAL,
+        page: const SplashPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.SING_IN,
+        page: const SignInPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.SIGN_UP,
+        page: const SignUpPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.CONFIRM_SIGN_UP,
+        page: const ConfirmRegisterPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.FORGOT_PASSWORD,
+        page: const ForgotPassPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.FORGOT_PASSWORD_SEND_OTP,
+        page: const ForgotPassSendOTPPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.APPLICATION,
+        page: const ApplicationPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.HOME,
+        page: const HomePage(),
+      ),
+      PageEntity(
+        route: AppRoutes.PROFILE,
+        page: const ProfilePage(),
+      ),
+      PageEntity(
+        route: AppRoutes.SETTINGS,
+        page: const SettingsPage(),
+      ),
+    ];
+  }
+
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  static MaterialPageRoute GenerateRouteSettings(RouteSettings settings) {
+    if (settings.name != null) {
+      var result = routes().where((element) => element.route == settings.name);
+
+      if (result.isNotEmpty) {
+        bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
+        if (result.first.route == AppRoutes.INITIAL && deviceFirstOpen) {
+          Global.storageService
+              .setBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME, false);
+          bool isLoggedin = Global.storageService.getIsLoggedIn();
+
+          if (isLoggedin) {
+            bool isDataLoaded = false;
+
+            return MaterialPageRoute(
+                builder: (context) {
+                  if (!isDataLoaded) {
+                    context.read<AuthBloc>().add(AuthUserLoggedIn());
+
+                    isDataLoaded = true;
+                  }
+
+                  return BlocConsumer<AuthBloc, AuthState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      if (state is AuthLoading) {
+                        LoadingOverlay.showLoading(context);
+                      }
+
+                      LoadingOverlay.dismissLoading();
+                      return const ApplicationPage();
+                    },
+                  );
+                },
+                settings: settings);
+          }
+
+          return MaterialPageRoute(
+              builder: (_) => const SignInPage(), settings: settings);
+        }
+
+        return MaterialPageRoute(
+            builder: (_) => result.first.page, settings: settings);
+      }
+    }
+
+    return MaterialPageRoute(
+        builder: (_) => const SignInPage(), settings: settings);
+  }
+}

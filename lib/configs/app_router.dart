@@ -4,32 +4,14 @@ import 'package:mobile_advanced_project_fe/presentation/screens/screens.dart';
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case MainScreen.routeName:
-        return MainScreen.route();
-      case SplashScreen.routeName:
-        return SplashScreen.route();
-      case SignInScreen.routeName:
-        return SignInScreen.route();
-      case SignupScreen.routeName:
-        return SignupScreen.route();
-      case ConfirmRegisterScreen.routeName:
-        return ConfirmRegisterScreen.route();
-      case ForgotPassScreen.routeName:
-        return ForgotPassScreen.route();
-      case ForgotPassSendOTPScreen.routeName:
-        return ForgotPassSendOTPScreen.route();
-      case HomeScreen.routeName:
-        return HomeScreen.route();
-      case ProfileScreen.routeName:
-        return ProfileScreen.route();
       case ChooseProflieScreen.routeName:
         return ChooseProflieScreen.route();
       case CreateNewProfile.routeName:
         return CreateNewProfile.route();
+      case MedicalAppointmentScheduleScreen.routeName:
+        return MedicalAppointmentScheduleScreen.route();
       case ProfilesScreen.routeName:
         return ProfilesScreen.route();
-      case SettingsScreen.routeName:
-        return SettingsScreen.route();
       case ChangePasswordScreen.routeName:
         return ChangePasswordScreen.route();
       case EditProfileScreen.routeName:
