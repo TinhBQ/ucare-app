@@ -10,7 +10,7 @@ import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_
 import 'package:mobile_advanced_project_fe/features/auth/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/home/presentation/pages/home_page.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/settings/presentation/pages/settings_page.dart';
+import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/settings_page.dart';
 import 'package:mobile_advanced_project_fe/features/splash/presentation/splash_page.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
 
@@ -58,6 +58,10 @@ class AppPages {
       PageEntity(
         route: AppRoutes.SETTINGS,
         page: const SettingsPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.CHANGE_PASSWORD,
+        page: const ChangePasswordPage(),
       ),
     ];
   }

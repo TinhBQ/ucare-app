@@ -16,6 +16,7 @@ class AppConstants {
 
   // Server User
   static const String SERVER_GET_INFO = "api/user/getInfo";
+  static const String SERVER_CHANGE_PASSWORD = "api/auth/changePass";
 
   // Storage Server: shared_preferences
   static const String STORAGE_DEVICE_OPEN_FIRST_TIME = "device_first_open";

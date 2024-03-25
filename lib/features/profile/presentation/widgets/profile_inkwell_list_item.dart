@@ -23,7 +23,9 @@ List<ProfileItem> getProfileItems(BuildContext context) => [
       ProfileItem(
         title: 'Đổi mật khẩu',
         icon: Icons.lock,
-        callback: () {},
+        callback: () {
+          Navigator.of(context).pushNamed(AppRoutes.CHANGE_PASSWORD);
+        },
       ),
       ProfileItem(
         title: 'Đăng xuất',

@@ -5,9 +5,14 @@ import 'package:mobile_advanced_project_fe/features/auth/data/repositories/auth_
 import 'package:mobile_advanced_project_fe/features/auth/domain/repository/auth_repository.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/user_forgot_password.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/profile/data/datasources/profile_remote_data_source.dart';
+import 'package:mobile_advanced_project_fe/features/profile/domain/repository/profile_repository.dart';
+import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/user_change_password.dart';
+import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
 
 import 'features/application/presentation/bloc/application_bloc.dart';
 import 'features/auth/domain/usecases/usecases.dart';
+import 'features/profile/data/repositories/profile_repository_impl.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -21,6 +26,8 @@ Future<void> initDependencies() async {
   serviceLocator.registerLazySingleton(
     () => ApplicationBloc(),
   );
+
+  _initProfile();
 }
 
 void _initAuth() {
@@ -82,6 +89,32 @@ void _initAuth() {
         currentUser: serviceLocator(),
         appUserCubit: serviceLocator(),
         userLogout: serviceLocator(),
+      ),
+    );
+}
+
+void _initProfile() {
+  // Datasource
+  serviceLocator
+    ..registerFactory<ProfileRemoteDataSource>(
+      () => ProfileRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<ProfileRepository>(
+      () => ProfileRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserChangePassword(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => ProfileBloc(
+        userChangePassword: serviceLocator(),
       ),
     );
 }

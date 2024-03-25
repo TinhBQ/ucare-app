@@ -23,4 +23,6 @@ class AppRoutes {
 
   // for settings of the app
   static const SETTINGS = "/settings";
+  // change password of the app
+  static const CHANGE_PASSWORD = "/change_password";
 }

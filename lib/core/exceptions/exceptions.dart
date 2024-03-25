@@ -11,6 +11,7 @@ class ServerException implements Exception {
   static String CONFIRM_SIGN_UP_FAILUARE = 'Xác thực đăg ký thất bại.';
   static String CREATE_OTP_FAILUARE = 'Gửi OTP không thành công.';
   static String FORGOT_PASSWORD_FAILUARE = 'Đổi mật khẩu không thành công.';
+  static String CHANGE_PASSWORD_FAILURE = 'Thay đổi mật khẩu không này.';
 
   static String LOGOUT_FAILURE = 'Đăng xuất không thành công.';
 
