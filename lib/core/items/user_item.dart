@@ -14,16 +14,16 @@ class UserItem extends UserEntity {
     required super.role,
   });
 
-  factory UserItem.fromJson(Map<String, dynamic> map) {
+  factory UserItem.fromJson(Map<String, dynamic> json) {
     return UserItem(
-      user_id: map['user_id'] ?? '',
-      user_name: map['user_name'] ?? '',
-      email: map['email'] ?? '',
-      phone: map['phone'] ?? '',
-      birthday: map['birthday'] ?? '',
-      male: map['male'] ?? '',
-      avatar: map['avatar'] ?? '',
-      role: map['role'] ?? '',
+      user_id: json['user_id'] ?? '',
+      user_name: json['user_name'] ?? '',
+      email: json['email'] ?? '',
+      phone: json['phone'] ?? '',
+      birthday: json['birthday'] ?? '',
+      male: json['male'] ?? '',
+      avatar: json['avatar'] ?? '',
+      role: json['role'] ?? '',
     );
   }
 }

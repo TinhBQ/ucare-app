@@ -5,12 +5,13 @@ import 'package:mobile_advanced_project_fe/core/usecase/usecase.dart';
 
 import '../repository/auth_repository.dart';
 
-class UserForgotPassword implements UseCase<String, ForgotPasswordRequest> {
+class UserForgotPassword
+    implements UseCase<String, ForgotPasswordRequestModel> {
   final AuthRepository authRepository;
   const UserForgotPassword(this.authRepository);
 
   @override
-  Future<Either<Failure, String>> call(ForgotPasswordRequest body) async {
+  Future<Either<Failure, String>> call(ForgotPasswordRequestModel body) async {
     return await authRepository.forgotPassword(body);
   }
 }

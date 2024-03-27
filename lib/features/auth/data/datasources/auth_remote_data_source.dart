@@ -11,11 +11,11 @@ import '../../../../core/enum/enum.dart';
 import '../../../../core/model/response_models/response_models.dart';
 
 abstract interface class AuthRemoteDataSource {
-  Future<String> signUpWithEmailPassword(UserSignUpRequest body);
-  Future<String> loginWithEmailPassword(UserLoginRequest body);
-  Future<String> confirmSignUp(ConfirmRegisterRequest params);
-  Future<String> createOTP(CreateOTPRequest body);
-  Future<String> forgotPassword(ForgotPasswordRequest body);
+  Future<String> signUpWithEmailPassword(UserSignUpRequestModel body);
+  Future<String> loginWithEmailPassword(UserLoginRequestModel body);
+  Future<String> confirmSignUp(ConfirmRegisterRequestModel params);
+  Future<String> createOTP(CreateOTPRequestModel body);
+  Future<String> forgotPassword(ForgotPasswordRequestModel body);
   Future<String> logout();
 
   Future<UserItem?> getCurrentUserData();
@@ -25,7 +25,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl();
 
   @override
-  Future<String> loginWithEmailPassword(UserLoginRequest body) async {
+  Future<String> loginWithEmailPassword(UserLoginRequestModel body) async {
     LoginResponeModel response = await AuthApi.login(body);
 
     if (response.responseData != null &&
@@ -45,7 +45,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<String> signUpWithEmailPassword(UserSignUpRequest params) async {
+  Future<String> signUpWithEmailPassword(UserSignUpRequestModel params) async {
     BaseReponseModel response = await AuthApi.signup(params);
 
     return response.status == StatusResponse.success.name
@@ -54,7 +54,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<String> confirmSignUp(ConfirmRegisterRequest params) async {
+  Future<String> confirmSignUp(ConfirmRegisterRequestModel params) async {
     BaseReponseModel response = await AuthApi.confirmSignUp(params);
 
     return response.status == StatusResponse.success.name
@@ -63,7 +63,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<String> createOTP(CreateOTPRequest body) async {
+  Future<String> createOTP(CreateOTPRequestModel body) async {
     BaseReponseModel response = await AuthApi.createOTP(body);
 
     return response.status == StatusResponse.success.name
@@ -72,7 +72,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<String> forgotPassword(ForgotPasswordRequest body) async {
+  Future<String> forgotPassword(ForgotPasswordRequestModel body) async {
     BaseReponseModel response = await AuthApi.forgotPassword(body);
 
     return response.status == StatusResponse.success.name

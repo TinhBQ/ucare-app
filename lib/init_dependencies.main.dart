@@ -1,10 +1,13 @@
 import 'package:get_it/get_it.dart';
-import 'package:mobile_advanced_project_fe/core/common/cubits/cubit/app_user_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:mobile_advanced_project_fe/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:mobile_advanced_project_fe/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/repository/auth_repository.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/user_forgot_password.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/find_exam_times/data/datasources/find_exam_times_remote_data_source.dart';
+import 'package:mobile_advanced_project_fe/features/find_exam_times/data/repositories/find_exam_times_repository_impl.dart';
+import 'package:mobile_advanced_project_fe/features/find_exam_times/domain/repository/find_exam_times_repository.dart';
 import 'package:mobile_advanced_project_fe/features/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:mobile_advanced_project_fe/features/profile/domain/repository/profile_repository.dart';
 import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/user_change_password.dart';
@@ -12,6 +15,8 @@ import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/pr
 
 import 'features/application/presentation/bloc/application_bloc.dart';
 import 'features/auth/domain/usecases/usecases.dart';
+import 'features/find_exam_times/domain/usecases/usecases.dart';
+import 'features/find_exam_times/presentation/bloc/find_exam_times_bloc.dart';
 import 'features/profile/data/repositories/profile_repository_impl.dart';
 
 final serviceLocator = GetIt.instance;
@@ -28,6 +33,7 @@ Future<void> initDependencies() async {
   );
 
   _initProfile();
+  _initFindExamTimes();
 }
 
 void _initAuth() {
@@ -115,6 +121,32 @@ void _initProfile() {
     ..registerLazySingleton(
       () => ProfileBloc(
         userChangePassword: serviceLocator(),
+      ),
+    );
+}
+
+void _initFindExamTimes() {
+  // Datasource
+  serviceLocator
+    ..registerFactory<FindExamTimesRemoteDataSource>(
+      () => FindExamTimesRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<FindExamTimesRepository>(
+      () => FindExamTimesRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserGetListDepartment(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => FindExamTimesBloc(
+        userGetListDepartment: serviceLocator(),
       ),
     );
 }

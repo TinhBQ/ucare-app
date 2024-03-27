@@ -5,6 +5,7 @@ import 'custom_circular_progressin_dicator.dart';
 class CustomSearchBar extends StatefulWidget {
   final TextEditingController controller;
   final Color? borderColor;
+  final BorderRadius borderRadius; // Thêm borderRadius vào CustomSearchBar
   final void Function(String? text)? onChanged;
   final void Function(String? text)? onSubmitted;
   final void Function()? onTap;
@@ -14,6 +15,8 @@ class CustomSearchBar extends StatefulWidget {
     super.key,
     required this.controller,
     this.borderColor,
+    this.borderRadius = const BorderRadius.all(
+        Radius.circular(10.0)), // Thiết lập border radius mặc định
     this.onChanged,
     this.onSubmitted,
     this.onTap,
@@ -31,24 +34,23 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
+      // margin: const EdgeInsets.only(bottom: 16),
       child: SearchBar(
         controller: widget.controller,
         padding: const MaterialStatePropertyAll<EdgeInsets>(
             EdgeInsets.symmetric(horizontal: 16.0)),
-        side: MaterialStateBorderSide.resolveWith((states) {
-          if (states.contains(MaterialState.focused)) {
-            return BorderSide(
-                color:
-                    widget.borderColor ?? Theme.of(context).colorScheme.primary,
-                width: 1.2);
-          } else {
-            return BorderSide(
-                color:
-                    widget.borderColor ?? Theme.of(context).colorScheme.primary,
-                width: 1);
-          }
+        shape: MaterialStateProperty.resolveWith((states) {
+          return RoundedRectangleBorder(
+            borderRadius:
+                widget.borderRadius, // Sử dụng borderRadius từ CustomSearchBar
+            side: BorderSide(
+              color:
+                  widget.borderColor ?? Theme.of(context).colorScheme.primary,
+              width: states.contains(MaterialState.focused) ? 2.0 : 1.8,
+            ),
+          );
         }),
         surfaceTintColor: MaterialStateProperty.resolveWith((states) {
           return Colors.transparent;

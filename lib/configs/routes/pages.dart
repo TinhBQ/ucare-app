@@ -8,6 +8,7 @@ import 'package:mobile_advanced_project_fe/core/values/constant.dart';
 import 'package:mobile_advanced_project_fe/features/application/presentation/pages/application_page.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/pages/pages.dart';
+import 'package:mobile_advanced_project_fe/features/find_exam_times/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/home/presentation/pages/home_page.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/settings_page.dart';
@@ -23,6 +24,7 @@ class AppPages {
         route: AppRoutes.INITIAL,
         page: const SplashPage(),
       ),
+      // * Auth
       PageEntity(
         route: AppRoutes.SING_IN,
         page: const SignInPage(),
@@ -43,14 +45,17 @@ class AppPages {
         route: AppRoutes.FORGOT_PASSWORD_SEND_OTP,
         page: const ForgotPassSendOTPPage(),
       ),
+      // * App
       PageEntity(
         route: AppRoutes.APPLICATION,
         page: const ApplicationPage(),
       ),
+      // * App --> Home
       PageEntity(
         route: AppRoutes.HOME,
         page: const HomePage(),
       ),
+      // * App --> Profile
       PageEntity(
         route: AppRoutes.PROFILE,
         page: const ProfilePage(),
@@ -62,6 +67,11 @@ class AppPages {
       PageEntity(
         route: AppRoutes.CHANGE_PASSWORD,
         page: const ChangePasswordPage(),
+      ),
+      // * App --> Find Exam Times
+      PageEntity(
+        route: AppRoutes.FIND_EXAM_TIMES,
+        page: const FindExamTimesPage(),
       ),
     ];
   }

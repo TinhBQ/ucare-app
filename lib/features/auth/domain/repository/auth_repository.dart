@@ -5,11 +5,14 @@ import 'package:mobile_advanced_project_fe/core/model/request_models/request_mod
 
 abstract interface class AuthRepository {
   Future<Either<Failure, String>> signUpWithEmailPassword(
-      UserSignUpRequest body);
-  Future<Either<Failure, String>> loginWithEmailPassword(UserLoginRequest body);
-  Future<Either<Failure, String>> confirmSignUp(ConfirmRegisterRequest params);
-  Future<Either<Failure, String>> createOTP(CreateOTPRequest body);
-  Future<Either<Failure, String>> forgotPassword(ForgotPasswordRequest body);
+      UserSignUpRequestModel body);
+  Future<Either<Failure, String>> loginWithEmailPassword(
+      UserLoginRequestModel body);
+  Future<Either<Failure, String>> confirmSignUp(
+      ConfirmRegisterRequestModel params);
+  Future<Either<Failure, String>> createOTP(CreateOTPRequestModel body);
+  Future<Either<Failure, String>> forgotPassword(
+      ForgotPasswordRequestModel body);
   Future<Either<Failure, String>> logout();
 
   Future<Either<Failure, UserItem>> currentUser();

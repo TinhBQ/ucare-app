@@ -16,4 +16,7 @@ class ServerException implements Exception {
   static String LOGOUT_FAILURE = 'Đăng xuất không thành công.';
 
   static String GET_INFO_FAILUARE = 'Lấy thông tin không thành công.';
+
+  static String GET_DEPARTMENT_FAILURE =
+      'Lấy danh sách chuyên khoa không thành công.';
 }

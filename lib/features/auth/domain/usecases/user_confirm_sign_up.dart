@@ -5,12 +5,14 @@ import 'package:mobile_advanced_project_fe/core/usecase/usecase.dart';
 
 import '../repository/auth_repository.dart';
 
-class UserConfirmSignUp implements UseCase<String, ConfirmRegisterRequest> {
+class UserConfirmSignUp
+    implements UseCase<String, ConfirmRegisterRequestModel> {
   final AuthRepository authRepository;
   const UserConfirmSignUp(this.authRepository);
 
   @override
-  Future<Either<Failure, String>> call(ConfirmRegisterRequest params) async {
+  Future<Either<Failure, String>> call(
+      ConfirmRegisterRequestModel params) async {
     return await authRepository.confirmSignUp(params);
   }
 }

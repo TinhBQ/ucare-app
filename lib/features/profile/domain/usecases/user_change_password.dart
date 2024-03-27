@@ -5,12 +5,13 @@ import 'package:mobile_advanced_project_fe/core/usecase/usecase.dart';
 
 import '../repository/profile_repository.dart';
 
-class UserChangePassword implements UseCase<String, ChangePasswordRequest> {
+class UserChangePassword
+    implements UseCase<String, ChangePasswordRequestModel> {
   final ProfileRepository profileRepository;
   UserChangePassword(this.profileRepository);
 
   @override
-  Future<Either<Failure, String>> call(ChangePasswordRequest body) async {
+  Future<Either<Failure, String>> call(ChangePasswordRequestModel body) async {
     return await profileRepository.changePassWord(body);
   }
 }

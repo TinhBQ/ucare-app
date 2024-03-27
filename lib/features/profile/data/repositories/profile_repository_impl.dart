@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/failures.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/change_password_request.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/user_request_models/change_password_request_model.dart';
 import 'package:mobile_advanced_project_fe/features/profile/domain/repository/profile_repository.dart';
 
 import '../datasources/profile_remote_data_source.dart';
@@ -13,7 +13,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<Either<Failure, String>> changePassWord(
-      ChangePasswordRequest body) async {
+      ChangePasswordRequestModel body) async {
     try {
       final message = await remoteDataSource.changePassWord(body);
       return right(message);

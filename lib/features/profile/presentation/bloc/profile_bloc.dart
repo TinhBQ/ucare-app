@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/change_password_request.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/user_request_models/change_password_request_model.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/user_change_password.dart';
 
@@ -27,7 +27,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     Emitter<ProfileState> emit,
   ) async {
     final res = await _userChangePassword(
-      ChangePasswordRequest(
+      ChangePasswordRequestModel(
         oldPass: event.oldPass,
         newPass: event.newPass,
         confirmPass: event.confirmPass,

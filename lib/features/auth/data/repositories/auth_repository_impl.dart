@@ -13,7 +13,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, String>> loginWithEmailPassword(
-      UserLoginRequest body) async {
+      UserLoginRequestModel body) async {
     try {
       final message = await remoteDataSource.loginWithEmailPassword(body);
 
@@ -25,7 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, String>> signUpWithEmailPassword(
-      UserSignUpRequest body) async {
+      UserSignUpRequestModel body) async {
     try {
       final message = await remoteDataSource.signUpWithEmailPassword(body);
       return right(message);
@@ -36,7 +36,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, String>> confirmSignUp(
-      ConfirmRegisterRequest params) async {
+      ConfirmRegisterRequestModel params) async {
     try {
       final message = await remoteDataSource.confirmSignUp(params);
       return right(message);
@@ -46,7 +46,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, String>> createOTP(CreateOTPRequest body) async {
+  Future<Either<Failure, String>> createOTP(CreateOTPRequestModel body) async {
     try {
       final message = await remoteDataSource.createOTP(body);
       return right(message);
@@ -57,7 +57,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, String>> forgotPassword(
-      ForgotPasswordRequest body) async {
+      ForgotPasswordRequestModel body) async {
     try {
       final message = await remoteDataSource.forgotPassword(body);
       return right(message);

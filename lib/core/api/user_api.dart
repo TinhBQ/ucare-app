@@ -23,7 +23,7 @@ class UserApi {
     }
   }
 
-  static changePassword(ChangePasswordRequest body) async {
+  static changePassword(ChangePasswordRequestModel body) async {
     try {
       var response = await HttpUtil().patch(
         AppConstants.SERVER_CHANGE_PASSWORD,

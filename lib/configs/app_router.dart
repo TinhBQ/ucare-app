@@ -12,8 +12,6 @@ class AppRouter {
         return MedicalAppointmentScheduleScreen.route();
       case ProfilesScreen.routeName:
         return ProfilesScreen.route();
-      case ChangePasswordScreen.routeName:
-        return ChangePasswordScreen.route();
       case EditProfileScreen.routeName:
         return EditProfileScreen.route();
       default:

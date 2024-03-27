@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
-import 'package:mobile_advanced_project_fe/core/common/cubits/cubit/app_user_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
 import 'package:mobile_advanced_project_fe/core/utils/show_snackbar.dart';

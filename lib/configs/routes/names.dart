@@ -20,6 +20,8 @@ class AppRoutes {
   static const HOME = "/home";
   // navigator profile
   static const PROFILE = "/proflie";
+  // navigator find_exam_times
+  static const FIND_EXAM_TIMES = "/find_exam_times";
 
   // for settings of the app
   static const SETTINGS = "/settings";

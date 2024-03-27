@@ -6,14 +6,14 @@ import 'package:mobile_advanced_project_fe/core/model/response_models/response_m
 import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
 
 abstract interface class ProfileRemoteDataSource {
-  Future<String> changePassWord(ChangePasswordRequest body);
+  Future<String> changePassWord(ChangePasswordRequestModel body);
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   ProfileRemoteDataSourceImpl();
 
   @override
-  Future<String> changePassWord(ChangePasswordRequest body) async {
+  Future<String> changePassWord(ChangePasswordRequestModel body) async {
     BaseReponseModel response = await UserApi.changePassword(body);
 
     return response.status == StatusResponse.success.name

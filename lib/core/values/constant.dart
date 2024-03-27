@@ -3,20 +3,27 @@
 class AppConstants {
   static const String APP_NAME = "Ucare App";
 
-  static const String SERVER_API_URL = "http://10.0.2.2:8080/";
+  // static const String SERVER_API_URL = "http://10.0.2.2:8080/";
+  static const String SERVER_API_URL =
+      "https://mobile-advanced-be-r7xe.onrender.com/";
+  static const String API_VERSION = "v1.0/api";
 
   // SERVER Auth
-  static const String SERVER_REFRESH_TOKEN = "api/auth/refreshToken";
-  static const String SERVER_LOGIN = "api/auth/login";
-  static const String SERVER_SIGN_UP = "api/auth/register";
-  static const String SERVER_CONFIRM_SIGN_UP = "api/auth/confirmRegister";
-  static const String SERVER_CREATE_OTP = "api/auth/createOTP";
-  static const String SERVER_FORGOT_PASS = "api/auth/forgotPass";
-  static const String SERVER_LOGOUT = "api/auth/signOut";
+  static const String SERVER_REFRESH_TOKEN = "$API_VERSION/auth/refreshToken";
+  static const String SERVER_LOGIN = "$API_VERSION/auth/login";
+  static const String SERVER_SIGN_UP = "$API_VERSION/auth/register";
+  static const String SERVER_CONFIRM_SIGN_UP =
+      "$API_VERSION/auth/confirmRegister";
+  static const String SERVER_CREATE_OTP = "$API_VERSION/auth/createOTP";
+  static const String SERVER_FORGOT_PASS = "$API_VERSION/auth/forgotPass";
+  static const String SERVER_LOGOUT = "$API_VERSION/auth/signOut";
 
   // Server User
-  static const String SERVER_GET_INFO = "api/user/getInfo";
-  static const String SERVER_CHANGE_PASSWORD = "api/auth/changePass";
+  static const String SERVER_GET_INFO = "$API_VERSION/user/getInfo";
+  static const String SERVER_CHANGE_PASSWORD = "$API_VERSION/auth/changePass";
+
+  // Server Department
+  static const String SERVER_GET_DEPARTMENT = "$API_VERSION/department";
 
   // Storage Server: shared_preferences
   static const String STORAGE_DEVICE_OPEN_FIRST_TIME = "device_first_open";

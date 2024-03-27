@@ -14,6 +14,9 @@ class InforMassage {
   static String CHANGE_PASSWORD_SUCCESS =
       'Thay đổi mật khẩu thành công. Vui lòng đăng nhập lại để xử dụng.';
 
+  static String GET_DEPARTMENTS_SUCCESS =
+      'Lấy danh sách chuyên khoa thành công.';
+
   // Valid form
   static String emailValid = 'Email không hợp lệ.';
   static String passwordValid =

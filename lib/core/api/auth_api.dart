@@ -8,7 +8,7 @@ import '../values/constant.dart';
 
 class AuthApi {
   // * User login
-  static login(UserLoginRequest body) async {
+  static login(UserLoginRequestModel body) async {
     try {
       var response = await HttpUtil().post(
         AppConstants.SERVER_LOGIN,
@@ -26,7 +26,7 @@ class AuthApi {
   }
 
   // * User Sign up
-  static signup(UserSignUpRequest body) async {
+  static signup(UserSignUpRequestModel body) async {
     try {
       var response = await HttpUtil().post(
         AppConstants.SERVER_SIGN_UP,
@@ -44,7 +44,7 @@ class AuthApi {
   }
 
   // * User Confirm Sign up
-  static confirmSignUp(ConfirmRegisterRequest params) async {
+  static confirmSignUp(ConfirmRegisterRequestModel params) async {
     try {
       var response = await HttpUtil().get(
         AppConstants.SERVER_CONFIRM_SIGN_UP,
@@ -62,7 +62,7 @@ class AuthApi {
   }
 
   // * Create OTP
-  static createOTP(CreateOTPRequest body) async {
+  static createOTP(CreateOTPRequestModel body) async {
     try {
       var response = await HttpUtil().post(
         AppConstants.SERVER_CREATE_OTP,
@@ -80,7 +80,7 @@ class AuthApi {
   }
 
   //* Forgot password
-  static forgotPassword(ForgotPasswordRequest body) async {
+  static forgotPassword(ForgotPasswordRequestModel body) async {
     try {
       var response = await HttpUtil().patch(
         AppConstants.SERVER_FORGOT_PASS,

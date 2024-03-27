@@ -1,8 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/core/common/cubits/cubit/app_user_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/auth_request_models/auth_request_models.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/core/usecase/usecase.dart';
 import 'package:mobile_advanced_project_fe/core/utils/infor_massage.dart';
@@ -66,7 +67,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     final res = await _userLogin(
-      UserLoginRequest(
+      UserLoginRequestModel(
         email: event.email,
         password: event.password,
       ),
@@ -89,7 +90,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     final res = await _userSignUp(
-      UserSignUpRequest(
+      UserSignUpRequestModel(
         email: event.email,
         phone: event.phone,
         password: event.password,
@@ -114,7 +115,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     final res = await _userConfirmSignUp(
-      ConfirmRegisterRequest(token: event.token),
+      ConfirmRegisterRequestModel(token: event.token),
     );
 
     res.fold(
@@ -133,7 +134,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthCreateOTP event,
     Emitter<AuthState> emit,
   ) async {
-    final res = await _userCreateOTP(CreateOTPRequest(email: event.email));
+    final res = await _userCreateOTP(CreateOTPRequestModel(email: event.email));
 
     res.fold(
       (failure) => emit(AuthFailure(
@@ -151,7 +152,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthForgotPassword event,
     Emitter<AuthState> emit,
   ) async {
-    final res = await _userForgotPassword(ForgotPasswordRequest(
+    final res = await _userForgotPassword(ForgotPasswordRequestModel(
       code: event.code,
       new_pass: event.new_pass,
       confirm_pass: event.new_pass,

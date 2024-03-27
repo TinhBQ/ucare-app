@@ -45,6 +45,14 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   }
 
   @override
+  void dispose() {
+    _oldPasswordController.dispose();
+    _newPasswordController.dispose();
+    _confirmNewpasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
     return BlocConsumer<ProfileBloc, ProfileState>(
