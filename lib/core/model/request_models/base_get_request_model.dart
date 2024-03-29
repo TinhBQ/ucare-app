@@ -17,6 +17,7 @@ class BaseGetRequestModel {
         "currentPage": currentPage,
         "pageSize": pageSize,
         "filters": filters,
+        "sortField": sortField,
         "sortOrder": sortOrder,
       };
 }

@@ -9,6 +9,7 @@ class CustomSearchBar extends StatefulWidget {
   final void Function(String? text)? onChanged;
   final void Function(String? text)? onSubmitted;
   final void Function()? onTap;
+  final void Function()? onClear;
   final bool? isSearching;
 
   const CustomSearchBar({
@@ -20,6 +21,7 @@ class CustomSearchBar extends StatefulWidget {
     this.onChanged,
     this.onSubmitted,
     this.onTap,
+    this.onClear,
     this.isSearching = false,
   });
 
@@ -63,6 +65,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             IconButton(
                 onPressed: () {
                   widget.controller.clear();
+                  widget.onClear?.call();
                   setState(() {
                     _showClearIcon = false;
                   });

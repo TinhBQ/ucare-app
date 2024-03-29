@@ -1,21 +1,21 @@
 import '../utils/convert_to_int.dart';
 import 'base_get_item.dart';
-import 'deparment_item.dart';
+import 'session_of_day_item.dart';
 
-class DepartmentGetItem extends BaseGetItem<DepartmentItem> {
-  DepartmentGetItem({
+class SessionOfDayGetItem extends BaseGetItem<SessionOfDayItem> {
+  SessionOfDayGetItem({
     required super.count,
     required super.rows,
     required super.totalPages,
     required super.currentPage,
   });
 
-  factory DepartmentGetItem.fromJson(Map<String, dynamic> json) {
-    return DepartmentGetItem(
+  factory SessionOfDayGetItem.fromJson(Map<String, dynamic> json) {
+    return SessionOfDayGetItem(
       count: convertToInt(json['count']) ?? 0,
-      rows: List<DepartmentItem>.from(
+      rows: List<SessionOfDayItem>.from(
         json['rows'].map(
-          (item) => DepartmentItem.fromJson(item),
+          (item) => SessionOfDayItem.fromJson(item),
         ),
       ),
       totalPages: convertToInt(json['totalPages']) ?? 0,
@@ -23,13 +23,13 @@ class DepartmentGetItem extends BaseGetItem<DepartmentItem> {
     );
   }
 
-  DepartmentGetItem copyWith({
+  SessionOfDayGetItem copyWith({
     int? count,
-    List<DepartmentItem>? rows,
+    List<SessionOfDayItem>? rows,
     int? totalPages,
     int? currentPage,
   }) {
-    return DepartmentGetItem(
+    return SessionOfDayGetItem(
       count: count ?? this.count,
       rows: rows ?? this.rows,
       totalPages: totalPages ?? this.totalPages,
@@ -37,13 +37,13 @@ class DepartmentGetItem extends BaseGetItem<DepartmentItem> {
     );
   }
 
-  DepartmentGetItem copyWithAddRow({
+  SessionOfDayGetItem copyWithAddRow({
     int? count,
-    List<DepartmentItem>? rows,
+    List<SessionOfDayItem>? rows,
     int? totalPages,
     int? currentPage,
   }) {
-    return DepartmentGetItem(
+    return SessionOfDayGetItem(
       count: count ?? this.count,
       rows: rows == null ? this.rows : [...this.rows, ...rows],
       totalPages: totalPages ?? this.totalPages,

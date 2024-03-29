@@ -6,29 +6,29 @@ import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
 
-import '../bloc/find_exam_times_bloc.dart';
+import '../bloc/session_of_day_bloc.dart';
 import '../widgets/widget.dart';
 
-class ChooseDepartmentPage extends StatefulWidget {
-  const ChooseDepartmentPage({super.key});
+class ChooseSessionOfDayPage extends StatefulWidget {
+  const ChooseSessionOfDayPage({super.key});
 
   @override
-  State<ChooseDepartmentPage> createState() => _ChooseDepartmentPageState();
+  State<ChooseSessionOfDayPage> createState() => _ChooseSessionOfDayPageState();
 }
 
-class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
+class _ChooseSessionOfDayPageState extends State<ChooseSessionOfDayPage> {
   final _searchController = TextEditingController();
-  final FindExamTimesGetDepartments _findExamTimesGetDepartments =
-      const FindExamTimesGetDepartments(
+  final SessionOfDayGetList _sessionOfDayGetList = const SessionOfDayGetList(
     currentPage: '1',
     pageSize: '10',
     filters: null,
     sortField: null,
     sortOrder: null,
   );
+
   final ScrollController _scrollController = ScrollController();
 
-  DepartmentGetItem? _departmentGetItem;
+  SessionOfDayGetItem? _sessionOfDayGetItem;
   Timer? _debounce;
   String _previousText = '';
   bool _isLoading = false;
@@ -42,7 +42,7 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
 
   @override
   void didChangeDependencies() {
-    context.read<FindExamTimesBloc>().add(_findExamTimesGetDepartments);
+    context.read<SessionOfDayBloc>().add(_sessionOfDayGetList);
     super.didChangeDependencies();
   }
 
@@ -56,8 +56,8 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
   }
 
   void _scrollListener() {
-    if (_departmentGetItem?.totalPages.toString() ==
-        _departmentGetItem?.currentPage.toString()) {
+    if (_sessionOfDayGetItem?.totalPages.toString() ==
+        _sessionOfDayGetItem?.currentPage.toString()) {
       return;
     }
     if (!_isLoading &&
@@ -67,9 +67,9 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
       setState(() {
         _isLoading = true;
       });
-      context.read<FindExamTimesBloc>().add(
-            _findExamTimesGetDepartments.copyWith(
-              currentPage: (_departmentGetItem!.currentPage + 1).toString(),
+      context.read<SessionOfDayBloc>().add(
+            _sessionOfDayGetList.copyWith(
+              currentPage: (_sessionOfDayGetItem!.currentPage + 1).toString(),
             ),
           );
     }
@@ -83,9 +83,9 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
     _debounce = Timer(
       const Duration(milliseconds: 1000),
       () {
-        context.read<FindExamTimesBloc>().add(
-              _findExamTimesGetDepartments.copyWith(
-                filters: 'name@=${value.toString()}',
+        context.read<SessionOfDayBloc>().add(
+              _sessionOfDayGetList.copyWith(
+                filters: 'content@=${value.toString()}',
               ),
             );
         setState(() {
@@ -98,17 +98,17 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
   @override
   Widget build(BuildContext context) {
     Widget content = SliverToBoxAdapter(
-      child: ChooseDepartmentListItemWidget(
-        listChooseDepartmentItem: _departmentGetItem?.rows ?? [],
+      child: ChooseSessionOfDayListItemWidget(
+        listSessionOfDayItem: _sessionOfDayGetItem?.rows ?? [],
         isLoading: _isLoading && !_isSearch,
         isFirstLoading:
-            _departmentGetItem == null || _departmentGetItem?.rows == null,
+            _sessionOfDayGetItem == null || _sessionOfDayGetItem?.rows == null,
       ),
     );
 
-    if (_departmentGetItem != null &&
-        (_departmentGetItem?.rows == null ||
-            _departmentGetItem!.rows.isEmpty)) {
+    if (_sessionOfDayGetItem != null &&
+        (_sessionOfDayGetItem?.rows == null ||
+            _sessionOfDayGetItem!.rows.isEmpty)) {
       content = const SliverToBoxAdapter(child: Text('Không có nội dung'));
     }
 
@@ -118,28 +118,28 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
       LoadingOverlay.dismissLoading();
     }
 
-    return BlocConsumer<FindExamTimesBloc, FindExamTimesState>(
+    return BlocConsumer<SessionOfDayBloc, SessionOfDayState>(
       listener: (context, state) {
-        if (state is FindExamTimesFailure) {
+        if (state is SessionOfDayFailure) {
           ShowSnackBar.error(state.message, context);
         }
 
-        if (state is FindExamTimesSuccess) {
-          if (state.onFindExamTimesEvent ==
-              OnFindExamTimesEvent.onFindExamTimesGetDepartments) {
+        if (state is SessionOfDaySuccess) {
+          if (state.onSessionOfDayEvent ==
+              OnSessionOfDayEvent.onSessionOfDayGetList) {
             setState(() {
               if (_isSearch) {
                 _isSearch = false;
               }
 
-              if (state.departmentGetItem?.currentPage == 1) {
-                _departmentGetItem = state.departmentGetItem;
+              if (state.sessionOfDayGetItem?.currentPage == 1) {
+                _sessionOfDayGetItem = state.sessionOfDayGetItem;
               } else {
-                _departmentGetItem = _departmentGetItem?.copyWithAddRow(
-                  count: state.departmentGetItem?.count,
-                  rows: state.departmentGetItem?.rows,
-                  totalPages: state.departmentGetItem?.totalPages,
-                  currentPage: state.departmentGetItem?.currentPage,
+                _sessionOfDayGetItem = _sessionOfDayGetItem?.copyWithAddRow(
+                  count: state.sessionOfDayGetItem?.count,
+                  rows: state.sessionOfDayGetItem?.rows,
+                  totalPages: state.sessionOfDayGetItem?.totalPages,
+                  currentPage: state.sessionOfDayGetItem?.currentPage,
                 );
               }
               _isLoading = false;
@@ -176,8 +176,8 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
                         _isSearch = true;
                       });
                       context
-                          .read<FindExamTimesBloc>()
-                          .add(_findExamTimesGetDepartments);
+                          .read<SessionOfDayBloc>()
+                          .add(_sessionOfDayGetList);
                     },
                   ),
                 ),

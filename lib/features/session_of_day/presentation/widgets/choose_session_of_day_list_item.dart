@@ -1,31 +1,29 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'choose_department_item.dart';
+import 'choose_session_of_day_item.dart';
 
-class ChooseDepartmentListItemWidget extends StatefulWidget {
-  final List<DepartmentItem> listChooseDepartmentItem;
+class ChooseSessionOfDayListItemWidget extends StatefulWidget {
+  final List<SessionOfDayItem> listSessionOfDayItem;
   final bool isLoading;
   final bool isFirstLoading;
 
-  const ChooseDepartmentListItemWidget({
+  const ChooseSessionOfDayListItemWidget({
     super.key,
-    required this.listChooseDepartmentItem,
+    required this.listSessionOfDayItem,
     this.isLoading = false,
     this.isFirstLoading = true,
   });
 
   @override
-  State<ChooseDepartmentListItemWidget> createState() =>
-      _ChooseDepartmentListItemWidgetState();
+  State<ChooseSessionOfDayListItemWidget> createState() =>
+      _ChooseSessionOfDayListItemWidgetState();
 }
 
-class _ChooseDepartmentListItemWidgetState
-    extends State<ChooseDepartmentListItemWidget> {
+class _ChooseSessionOfDayListItemWidgetState
+    extends State<ChooseSessionOfDayListItemWidget> {
   @override
   Widget build(BuildContext context) {
     if (widget.isFirstLoading) {
@@ -37,17 +35,14 @@ class _ChooseDepartmentListItemWidgetState
               Theme.of(context).colorScheme.tertiary.withOpacity(0.2),
           child: const Column(
             children: [
-              ChooseDepartmentItemWidget(
-                name: 'Department Name...',
-                description: 'Description...',
+              ChooseSessionOfDayItemWidget(
+                content: 'Content',
               ),
-              ChooseDepartmentItemWidget(
-                name: 'Department Name...',
-                description: 'Description...',
+              ChooseSessionOfDayItemWidget(
+                content: 'Content',
               ),
-              ChooseDepartmentItemWidget(
-                name: 'Department Name...',
-                description: 'Description...',
+              ChooseSessionOfDayItemWidget(
+                content: 'Content',
               ),
             ],
           ),
@@ -59,10 +54,9 @@ class _ChooseDepartmentListItemWidgetState
       padding: const EdgeInsets.only(top: 16, right: 16, left: 16),
       child: Column(
         children: [
-          ...widget.listChooseDepartmentItem.map(
-            (item) => ChooseDepartmentItemWidget(
-              name: item.name,
-              description: item.description,
+          ...widget.listSessionOfDayItem.map(
+            (item) => ChooseSessionOfDayItemWidget(
+              content: item.content,
             ),
           ),
           if (widget.isLoading)

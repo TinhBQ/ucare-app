@@ -18,6 +18,11 @@ import 'features/auth/domain/usecases/usecases.dart';
 import 'features/find_exam_times/domain/usecases/usecases.dart';
 import 'features/find_exam_times/presentation/bloc/find_exam_times_bloc.dart';
 import 'features/profile/data/repositories/profile_repository_impl.dart';
+import 'features/session_of_day/data/datasources/session_of_day_remote_data_source.dart';
+import 'features/session_of_day/data/repositories/session_of_day_repository_impl.dart';
+import 'features/session_of_day/domain/repository/session_of_day_repository.dart';
+import 'features/session_of_day/domain/usecases/usecases.dart';
+import 'features/session_of_day/presentation/bloc/session_of_day_bloc.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -34,6 +39,7 @@ Future<void> initDependencies() async {
 
   _initProfile();
   _initFindExamTimes();
+  _initSessionOfDay();
 }
 
 void _initAuth() {
@@ -147,6 +153,32 @@ void _initFindExamTimes() {
     ..registerLazySingleton(
       () => FindExamTimesBloc(
         userGetListDepartment: serviceLocator(),
+      ),
+    );
+}
+
+void _initSessionOfDay() {
+  // Datasource
+  serviceLocator
+    ..registerFactory<SessionOfDayDataSourceRemoteDataSource>(
+      () => SessionOfDayRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<SessionOfDayRepository>(
+      () => SessionOfDayRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserGetListSessionOfDay(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => SessionOfDayBloc(
+        userGetListSessionOfDay: serviceLocator(),
       ),
     );
 }

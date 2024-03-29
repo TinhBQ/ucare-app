@@ -25,6 +25,9 @@ class AppConstants {
   // Server Department
   static const String SERVER_GET_DEPARTMENT = "$API_VERSION/department";
 
+  // Server SessionOfDay
+  static const String SERVER_GET_SESSION_OF_DAY = "$API_VERSION/sessionOfDay";
+
   // Storage Server: shared_preferences
   static const String STORAGE_DEVICE_OPEN_FIRST_TIME = "device_first_open";
   static const String STORAGE_USER_ACCESS_TOKEN_KEY = "user_access_token_key";

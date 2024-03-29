@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
 import 'package:mobile_advanced_project_fe/features/find_exam_times/domain/usecases/user_get_list_departmet.dart';
 
 part 'find_exam_times_event.dart';
@@ -42,9 +43,8 @@ class FindExamTimesBloc extends Bloc<FindExamTimesEvent, FindExamTimesState> {
         OnFindExamTimesEvent.onFindExamTimesGetDepartments,
       )),
       (departmentGetItem) {
-        print('departmentGetItem ${departmentGetItem}');
         return emit(FindExamTimesSuccess(
-          'Lấy danh sach thành công',
+          InforMassage.GET_DEPARTMENTS_SUCCESS,
           OnFindExamTimesEvent.onFindExamTimesGetDepartments,
           departmentGetItem: departmentGetItem,
         ));
