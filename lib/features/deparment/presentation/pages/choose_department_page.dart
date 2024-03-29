@@ -6,7 +6,7 @@ import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
 
-import '../bloc/find_exam_times_bloc.dart';
+import '../bloc/department_bloc.dart';
 import '../widgets/widget.dart';
 
 class ChooseDepartmentPage extends StatefulWidget {
@@ -18,8 +18,7 @@ class ChooseDepartmentPage extends StatefulWidget {
 
 class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
   final _searchController = TextEditingController();
-  final FindExamTimesGetDepartments _findExamTimesGetDepartments =
-      const FindExamTimesGetDepartments(
+  final DepartmentGetList _departmentGetList = const DepartmentGetList(
     currentPage: '1',
     pageSize: '10',
     filters: null,
@@ -42,7 +41,7 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
 
   @override
   void didChangeDependencies() {
-    context.read<FindExamTimesBloc>().add(_findExamTimesGetDepartments);
+    context.read<DepartmentBloc>().add(_departmentGetList);
     super.didChangeDependencies();
   }
 
@@ -67,8 +66,8 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
       setState(() {
         _isLoading = true;
       });
-      context.read<FindExamTimesBloc>().add(
-            _findExamTimesGetDepartments.copyWith(
+      context.read<DepartmentBloc>().add(
+            _departmentGetList.copyWith(
               currentPage: (_departmentGetItem!.currentPage + 1).toString(),
             ),
           );
@@ -83,8 +82,8 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
     _debounce = Timer(
       const Duration(milliseconds: 1000),
       () {
-        context.read<FindExamTimesBloc>().add(
-              _findExamTimesGetDepartments.copyWith(
+        context.read<DepartmentBloc>().add(
+              _departmentGetList.copyWith(
                 filters: 'name@=${value.toString()}',
               ),
             );
@@ -118,15 +117,15 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
       LoadingOverlay.dismissLoading();
     }
 
-    return BlocConsumer<FindExamTimesBloc, FindExamTimesState>(
+    return BlocConsumer<DepartmentBloc, DepartmentState>(
       listener: (context, state) {
-        if (state is FindExamTimesFailure) {
+        if (state is DepartmentFailure) {
           ShowSnackBar.error(state.message, context);
         }
 
-        if (state is FindExamTimesSuccess) {
-          if (state.onFindExamTimesEvent ==
-              OnFindExamTimesEvent.onFindExamTimesGetDepartments) {
+        if (state is DepartmentSuccess) {
+          if (state.onDepartmentEvent ==
+              OnDepartmentEvent.onDepartmentGetList) {
             setState(() {
               if (_isSearch) {
                 _isSearch = false;
@@ -175,9 +174,7 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
                       setState(() {
                         _isSearch = true;
                       });
-                      context
-                          .read<FindExamTimesBloc>()
-                          .add(_findExamTimesGetDepartments);
+                      context.read<DepartmentBloc>().add(_departmentGetList);
                     },
                   ),
                 ),

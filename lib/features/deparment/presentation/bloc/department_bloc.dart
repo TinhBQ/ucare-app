@@ -3,29 +3,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
-import 'package:mobile_advanced_project_fe/features/find_exam_times/domain/usecases/user_get_list_departmet.dart';
 
-part 'find_exam_times_event.dart';
-part 'find_exam_times_state.dart';
+import '../../domain/usecases/usecases.dart';
 
-enum OnFindExamTimesEvent {
-  onFindExamTimesGetDepartments,
+part 'department_event.dart';
+part 'department_state.dart';
+
+enum OnDepartmentEvent {
+  onDepartmentGetList,
 }
 
-class FindExamTimesBloc extends Bloc<FindExamTimesEvent, FindExamTimesState> {
+class DepartmentBloc extends Bloc<DepartmentEvent, DepartmentState> {
   final UserGetListDepartment _userGetListDepartment;
 
-  FindExamTimesBloc({
+  DepartmentBloc({
     required UserGetListDepartment userGetListDepartment,
   })  : _userGetListDepartment = userGetListDepartment,
-        super(FindExamTimesInitial()) {
-    on<FindExamTimesEvent>((_, emit) => emit(FindExamTimesLoading()));
-    on<FindExamTimesGetDepartments>(_onFindExamTimesGetDepartments);
+        super(DepartmentInitial()) {
+    on<DepartmentEvent>((_, emit) => emit(DepartmentLoading()));
+    on<DepartmentGetList>(_onDepartmentGetList);
   }
 
-  void _onFindExamTimesGetDepartments(
-    FindExamTimesGetDepartments event,
-    Emitter<FindExamTimesState> emit,
+  void _onDepartmentGetList(
+    DepartmentGetList event,
+    Emitter<DepartmentState> emit,
   ) async {
     final res = await _userGetListDepartment(
       BaseGetRequestModel(
@@ -38,14 +39,14 @@ class FindExamTimesBloc extends Bloc<FindExamTimesEvent, FindExamTimesState> {
     );
 
     res.fold(
-      (failure) => emit(FindExamTimesFailure(
+      (failure) => emit(DepartmentFailure(
         failure.message.toString(),
-        OnFindExamTimesEvent.onFindExamTimesGetDepartments,
+        OnDepartmentEvent.onDepartmentGetList,
       )),
       (departmentGetItem) {
-        return emit(FindExamTimesSuccess(
+        return emit(DepartmentSuccess(
           InforMassage.GET_DEPARTMENTS_SUCCESS,
-          OnFindExamTimesEvent.onFindExamTimesGetDepartments,
+          OnDepartmentEvent.onDepartmentGetList,
           departmentGetItem: departmentGetItem,
         ));
       },

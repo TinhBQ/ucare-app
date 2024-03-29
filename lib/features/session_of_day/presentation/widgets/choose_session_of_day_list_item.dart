@@ -33,16 +33,13 @@ class _ChooseSessionOfDayListItemWidgetState
           baseColor: Theme.of(context).colorScheme.tertiary.withOpacity(0.4),
           highlightColor:
               Theme.of(context).colorScheme.tertiary.withOpacity(0.2),
-          child: const Column(
+          child: Column(
             children: [
-              ChooseSessionOfDayItemWidget(
-                content: 'Content',
-              ),
-              ChooseSessionOfDayItemWidget(
-                content: 'Content',
-              ),
-              ChooseSessionOfDayItemWidget(
-                content: 'Content',
+              ...List.generate(
+                10,
+                (_) => const ChooseSessionOfDayItemWidget(
+                  content: 'Content',
+                ),
               ),
             ],
           ),

@@ -83,7 +83,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                 )
         ],
         hintText: 'Tìm nhanh...',
-        autoFocus: true,
+        autoFocus: false,
         onChanged: (text) {
           setState(() {
             _showClearIcon = text.isNotEmpty;

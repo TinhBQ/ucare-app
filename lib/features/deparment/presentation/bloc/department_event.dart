@@ -1,20 +1,20 @@
-part of 'find_exam_times_bloc.dart';
+part of 'department_bloc.dart';
 
-sealed class FindExamTimesEvent extends Equatable {
-  const FindExamTimesEvent();
+sealed class DepartmentEvent extends Equatable {
+  const DepartmentEvent();
 
   @override
   List<Object> get props => [];
 }
 
-final class FindExamTimesGetDepartments extends FindExamTimesEvent {
+final class DepartmentGetList extends DepartmentEvent {
   final String? currentPage;
   final String? pageSize;
   final String? filters;
   final String? sortField;
   final String? sortOrder;
 
-  const FindExamTimesGetDepartments({
+  const DepartmentGetList({
     this.currentPage,
     this.pageSize,
     this.filters,
@@ -22,14 +22,14 @@ final class FindExamTimesGetDepartments extends FindExamTimesEvent {
     this.sortOrder,
   });
 
-  FindExamTimesGetDepartments copyWith({
+  DepartmentGetList copyWith({
     String? currentPage,
     String? pageSize,
     String? filters,
     String? sortField,
     String? sortOrder,
   }) {
-    return FindExamTimesGetDepartments(
+    return DepartmentGetList(
       currentPage: currentPage ?? this.currentPage,
       pageSize: pageSize ?? this.pageSize,
       filters: filters ?? this.filters,

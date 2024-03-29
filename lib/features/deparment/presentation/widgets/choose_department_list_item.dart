@@ -35,19 +35,14 @@ class _ChooseDepartmentListItemWidgetState
           baseColor: Theme.of(context).colorScheme.tertiary.withOpacity(0.4),
           highlightColor:
               Theme.of(context).colorScheme.tertiary.withOpacity(0.2),
-          child: const Column(
+          child: Column(
             children: [
-              ChooseDepartmentItemWidget(
-                name: 'Department Name...',
-                description: 'Description...',
-              ),
-              ChooseDepartmentItemWidget(
-                name: 'Department Name...',
-                description: 'Description...',
-              ),
-              ChooseDepartmentItemWidget(
-                name: 'Department Name...',
-                description: 'Description...',
+              ...List.generate(
+                10,
+                (_) => const ChooseDepartmentItemWidget(
+                  name: 'Department Name...',
+                  description: 'Description...',
+                ),
               ),
             ],
           ),

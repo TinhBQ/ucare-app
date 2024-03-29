@@ -5,18 +5,20 @@ import 'package:mobile_advanced_project_fe/features/auth/data/repositories/auth_
 import 'package:mobile_advanced_project_fe/features/auth/domain/repository/auth_repository.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/user_forgot_password.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:mobile_advanced_project_fe/features/find_exam_times/data/datasources/find_exam_times_remote_data_source.dart';
-import 'package:mobile_advanced_project_fe/features/find_exam_times/data/repositories/find_exam_times_repository_impl.dart';
-import 'package:mobile_advanced_project_fe/features/find_exam_times/domain/repository/find_exam_times_repository.dart';
-import 'package:mobile_advanced_project_fe/features/profile/data/datasources/profile_remote_data_source.dart';
+
 import 'package:mobile_advanced_project_fe/features/profile/domain/repository/profile_repository.dart';
 import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/user_change_password.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
 
 import 'features/application/presentation/bloc/application_bloc.dart';
 import 'features/auth/domain/usecases/usecases.dart';
-import 'features/find_exam_times/domain/usecases/usecases.dart';
-import 'features/find_exam_times/presentation/bloc/find_exam_times_bloc.dart';
+import 'features/deparment/data/datasources/deparment_remote_data_source.dart';
+import 'features/deparment/data/repositories/department_repository_impl.dart';
+import 'features/deparment/domain/repository/department_repository.dart';
+
+import 'features/deparment/domain/usecases/usecases.dart';
+import 'features/deparment/presentation/bloc/department_bloc.dart';
+import 'features/profile/data/datasources/profile_remote_data_source.dart';
 import 'features/profile/data/repositories/profile_repository_impl.dart';
 import 'features/session_of_day/data/datasources/session_of_day_remote_data_source.dart';
 import 'features/session_of_day/data/repositories/session_of_day_repository_impl.dart';
@@ -37,8 +39,8 @@ Future<void> initDependencies() async {
     () => ApplicationBloc(),
   );
 
+  _initDepartment();
   _initProfile();
-  _initFindExamTimes();
   _initSessionOfDay();
 }
 
@@ -131,15 +133,14 @@ void _initProfile() {
     );
 }
 
-void _initFindExamTimes() {
-  // Datasource
+void _initDepartment() {
   serviceLocator
-    ..registerFactory<FindExamTimesRemoteDataSource>(
-      () => FindExamTimesRemoteDataSourceImpl(),
+    ..registerFactory<DepartmentRemoteDataSource>(
+      () => DepartmentRemoteDataSourceImpl(),
     )
     // Repository
-    ..registerFactory<FindExamTimesRepository>(
-      () => FindExamTimesRepositoryImpl(
+    ..registerFactory<DepartmentRepository>(
+      () => DepartmentRepositoryImpl(
         serviceLocator(),
       ),
     )
@@ -151,7 +152,7 @@ void _initFindExamTimes() {
     )
     // Bloc
     ..registerLazySingleton(
-      () => FindExamTimesBloc(
+      () => DepartmentBloc(
         userGetListDepartment: serviceLocator(),
       ),
     );
