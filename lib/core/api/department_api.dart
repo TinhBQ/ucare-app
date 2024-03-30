@@ -9,7 +9,7 @@ class DepartmentApi {
   static getDepartments(BaseGetRequestModel params) async {
     try {
       var response = await HttpUtil().get(
-        AppConstants.SERVER_GET_DEPARTMENT,
+        AppConstants.SERVER_DEPARTMENT,
         queryParameters: params.toJson(),
       );
 

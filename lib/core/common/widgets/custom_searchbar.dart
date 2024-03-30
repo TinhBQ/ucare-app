@@ -37,8 +37,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
-      // margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.only(top: 8, left: 20, right: 20),
       child: SearchBar(
         controller: widget.controller,
         padding: const MaterialStatePropertyAll<EdgeInsets>(

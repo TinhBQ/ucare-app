@@ -15,8 +15,8 @@ final class SessionOfDayGetList extends SessionOfDayEvent {
   final String? sortOrder;
 
   const SessionOfDayGetList({
-    this.currentPage,
-    this.pageSize,
+    this.currentPage = '1',
+    this.pageSize = '10',
     this.filters,
     this.sortField,
     this.sortOrder,

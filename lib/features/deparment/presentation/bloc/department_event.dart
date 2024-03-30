@@ -38,3 +38,8 @@ final class DepartmentGetList extends DepartmentEvent {
     );
   }
 }
+
+final class DepartmentChooseItem extends DepartmentEvent {
+  final DepartmentItem? departmentItem;
+  const DepartmentChooseItem({this.departmentItem});
+}

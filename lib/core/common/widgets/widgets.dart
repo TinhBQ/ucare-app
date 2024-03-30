@@ -14,3 +14,4 @@ export 'custom_select_value_dialog.dart';
 export 'custom_textfield_dropdown.dart';
 export 'custom_circular_progressin_dicator.dart';
 export 'custom_searchbar.dart';
+export './custom_image.dart';

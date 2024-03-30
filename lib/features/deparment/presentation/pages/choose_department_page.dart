@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_doctor/app_doctor_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:mobile_advanced_project_fe/features/doctor/presentation/bloc/doctor_bloc.dart';
 
 import '../bloc/department_bloc.dart';
 import '../widgets/widget.dart';
@@ -94,6 +97,24 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
     );
   }
 
+  void _chooseDepartmentItem(
+    DepartmentItem item,
+  ) {
+    context.read<AppDoctorCubit>().updateDepartmentFilterItem(item);
+    BaseGetRequestModel baseGetRequestModel =
+        context.read<AppDoctorCubit>().state.baseGetRequestModel;
+    context.read<DoctorBloc>().add(
+          DoctorFindExamTimes(
+            currentPage: baseGetRequestModel.currentPage,
+            pageSize: baseGetRequestModel.pageSize,
+            filters: baseGetRequestModel.filters,
+            sortField: baseGetRequestModel.sortField,
+            sortOrder: baseGetRequestModel.sortOrder,
+          ),
+        );
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget content = SliverToBoxAdapter(
@@ -102,6 +123,7 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
         isLoading: _isLoading && !_isSearch,
         isFirstLoading:
             _departmentGetItem == null || _departmentGetItem?.rows == null,
+        onClick: _chooseDepartmentItem,
       ),
     );
 

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:shimmer/shimmer.dart';
@@ -11,12 +9,14 @@ class ChooseDepartmentListItemWidget extends StatefulWidget {
   final List<DepartmentItem> listChooseDepartmentItem;
   final bool isLoading;
   final bool isFirstLoading;
+  final Function(DepartmentItem item) onClick;
 
   const ChooseDepartmentListItemWidget({
     super.key,
     required this.listChooseDepartmentItem,
     this.isLoading = false,
     this.isFirstLoading = true,
+    required this.onClick,
   });
 
   @override
@@ -26,11 +26,17 @@ class ChooseDepartmentListItemWidget extends StatefulWidget {
 
 class _ChooseDepartmentListItemWidgetState
     extends State<ChooseDepartmentListItemWidget> {
+  final departmentItem = DepartmentItem(
+    id: '0',
+    name: 'Tất cả',
+  );
+
   @override
   Widget build(BuildContext context) {
     if (widget.isFirstLoading) {
       return Container(
-        padding: const EdgeInsets.only(top: 16, right: 16, left: 16),
+        padding:
+            const EdgeInsets.only(top: 16, right: 20, left: 20, bottom: 16),
         child: Shimmer.fromColors(
           baseColor: Theme.of(context).colorScheme.tertiary.withOpacity(0.4),
           highlightColor:
@@ -39,9 +45,10 @@ class _ChooseDepartmentListItemWidgetState
             children: [
               ...List.generate(
                 10,
-                (_) => const ChooseDepartmentItemWidget(
+                (_) => ChooseDepartmentItemWidget(
                   name: 'Department Name...',
                   description: 'Description...',
+                  onClick: () {},
                 ),
               ),
             ],
@@ -51,13 +58,16 @@ class _ChooseDepartmentListItemWidgetState
     }
 
     return Container(
-      padding: const EdgeInsets.only(top: 16, right: 16, left: 16),
+      padding: const EdgeInsets.only(top: 16, right: 20, left: 20),
       child: Column(
         children: [
-          ...widget.listChooseDepartmentItem.map(
+          ...[departmentItem, ...widget.listChooseDepartmentItem].map(
             (item) => ChooseDepartmentItemWidget(
               name: item.name,
               description: item.description,
+              onClick: () {
+                widget.onClick(item);
+              },
             ),
           ),
           if (widget.isLoading)

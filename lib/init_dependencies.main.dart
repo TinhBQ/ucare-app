@@ -10,6 +10,7 @@ import 'package:mobile_advanced_project_fe/features/profile/domain/repository/pr
 import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/user_change_password.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
 
+import 'core/common/cubits/app_doctor/app_doctor_cubit.dart';
 import 'features/application/presentation/bloc/application_bloc.dart';
 import 'features/auth/domain/usecases/usecases.dart';
 import 'features/deparment/data/datasources/deparment_remote_data_source.dart';
@@ -18,6 +19,11 @@ import 'features/deparment/domain/repository/department_repository.dart';
 
 import 'features/deparment/domain/usecases/usecases.dart';
 import 'features/deparment/presentation/bloc/department_bloc.dart';
+import 'features/doctor/data/datasources/doctor_remote_data_source.dart';
+import 'features/doctor/data/repositories/doctor_repository_impl.dart';
+import 'features/doctor/domain/repository/doctor_repository.dart';
+import 'features/doctor/domain/usecases/user_find_exam_times.dart';
+import 'features/doctor/presentation/bloc/doctor_bloc.dart';
 import 'features/profile/data/datasources/profile_remote_data_source.dart';
 import 'features/profile/data/repositories/profile_repository_impl.dart';
 import 'features/session_of_day/data/datasources/session_of_day_remote_data_source.dart';
@@ -36,12 +42,16 @@ Future<void> initDependencies() async {
     () => AppUserCubit(),
   );
   serviceLocator.registerLazySingleton(
+    () => AppDoctorCubit(),
+  );
+  serviceLocator.registerLazySingleton(
     () => ApplicationBloc(),
   );
 
   _initDepartment();
   _initProfile();
   _initSessionOfDay();
+  _initDoctor();
 }
 
 void _initAuth() {
@@ -180,6 +190,33 @@ void _initSessionOfDay() {
     ..registerLazySingleton(
       () => SessionOfDayBloc(
         userGetListSessionOfDay: serviceLocator(),
+      ),
+    );
+}
+
+void _initDoctor() {
+  // Datasource
+  serviceLocator
+    ..registerFactory<DoctorRemoteDataSource>(
+      () => DoctorRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<DoctorRepository>(
+      () => DoctorRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserFindExamTimes(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => DoctorBloc(
+        userFindExamTimes: serviceLocator(),
+        appDoctorCubit: serviceLocator(),
       ),
     );
 }

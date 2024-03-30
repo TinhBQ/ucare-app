@@ -17,6 +17,8 @@ class InforMassage {
   static String GET_DEPARTMENTS_SUCCESS =
       'Lấy danh sách chuyên khoa thành công.';
 
+  static String GET_DOCTOR_SUCCESS = 'Lấy danh sách Bác sĩ thành công';
+
   static String GET_LIST_SESSION_OF_DAY_SUCCESS =
       'Lấy danh sách ngày khám thành công.';
 

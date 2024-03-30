@@ -9,12 +9,14 @@ class ChooseSessionOfDayListItemWidget extends StatefulWidget {
   final List<SessionOfDayItem> listSessionOfDayItem;
   final bool isLoading;
   final bool isFirstLoading;
+  final Function(SessionOfDayItem item) onClick;
 
   const ChooseSessionOfDayListItemWidget({
     super.key,
     required this.listSessionOfDayItem,
     this.isLoading = false,
     this.isFirstLoading = true,
+    required this.onClick,
   });
 
   @override
@@ -24,11 +26,16 @@ class ChooseSessionOfDayListItemWidget extends StatefulWidget {
 
 class _ChooseSessionOfDayListItemWidgetState
     extends State<ChooseSessionOfDayListItemWidget> {
+  final sessionOfDayItem = SessionOfDayItem(
+    id: '0',
+    content: 'Tất cả',
+  );
+
   @override
   Widget build(BuildContext context) {
     if (widget.isFirstLoading) {
       return Container(
-        padding: const EdgeInsets.only(top: 16, right: 16, left: 16),
+        padding: const EdgeInsets.only(top: 16, right: 20, left: 20),
         child: Shimmer.fromColors(
           baseColor: Theme.of(context).colorScheme.tertiary.withOpacity(0.4),
           highlightColor:
@@ -37,8 +44,9 @@ class _ChooseSessionOfDayListItemWidgetState
             children: [
               ...List.generate(
                 10,
-                (_) => const ChooseSessionOfDayItemWidget(
+                (_) => ChooseSessionOfDayItemWidget(
                   content: 'Content',
+                  onClick: () {},
                 ),
               ),
             ],
@@ -48,12 +56,15 @@ class _ChooseSessionOfDayListItemWidgetState
     }
 
     return Container(
-      padding: const EdgeInsets.only(top: 16, right: 16, left: 16),
+      padding: const EdgeInsets.only(top: 16, right: 20, left: 20),
       child: Column(
         children: [
-          ...widget.listSessionOfDayItem.map(
+          ...[sessionOfDayItem, ...widget.listSessionOfDayItem].map(
             (item) => ChooseSessionOfDayItemWidget(
               content: item.content,
+              onClick: () {
+                widget.onClick(item);
+              },
             ),
           ),
           if (widget.isLoading)

@@ -8,9 +8,9 @@ class DepartmentItem extends DepartmentEntity {
   DepartmentItem({
     required super.id,
     required super.name,
-    required super.enable,
-    required super.description,
-    required super.service_charge,
+    super.enable = false,
+    super.description = '',
+    super.service_charge = 0,
   });
 
   factory DepartmentItem.fromJson(Map<String, dynamic> json) {

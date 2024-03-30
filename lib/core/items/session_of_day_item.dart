@@ -4,7 +4,7 @@ class SessionOfDayItem extends SessionOfDayEntity {
   SessionOfDayItem({
     required super.id,
     required super.content,
-    required super.enable,
+    super.enable = false,
   });
 
   factory SessionOfDayItem.fromJson(Map<String, dynamic> json) {

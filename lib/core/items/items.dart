@@ -6,3 +6,6 @@ export 'deparment_item.dart';
 export './department_get_item.dart';
 export './session_of_day_item.dart';
 export './session_of_day_get_item.dart';
+export './doctor_item.dart';
+export './doctor_get_item.dart';
+export './docter_filer_item.dart';

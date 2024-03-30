@@ -23,10 +23,12 @@ class AppConstants {
   static const String SERVER_CHANGE_PASSWORD = "$API_VERSION/auth/changePass";
 
   // Server Department
-  static const String SERVER_GET_DEPARTMENT = "$API_VERSION/department";
+  static const String SERVER_DEPARTMENT = "$API_VERSION/department";
 
   // Server SessionOfDay
-  static const String SERVER_GET_SESSION_OF_DAY = "$API_VERSION/sessionOfDay";
+  static const String SERVER_SESSION_OF_DAY = "$API_VERSION/sessionOfDay";
+  // Server Doctor
+  static const String SERVER_DOCTOR = "$API_VERSION/doctor";
 
   // Storage Server: shared_preferences
   static const String STORAGE_DEVICE_OPEN_FIRST_TIME = "device_first_open";

@@ -11,6 +11,7 @@ part 'department_state.dart';
 
 enum OnDepartmentEvent {
   onDepartmentGetList,
+  onDepartmentChooseItem,
 }
 
 class DepartmentBloc extends Bloc<DepartmentEvent, DepartmentState> {

@@ -9,7 +9,7 @@ class SessionOfDayApi {
   static getListSessionOfDay(BaseGetRequestModel params) async {
     try {
       var response = await HttpUtil().get(
-        AppConstants.SERVER_GET_SESSION_OF_DAY,
+        AppConstants.SERVER_SESSION_OF_DAY,
         queryParameters: params.toJson(),
       );
 
