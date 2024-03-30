@@ -4,16 +4,16 @@ import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/core/usecase/usecase.dart';
 
-import '../repository/find_exam_times_repository.dart';
+import '../repository/session_of_day_repository.dart';
 
-class UserGetListDepartment
-    implements UseCase<DepartmentGetItem, BaseGetRequestModel> {
-  final FindExamTimesRepository findExamTimesRepository;
-  UserGetListDepartment(this.findExamTimesRepository);
+class UserGetListSessionOfDay
+    implements UseCase<SessionOfDayGetItem, BaseGetRequestModel> {
+  final SessionOfDayRepository sessionOfDayRepository;
+  UserGetListSessionOfDay(this.sessionOfDayRepository);
 
   @override
-  Future<Either<Failure, DepartmentGetItem>> call(
+  Future<Either<Failure, SessionOfDayGetItem>> call(
       BaseGetRequestModel params) async {
-    return await findExamTimesRepository.getDepartments(params);
+    return await sessionOfDayRepository.getListSessionOfDay(params);
   }
 }

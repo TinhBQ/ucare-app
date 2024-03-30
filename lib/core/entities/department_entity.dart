@@ -5,7 +5,7 @@ class DepartmentEntity {
   final String name;
   final bool enable;
   final String description;
-  final String service_charge;
+  final int service_charge;
 
   DepartmentEntity({
     required this.id,
