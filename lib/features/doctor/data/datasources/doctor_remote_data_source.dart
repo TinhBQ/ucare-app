@@ -6,14 +6,14 @@ import 'package:mobile_advanced_project_fe/core/model/request_models/request_mod
 import 'package:mobile_advanced_project_fe/core/model/response_models/response_models.dart';
 
 abstract interface class DoctorRemoteDataSource {
-  Future<DoctorGetItem?> getListDoctors(BaseGetRequestModel params);
+  Future<DoctorGetItem?> getListDoctors(DoctorGetRequestModel params);
 }
 
 class DoctorRemoteDataSourceImpl implements DoctorRemoteDataSource {
   DoctorRemoteDataSourceImpl();
 
   @override
-  Future<DoctorGetItem?> getListDoctors(BaseGetRequestModel params) async {
+  Future<DoctorGetItem?> getListDoctors(DoctorGetRequestModel params) async {
     DoctorGetResponseModel response = await DoctorApi.getListDoctor(params);
 
     return response.status == StatusResponse.success.name

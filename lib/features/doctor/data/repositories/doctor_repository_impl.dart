@@ -14,7 +14,7 @@ class DoctorRepositoryImpl implements DoctorRepository {
 
   @override
   Future<Either<Failure, DoctorGetItem>> getListDoctors(
-      BaseGetRequestModel params) async {
+      DoctorGetRequestModel params) async {
     try {
       final doctorGetItem = await doctorRemoteDataSource.getListDoctors(params);
       return right(doctorGetItem!);

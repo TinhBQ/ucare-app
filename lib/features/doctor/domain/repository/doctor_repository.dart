@@ -5,5 +5,5 @@ import 'package:mobile_advanced_project_fe/core/model/request_models/request_mod
 
 abstract interface class DoctorRepository {
   Future<Either<Failure, DoctorGetItem>> getListDoctors(
-      BaseGetRequestModel params);
+      DoctorGetRequestModel params);
 }

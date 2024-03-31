@@ -11,6 +11,7 @@ class DoctorGetResponseModel extends BaseReponseModel<DoctorGetItem> {
     required super.violations,
   });
 
+  @override
   factory DoctorGetResponseModel.fromJson(Map<String, dynamic> json) =>
       DoctorGetResponseModel(
         message: json["message"] ?? '',

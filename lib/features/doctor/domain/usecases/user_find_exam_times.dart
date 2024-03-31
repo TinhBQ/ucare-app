@@ -6,13 +6,14 @@ import 'package:mobile_advanced_project_fe/core/usecase/usecase.dart';
 
 import '../repository/doctor_repository.dart';
 
-class UserFindExamTimes implements UseCase<DoctorGetItem, BaseGetRequestModel> {
+class UserFindExamTimes
+    implements UseCase<DoctorGetItem, DoctorGetRequestModel> {
   final DoctorRepository doctorRepository;
   UserFindExamTimes(this.doctorRepository);
 
   @override
   Future<Either<Failure, DoctorGetItem>> call(
-      BaseGetRequestModel params) async {
+      DoctorGetRequestModel params) async {
     return await doctorRepository.getListDoctors(params);
   }
 }

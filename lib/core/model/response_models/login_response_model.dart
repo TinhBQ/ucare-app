@@ -12,6 +12,7 @@ class LoginResponeModel extends BaseReponseModel<AuthItem> {
     required super.violations,
   });
 
+  @override
   factory LoginResponeModel.fromJson(Map<String, dynamic> json) =>
       LoginResponeModel(
         message: json["message"] ?? '',

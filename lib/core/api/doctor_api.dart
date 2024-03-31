@@ -6,7 +6,7 @@ import '../utils/http_util.dart';
 import '../values/constant.dart';
 
 class DoctorApi {
-  static getListDoctor(BaseGetRequestModel params) async {
+  static getListDoctor(DoctorGetRequestModel params) async {
     try {
       var response = await HttpUtil().get(
         AppConstants.SERVER_DOCTOR,

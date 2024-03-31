@@ -33,12 +33,13 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
     Emitter<DoctorState> emit,
   ) async {
     final res = await _userFindExamTimes(
-      BaseGetRequestModel(
+      DoctorGetRequestModel(
         currentPage: event.currentPage,
         pageSize: event.pageSize,
         filters: event.filters,
         sortField: event.sortField,
         sortOrder: event.sortOrder,
+        full_name: event.full_name,
       ),
     );
 

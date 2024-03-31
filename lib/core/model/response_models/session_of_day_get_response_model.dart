@@ -12,6 +12,7 @@ class SessionOfDayGetResponseModel
     required super.violations,
   });
 
+  @override
   factory SessionOfDayGetResponseModel.fromJson(Map<String, dynamic> json) =>
       SessionOfDayGetResponseModel(
         message: json["message"] ?? '',

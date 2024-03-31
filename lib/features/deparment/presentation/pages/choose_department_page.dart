@@ -101,15 +101,16 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
     DepartmentItem item,
   ) {
     context.read<AppDoctorCubit>().updateDepartmentFilterItem(item);
-    BaseGetRequestModel baseGetRequestModel =
-        context.read<AppDoctorCubit>().state.baseGetRequestModel;
+    DoctorGetRequestModel doctorGetRequestModel =
+        context.read<AppDoctorCubit>().state.doctorGetRequestModel;
     context.read<DoctorBloc>().add(
           DoctorFindExamTimes(
-            currentPage: baseGetRequestModel.currentPage,
-            pageSize: baseGetRequestModel.pageSize,
-            filters: baseGetRequestModel.filters,
-            sortField: baseGetRequestModel.sortField,
-            sortOrder: baseGetRequestModel.sortOrder,
+            currentPage: doctorGetRequestModel.currentPage,
+            pageSize: doctorGetRequestModel.pageSize,
+            filters: doctorGetRequestModel.filters,
+            sortField: doctorGetRequestModel.sortField,
+            sortOrder: doctorGetRequestModel.sortOrder,
+            full_name: doctorGetRequestModel.full_name,
           ),
         );
     Navigator.of(context).pop();

@@ -43,10 +43,10 @@ class DocterFilerItem {
     if (doctorSearchName == null || doctorSearchName == '') {
       return '';
     }
-    return 'name@=${doctorSearchName?.trim().toString()}';
+    return doctorSearchName!;
   }
 
   String strFilter() {
-    return '${strDepartmentFilter()},${strSessionOfDayFilter()},${strDoctorSearchName()}';
+    return '${strDepartmentFilter()},${strSessionOfDayFilter()}';
   }
 }

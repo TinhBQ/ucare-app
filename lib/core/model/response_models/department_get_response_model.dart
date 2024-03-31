@@ -11,6 +11,7 @@ class DepartmentGetResponseModel extends BaseReponseModel<DepartmentGetItem> {
     required super.violations,
   });
 
+  @override
   factory DepartmentGetResponseModel.fromJson(Map<String, dynamic> json) =>
       DepartmentGetResponseModel(
         message: json["message"] ?? '',

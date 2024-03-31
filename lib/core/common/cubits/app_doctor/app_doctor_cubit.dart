@@ -10,7 +10,7 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
 
   AppDoctorCubit()
       : super(AppDoctorInitial(
-          baseGetRequestModel: BaseGetRequestModel(),
+          doctorGetRequestModel: DoctorGetRequestModel(),
           docterFilerItem: DocterFilerItem(),
         ));
 
@@ -23,7 +23,7 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
       emit(DoctorDataLoaded(
         doctorGetItem: doctorGetItem,
         docterFilerItem: state.docterFilerItem,
-        baseGetRequestModel: state.baseGetRequestModel,
+        doctorGetRequestModel: state.doctorGetRequestModel,
       ));
     } else {
       emit(
@@ -35,7 +35,7 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
             currentPage: doctorGetItem.currentPage,
           ),
           docterFilerItem: state.docterFilerItem,
-          baseGetRequestModel: state.baseGetRequestModel,
+          doctorGetRequestModel: state.doctorGetRequestModel,
         ),
       );
     }
@@ -55,7 +55,7 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
       DoctorDataLoaded(
         doctorGetItem: state.doctorGetItem,
         docterFilerItem: docterFilerItem,
-        baseGetRequestModel: state.baseGetRequestModel.copyWith(
+        doctorGetRequestModel: state.doctorGetRequestModel.copyWith(
           filters: docterFilerItem.strFilter(),
           currentPage: '1',
         ),
@@ -76,7 +76,7 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
       DoctorDataLoaded(
         doctorGetItem: state.doctorGetItem,
         docterFilerItem: docterFilerItem,
-        baseGetRequestModel: state.baseGetRequestModel.copyWith(
+        doctorGetRequestModel: state.doctorGetRequestModel.copyWith(
           filters: docterFilerItem.strFilter(),
           currentPage: '1',
         ),
@@ -97,9 +97,10 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
       DoctorDataLoaded(
         doctorGetItem: state.doctorGetItem,
         docterFilerItem: docterFilerItem,
-        baseGetRequestModel: state.baseGetRequestModel.copyWith(
+        doctorGetRequestModel: state.doctorGetRequestModel.copyWith(
           filters: docterFilerItem.strFilter(),
           currentPage: '1',
+          full_name: docterFilerItem.strDoctorSearchName(),
         ),
       ),
     );
@@ -113,7 +114,7 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
       DoctorDataLoaded(
         doctorGetItem: state.doctorGetItem,
         docterFilerItem: state.docterFilerItem,
-        baseGetRequestModel: state.baseGetRequestModel.copyWith(
+        doctorGetRequestModel: state.doctorGetRequestModel.copyWith(
           currentPage: currentPage,
         ),
       ),

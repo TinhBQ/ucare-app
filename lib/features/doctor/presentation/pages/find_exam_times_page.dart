@@ -5,8 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_doctor/app_doctor_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/base_get_request_model.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/features/doctor/presentation/bloc/doctor_bloc.dart';
+import 'package:pinput/pinput.dart';
 
 import '../../../../core/utils/loading_overlay.dart';
 import '../widgets/widget.dart';
@@ -25,12 +26,23 @@ class _FindExamTimesPageState extends State<FindExamTimesPage> {
   String _previousText = '';
   bool _isLoading = false;
   DoctorGetItem? _doctorGetItem;
-  BaseGetRequestModel? _baseGetRequestModel;
+  DoctorGetRequestModel? _doctorGetRequestModel;
 
   @override
   void initState() {
-    super.initState();
+    _searchController.setText(
+        context.read<AppDoctorCubit>().state.doctorGetRequestModel.full_name!);
     _scrollController.addListener(_scrollListener);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    _debounce?.cancel();
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
   }
 
   void _scrollListener() {
@@ -68,17 +80,23 @@ class _FindExamTimesPageState extends State<FindExamTimesPage> {
   }
 
   void _loadData() {
-    _baseGetRequestModel =
-        context.read<AppDoctorCubit>().state.baseGetRequestModel;
+    _doctorGetRequestModel =
+        context.read<AppDoctorCubit>().state.doctorGetRequestModel;
     context.read<DoctorBloc>().add(
           DoctorFindExamTimes(
-            currentPage: _baseGetRequestModel?.currentPage,
-            pageSize: _baseGetRequestModel?.pageSize,
-            filters: _baseGetRequestModel?.filters,
-            sortField: _baseGetRequestModel?.sortField,
-            sortOrder: _baseGetRequestModel?.sortOrder,
+            currentPage: _doctorGetRequestModel?.currentPage,
+            pageSize: _doctorGetRequestModel?.pageSize,
+            filters: _doctorGetRequestModel?.filters,
+            sortField: _doctorGetRequestModel?.sortField,
+            sortOrder: _doctorGetRequestModel?.sortOrder,
+            full_name: _doctorGetRequestModel?.full_name,
           ),
         );
+  }
+
+  void _resetSearch() {
+    context.read<AppDoctorCubit>().updateDoctorSearchName('');
+    _loadData();
   }
 
   @override
@@ -148,12 +166,9 @@ class _FindExamTimesPageState extends State<FindExamTimesPage> {
                         onChanged: (text) {
                           _onTextChanged(text.toString());
                         },
-                        // onClear: () {
-                        //   setState(() {
-                        //     _isSearch = true;
-                        //   });
-                        //   context.read<DepartmentBloc>().add(_departmentGetList);
-                        // },
+                        onClear: () {
+                          _resetSearch();
+                        },
                       ),
                     ],
                   ),
