@@ -9,7 +9,7 @@ final _MedicineSchedulePage = MedicineSchedulePage();
 Widget buildPage(int index) {
   List<Widget> widget = [
     const HomePage(),
-    _MedicineSchedulePage,
+    const EditProfilePage(),
     const FindExamTimesPage(),
     const ProfilePage(),
   ];

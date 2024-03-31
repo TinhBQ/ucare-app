@@ -50,41 +50,29 @@ class HttpUtil {
         return handler.next(options);
       }
 
-      print('options.path ${options.path}');
-
       // Lấy các token được lưu tạm từ local storage
       String accessToken = Global.storageService.getUserAccessTokenKey();
       String refreshToken = Global.storageService.getUserRefreshTokenKey();
 
-      print("Access token: $accessToken");
-      print("refresh token: $refreshToken");
-
       // Kiểm tra xem user có đăng nhập hay chưa. Nếu chưa thì call handler.next(options)
       // để trả data về tiếp client
       if (accessToken.isEmpty || refreshToken.isEmpty) {
-        print("next");
         return handler.next(options);
       }
-
-      print("next 1");
 
       // Giải mã access token
       // Kiểm tra token còn hạn hay không?
       Map<String, dynamic> decodedAccessToken = Jwt.parseJwt(accessToken);
       print("Decoded access token: $decodedAccessToken");
       if (Jwt.isExpired(accessToken)) {
-        print("next 2");
         try {
-          print("next 3");
           final response = await dio.post(
             AppConstants.SERVER_REFRESH_TOKEN,
             data: refreshToken,
           );
-          print("next 4");
 
           print("response: $response");
           if (response.statusCode == 200) {
-            print("next 5");
             if (response.data != false) {
               options.headers['Authorization'] =
                   "Bearer ${response.data['responseData']['accessToken']}";
@@ -94,6 +82,7 @@ class HttpUtil {
                   response.data['responseData']['accessToken']);
             } else {
               // logout();
+              //  context.read<AuthBloc>().add(AuthLogout());s
             }
           } else {
             // logout();

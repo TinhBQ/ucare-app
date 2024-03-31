@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/entities/page_entity.dart';
 import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
-import 'package:mobile_advanced_project_fe/core/values/constant.dart';
 import 'package:mobile_advanced_project_fe/features/application/presentation/pages/application_page.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/deparment/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/doctor/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/home/presentation/pages/home_page.dart';
+import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/session_of_day/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/splash/presentation/splash_page.dart';
@@ -56,6 +56,10 @@ class AppPages {
         route: AppRoutes.HOME,
         page: const HomePage(),
       ),
+      PageEntity(
+        route: AppRoutes.MEDICINE_SCHEDULE,
+        page: const MedicineSchedulePage(),
+      ),
       // * App --> Profile
       PageEntity(
         route: AppRoutes.PROFILE,
@@ -94,8 +98,6 @@ class AppPages {
       if (result.isNotEmpty) {
         bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
         if (result.first.route == AppRoutes.INITIAL && deviceFirstOpen) {
-          Global.storageService
-              .setBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME, false);
           bool isLoggedin = Global.storageService.getIsLoggedIn();
 
           if (isLoggedin) {

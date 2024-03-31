@@ -24,8 +24,8 @@ class IntroduceWidget extends StatelessWidget {
           bottomRight: Radius.circular(36),
         ),
       ),
-      padding: EdgeInsets.only(
-          left: 20, right: 20, top: 24 + currenPaddingTop, bottom: 24),
+      padding:
+          EdgeInsets.only(left: 16, top: 24 + currenPaddingTop, bottom: 24),
       child: Row(
         children: [
           Container(

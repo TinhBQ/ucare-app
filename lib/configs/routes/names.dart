@@ -23,6 +23,9 @@ class AppRoutes {
   // navigator find_exam_times
   static const FIND_EXAM_TIMES = "/find_exam_times";
 
+  // navigator MedicineSchedulePage
+  static const MEDICINE_SCHEDULE = "/medicines_cheduleS";
+
   // for settings of the app
   static const SETTINGS = "/settings";
   // change password of the app

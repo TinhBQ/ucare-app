@@ -6,7 +6,7 @@ class UserEntity {
   final String email;
   final String phone;
   final String birthday;
-  final String male;
+  final bool male;
   final String avatar;
   final String role;
 
