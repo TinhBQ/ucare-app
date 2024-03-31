@@ -9,6 +9,7 @@ class CustomSearchBar extends StatefulWidget {
   final void Function(String? text)? onChanged;
   final void Function(String? text)? onSubmitted;
   final void Function()? onTap;
+  final void Function()? onClear;
   final bool? isSearching;
 
   const CustomSearchBar({
@@ -20,6 +21,7 @@ class CustomSearchBar extends StatefulWidget {
     this.onChanged,
     this.onSubmitted,
     this.onTap,
+    this.onClear,
     this.isSearching = false,
   });
 
@@ -35,8 +37,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
-      // margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.only(top: 8, left: 20, right: 20),
       child: SearchBar(
         controller: widget.controller,
         padding: const MaterialStatePropertyAll<EdgeInsets>(
@@ -63,6 +64,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             IconButton(
                 onPressed: () {
                   widget.controller.clear();
+                  widget.onClear?.call();
                   setState(() {
                     _showClearIcon = false;
                   });
@@ -80,7 +82,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                 )
         ],
         hintText: 'Tìm nhanh...',
-        autoFocus: true,
+        autoFocus: false,
         onChanged: (text) {
           setState(() {
             _showClearIcon = text.isNotEmpty;

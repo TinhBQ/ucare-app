@@ -11,6 +11,7 @@ class UserResponeModel extends BaseReponseModel<UserItem> {
     required super.violations,
   });
 
+  @override
   factory UserResponeModel.fromJson(Map<String, dynamic> json) =>
       UserResponeModel(
         message: json["message"] ?? '',

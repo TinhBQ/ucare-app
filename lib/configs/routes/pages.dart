@@ -8,10 +8,11 @@ import 'package:mobile_advanced_project_fe/core/values/constant.dart';
 import 'package:mobile_advanced_project_fe/features/application/presentation/pages/application_page.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/find_exam_times/presentation/pages/pages.dart';
+import 'package:mobile_advanced_project_fe/features/deparment/presentation/pages/pages.dart';
+import 'package:mobile_advanced_project_fe/features/doctor/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/home/presentation/pages/home_page.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/settings_page.dart';
+import 'package:mobile_advanced_project_fe/features/session_of_day/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/splash/presentation/splash_page.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
 
@@ -72,6 +73,14 @@ class AppPages {
       PageEntity(
         route: AppRoutes.FIND_EXAM_TIMES,
         page: const FindExamTimesPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.CHOOSE_DEPARTMET_PAGE,
+        page: const ChooseDepartmentPage(),
+      ),
+      PageEntity(
+        route: AppRoutes.CHOOSE_SESSION_OF_DAY,
+        page: const ChooseSessionOfDayPage(),
       ),
     ];
   }
