@@ -85,7 +85,6 @@ class HttpUtil {
           print("response: $response");
           if (response.statusCode == 200) {
             print("next 5");
-            //! EXPIRED SESSION
             if (response.data != false) {
               options.headers['Authorization'] =
                   "Bearer ${response.data['responseData']['accessToken']}";

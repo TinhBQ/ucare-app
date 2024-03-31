@@ -14,8 +14,10 @@ class CategoryCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sizeScreen = MediaQuery.of(context).size;
     return SizedBox(
-      // height: 70,
+      width: sizeScreen.width / 2 - 28,
+      height: 78,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(

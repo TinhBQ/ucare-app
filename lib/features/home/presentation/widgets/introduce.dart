@@ -25,7 +25,7 @@ class IntroduceWidget extends StatelessWidget {
         ),
       ),
       padding: EdgeInsets.only(
-          left: 24, right: 24, top: 24 + currenPaddingTop, bottom: 24),
+          left: 20, right: 20, top: 24 + currenPaddingTop, bottom: 24),
       child: Row(
         children: [
           Container(
@@ -42,32 +42,31 @@ class IntroduceWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            width: 16,
+            width: 10,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Text(
-                    'Chào mừng đến với',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  Text(
-                    ' ',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Text(
-                    'U Care',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                  ),
-                ],
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Chào mừng đến với ',
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    TextSpan(
+                      text: 'U Care',
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 3,

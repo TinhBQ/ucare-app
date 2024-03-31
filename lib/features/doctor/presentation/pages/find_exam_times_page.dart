@@ -31,7 +31,8 @@ class _FindExamTimesPageState extends State<FindExamTimesPage> {
   @override
   void initState() {
     _searchController.setText(
-        context.read<AppDoctorCubit>().state.doctorGetRequestModel.full_name!);
+        context.read<AppDoctorCubit>().state.doctorGetRequestModel.full_name ??
+            '');
     _scrollController.addListener(_scrollListener);
     super.initState();
   }
@@ -84,12 +85,12 @@ class _FindExamTimesPageState extends State<FindExamTimesPage> {
         context.read<AppDoctorCubit>().state.doctorGetRequestModel;
     context.read<DoctorBloc>().add(
           DoctorFindExamTimes(
-            currentPage: _doctorGetRequestModel?.currentPage,
-            pageSize: _doctorGetRequestModel?.pageSize,
-            filters: _doctorGetRequestModel?.filters,
-            sortField: _doctorGetRequestModel?.sortField,
-            sortOrder: _doctorGetRequestModel?.sortOrder,
-            full_name: _doctorGetRequestModel?.full_name,
+            currentPage: _doctorGetRequestModel!.currentPage,
+            pageSize: _doctorGetRequestModel!.pageSize,
+            filters: _doctorGetRequestModel!.filters,
+            sortField: _doctorGetRequestModel!.sortField,
+            sortOrder: _doctorGetRequestModel!.sortOrder,
+            full_name: _doctorGetRequestModel!.full_name,
           ),
         );
   }

@@ -30,9 +30,8 @@ class _HomePageState extends State<HomePage> {
                   userItem?.avatar, 'assets/logo/no-image.png'),
             ),
           ),
-          const SliverPadding(
-            padding: EdgeInsets.all(24),
-            sliver: CategoriesGirdCardWidget(),
+          const SliverToBoxAdapter(
+            child: CategoriesGirdCardWidget(),
           ),
           const SliverToBoxAdapter(
             child: NewsWidget(),
