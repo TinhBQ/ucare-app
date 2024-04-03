@@ -5,16 +5,21 @@ class InfoMedicalCardWidget extends StatelessWidget {
   const InfoMedicalCardWidget({
     super.key,
     required this.infoMedicalItem,
+    this.disabled = false, // Thêm thuộc tính disable và mặc định là false
   });
 
   final InfoMedicalItem infoMedicalItem;
+  final bool disabled; // Thuộc tính disable
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
-        onTap: infoMedicalItem.onPressed,
+        onTap: disabled
+            ? null
+            : infoMedicalItem.onPressed, // Kiểm tra trạng thái disable
+
         child: Container(
           padding: const EdgeInsets.symmetric(
             vertical: 16,
@@ -22,10 +27,15 @@ class InfoMedicalCardWidget extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             border: Border.all(
-              color: Theme.of(context).colorScheme.secondary,
+              color: disabled
+                  ? Colors.grey // Nếu disable thì sử dụng màu xám cho viền
+                  : Theme.of(context).colorScheme.secondary,
             ),
             borderRadius: BorderRadius.circular(12),
-            color: Theme.of(context).colorScheme.background,
+            color: disabled
+                ? Colors.grey.withOpacity(
+                    0.5) // Nếu disable thì sử dụng màu xám nhạt cho nền
+                : Theme.of(context).colorScheme.background,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +53,7 @@ class InfoMedicalCardWidget extends StatelessWidget {
                     infoMedicalItem.title,
                     style: Theme.of(context)
                         .textTheme
-                        .titleLarge!
+                        .headline6!
                         .copyWith(fontSize: 20),
                   ),
                 ],

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_advanced_project_fe/core/entities/page_entity.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/features/book/presentation/pages/choose_date_medical_page.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/features/deparment/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/patient/presentation/pages/pages.dart';
@@ -19,6 +20,10 @@ class BookPages {
       PageEntity(
         route: AppRoutes.CHOOSE_INFOR,
         pageBuilder: (_) => const ChooseInfoWidget(),
+      ),
+      PageEntity(
+        route: AppRoutes.CHOOSE_DATE_MEDICAL_PAGE,
+        pageBuilder: (_) => const ChooseDateMedicalPage(),
       ),
       PageEntity(
           route: AppRoutes.CHOOSE_DEPARTMET_PAGE,

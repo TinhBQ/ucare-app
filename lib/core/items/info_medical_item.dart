@@ -5,10 +5,11 @@ class InfoMedicalItem {
   final IconData icon;
   final IconData? iconRight;
   final VoidCallback? onPressed;
+
   InfoMedicalItem({
     required this.title,
     required this.icon,
-    this.iconRight, 
+    this.iconRight,
     this.onPressed,
   });
 }

@@ -19,7 +19,7 @@ class ProfilesListCardWidget extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => CreateProfileWidget(),
+                        builder: (context) => const CreateProfileWidget(),
                       ),
                     );
                   }, // hàm thêm
@@ -55,7 +55,7 @@ class ProfilesListCardWidget extends StatelessWidget {
                   ),
                 );
               } else {
-                return ProfileCardWidget();
+                return const ProfileCardWidget();
               }
             },
           )),

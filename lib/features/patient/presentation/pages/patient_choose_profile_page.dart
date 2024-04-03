@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_medical_appointment_body/app_medical_appointment_body_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient/app_patient_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
@@ -65,8 +66,15 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
                   ),
                 ),
                 ProfileDetailsListCardWidget(
-                  onChoose: () {
-                    Navigator.of(context).pushNamed(AppRoutes.CHOOSE_INFOR);
+                  onChoose: (PatientItem item) {
+                    context
+                        .read<AppMedicalAppointmentBodyCubit>()
+                        .updatePatientId(item.id);
+                    Navigator.of(context)
+                        .pushNamed(AppRoutes.CHOOSE_INFOR)
+                        .then((value) => context
+                            .read<AppMedicalAppointmentBodyCubit>()
+                            .returnPatientId());
                   },
                   patients: patientGetItem?.rows ?? [],
                 ),

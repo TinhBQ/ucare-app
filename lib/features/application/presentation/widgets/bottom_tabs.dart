@@ -9,10 +9,10 @@ List<BottomNavigationBarItem> bottomTabs = const [
     icon: Icon(Icons.search),
     label: 'Test page',
   ),
-  BottomNavigationBarItem(
-    icon: Icon(Icons.search),
-    label: 'Test BQT',
-  ),
+  // BottomNavigationBarItem(
+  //   icon: Icon(Icons.search),
+  //   label: 'Test BQT',
+  // ),
   BottomNavigationBarItem(
     icon: Icon(Icons.search),
     label: 'Tìm Bác sĩ',

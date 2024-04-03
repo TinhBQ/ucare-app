@@ -10,7 +10,7 @@ class ProfileDetailsListCardWidget extends StatelessWidget {
     required this.onChoose,
     required this.patients,
   });
-  final VoidCallback onChoose;
+  final Function(PatientItem) onChoose;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,9 @@ class ProfileDetailsListCardWidget extends StatelessWidget {
         itemCount: patients.length,
         itemBuilder: (context, index) {
           return ProfileDetailCard(
-            onChoose: onChoose,
+            onChoose: () {
+              onChoose(patients[index]);
+            },
             first_name: patients[index].first_name,
             last_name: patients[index].last_name,
             phone: patients[index].phone,

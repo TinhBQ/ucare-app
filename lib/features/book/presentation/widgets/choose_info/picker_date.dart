@@ -1,15 +1,18 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class PickerDateWidget extends StatefulWidget {
-  const PickerDateWidget({super.key});
+  final Function(DateTime) onSelected;
+  const PickerDateWidget({super.key, required this.onSelected});
 
   @override
   State<StatefulWidget> createState() => _PickerDateWidgetState();
 }
 
 class _PickerDateWidgetState extends State<PickerDateWidget> {
-  DateTime _currentDate = DateTime.now();
+  final DateTime _currentDate = DateTime.now();
   DateTime _selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
@@ -32,13 +35,16 @@ class _PickerDateWidgetState extends State<PickerDateWidget> {
           if (date.weekday != DateTime.sunday) {
             setState(() {
               _selectedDate = date;
+              widget.onSelected(date);
             });
           }
         },
         selectedDayPredicate: (day) => isSameDay(day, _selectedDate),
         startingDayOfWeek: StartingDayOfWeek.sunday,
         calendarStyle: CalendarStyle(
-          disabledDecoration: BoxDecoration(color: Theme.of(context).colorScheme.outline,),
+          disabledDecoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.outline,
+          ),
           outsideDaysVisible: false,
           selectedDecoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primary,

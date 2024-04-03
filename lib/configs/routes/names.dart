@@ -40,4 +40,7 @@ class AppRoutes {
   // Book Page Name
   static const CHOOSE_INFOR = "/choose_infor";
   static const PATIENT_CHOOSE_PROFILE = "/patient_choose_infor";
+  static const CHOOSE_DATE_MEDICAL_PAGE = "/choose_date_medication_page";
+
+  // Book Page NameChooseDateMedicalPage
 }

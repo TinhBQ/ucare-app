@@ -17,6 +17,7 @@ import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/usec
 import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
 
 import 'core/common/cubits/app_doctor/app_doctor_cubit.dart';
+import 'core/common/cubits/app_medical_appointment_body/app_medical_appointment_body_cubit.dart';
 import 'core/common/cubits/app_patient/app_patient_cubit.dart';
 import 'features/application/presentation/bloc/application_bloc.dart';
 import 'features/auth/domain/usecases/usecases.dart';
@@ -64,6 +65,10 @@ Future<void> initDependencies() async {
 
   serviceLocator.registerLazySingleton(
     () => AppPatientCubit(),
+  );
+
+  serviceLocator.registerLazySingleton(
+    () => AppMedicalAppointmentBodyCubit(),
   );
 
   serviceLocator.registerLazySingleton(

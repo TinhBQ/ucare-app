@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/names.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
-import 'package:mobile_advanced_project_fe/core/entities/page_entity.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_medical_appointment_body/app_medical_appointment_body_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/widgets/widgets.dart';
 
@@ -19,9 +20,11 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
   bool? isChoseDate = false;
   bool? isChoseTime = false;
   bool? isChoseDoctor;
+
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
     infoMedicalItems = [
       InfoMedicalItem(
         title: 'Chuyên khoa',
@@ -30,22 +33,13 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
           Navigator.of(context)
               .pushNamed(AppRoutes.CHOOSE_DEPARTMET_PAGE, arguments: {
             'onDepartmentSelected': (DepartmentItem item) {
-              // context.read<AppDoctorCubit>().updateDepartmentFilterItem(item);
-              // DoctorGetRequestModel doctorGetRequestModel =
-              //     context.read<AppDoctorCubit>().state.doctorGetRequestModel;
-              // context.read<DoctorBloc>().add(
-              //       DoctorFindExamTimes(
-              //         currentPage: doctorGetRequestModel.currentPage,
-              //         pageSize: doctorGetRequestModel.pageSize,
-              //         filters: doctorGetRequestModel.filters,
-              //         sortField: doctorGetRequestModel.sortField,
-              //         sortOrder: doctorGetRequestModel.sortOrder,
-              //         full_name: doctorGetRequestModel.full_name,
-              //         session_of_day: doctorGetRequestModel.session_of_day,
-              //       ),
-              //     );
-              // Navigator.of(context).pop();
+              context
+                  .read<AppMedicalAppointmentBodyCubit>()
+                  .updateDepartmentItem(item);
+              Navigator.of(context).pop();
             }
+          }).then((value) {
+            context.read<AppMedicalAppointmentBodyCubit>().returnDepartmentId();
           });
         },
         iconRight: isChoseSpecilty == null
@@ -60,11 +54,11 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
         onPressed: isChoseDate == null
             ? null
             : () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ChooseDateMedicalWidget(),
-                  ),
-                );
+                Navigator.of(context)
+                    .pushNamed(AppRoutes.CHOOSE_DATE_MEDICAL_PAGE)
+                    .then((value) => context
+                        .read<AppMedicalAppointmentBodyCubit>()
+                        .returnStrDate());
               },
         iconRight: isChoseDate == null
             ? null
@@ -80,7 +74,7 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
             : () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ChooseTimeMedicalWidget(),
+                    builder: (context) => const ChooseTimeMedicalWidget(),
                   ),
                 );
               },
@@ -95,7 +89,7 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
         icon: Icons.medical_services_outlined,
         iconRight: isChoseDoctor == null
             ? null
-            : isChoseDoctor == false
+            : isChoseDoctor == true
                 ? Icons.keyboard_arrow_right_outlined
                 : Icons.check_circle,
       ),
@@ -104,6 +98,8 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    int numFlow = context.watch<AppMedicalAppointmentBodyCubit>().state.numFlow;
+    print('numFlow $numFlow');
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       appBar: const SubAppBarWidget(
@@ -114,6 +110,7 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
           SliverToBoxAdapter(
             child: InfoMedicalsListCardWidget(
               listInfoMedicalItems: infoMedicalItems,
+              numFlow: numFlow,
             ),
           ),
         ],
