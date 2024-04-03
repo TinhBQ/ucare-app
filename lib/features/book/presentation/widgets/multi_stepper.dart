@@ -22,7 +22,7 @@ class _MultiStepperWidgetState extends State<MultiStepperWidget> {
   @override
   Widget build(BuildContext context) {
     return IconStepper(
-      stepReachedAnimationDuration: Duration(seconds: 0),
+      stepReachedAnimationDuration: const Duration(microseconds: 1),
       enableNextPreviousButtons: false,
       enableStepTapping: false,
       lineLength: 28,
