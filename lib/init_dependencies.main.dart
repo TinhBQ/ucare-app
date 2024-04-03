@@ -7,12 +7,17 @@ import 'package:mobile_advanced_project_fe/features/auth/domain/repository/auth_
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/user_forgot_password.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/domain/usecases/usecases.dart';
+import 'package:mobile_advanced_project_fe/features/patient/data/datasources/patient_remote_data_source.dart';
+import 'package:mobile_advanced_project_fe/features/patient/data/repositories/patient_repository_impl.dart';
+import 'package:mobile_advanced_project_fe/features/patient/domain/repository/patient_repository.dart';
+import 'package:mobile_advanced_project_fe/features/patient/presentation/bloc/patient_bloc.dart';
 
 import 'package:mobile_advanced_project_fe/features/profile/domain/repository/profile_repository.dart';
 import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/usecases.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
 
 import 'core/common/cubits/app_doctor/app_doctor_cubit.dart';
+import 'core/common/cubits/app_patient/app_patient_cubit.dart';
 import 'features/application/presentation/bloc/application_bloc.dart';
 import 'features/auth/domain/usecases/usecases.dart';
 import 'features/book/data/datasources/country_remote_data_source.dart';
@@ -35,6 +40,7 @@ import 'features/medicine_schedule/data/datasources/medicine_schedule_remote_dat
 import 'features/medicine_schedule/data/repositories/medicine_schedule_repository_impl.dart';
 import 'features/medicine_schedule/domain/repository/medicine_schedule_repository.dart';
 import 'features/medicine_schedule/presentation/bloc/medicine_schedule_bloc.dart';
+import 'features/patient/domain/usecases/usecases.dart';
 import 'features/profile/data/datasources/profile_remote_data_source.dart';
 import 'features/profile/data/repositories/profile_repository_impl.dart';
 import 'features/session_of_day/data/datasources/session_of_day_remote_data_source.dart';
@@ -57,6 +63,10 @@ Future<void> initDependencies() async {
   );
 
   serviceLocator.registerLazySingleton(
+    () => AppPatientCubit(),
+  );
+
+  serviceLocator.registerLazySingleton(
     () => MedicineSessionsCubit(),
   );
 
@@ -70,6 +80,7 @@ Future<void> initDependencies() async {
   _initDoctor();
   _initMedicineSchedule();
   _initCountry();
+  _initPatient();
 }
 
 void _initAuth() {
@@ -306,6 +317,33 @@ void _initMedicineSchedule() {
         userUpdateTimeOfMedicineSession: serviceLocator(),
         medicineSessionsCubit: serviceLocator(),
         userTurnOnOfTimeOfMedicineSession: serviceLocator(),
+      ),
+    );
+}
+
+void _initPatient() {
+  // Datasource
+  serviceLocator
+    ..registerFactory<PatientRemoteDataSource>(
+      () => PatientRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<PatientRepository>(
+      () => PatientRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserGetListPatient(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => PatientBloc(
+        userGetListPatient: serviceLocator(),
+        appPatientCubit: serviceLocator(),
       ),
     );
 }

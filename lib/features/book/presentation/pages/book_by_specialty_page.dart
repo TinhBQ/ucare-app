@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/widgets/widgets.dart';
 
@@ -31,32 +32,9 @@ class _BookBySpecialtyPageState extends State<BookBySpecialtyPage> {
           MultiStepperWidget(
             currentStep: _currentStep,
           ),
-          Flexible(
+          const Flexible(
             child: Navigator(
-              onGenerateRoute: (settings) {
-                return MaterialPageRoute(
-                  builder: (context) {
-                    return ChooseProfileWidget(
-                      onChoose: () {
-                        setState(() {
-                          _currentStep++;
-                        });
-                        Navigator.of(context)
-                            .push(
-                              MaterialPageRoute(
-                                builder: (context) => ChooseInfoWidget(),
-                              ),
-                            )
-                            .then((value) => {
-                                  setState(() {
-                                    _currentStep--;
-                                  }),
-                                });
-                      },
-                    );
-                  },
-                );
-              },
+              onGenerateRoute: BookPages.GenerateRouteSettings,
             ),
           ),
         ],

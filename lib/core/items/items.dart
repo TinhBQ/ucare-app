@@ -15,3 +15,5 @@ export 'info_medical_item.dart';
 export 'specialty_item.dart';
 export './country_get_item.dart';
 export './country_item.dart';
+export './patient_item.dart';
+export './patient_get_item.dart';

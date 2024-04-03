@@ -2,18 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/core/common/cubits/app_doctor/app_doctor_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
-import 'package:mobile_advanced_project_fe/features/doctor/presentation/bloc/doctor_bloc.dart';
 
 import '../bloc/department_bloc.dart';
 import '../widgets/widget.dart';
 
 class ChooseDepartmentPage extends StatefulWidget {
-  const ChooseDepartmentPage({super.key});
+  final Function(DepartmentItem) onDepartmentSelected;
+  const ChooseDepartmentPage({super.key, required this.onDepartmentSelected});
 
   @override
   State<ChooseDepartmentPage> createState() => _ChooseDepartmentPageState();
@@ -97,26 +95,6 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
     );
   }
 
-  void _chooseDepartmentItem(
-    DepartmentItem item,
-  ) {
-    context.read<AppDoctorCubit>().updateDepartmentFilterItem(item);
-    DoctorGetRequestModel doctorGetRequestModel =
-        context.read<AppDoctorCubit>().state.doctorGetRequestModel;
-    context.read<DoctorBloc>().add(
-          DoctorFindExamTimes(
-            currentPage: doctorGetRequestModel.currentPage,
-            pageSize: doctorGetRequestModel.pageSize,
-            filters: doctorGetRequestModel.filters,
-            sortField: doctorGetRequestModel.sortField,
-            sortOrder: doctorGetRequestModel.sortOrder,
-            full_name: doctorGetRequestModel.full_name,
-            session_of_day: doctorGetRequestModel.session_of_day,
-          ),
-        );
-    Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
     Widget content = SliverToBoxAdapter(
@@ -125,7 +103,7 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
         isLoading: _isLoading && !_isSearch,
         isFirstLoading:
             _departmentGetItem == null || _departmentGetItem?.rows == null,
-        onClick: _chooseDepartmentItem,
+        onClick: widget.onDepartmentSelected,
       ),
     );
 

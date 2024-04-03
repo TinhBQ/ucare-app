@@ -28,7 +28,7 @@ class _ChooseProfileWidgetState extends State<ChooseProfileWidget> {
         ),
         child: Column(
           children: [
-            ProfilesListCardWidget(),
+            const ProfilesListCardWidget(),
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 8,
@@ -38,7 +38,9 @@ class _ChooseProfileWidgetState extends State<ChooseProfileWidget> {
                 color: Theme.of(context).colorScheme.secondary,
               ),
             ),
-            ProfileDetailsListCardWidget(onChoose: widget.onChoose,),
+            ProfileDetailsListCardWidget(
+              onChoose: widget.onChoose,
+            ),
           ],
         ),
       ),

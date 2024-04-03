@@ -49,6 +49,7 @@ class _ChooseDepartmentListItemWidgetState
                   name: 'Department Name...',
                   description: 'Description...',
                   onClick: () {},
+                  service_charge: '100000',
                 ),
               ),
             ],
@@ -68,6 +69,7 @@ class _ChooseDepartmentListItemWidgetState
               onClick: () {
                 widget.onClick(item);
               },
+              service_charge: item.service_charge.toString(),
             ),
           ),
           if (widget.isLoading)

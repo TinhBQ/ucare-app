@@ -28,4 +28,6 @@ class ServerException implements Exception {
       'Lấy danh sách ngày khám không thành công.';
 
   static String GET_DOCTOR_FAILURE = 'Lấy danh sách Bác sĩ không thành công.';
+
+  static String GET_PATIENT_FAILURE = 'Lấy hồ sơ bệnh nhân không thành công.';
 }

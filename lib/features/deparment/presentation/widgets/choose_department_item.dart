@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class ChooseDepartmentItemWidget extends StatelessWidget {
@@ -5,6 +7,7 @@ class ChooseDepartmentItemWidget extends StatelessWidget {
   final String name;
   final String? description;
   final VoidCallback onClick;
+  final String service_charge;
 
   const ChooseDepartmentItemWidget({
     super.key,
@@ -12,6 +15,7 @@ class ChooseDepartmentItemWidget extends StatelessWidget {
     this.width,
     this.description,
     required this.onClick,
+    required this.service_charge,
   });
 
   @override
@@ -60,10 +64,18 @@ class ChooseDepartmentItemWidget extends StatelessWidget {
                               )),
                     ),
                   ),
-                  Icon(
-                    Icons.keyboard_arrow_right_outlined,
-                    color: Theme.of(context).colorScheme.tertiary,
-                    weight: 600,
+                  Row(
+                    children: [
+                      Text(
+                        service_charge == '0' ? '' : '$service_charge VND',
+                      ),
+                      const SizedBox(width: 8),
+                      Icon(
+                        Icons.keyboard_arrow_right_outlined,
+                        color: Theme.of(context).colorScheme.tertiary,
+                        weight: 600,
+                      ),
+                    ],
                   )
                 ],
               ),
