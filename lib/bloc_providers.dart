@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_doctor/app_doctor_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient_schedule/app_patient_schedule_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/medicine_sessions/medicine_sessions_cubit.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
@@ -25,6 +26,7 @@ class AppBlocProviders {
         BlocProvider(
             create: (_) => serviceLocator<AppMedicalAppointmentBodyCubit>()),
         BlocProvider(create: (_) => serviceLocator<MedicineSessionsCubit>()),
+        BlocProvider(create: (_) => serviceLocator<AppPatientScheduleCubit>()),
         BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
         BlocProvider(create: (_) => serviceLocator<ApplicationBloc>()),
         BlocProvider(create: (_) => serviceLocator<ProfileBloc>()),
