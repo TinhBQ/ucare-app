@@ -100,9 +100,14 @@ class _ForgotPassPageState extends State<ForgotPassPage> {
                           onChanged: (value) {
                             _onSetDisableButton(value);
                           },
-                          validator: (input) => isEmail(input.toString())
-                              ? null
-                              : InforMassage.emailValid,
+                          validator: (input) {
+                            if (input.toString().isEmpty) {
+                              return null;
+                            }
+                            return isEmail(input.toString())
+                                ? null
+                                : InforMassage.emailValid;
+                          },
                         ),
                         //button
                         CustomButton(

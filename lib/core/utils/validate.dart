@@ -19,3 +19,8 @@ bool isPhone(String phone) {
   );
   return regex.hasMatch(phone);
 }
+
+bool isValidName(String name) {
+  RegExp regex = RegExp(r'^[\p{L}\s]+$');
+  return regex.hasMatch(name);
+}

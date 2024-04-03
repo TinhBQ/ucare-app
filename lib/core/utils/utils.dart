@@ -6,3 +6,5 @@ export './string_ternary_operator.dart';
 export './validate.dart';
 export './show_dialog.dart';
 export './convert_to_int.dart';
+export './local_notifications.dart';
+export './get_icon.dart';

@@ -21,9 +21,17 @@ class UserItem extends UserEntity {
       email: json['email'] ?? '',
       phone: json['phone'] ?? '',
       birthday: json['birthday'] ?? '',
-      male: json['male'] ?? '',
+      male: json['male'] ?? true,
       avatar: json['avatar'] ?? '',
       role: json['role'] ?? '',
     );
+  }
+
+  Map<String, dynamic> updateFofileToJson() {
+    return {
+      'user_name': user_name,
+      'birthday': birthday,
+      'male': male,
+    };
   }
 }

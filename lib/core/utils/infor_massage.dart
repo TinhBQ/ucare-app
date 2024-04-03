@@ -3,7 +3,7 @@
 class InforMassage {
   // Successful process
   static String LOGIN_SUCCESS = 'Đăng nhập thành công.';
-  static String LOGOUT_SUCCESS = 'Đăng nhập thành công.';
+  static String LOGOUT_SUCCESS = 'Đăng xuất thành công.';
   static String SIGN_UP_SUCCESS = 'Vui lòng kiểm tra hộp thư Email của bạn.';
   static String CONFIRM_SIGN_UP_SUCCESS =
       'Đăng ký thành công. Vui lòng đăng nhập để xử dụng.';
@@ -13,6 +13,7 @@ class InforMassage {
   static String GET_INFO_SUCCESS = 'Lấy thông tin thành công.';
   static String CHANGE_PASSWORD_SUCCESS =
       'Thay đổi mật khẩu thành công. Vui lòng đăng nhập lại để xử dụng.';
+  static String CHANGE_PROFLE_SUCCESS = 'Thay đổi thông tin thành công.';
 
   static String GET_DEPARTMENTS_SUCCESS =
       'Lấy danh sách chuyên khoa thành công.';
@@ -25,7 +26,7 @@ class InforMassage {
   // Valid form
   static String emailValid = 'Email không hợp lệ.';
   static String passwordValid =
-      'Ít nhất 8 ký tự, gồm: chữ, số và 1 ký tự đặt biệt.';
+      'Ít nhất 8 ký tự, gồm: chữ thường, chữ in hoa, số và 1 ký tự đặc biệt.';
   static String confirmPasswordValid = 'Mật khẩu không trùng khớp.';
   static String phoneNumberValid = 'Số điện thoại không hợp lệ.';
 }

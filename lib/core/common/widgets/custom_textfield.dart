@@ -1,16 +1,18 @@
 // ignore_for_file: unnecessary_null_in_if_null_operators
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomTextfield extends StatefulWidget {
   final String label;
-  final IconData icon;
+  final IconData? icon;
   final TextEditingController controller;
-  final Function(String) onChanged;
+  final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final String? content;
   final bool disabled;
   final int? maxLength;
   final int? minLength;
+  final TextStyle? labelStyle;
   final IconData? suffixIcon;
   final Function()? onSuffixIcon;
   final bool? isObscureText;
@@ -18,9 +20,9 @@ class CustomTextfield extends StatefulWidget {
   const CustomTextfield({
     super.key,
     required this.label,
-    required this.icon,
+    this.icon,
     required this.controller,
-    required this.onChanged,
+    this.onChanged,
     this.content,
     this.disabled = false,
     this.maxLength,
@@ -29,6 +31,7 @@ class CustomTextfield extends StatefulWidget {
     this.suffixIcon,
     this.onSuffixIcon,
     this.isObscureText,
+    this.labelStyle,
   });
 
   @override
@@ -37,7 +40,6 @@ class CustomTextfield extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextfield> {
   bool _showClearIcon = false;
-  bool _isValid = true; // Track if the current input is valid
 
   @override
   void initState() {
@@ -59,7 +61,7 @@ class _CustomTextFieldState extends State<CustomTextfield> {
         enabled: !widget.disabled,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-          prefixIcon: Icon(widget.icon),
+          prefixIcon: widget.icon != null ? Icon(widget.icon) : null,
           suffixIcon: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -74,23 +76,23 @@ class _CustomTextFieldState extends State<CustomTextfield> {
                     icon: const Icon(Icons.clear)),
               if (widget.suffixIcon != null)
                 IconButton(
-                    onPressed: widget.onSuffixIcon,
-                    icon: Icon(widget.suffixIcon)),
+                  onPressed: widget.onSuffixIcon,
+                  icon: Icon(widget.suffixIcon),
+                ),
             ],
           ),
           labelText: widget.label,
+          labelStyle: widget.labelStyle ?? null,
           hintStyle: Theme.of(context).textTheme.bodyLarge,
         ),
         onChanged: (text) {
           setState(() {
-            _showClearIcon = text.isNotEmpty;
-            _isValid = text.isEmpty;
+            _showClearIcon = widget.controller.text.isNotEmpty;
           });
-          widget.onChanged(text);
+          widget.onChanged!(text);
         },
-        validator: _isValid ? null : widget.validator,
-        autovalidateMode:
-            _isValid ? AutovalidateMode.disabled : AutovalidateMode.always,
+        validator: !_showClearIcon ? null : widget.validator,
+        autovalidateMode: AutovalidateMode.always,
       ),
     );
   }

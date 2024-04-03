@@ -110,9 +110,14 @@ class _SignUpPageState extends State<SignUpPage> {
                     onChanged: (value) {
                       _onSetDisableButton();
                     },
-                    validator: (input) => isEmail(input.toString())
-                        ? null
-                        : InforMassage.emailValid,
+                    validator: (input) {
+                      if (input.toString().isEmpty) {
+                        return null;
+                      }
+                      return isEmail(input.toString())
+                          ? null
+                          : InforMassage.emailValid;
+                    },
                   ),
                   CustomTextfield(
                     label: 'Số điện thoại',
@@ -121,9 +126,14 @@ class _SignUpPageState extends State<SignUpPage> {
                     onChanged: (value) {
                       _onSetDisableButton();
                     },
-                    validator: (input) => isPhone(input.toString())
-                        ? null
-                        : InforMassage.phoneNumberValid,
+                    validator: (input) {
+                      if (input.toString().isEmpty) {
+                        return null;
+                      }
+                      return isPhone(input.toString())
+                          ? null
+                          : InforMassage.phoneNumberValid;
+                    },
                   ),
                   CustomTextfield(
                     label: 'Mật khẩu',
@@ -141,9 +151,14 @@ class _SignUpPageState extends State<SignUpPage> {
                     onChanged: (value) {
                       _onSetDisableButton();
                     },
-                    validator: (input) => isPassword(input.toString())
-                        ? null
-                        : InforMassage.passwordValid,
+                    validator: (input) {
+                      if (input.toString().isEmpty) {
+                        return null;
+                      }
+                      return isPassword(input.toString())
+                          ? null
+                          : InforMassage.passwordValid;
+                    },
                   ),
                   CustomTextfield(
                     label: 'Xác nhận mật khẩu',

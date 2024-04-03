@@ -13,6 +13,8 @@ class ServerException implements Exception {
   static String FORGOT_PASSWORD_FAILUARE = 'Đổi mật khẩu không thành công.';
   static String CHANGE_PASSWORD_FAILURE = 'Thay đổi mật khẩu không này.';
 
+  static String CHANGE_PROFILE_FAILURE = 'Thay đổi thông tin thất bại';
+
   static String LOGOUT_FAILURE = 'Đăng xuất không thành công.';
 
   static String GET_INFO_FAILUARE = 'Lấy thông tin không thành công.';

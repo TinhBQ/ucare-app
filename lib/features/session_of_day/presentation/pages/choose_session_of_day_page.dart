@@ -106,6 +106,7 @@ class _ChooseSessionOfDayPageState extends State<ChooseSessionOfDayPage> {
             sortField: doctorGetRequestModel.sortField,
             sortOrder: doctorGetRequestModel.sortOrder,
             full_name: doctorGetRequestModel.full_name,
+            session_of_day: doctorGetRequestModel.session_of_day,
           ),
         );
     Navigator.of(context).pop();
@@ -126,7 +127,10 @@ class _ChooseSessionOfDayPageState extends State<ChooseSessionOfDayPage> {
     if (_sessionOfDayGetItem != null &&
         (_sessionOfDayGetItem?.rows == null ||
             _sessionOfDayGetItem!.rows.isEmpty)) {
-      content = const SliverToBoxAdapter(child: Text('Không có nội dung'));
+      content = const SliverToBoxAdapter(
+          child: CustomNoData(
+        text: 'Ngày khám không tồn tại.',
+      ));
     }
 
     if (_isSearch) {
@@ -168,7 +172,7 @@ class _ChooseSessionOfDayPageState extends State<ChooseSessionOfDayPage> {
         return Scaffold(
           backgroundColor: Theme.of(context).colorScheme.background,
           appBar: const CustomAppBar(
-            title: 'Chọn chuyên Khoa',
+            title: 'Chọn ngày khám',
           ),
           body: SafeArea(
             child: CustomScrollView(

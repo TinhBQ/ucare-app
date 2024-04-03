@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
 
-class MedicineSessionCardWidget extends StatefulWidget {
+class MedicineSessionCardWidget extends StatelessWidget {
+  final MedicineSessionItem medicineSession;
+  final void Function() onUpdateTime;
+  final void Function(bool value) onChecked;
   const MedicineSessionCardWidget({
     super.key,
     required this.medicineSession,
+    required this.onUpdateTime,
+    required this.onChecked,
   });
 
-  final MedicineSessionItem medicineSession;
-
-  @override
-  State<StatefulWidget> createState() => _MedicineSessionCardWidgetState();
-}
-
-class _MedicineSessionCardWidgetState extends State<MedicineSessionCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,7 +33,7 @@ class _MedicineSessionCardWidgetState extends State<MedicineSessionCardWidget> {
             Row(
               children: <Widget>[
                 Icon(
-                  widget.medicineSession.icon,
+                  getIcon(medicineSession.icon),
                   size: 28,
                   color: Theme.of(context).colorScheme.primary,
                 ),
@@ -42,7 +41,7 @@ class _MedicineSessionCardWidgetState extends State<MedicineSessionCardWidget> {
                   width: 8,
                 ),
                 Text(
-                  widget.medicineSession.session,
+                  medicineSession.session,
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
@@ -53,7 +52,9 @@ class _MedicineSessionCardWidgetState extends State<MedicineSessionCardWidget> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
-                  onTap: widget.medicineSession.onChangedTime,
+                  onTap: () {
+                    onUpdateTime();
+                  },
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -66,9 +67,9 @@ class _MedicineSessionCardWidgetState extends State<MedicineSessionCardWidget> {
                     ),
                     child: Text(
                       TimeOfDay(
-                              hour: widget.medicineSession.time.hour,
-                              minute: widget.medicineSession.time.minute)
-                          .format(context),
+                        hour: medicineSession.hour,
+                        minute: medicineSession.minute,
+                      ).format(context),
                       style: Theme.of(context).textTheme.labelLarge!.copyWith(
                             color: Theme.of(context).colorScheme.primary,
                           ),
@@ -80,8 +81,10 @@ class _MedicineSessionCardWidgetState extends State<MedicineSessionCardWidget> {
                 ),
                 Switch(
                   activeColor: Theme.of(context).colorScheme.onPrimary,
-                  value: widget.medicineSession.isActived,
-                  onChanged: widget.medicineSession.onChangedActive,
+                  value: medicineSession.isActived == 1,
+                  onChanged: (bool value) {
+                    onChecked(value);
+                  },
                 ),
               ],
             ),

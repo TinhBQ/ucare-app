@@ -1,11 +1,14 @@
 // ignore_for_file: avoid_print, deprecated_member_use
 
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decode/jwt_decode.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
+import 'package:mobile_advanced_project_fe/core/utils/show_snackbar.dart';
 import 'package:mobile_advanced_project_fe/core/values/constant.dart';
+import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile_advanced_project_fe/core/values/logger.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
 
 const noToken = [
@@ -25,13 +28,14 @@ class HttpUtil {
   }
 
   late Dio dio;
+  late BuildContext context;
 
   HttpUtil._internal() {
     BaseOptions options = BaseOptions(
       baseUrl: AppConstants.SERVER_API_URL,
       receiveDataWhenStatusError: true,
-      connectTimeout: const Duration(seconds: 3),
-      receiveTimeout: const Duration(seconds: 3),
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 5),
       headers: {},
       contentType: "application/json; charset=utf-8",
       responseType: ResponseType.json,
@@ -50,41 +54,29 @@ class HttpUtil {
         return handler.next(options);
       }
 
-      print('options.path ${options.path}');
-
       // Lấy các token được lưu tạm từ local storage
       String accessToken = Global.storageService.getUserAccessTokenKey();
       String refreshToken = Global.storageService.getUserRefreshTokenKey();
 
-      print("Access token: $accessToken");
-      print("refresh token: $refreshToken");
-
       // Kiểm tra xem user có đăng nhập hay chưa. Nếu chưa thì call handler.next(options)
       // để trả data về tiếp client
       if (accessToken.isEmpty || refreshToken.isEmpty) {
-        print("next");
         return handler.next(options);
       }
-
-      print("next 1");
 
       // Giải mã access token
       // Kiểm tra token còn hạn hay không?
       Map<String, dynamic> decodedAccessToken = Jwt.parseJwt(accessToken);
       print("Decoded access token: $decodedAccessToken");
       if (Jwt.isExpired(accessToken)) {
-        print("next 2");
         try {
-          print("next 3");
           final response = await dio.post(
             AppConstants.SERVER_REFRESH_TOKEN,
             data: refreshToken,
           );
-          print("next 4");
 
           print("response: $response");
           if (response.statusCode == 200) {
-            print("next 5");
             if (response.data != false) {
               options.headers['Authorization'] =
                   "Bearer ${response.data['responseData']['accessToken']}";
@@ -93,14 +85,14 @@ class HttpUtil {
                   AppConstants.STORAGE_USER_ACCESS_TOKEN_KEY,
                   response.data['responseData']['accessToken']);
             } else {
-              // logout();
+              logout();
             }
           } else {
-            // logout();
+            logout();
           }
           return handler.next(options);
         } on DioError catch (error) {
-          // logout();
+          logout();
           return handler.reject(error, true);
         }
       } else {
@@ -115,18 +107,23 @@ class HttpUtil {
       // SentryLogError().additionalData(error);
       if (error.response?.statusCode == 401) {
         // Đăng xuất khi hết session
-        // logout();
+        logout();
       }
       return handler.next(error);
     }));
 
-    // badCertificateCallback
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (HttpClient client) {
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-      return client;
-    };
+    dio.httpClientAdapter = HttpClientAdapter();
+
+    //
+  }
+
+  void logout() {
+    if (context.mounted) {
+      context.read<AuthBloc>().add(AuthLogout());
+      ShowSnackBar.error('Something went wrong!', context);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(AppRoutes.SING_IN, (route) => false);
+    }
   }
 
   Future post(
@@ -137,7 +134,6 @@ class HttpUtil {
   }) async {
     Options requestOptions = options ?? Options();
     requestOptions.headers = requestOptions.headers ?? {};
-
     var response = await dio.post(
       path,
       data: mydata,
@@ -145,10 +141,10 @@ class HttpUtil {
       options: requestOptions,
     );
 
-    print("my response is ${response.toString()}");
-    print("my status code is ${response.statusCode}");
-    print("my body is ${response.data}");
-    print("my headers are ${response.headers}");
+    AppLogger.logger.d("my response is ${response.toString()}\n"
+        "my status code is ${response.statusCode}\n"
+        "my body is ${response.data}\n"
+        "my headers are ${response.headers}");
     return response;
   }
 
@@ -168,10 +164,10 @@ class HttpUtil {
       options: requestOptions,
     );
 
-    print("my response is ${response.toString()}");
-    print("my status code is ${response.statusCode}");
-    print("my body is ${response.data}");
-    print("my headers are ${response.headers}");
+    AppLogger.logger.d("my response is ${response.toString()}\n"
+        "my status code is ${response.statusCode}\n"
+        "my body is ${response.data}\n"
+        "my headers are ${response.headers}");
     return response;
   }
 
@@ -191,10 +187,10 @@ class HttpUtil {
       options: requestOptions,
     );
 
-    print("my response is ${response.toString()}");
-    print("my status code is ${response.statusCode}");
-    print("my body is ${response.data}");
-    print("my headers are ${response.headers}");
+    AppLogger.logger.d("my response is ${response.toString()}\n"
+        "my status code is ${response.statusCode}\n"
+        "my body is ${response.data}\n"
+        "my headers are ${response.headers}");
     return response;
   }
 
@@ -214,10 +210,10 @@ class HttpUtil {
       options: requestOptions,
     );
 
-    print("my response is ${response.toString()}");
-    print("my status code is ${response.statusCode}");
-    print("my body is ${response.data}");
-    print("my headers are ${response.headers}");
+    AppLogger.logger.d("my response is ${response.toString()}\n"
+        "my status code is ${response.statusCode}\n"
+        "my body is ${response.data}\n"
+        "my headers are ${response.headers}");
     return response;
   }
 }

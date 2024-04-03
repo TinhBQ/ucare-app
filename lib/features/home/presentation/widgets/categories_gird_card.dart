@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 
 import 'category_card.dart';
 
@@ -11,38 +12,34 @@ class CategoryCardItem {
       {required this.title, required this.icon, required this.onPressed});
 }
 
-List<CategoryCardItem> listCategoryCardItem = [
-  CategoryCardItem(
-    title: 'Đặt khám',
-    icon: Icons.local_hospital,
-    onPressed: () {},
-  ),
-  CategoryCardItem(
-    title: 'Đặt khám',
-    icon: Icons.local_hospital,
-    onPressed: () {},
-  ),
-  CategoryCardItem(
-    title: 'Đặt lịch uống thuốc',
-    icon: Icons.medication_liquid,
-    onPressed: () {},
-  ),
-  CategoryCardItem(
-    title: 'Theo dõi sức khỏe',
-    icon: Icons.monitor_heart,
-    onPressed: () {},
-  ),
-  CategoryCardItem(
-    title: 'Theo dõi sức khỏe',
-    icon: Icons.monitor_heart,
-    onPressed: () {},
-  ),
-  CategoryCardItem(
-    title: 'Theo dõi sức khỏe',
-    icon: Icons.monitor_heart,
-    onPressed: () {},
-  )
-];
+// List<CategoryCardItem> listCategoryCardItem =
+
+List<CategoryCardItem> getCategoryCardItems(BuildContext context) => [
+      CategoryCardItem(
+        title: 'Đặt khám',
+        icon: Icons.local_hospital,
+        onPressed: () {},
+      ),
+      CategoryCardItem(
+        title: 'Đặt khám',
+        icon: Icons.local_hospital,
+        onPressed: () {},
+      ),
+      CategoryCardItem(
+        title: 'Đặt lịch uống thuốc',
+        icon: Icons.medication_liquid,
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.MEDICINE_SCHEDULE);
+        },
+      ),
+      CategoryCardItem(
+        title: 'Theo dõi sức khỏe',
+        icon: Icons.monitor_heart,
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.MEDICINE_SCHEDULE);
+        },
+      ),
+    ];
 
 class CategoriesGirdCardWidget extends StatelessWidget {
   const CategoriesGirdCardWidget({super.key});
@@ -53,14 +50,17 @@ class CategoriesGirdCardWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children:
-            List.generate((listCategoryCardItem.length / 2).ceil(), (index) {
+        children: List.generate(
+            (getCategoryCardItems(context).length / 2).ceil(), (index) {
           return Container(
             margin: const EdgeInsets.only(bottom: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ...listCategoryCardItem.skip(index * 2).take(2).map((item) {
+                ...getCategoryCardItems(context)
+                    .skip(index * 2)
+                    .take(2)
+                    .map((item) {
                   return CategoryCardWidget(
                     title: item.title,
                     icon: item.icon,

@@ -135,31 +135,40 @@ class _ForgotPassSendOTPPageState extends State<ForgotPassSendOTPPage> {
                             onChanged: (value) {
                               _onSetDisableButton();
                             },
-                            validator: (input) => isPassword(input.toString())
-                                ? null
-                                : InforMassage.passwordValid,
+                            validator: (input) {
+                              if (input.toString().isEmpty) {
+                                return null;
+                              }
+                              return isPassword(input.toString())
+                                  ? null
+                                  : InforMassage.passwordValid;
+                            },
                           ),
                           CustomTextfield(
-                            label: 'Xác nhận mật khẩu',
-                            icon: Icons.lock,
-                            controller: _confirmPasswordController,
-                            isObscureText: _passwordVisible,
-                            suffixIcon: _passwordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            onSuffixIcon: () {
-                              setState(() {
-                                _passwordVisible = !_passwordVisible;
-                              });
-                            },
-                            onChanged: (value) {
-                              _onSetDisableButton();
-                            },
-                            validator: (input) =>
-                                _onCheckedConfirmPassword(input.toString())
+                              label: 'Xác nhận mật khẩu',
+                              icon: Icons.lock,
+                              controller: _confirmPasswordController,
+                              isObscureText: _passwordVisible,
+                              suffixIcon: _passwordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              onSuffixIcon: () {
+                                setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                });
+                              },
+                              onChanged: (value) {
+                                _onSetDisableButton();
+                              },
+                              validator: (input) {
+                                if (input.toString().isEmpty) {
+                                  return null;
+                                }
+                                return _onCheckedConfirmPassword(
+                                        input.toString())
                                     ? null
-                                    : InforMassage.confirmPasswordValid,
-                          ),
+                                    : InforMassage.confirmPasswordValid;
+                              }),
                           //button confirm new password
                           //button confirm OTP
                           CustomButton(

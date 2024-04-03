@@ -8,12 +8,14 @@ class CustomTextfieldDropdown extends StatefulWidget {
     required this.label,
     required this.listOption,
     this.content,
+    this.onChanged,
   });
 
   final TextEditingController controller;
   final String label;
   final List<String> listOption;
   final String? content;
+  final Function(String)? onChanged;
 
   @override
   State<StatefulWidget> createState() => _CustomTextfieldDropdown();

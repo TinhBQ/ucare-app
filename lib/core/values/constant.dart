@@ -3,7 +3,7 @@
 class AppConstants {
   static const String APP_NAME = "Ucare App";
 
-  // static const String SERVER_API_URL = "http://10.0.2.2:8080/";
+  // static const String SERVER_API_URL = "http://localhost:8080";
   static const String SERVER_API_URL =
       "https://mobile-advanced-be-r7xe.onrender.com/";
   static const String API_VERSION = "v1.0/api";
@@ -21,6 +21,7 @@ class AppConstants {
   // Server User
   static const String SERVER_GET_INFO = "$API_VERSION/user/getInfo";
   static const String SERVER_CHANGE_PASSWORD = "$API_VERSION/auth/changePass";
+  static const String SERVER_CHANGE_INFO = "$API_VERSION/user/changeInfo";
 
   // Server Department
   static const String SERVER_DEPARTMENT = "$API_VERSION/department";
@@ -35,4 +36,60 @@ class AppConstants {
   static const String STORAGE_USER_ACCESS_TOKEN_KEY = "user_access_token_key";
   static const String STORAGE_USER_REFRESH_TOKEN_KEY = "user_refresh_token_key";
   static const String STORAGE_USER_REMEMBERS_LOGIN = "user_remembers_login";
+
+  static const List<String> ETHNICITY = [
+    'Bana',
+    'Bố Y',
+    'Brâu',
+    'Bru-Vân Kiều',
+    'Chăm',
+    'Chơ Ro',
+    'Chu-Ru',
+    'Chứt',
+    'Co',
+    'Cơ Ho',
+    'Cờ Lao',
+    'Cơ Tu',
+    'Cống',
+    'Dao',
+    'Ê-Đê',
+    'Gia Rai',
+    'Giáy',
+    'Gié-Triêng',
+    'Hà Nhì',
+    'Hoa',
+    'Hrê',
+    'Kháng',
+    'Khmer',
+    'Khơ Mú',
+    'Kinh',
+    'La Chí',
+    'La Ha',
+    'La Hủ',
+    'Lào',
+    'Lô Lô',
+    'Lự',
+    'Mạ',
+    'Mảng',
+    'Mnông',
+    'Mông',
+    'Mường',
+    'Ngái',
+    'Nùng',
+    'Ơ Đu',
+    'Pà Thẻn',
+    'Phù Lá',
+    'Pu Péo',
+    'Ra Glay',
+    'Rơ Măm',
+    'Sán Chay',
+    'Sán Dìu',
+    'Si La',
+    'Tà Ôi',
+    'Tày',
+    'Thái	Thổ',
+    'Xinh Mun',
+    'Xơ Đăng',
+    'Xtiêng'
+  ];
 }

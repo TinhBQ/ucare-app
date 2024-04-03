@@ -70,9 +70,9 @@ class _SignInPageState extends State<SignInPage> {
 
         if (state is AuthFailure) {
           if (state.onAuthEvent == OnAuthEvent.onAuthUserLoggedIn) {
+            LoadingOverlay.dismissLoading();
             Navigator.of(context).pushNamedAndRemoveUntil(
                 AppRoutes.APPLICATION, (route) => false);
-            LoadingOverlay.dismissLoading();
             ShowSnackBar.success(InforMassage.LOGIN_SUCCESS, context);
           } else {
             _clearFields();
@@ -83,9 +83,9 @@ class _SignInPageState extends State<SignInPage> {
 
         if (state is AuthSuccess) {
           if (state.onAuthEvent == OnAuthEvent.onAuthUserLoggedIn) {
+            LoadingOverlay.dismissLoading();
             Navigator.of(context).pushNamedAndRemoveUntil(
                 AppRoutes.APPLICATION, (route) => false);
-            LoadingOverlay.dismissLoading();
             ShowSnackBar.success(InforMassage.LOGIN_SUCCESS, context);
           }
 
@@ -118,7 +118,7 @@ class _SignInPageState extends State<SignInPage> {
                         const Padding(
                           padding: EdgeInsets.only(bottom: 24.0),
                           child: CustomTextIntroduce(
-                              description: "Vui lòng đăng nhập để xử dụng"),
+                              description: "Vui lòng đăng nhập để sử dụng"),
                         ),
                         //information signin
                         SingleChildScrollView(
@@ -134,10 +134,14 @@ class _SignInPageState extends State<SignInPage> {
                                     onChanged: (value) {
                                       _onSetDisableButton(value);
                                     },
-                                    validator: (input) =>
-                                        isEmail(input.toString())
-                                            ? null
-                                            : InforMassage.emailValid,
+                                    validator: (input) {
+                                      if (input.toString().isEmpty) {
+                                        return null;
+                                      }
+                                      return isEmail(input.toString())
+                                          ? null
+                                          : InforMassage.emailValid;
+                                    },
                                   ),
                                   CustomTextfield(
                                     label: 'Mật khẩu',
@@ -155,10 +159,14 @@ class _SignInPageState extends State<SignInPage> {
                                     onChanged: (value) {
                                       _onSetDisableButton(value);
                                     },
-                                    validator: (input) =>
-                                        isPassword(input.toString())
-                                            ? null
-                                            : InforMassage.passwordValid,
+                                    validator: (input) {
+                                      if (input.toString().isEmpty) {
+                                        return null;
+                                      }
+                                      return isPassword(input.toString())
+                                          ? null
+                                          : InforMassage.passwordValid;
+                                    },
                                   ),
                                   CustomCheckbox(
                                     description: 'Lưu thông tin đăng nhập',

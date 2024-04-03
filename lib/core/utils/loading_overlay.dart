@@ -6,22 +6,24 @@ class LoadingOverlay {
 
   static void showLoading(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _overlayEntry ??= OverlayEntry(
-        builder: (context) => Stack(
-          children: [
-            // Background dim
-            ModalBarrier(
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-              dismissible: false,
-            ),
-            // Loading indicator
-            const Center(
-              child: CustomCircularProgressinDicator(),
-            ),
-          ],
-        ),
-      );
-      Overlay.of(context).insert(_overlayEntry!);
+      if (_overlayEntry == null) {
+        _overlayEntry = OverlayEntry(
+          builder: (context) => Stack(
+            children: [
+              // Background dim
+              ModalBarrier(
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+                dismissible: false,
+              ),
+              // Loading indicator
+              const Center(
+                child: CustomCircularProgressinDicator(),
+              ),
+            ],
+          ),
+        );
+        Overlay.of(context).insert(_overlayEntry!);
+      }
     });
   }
 
