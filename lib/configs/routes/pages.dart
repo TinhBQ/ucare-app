@@ -16,6 +16,7 @@ import 'package:mobile_advanced_project_fe/features/session_of_day/presentation/
 import 'package:mobile_advanced_project_fe/features/splash/presentation/splash_page.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
 
+import '../../core/utils/utils.dart';
 import 'names.dart';
 
 class AppPages {
@@ -107,7 +108,6 @@ class AppPages {
                 builder: (context) {
                   if (!isDataLoaded) {
                     context.read<AuthBloc>().add(AuthUserLoggedIn());
-
                     isDataLoaded = true;
                   }
 
@@ -118,8 +118,13 @@ class AppPages {
                         LoadingOverlay.showLoading(context);
                       }
 
+                      if (state is AuthSuccess) {
+                        LoadingOverlay.dismissLoading();
+                        return const ApplicationPage();
+                      }
+
                       LoadingOverlay.dismissLoading();
-                      return const ApplicationPage();
+                      return const SignInPage();
                     },
                   );
                 },

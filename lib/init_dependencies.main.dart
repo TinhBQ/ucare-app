@@ -1,10 +1,12 @@
 import 'package:get_it/get_it.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/medicine_sessions/medicine_sessions_cubit.dart';
 import 'package:mobile_advanced_project_fe/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:mobile_advanced_project_fe/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/repository/auth_repository.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/user_forgot_password.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/medicine_schedule/domain/usecases/usecases.dart';
 
 import 'package:mobile_advanced_project_fe/features/profile/domain/repository/profile_repository.dart';
 import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/user_change_password.dart';
@@ -24,6 +26,10 @@ import 'features/doctor/data/repositories/doctor_repository_impl.dart';
 import 'features/doctor/domain/repository/doctor_repository.dart';
 import 'features/doctor/domain/usecases/user_find_exam_times.dart';
 import 'features/doctor/presentation/bloc/doctor_bloc.dart';
+import 'features/medicine_schedule/data/datasources/medicine_schedule_remote_data_source.dart';
+import 'features/medicine_schedule/data/repositories/medicine_schedule_repository_impl.dart';
+import 'features/medicine_schedule/domain/repository/medicine_schedule_repository.dart';
+import 'features/medicine_schedule/presentation/bloc/medicine_schedule_bloc.dart';
 import 'features/profile/data/datasources/profile_remote_data_source.dart';
 import 'features/profile/data/repositories/profile_repository_impl.dart';
 import 'features/session_of_day/data/datasources/session_of_day_remote_data_source.dart';
@@ -44,6 +50,11 @@ Future<void> initDependencies() async {
   serviceLocator.registerLazySingleton(
     () => AppDoctorCubit(),
   );
+
+  serviceLocator.registerLazySingleton(
+    () => MedicineSessionsCubit(),
+  );
+
   serviceLocator.registerLazySingleton(
     () => ApplicationBloc(),
   );
@@ -52,6 +63,7 @@ Future<void> initDependencies() async {
   _initProfile();
   _initSessionOfDay();
   _initDoctor();
+  _initMedicineSchedule();
 }
 
 void _initAuth() {
@@ -217,6 +229,45 @@ void _initDoctor() {
       () => DoctorBloc(
         userFindExamTimes: serviceLocator(),
         appDoctorCubit: serviceLocator(),
+      ),
+    );
+}
+
+void _initMedicineSchedule() {
+  // Datasource
+  serviceLocator
+    ..registerFactory<MedicineScheduleRemoteDataSource>(
+      () => MedicineScheduleRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<MedicineScheduleRepository>(
+      () => MedicineScheduleRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserGetMedicineSessionItems(
+        serviceLocator(),
+      ),
+    )
+    ..registerFactory(
+      () => UserUpdateTimeOfMedicineSession(
+        serviceLocator(),
+      ),
+    )
+    ..registerFactory(
+      () => UserTurnOnOfTimeOfMedicineSession(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => MedicineScheduleBloc(
+        userGetMedicineSessionItems: serviceLocator(),
+        userUpdateTimeOfMedicineSession: serviceLocator(),
+        medicineSessionsCubit: serviceLocator(),
+        userTurnOnOfTimeOfMedicineSession: serviceLocator(),
       ),
     );
 }

@@ -91,6 +91,7 @@ class _FindExamTimesPageState extends State<FindExamTimesPage> {
             sortField: _doctorGetRequestModel!.sortField,
             sortOrder: _doctorGetRequestModel!.sortOrder,
             full_name: _doctorGetRequestModel!.full_name,
+            session_of_day: _doctorGetRequestModel!.session_of_day,
           ),
         );
   }
@@ -106,6 +107,21 @@ class _FindExamTimesPageState extends State<FindExamTimesPage> {
         context.select((AppDoctorCubit cubit) => cubit.state.doctorGetItem);
     DocterFilerItem? docterFilerItem =
         context.select((AppDoctorCubit cubit) => cubit.state.docterFilerItem);
+
+    Widget content = SliverToBoxAdapter(
+      child: DoctorListItemWidget(
+        listDoctorItem: doctorGetItem?.rows ?? [],
+        isFirstLoading: doctorGetItem == null,
+        isLoading: _isLoading,
+      ),
+    );
+
+    if (doctorGetItem != null && doctorGetItem.rows.isEmpty) {
+      content = const SliverToBoxAdapter(
+          child: CustomNoData(
+        text: 'Không có lịch khám bệnh',
+      ));
+    }
 
     return BlocConsumer<DoctorBloc, DoctorState>(
       listener: (context, state) {
@@ -174,13 +190,7 @@ class _FindExamTimesPageState extends State<FindExamTimesPage> {
                     ],
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: DoctorListItemWidget(
-                    listDoctorItem: doctorGetItem?.rows ?? [],
-                    isFirstLoading: doctorGetItem == null,
-                    isLoading: _isLoading,
-                  ),
-                ),
+                content
               ],
             ),
           ),

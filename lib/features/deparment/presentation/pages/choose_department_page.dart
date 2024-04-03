@@ -111,6 +111,7 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
             sortField: doctorGetRequestModel.sortField,
             sortOrder: doctorGetRequestModel.sortOrder,
             full_name: doctorGetRequestModel.full_name,
+            session_of_day: doctorGetRequestModel.session_of_day,
           ),
         );
     Navigator.of(context).pop();
@@ -131,7 +132,10 @@ class _ChooseDepartmentPageState extends State<ChooseDepartmentPage> {
     if (_departmentGetItem != null &&
         (_departmentGetItem?.rows == null ||
             _departmentGetItem!.rows.isEmpty)) {
-      content = const SliverToBoxAdapter(child: Text('Không có nội dung'));
+      content = const SliverToBoxAdapter(
+          child: CustomNoData(
+        text: 'Chuyên khoa không tồn tại.',
+      ));
     }
 
     if (_isSearch) {

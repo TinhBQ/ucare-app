@@ -56,7 +56,7 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
         doctorGetItem: state.doctorGetItem,
         docterFilerItem: docterFilerItem,
         doctorGetRequestModel: state.doctorGetRequestModel.copyWith(
-          filters: docterFilerItem.strFilter(),
+          filters: docterFilerItem.strDepartmentFilter(),
           currentPage: '1',
         ),
       ),
@@ -77,7 +77,7 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
         doctorGetItem: state.doctorGetItem,
         docterFilerItem: docterFilerItem,
         doctorGetRequestModel: state.doctorGetRequestModel.copyWith(
-          filters: docterFilerItem.strFilter(),
+          session_of_day: docterFilerItem.strSessionOfDayFilter(),
           currentPage: '1',
         ),
       ),
@@ -98,7 +98,6 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
         doctorGetItem: state.doctorGetItem,
         docterFilerItem: docterFilerItem,
         doctorGetRequestModel: state.doctorGetRequestModel.copyWith(
-          filters: docterFilerItem.strFilter(),
           currentPage: '1',
           full_name: docterFilerItem.strDoctorSearchName(),
         ),

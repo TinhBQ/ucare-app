@@ -3,13 +3,14 @@ import 'package:mobile_advanced_project_fe/features/doctor/presentation/pages/pa
 import 'package:mobile_advanced_project_fe/features/home/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/pages.dart';
+import 'package:mobile_advanced_project_fe/features/test/test_page.dart';
 
 final _MedicineSchedulePage = MedicineSchedulePage();
 
 Widget buildPage(int index) {
   List<Widget> widget = [
     const HomePage(),
-    const EditProfilePage(),
+    const TestPage(),
     const FindExamTimesPage(),
     const ProfilePage(),
   ];

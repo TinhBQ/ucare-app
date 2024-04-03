@@ -6,7 +6,7 @@ class CustomTextfield extends StatefulWidget {
   final String label;
   final IconData icon;
   final TextEditingController controller;
-  final Function(String) onChanged;
+  final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final String? content;
   final bool disabled;
@@ -21,7 +21,7 @@ class CustomTextfield extends StatefulWidget {
     required this.label,
     required this.icon,
     required this.controller,
-    required this.onChanged,
+    this.onChanged,
     this.content,
     this.disabled = false,
     this.maxLength,
@@ -86,7 +86,7 @@ class _CustomTextFieldState extends State<CustomTextfield> {
           setState(() {
             _showClearIcon = widget.controller.text.isNotEmpty;
           });
-          widget.onChanged(text);
+          widget.onChanged!(text);
         },
         validator: !_showClearIcon ? null : widget.validator,
         autovalidateMode: AutovalidateMode.always,

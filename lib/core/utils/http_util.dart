@@ -4,8 +4,13 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decode/jwt_decode.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
+import 'package:mobile_advanced_project_fe/core/utils/show_snackbar.dart';
 import 'package:mobile_advanced_project_fe/core/values/constant.dart';
+import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
 
 const noToken = [
@@ -25,13 +30,14 @@ class HttpUtil {
   }
 
   late Dio dio;
+  late BuildContext context;
 
   HttpUtil._internal() {
     BaseOptions options = BaseOptions(
       baseUrl: AppConstants.SERVER_API_URL,
       receiveDataWhenStatusError: true,
-      connectTimeout: const Duration(seconds: 3),
-      receiveTimeout: const Duration(seconds: 3),
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 5),
       headers: {},
       contentType: "application/json; charset=utf-8",
       responseType: ResponseType.json,
@@ -81,15 +87,14 @@ class HttpUtil {
                   AppConstants.STORAGE_USER_ACCESS_TOKEN_KEY,
                   response.data['responseData']['accessToken']);
             } else {
-              // logout();
-              //  context.read<AuthBloc>().add(AuthLogout());s
+              logout();
             }
           } else {
-            // logout();
+            logout();
           }
           return handler.next(options);
         } on DioError catch (error) {
-          // logout();
+          logout();
           return handler.reject(error, true);
         }
       } else {
@@ -104,7 +109,7 @@ class HttpUtil {
       // SentryLogError().additionalData(error);
       if (error.response?.statusCode == 401) {
         // Đăng xuất khi hết session
-        // logout();
+        logout();
       }
       return handler.next(error);
     }));
@@ -116,6 +121,15 @@ class HttpUtil {
           (X509Certificate cert, String host, int port) => true;
       return client;
     };
+  }
+
+  void logout() {
+    if (context.mounted) {
+      context.read<AuthBloc>().add(AuthLogout());
+      ShowSnackBar.error('Something went wrong!', context);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(AppRoutes.SING_IN, (route) => false);
+    }
   }
 
   Future post(

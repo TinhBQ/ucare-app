@@ -4,6 +4,7 @@ import 'package:mobile_advanced_project_fe/core/model/request_models/request_mod
 
 class DoctorGetRequestModel extends BaseGetRequestModel {
   final String? full_name;
+  final String? session_of_day;
   DoctorGetRequestModel({
     super.currentPage = "1",
     super.pageSize = "10",
@@ -11,6 +12,7 @@ class DoctorGetRequestModel extends BaseGetRequestModel {
     super.sortField,
     super.sortOrder,
     this.full_name,
+    this.session_of_day,
   });
 
   @override
@@ -21,6 +23,7 @@ class DoctorGetRequestModel extends BaseGetRequestModel {
         "sortField": sortField,
         "sortOrder": sortOrder,
         "full_name": full_name,
+        "session_of_day": session_of_day
       };
 
   @override
@@ -31,6 +34,7 @@ class DoctorGetRequestModel extends BaseGetRequestModel {
     String? sortField,
     String? sortOrder,
     String? full_name,
+    String? session_of_day,
   }) {
     return DoctorGetRequestModel(
       currentPage: currentPage ?? this.currentPage,
@@ -39,6 +43,7 @@ class DoctorGetRequestModel extends BaseGetRequestModel {
       sortField: sortField ?? this.sortField,
       sortOrder: sortOrder ?? this.sortOrder,
       full_name: full_name ?? this.full_name,
+      session_of_day: session_of_day ?? this.session_of_day,
     );
   }
 }

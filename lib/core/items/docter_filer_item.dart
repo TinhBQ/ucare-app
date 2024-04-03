@@ -33,10 +33,10 @@ class DocterFilerItem {
   }
 
   String strSessionOfDayFilter() {
-    if (sessionOfDayFilterItem == null || sessionOfDayFilterItem?.id == '0') {
+    if (sessionOfDayFilterItem?.id == '0') {
       return '';
     }
-    return 'session_of_day==${sessionOfDayFilterItem?.id}';
+    return sessionOfDayFilterItem?.id ?? '';
   }
 
   String strDoctorSearchName() {
@@ -44,9 +44,5 @@ class DocterFilerItem {
       return '';
     }
     return doctorSearchName!;
-  }
-
-  String strFilter() {
-    return '${strDepartmentFilter()},${strSessionOfDayFilter()}';
   }
 }

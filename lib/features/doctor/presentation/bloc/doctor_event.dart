@@ -16,6 +16,7 @@ final class DoctorFindExamTimes extends DoctorEvent {
   final String? sortField;
   final String? sortOrder;
   final String? full_name;
+  final String? session_of_day;
 
   const DoctorFindExamTimes({
     this.currentPage = '1',
@@ -24,16 +25,17 @@ final class DoctorFindExamTimes extends DoctorEvent {
     this.sortField,
     this.sortOrder,
     this.full_name,
+    this.session_of_day,
   });
 
-  DoctorFindExamTimes copyWith({
-    String? currentPage,
-    String? pageSize,
-    String? filters,
-    String? sortField,
-    String? sortOrder,
-    String? full_name,
-  }) {
+  DoctorFindExamTimes copyWith(
+      {String? currentPage,
+      String? pageSize,
+      String? filters,
+      String? sortField,
+      String? sortOrder,
+      String? full_name,
+      String? session_of_day}) {
     return DoctorFindExamTimes(
       currentPage: currentPage ?? this.currentPage,
       pageSize: pageSize ?? this.pageSize,
@@ -41,6 +43,7 @@ final class DoctorFindExamTimes extends DoctorEvent {
       sortField: sortField ?? this.sortField,
       sortOrder: sortOrder ?? this.sortOrder,
       full_name: full_name ?? this.full_name,
+      session_of_day: session_of_day ?? this.session_of_day,
     );
   }
 }
