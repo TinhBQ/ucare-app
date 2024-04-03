@@ -52,9 +52,9 @@ class DoctorListItemWidget extends StatelessWidget {
           ...listDoctorItem.map(
             (item) => DoctorItemWidget(
               avatar: item?.avatar,
-              sessionOfTime: item?.session_of_day.content,
+              sessionOfTime: item?.session_of_day?.content,
               doctorName: item?.name,
-              departmentName: item?.department.name,
+              departmentName: item?.department?.name,
               description: item?.description,
             ),
           ),

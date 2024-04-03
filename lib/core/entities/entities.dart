@@ -7,3 +7,7 @@ export './medicine_schedule_entity.dart';
 export './session_of_day_entity.dart';
 export './country_entity.dart';
 export './patient_entity.dart';
+export './room_entity.dart';
+export './schedule_entity.dart';
+export './status_entity.dart';
+export './patient_schedule_entity.dart';

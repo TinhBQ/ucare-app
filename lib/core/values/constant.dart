@@ -35,6 +35,9 @@ class AppConstants {
   // Server Patient
   static const String SERVER_PATIENT = "$API_VERSION/patient";
 
+  // Server Patient schedule
+  static const String SERVER_PATIENT_SCHEDULE = "$API_VERSION/patient_schedule";
+
   // Storage Server: shared_preferences
   static const String STORAGE_DEVICE_OPEN_FIRST_TIME = "device_first_open";
   static const String STORAGE_USER_ACCESS_TOKEN_KEY = "user_access_token_key";
