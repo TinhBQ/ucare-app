@@ -17,3 +17,5 @@ export 'choose_info/choose_time_medical.dart';
 export 'choose_info/specialty_list_card.dart';
 export 'choose_info/specialty_card.dart';
 export 'choose_info/picker_date.dart';
+export 'choose_info/time_card.dart';
+export 'choose_info/time_medical_card.dart';
