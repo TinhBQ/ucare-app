@@ -11,7 +11,9 @@ List<ProfileItem> getProfileItems(BuildContext context) => [
       ProfileItem(
         title: 'Hồ sơ cá nhân',
         icon: Icons.insert_drive_file_rounded,
-        callback: () {},
+        callback: () {
+          Navigator.of(context).pushNamed(AppRoutes.CHANGE_PROFILE);
+        },
       ),
       ProfileItem(
         title: 'Cài đặt',

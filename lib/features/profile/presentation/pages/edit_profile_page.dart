@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
 import 'package:pinput/pinput.dart';
 
 import '../bloc/profile_bloc.dart';
@@ -24,15 +24,42 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   String _initTextName = '';
   String _initTextDateOfBirth = '';
+  String _initTextGender = '';
+
+  bool isDisable = true;
 
   void _updateTextFilds() {
-    _nameController
-        .setText(context.read<AppUserCubit>().state.userItem?.phone ?? '');
-    _initTextName = _nameController.text;
+    _initTextName =
+        context.read<AppUserCubit>().state.userItem?.user_name ?? '';
+    _nameController.setText(stringTernaryOperatir(_initTextName, ''));
 
+    _initTextDateOfBirth =
+        context.read<AppUserCubit>().state.userItem?.birthday ?? '';
     _dateOfBirthController
-        .setText(context.read<AppUserCubit>().state.userItem?.phone ?? '');
-    _initTextDateOfBirth = _dateOfBirthController.text;
+        .setText(stringTernaryOperatir(_initTextDateOfBirth, ''));
+
+    if (context.read<AppUserCubit>().state.userItem?.male == null) {
+      _initTextGender = '';
+    } else {
+      _initTextGender =
+          context.read<AppUserCubit>().state.userItem!.male! ? 'Nam' : 'Nữ';
+    }
+
+    _genderController.setText(_initTextGender);
+  }
+
+  void _onSetDisableButton() {
+    if (_initTextName == _nameController.text &&
+        _initTextDateOfBirth == _dateOfBirthController.text &&
+        _initTextGender == _genderController.text) {
+      setState(() {
+        isDisable = true;
+      });
+    } else {
+      setState(() {
+        isDisable = false;
+      });
+    }
   }
 
   @override
@@ -50,12 +77,27 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
 
-    UserItem? doctorGetItem =
-        context.select((AppUserCubit cubit) => cubit.state.userItem);
-
     return BlocConsumer<ProfileBloc, ProfileState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is ProfileLoading) {
+          LoadingOverlay.showLoading(context);
+        }
+
+        if (state is ProfileFailure) {
+          LoadingOverlay.dismissLoading();
+          if (state.onProfileEvent == OnProfileEvent.onProfileChangeProflie) {
+            ShowSnackBar.error(state.message, context);
+          }
+        }
+
+        if (state is ProfileSuccess) {
+          LoadingOverlay.dismissLoading();
+          if (state.onProfileEvent == OnProfileEvent.onProfileChangeProflie) {
+            _updateTextFilds();
+            Navigator.of(context).pop();
+          }
+          ShowSnackBar.success(state.message, context);
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -76,6 +118,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         icon: Icons.supervised_user_circle,
                         controller: _nameController,
                         onChanged: (value) {
+                          _onSetDisableButton();
                           // _onSetDisableButton(value);
                         },
                       ),
@@ -94,18 +137,43 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       CustomTextfieldDatetime(
                         label: 'Ngày sinh',
                         controller: _dateOfBirthController,
-                        content: DateTime.utc(1989, 11, 9),
+                        onChange: () {
+                          _onSetDisableButton();
+                        },
                       ),
                       CustomTextfieldDropdown(
                         controller: _genderController,
                         label: 'Giới tính',
                         listOption: const ['Nữ', 'Nam'],
-                        content: 'Nữ',
+                        onChanged: () {
+                          _onSetDisableButton();
+                        },
                       ),
                       CustomButton(
-                        title: 'CẬP NHẬT',
-                        onPressed: () {},
-                      ),
+                          disabled: isDisable || state is ProfileLoading,
+                          title: 'CẬP NHẬT',
+                          onPressed: () {
+                            context.read<ProfileBloc>().add(
+                                  ProfileChangeProflie(
+                                    userItem: context
+                                        .read<AppUserCubit>()
+                                        .state
+                                        .userItem!
+                                        .copyWith(
+                                          user_name: _nameController.text
+                                              .trim()
+                                              .toString(),
+                                          birthday: _dateOfBirthController.text
+                                              .trim()
+                                              .toString(),
+                                          male: _genderController.text
+                                                  .trim()
+                                                  .toString() ==
+                                              'Nam',
+                                        ),
+                                  ),
+                                );
+                          }),
                     ],
                   ),
                 ),

@@ -149,7 +149,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                     ),
                     CustomTextfieldDropdown(
                       label: 'Giới tính',
-                      onChanged: (value) {
+                      onChanged: () {
                         _onSetDisableButton();
                       },
                       controller: _maleController,
@@ -163,7 +163,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                             padding: const EdgeInsets.only(right: 12),
                             child: CustomTextfieldDropdown(
                               label: 'Giới tính',
-                              onChanged: (value) {
+                              onChanged: () {
                                 _onSetDisableButton();
                               },
                               controller: _maleController,
@@ -176,7 +176,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                             padding: const EdgeInsets.only(left: 12),
                             child: CustomTextfieldDropdown(
                               label: 'Quốc gia',
-                              onChanged: (value) {
+                              onChanged: () {
                                 _onSetDisableButton();
                               },
                               controller: _nationController,
@@ -193,7 +193,7 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
                             padding: const EdgeInsets.only(right: 12),
                             child: CustomTextfieldDropdown(
                               label: 'Dân tộc',
-                              onChanged: (value) {
+                              onChanged: () {
                                 _onSetDisableButton();
                               },
                               controller: _ethnicityController,

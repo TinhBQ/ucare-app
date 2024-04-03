@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:intl/intl.dart';
 import 'package:timezone/timezone.dart';
-import 'package:date_format/date_format.dart';
 
 class DateStrFormat {
   static const String DATE = 'dd-MM-yyyy';
@@ -18,7 +18,7 @@ class UCARETimeZone {
   ]) {
     Location targetLocationObject = getLocation(targetLocation);
     final targetDateTime = TZDateTime.from(date, targetLocationObject);
-    return formatDate(targetDateTime, [fm]);
+    return DateFormat(fm).format(targetDateTime);
   }
 
   // Hàm định dạng ngày giờ
@@ -29,7 +29,7 @@ class UCARETimeZone {
   ]) {
     Location targetLocationObject = getLocation(targetLocation);
     final targetDateTime = TZDateTime.from(date, targetLocationObject);
-    return formatDate(targetDateTime, [fm]);
+    return DateFormat(fm).format(targetDateTime);
   }
 
   String? fStrDateToUTC(
@@ -73,10 +73,9 @@ class UCARETimeZone {
       Location targetLocationObject = getLocation(targetLocation);
       final targetDateTime =
           TZDateTime.from(DateTime.parse(date), targetLocationObject);
-      final formattedDate = formatDate(targetDateTime, [date]);
 
-      if (DateStrFormat.formats.contains(date)) {
-        return formattedDate;
+      if (DateStrFormat.formats.contains(fm)) {
+        return DateFormat(fm).format(targetDateTime);
       } else {
         return null;
       }
@@ -89,10 +88,9 @@ class UCARETimeZone {
       [String fm = DateStrFormat.DATE]) {
     try {
       final targetDateTime = TZDateTime.from(DateTime.parse(date), local);
-      final formattedDate = formatDate(targetDateTime, [date]);
 
-      if (DateStrFormat.formats.contains(date)) {
-        return formattedDate;
+      if (DateStrFormat.formats.contains(fm)) {
+        return DateFormat(fm).format(targetDateTime);
       } else {
         return null;
       }

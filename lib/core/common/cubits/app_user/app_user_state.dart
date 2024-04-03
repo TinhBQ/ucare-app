@@ -6,11 +6,13 @@ sealed class AppUserState extends Equatable {
   const AppUserState({this.userItem});
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [userItem];
 }
 
 final class AppUserInitial extends AppUserState {}
 
 final class AppUserLoggedIn extends AppUserState {
   const AppUserLoggedIn({super.userItem});
+  @override
+  List<Object?> get props => [userItem];
 }

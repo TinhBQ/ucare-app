@@ -63,7 +63,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 CustomTextfieldDatetime(
                   label: 'Ngày sinh',
                   controller: _dateOfBirthController,
-                  content: DateTime.utc(1989, 11, 9),
+                  // content: DateTime.utc(1989, 11, 9),
                 ),
                 CustomTextfieldDropdown(
                   controller: _genderController,

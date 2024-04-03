@@ -21,7 +21,7 @@ class AppConstants {
   // Server User
   static const String SERVER_GET_INFO = "$API_VERSION/user/getInfo";
   static const String SERVER_CHANGE_PASSWORD = "$API_VERSION/auth/changePass";
-  static const String SERVER_CHANGE_INFO = "$API_VERSION/user/changeInfo";
+  static const String SERVER_CHANGE_INFO = "$API_VERSION/user/changeInfor";
 
   // Server Department
   static const String SERVER_DEPARTMENT = "$API_VERSION/department";

@@ -30,6 +30,7 @@ class AppRoutes {
   static const SETTINGS = "/settings";
   // change password of the app
   static const CHANGE_PASSWORD = "/change_password";
+  static const CHANGE_PROFILE = "/change_profile";
 
   //  choose department of find_exam_times
   static const CHOOSE_DEPARTMET_PAGE = "/choose_department_page";

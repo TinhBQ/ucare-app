@@ -20,6 +20,6 @@ final class ProfileSuccess extends ProfileState {
 
 final class ProfileFailure extends ProfileState {
   final String message;
-  final OnProfileEvent onAuthEvent;
-  const ProfileFailure(this.message, this.onAuthEvent);
+  final OnProfileEvent onProfileEvent;
+  const ProfileFailure(this.message, this.onProfileEvent);
 }

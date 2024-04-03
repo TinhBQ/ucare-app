@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mobile_advanced_project_fe/core/service/storage_service.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 import 'init_dependencies.main.dart';
 
@@ -12,5 +13,6 @@ class Global {
     storageService = await StorageService().init();
     await initDependencies();
     await LocalNotifications.init();
+    tz.initializeTimeZones();
   }
 }

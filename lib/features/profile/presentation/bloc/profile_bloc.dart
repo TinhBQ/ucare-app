@@ -11,7 +11,7 @@ import '../../domain/usecases/usecases.dart';
 part 'profile_event.dart';
 part 'profile_state.dart';
 
-enum OnProfileEvent { onProfileChangePassword }
+enum OnProfileEvent { onProfileChangePassword, onProfileChangeProflie }
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UserChangePassword _userChangePassword;
@@ -66,15 +66,16 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       (failure) => emit(
         ProfileFailure(
           failure.message.toString(),
-          OnProfileEvent.onProfileChangePassword,
+          OnProfileEvent.onProfileChangeProflie,
         ),
       ),
       (userItem) {
         _appUserCubit.updateUser(userItem);
+
         return emit(
           ProfileSuccess(
             InforMassage.CHANGE_PROFLE_SUCCESS,
-            OnProfileEvent.onProfileChangePassword,
+            OnProfileEvent.onProfileChangeProflie,
           ),
         );
       },

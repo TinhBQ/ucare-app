@@ -5,13 +5,13 @@ import '../entities/user_entity.dart';
 class UserItem extends UserEntity {
   UserItem({
     required super.user_id,
-    required super.user_name,
+    super.user_name,
     required super.email,
     required super.phone,
-    required super.birthday,
-    required super.male,
-    required super.avatar,
-    required super.role,
+    super.birthday,
+    super.male,
+    super.avatar,
+    super.role,
   });
 
   factory UserItem.fromJson(Map<String, dynamic> json) {
@@ -28,10 +28,39 @@ class UserItem extends UserEntity {
   }
 
   Map<String, dynamic> updateFofileToJson() {
+    if (birthday == null || birthday!.isEmpty) {
+      return {
+        'user_name': user_name,
+        'male': male.toString(),
+      };
+    }
+
     return {
       'user_name': user_name,
-      'birthday': birthday,
-      'male': male,
+      'birthday': birthday!.isEmpty ? null : birthday,
+      'male': male.toString(),
     };
+  }
+
+  UserItem copyWith({
+    String? user_id,
+    String? user_name,
+    String? email,
+    String? phone,
+    String? birthday,
+    bool? male,
+    String? avatar,
+    String? role,
+  }) {
+    return UserItem(
+      user_id: user_id ?? this.user_id,
+      user_name: user_name ?? this.user_name,
+      email: email ?? this.email,
+      phone: phone ?? this.phone,
+      birthday: birthday ?? this.birthday,
+      male: male ?? this.male,
+      avatar: avatar ?? this.avatar,
+      role: role ?? this.role,
+    );
   }
 }

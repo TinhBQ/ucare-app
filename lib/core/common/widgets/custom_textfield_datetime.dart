@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:mobile_advanced_project_fe/global.dart';
+
+import '../../utils/time_zone.dart';
 
 class CustomTextfieldDatetime extends StatefulWidget {
   final String label;
   final TextEditingController controller;
-  final DateTime? content;
   final TextStyle? labelStyle;
   final Function(String)? onChanged;
   final DateTime? firstDate;
   final DateTime? lastDate;
   final bool isValid;
+  final VoidCallback? onChange;
 
   const CustomTextfieldDatetime({
     super.key,
     required this.label,
     required this.controller,
-    this.content,
     this.labelStyle,
     this.onChanged,
     this.firstDate,
     this.lastDate,
     this.isValid = false,
+    this.onChange,
   });
 
   @override
@@ -40,17 +40,10 @@ class _CustomTextfieldDatetimeState extends State<CustomTextfieldDatetime> {
     );
     if ((picked != null && picked != selectedDate) || widget.isValid) {
       setState(() {
+        widget.onChange!.call();
         selectedDate = picked ?? DateTime.now();
-        widget.controller.text = DateFormat('dd-MM-yyyy').format(selectedDate);
+        widget.controller.text = UCARETimeZone.fDate(selectedDate);
       });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.content != null) {
-      widget.controller.text = DateFormat('dd-MM-yyyy').format(widget.content!);
     }
   }
 

@@ -74,6 +74,10 @@ class AppPages {
         route: AppRoutes.CHANGE_PASSWORD,
         page: const ChangePasswordPage(),
       ),
+      PageEntity(
+        route: AppRoutes.CHANGE_PROFILE,
+        page: const EditProfilePage(),
+      ),
       // * App --> Find Exam Times
       PageEntity(
         route: AppRoutes.FIND_EXAM_TIMES,

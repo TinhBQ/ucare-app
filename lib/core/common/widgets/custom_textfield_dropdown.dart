@@ -15,7 +15,7 @@ class CustomTextfieldDropdown extends StatefulWidget {
   final String label;
   final List<String> listOption;
   final String? content;
-  final Function(String)? onChanged;
+  final VoidCallback? onChanged;
 
   @override
   State<StatefulWidget> createState() => _CustomTextfieldDropdown();
@@ -35,6 +35,7 @@ class _CustomTextfieldDropdown extends State<CustomTextfieldDropdown> {
     );
     if (selectedValue != null) {
       setState(() {
+        widget.onChanged?.call();
         widget.controller.text = selectedValue;
       });
     }
