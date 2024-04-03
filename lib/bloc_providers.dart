@@ -10,13 +10,16 @@ import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentati
 import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/session_of_day/presentation/bloc/session_of_day_bloc.dart';
 
+import 'core/common/cubits/app_patient/app_patient_cubit.dart';
 import 'features/application/presentation/bloc/application_bloc.dart';
+import 'features/patient/presentation/bloc/patient_bloc.dart';
 import 'init_dependencies.main.dart';
 
 class AppBlocProviders {
   static get allBlocProviders => [
         BlocProvider(create: (_) => serviceLocator<AppUserCubit>()),
         BlocProvider(create: (_) => serviceLocator<AppDoctorCubit>()),
+        BlocProvider(create: (_) => serviceLocator<AppPatientCubit>()),
         BlocProvider(create: (_) => serviceLocator<MedicineSessionsCubit>()),
         BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
         BlocProvider(create: (_) => serviceLocator<ApplicationBloc>()),
@@ -36,5 +39,6 @@ class AppBlocProviders {
               MedicineScheduleGetList(),
             ),
         ),
+        BlocProvider(create: (_) => serviceLocator<PatientBloc>()),
       ];
 }

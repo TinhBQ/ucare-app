@@ -36,4 +36,8 @@ class AppRoutes {
   static const CHOOSE_DEPARTMET_PAGE = "/choose_department_page";
   //  choose choose_session_of_day of find_exam_times
   static const CHOOSE_SESSION_OF_DAY = "/choose_session_of_day";
+
+  // Book Page Name
+  static const CHOOSE_INFOR = "/choose_infor";
+  static const PATIENT_CHOOSE_PROFILE = "/patient_choose_infor";
 }

@@ -4,3 +4,4 @@ export './department_api.dart';
 export './session_of_day_api.dart';
 export './doctor_api.dart';
 export './country_api.dart';
+export './patient_api.dart';

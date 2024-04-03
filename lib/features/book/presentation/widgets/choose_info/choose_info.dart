@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/names.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
+import 'package:mobile_advanced_project_fe/core/entities/page_entity.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/widgets/widgets.dart';
 
@@ -14,7 +17,7 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
   bool? isChoseSpecilty =
       true; // null: không iconRight, false: icon right là arrow_left, true: icon checked
   bool? isChoseDate = false;
-  bool? isChoseTime;
+  bool? isChoseTime = false;
   bool? isChoseDoctor;
   @override
   void initState() {
@@ -24,11 +27,26 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
         title: 'Chuyên khoa',
         icon: Icons.local_hospital_outlined,
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => ChooseSpecialtyWidget(),
-            ),
-          );
+          Navigator.of(context)
+              .pushNamed(AppRoutes.CHOOSE_DEPARTMET_PAGE, arguments: {
+            'onDepartmentSelected': (DepartmentItem item) {
+              // context.read<AppDoctorCubit>().updateDepartmentFilterItem(item);
+              // DoctorGetRequestModel doctorGetRequestModel =
+              //     context.read<AppDoctorCubit>().state.doctorGetRequestModel;
+              // context.read<DoctorBloc>().add(
+              //       DoctorFindExamTimes(
+              //         currentPage: doctorGetRequestModel.currentPage,
+              //         pageSize: doctorGetRequestModel.pageSize,
+              //         filters: doctorGetRequestModel.filters,
+              //         sortField: doctorGetRequestModel.sortField,
+              //         sortOrder: doctorGetRequestModel.sortOrder,
+              //         full_name: doctorGetRequestModel.full_name,
+              //         session_of_day: doctorGetRequestModel.session_of_day,
+              //       ),
+              //     );
+              // Navigator.of(context).pop();
+            }
+          });
         },
         iconRight: isChoseSpecilty == null
             ? null

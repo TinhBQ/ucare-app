@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/entities/page_entity.dart';
+import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
 import 'package:mobile_advanced_project_fe/features/application/presentation/pages/application_page.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
@@ -23,75 +24,87 @@ class AppPages {
   static List<PageEntity> routes() {
     return [
       PageEntity(
-        route: AppRoutes.INITIAL,
-        page: const SplashPage(),
-      ),
+          route: AppRoutes.INITIAL, pageBuilder: (_) => const SplashPage()),
       // * Auth
       PageEntity(
         route: AppRoutes.SING_IN,
-        page: const SignInPage(),
+        pageBuilder: (_) => const SignInPage(),
       ),
       PageEntity(
         route: AppRoutes.SIGN_UP,
-        page: const SignUpPage(),
+        pageBuilder: (_) => const SignUpPage(),
       ),
       PageEntity(
         route: AppRoutes.CONFIRM_SIGN_UP,
-        page: const ConfirmRegisterPage(),
+        pageBuilder: (_) => const ConfirmRegisterPage(),
       ),
       PageEntity(
         route: AppRoutes.FORGOT_PASSWORD,
-        page: const ForgotPassPage(),
+        pageBuilder: (_) => const ForgotPassPage(),
       ),
       PageEntity(
         route: AppRoutes.FORGOT_PASSWORD_SEND_OTP,
-        page: const ForgotPassSendOTPPage(),
+        pageBuilder: (_) => const ForgotPassSendOTPPage(),
       ),
       // * App
       PageEntity(
         route: AppRoutes.APPLICATION,
-        page: const ApplicationPage(),
+        pageBuilder: (_) => const ApplicationPage(),
       ),
       // * App --> Home
       PageEntity(
         route: AppRoutes.HOME,
-        page: const HomePage(),
+        pageBuilder: (_) => const HomePage(),
       ),
       PageEntity(
         route: AppRoutes.MEDICINE_SCHEDULE,
-        page: const MedicineSchedulePage(),
+        pageBuilder: (_) => const MedicineSchedulePage(),
       ),
       // * App --> Profile
       PageEntity(
         route: AppRoutes.PROFILE,
-        page: const ProfilePage(),
+        pageBuilder: (_) => const ProfilePage(),
       ),
       PageEntity(
         route: AppRoutes.SETTINGS,
-        page: const SettingsPage(),
+        pageBuilder: (_) => const SettingsPage(),
       ),
       PageEntity(
         route: AppRoutes.CHANGE_PASSWORD,
-        page: const ChangePasswordPage(),
+        pageBuilder: (_) => const ChangePasswordPage(),
       ),
       PageEntity(
         route: AppRoutes.CHANGE_PROFILE,
-        page: const EditProfilePage(),
+        pageBuilder: (_) => const EditProfilePage(),
       ),
       // * App --> Find Exam Times
       PageEntity(
         route: AppRoutes.FIND_EXAM_TIMES,
-        page: const FindExamTimesPage(),
+        pageBuilder: (_) => const FindExamTimesPage(),
       ),
       PageEntity(
-        route: AppRoutes.CHOOSE_DEPARTMET_PAGE,
-        page: const ChooseDepartmentPage(),
-      ),
+          route: AppRoutes.CHOOSE_DEPARTMET_PAGE,
+          pageBuilder: (arguments) {
+            final Function(DepartmentItem) onDepartmentSelected =
+                arguments['onDepartmentSelected'] as Function(DepartmentItem);
+            return ChooseDepartmentPage(
+              onDepartmentSelected: onDepartmentSelected,
+            );
+          }),
       PageEntity(
         route: AppRoutes.CHOOSE_SESSION_OF_DAY,
-        page: const ChooseSessionOfDayPage(),
+        pageBuilder: (_) => const ChooseSessionOfDayPage(),
       ),
     ];
+  }
+
+  static PageEntity? getPageEntityByRoute(String route) {
+    for (PageEntity page in routes()) {
+      if (page.route == route) {
+        return page;
+      }
+    }
+    return null;
   }
 
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -144,8 +157,11 @@ class AppPages {
               builder: (_) => const SignInPage(), settings: settings);
         }
 
+        Map<String, dynamic>? arguments =
+            settings.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
-            builder: (_) => result.first.page, settings: settings);
+            builder: (_) => result.first.pageBuilder(arguments ?? {}),
+            settings: settings);
       }
     }
 
