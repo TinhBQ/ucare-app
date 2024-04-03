@@ -1,11 +1,10 @@
 // ignore_for_file: avoid_print, deprecated_member_use
 
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
+
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:mobile_advanced_project_fe/core/values/constant.dart';
+import 'package:mobile_advanced_project_fe/core/values/logger.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
 
 const noToken = [
@@ -120,13 +119,9 @@ class HttpUtil {
       return handler.next(error);
     }));
 
-    // badCertificateCallback
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (HttpClient client) {
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-      return client;
-    };
+    dio.httpClientAdapter = HttpClientAdapter();
+
+    //
   }
 
   Future post(
@@ -137,7 +132,6 @@ class HttpUtil {
   }) async {
     Options requestOptions = options ?? Options();
     requestOptions.headers = requestOptions.headers ?? {};
-
     var response = await dio.post(
       path,
       data: mydata,
@@ -145,10 +139,10 @@ class HttpUtil {
       options: requestOptions,
     );
 
-    print("my response is ${response.toString()}");
-    print("my status code is ${response.statusCode}");
-    print("my body is ${response.data}");
-    print("my headers are ${response.headers}");
+    AppLogger.logger.d("my response is ${response.toString()}\n"
+        "my status code is ${response.statusCode}\n"
+        "my body is ${response.data}\n"
+        "my headers are ${response.headers}");
     return response;
   }
 
@@ -168,10 +162,10 @@ class HttpUtil {
       options: requestOptions,
     );
 
-    print("my response is ${response.toString()}");
-    print("my status code is ${response.statusCode}");
-    print("my body is ${response.data}");
-    print("my headers are ${response.headers}");
+    AppLogger.logger.d("my response is ${response.toString()}\n"
+        "my status code is ${response.statusCode}\n"
+        "my body is ${response.data}\n"
+        "my headers are ${response.headers}");
     return response;
   }
 
@@ -191,10 +185,10 @@ class HttpUtil {
       options: requestOptions,
     );
 
-    print("my response is ${response.toString()}");
-    print("my status code is ${response.statusCode}");
-    print("my body is ${response.data}");
-    print("my headers are ${response.headers}");
+    AppLogger.logger.d("my response is ${response.toString()}\n"
+        "my status code is ${response.statusCode}\n"
+        "my body is ${response.data}\n"
+        "my headers are ${response.headers}");
     return response;
   }
 
@@ -214,10 +208,10 @@ class HttpUtil {
       options: requestOptions,
     );
 
-    print("my response is ${response.toString()}");
-    print("my status code is ${response.statusCode}");
-    print("my body is ${response.data}");
-    print("my headers are ${response.headers}");
+    AppLogger.logger.d("my response is ${response.toString()}\n"
+        "my status code is ${response.statusCode}\n"
+        "my body is ${response.data}\n"
+        "my headers are ${response.headers}");
     return response;
   }
 }

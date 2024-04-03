@@ -118,7 +118,7 @@ class _SignInPageState extends State<SignInPage> {
                         const Padding(
                           padding: EdgeInsets.only(bottom: 24.0),
                           child: CustomTextIntroduce(
-                              description: "Vui lòng đăng nhập để xử dụng"),
+                              description: "Vui lòng đăng nhập để sử dụng"),
                         ),
                         //information signin
                         SingleChildScrollView(
