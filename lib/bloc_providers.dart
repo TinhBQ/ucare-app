@@ -3,6 +3,7 @@ import 'package:mobile_advanced_project_fe/core/common/cubits/app_doctor/app_doc
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/medicine_sessions/medicine_sessions_cubit.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/country/country_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/deparment/presentation/bloc/department_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/doctor/presentation/bloc/doctor_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentation/bloc/medicine_schedule_bloc.dart';
@@ -22,6 +23,7 @@ class AppBlocProviders {
         BlocProvider(create: (_) => serviceLocator<ProfileBloc>()),
         BlocProvider(create: (_) => serviceLocator<DepartmentBloc>()),
         BlocProvider(create: (_) => serviceLocator<SessionOfDayBloc>()),
+        BlocProvider(create: (_) => serviceLocator<CountryBloc>()),
         BlocProvider(
           create: (_) => serviceLocator<DoctorBloc>()
             ..add(

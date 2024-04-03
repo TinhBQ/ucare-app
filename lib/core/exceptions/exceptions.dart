@@ -19,6 +19,8 @@ class ServerException implements Exception {
 
   static String GET_INFO_FAILUARE = 'Lấy thông tin không thành công.';
 
+  static String GET_FAIL = "Lấy dữ liệu không thành công";
+
   static String GET_DEPARTMENT_FAILURE =
       'Lấy danh sách chuyên khoa không thành công.';
 

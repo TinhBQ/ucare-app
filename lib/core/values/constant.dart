@@ -37,6 +37,8 @@ class AppConstants {
   static const String STORAGE_USER_REFRESH_TOKEN_KEY = "user_refresh_token_key";
   static const String STORAGE_USER_REMEMBERS_LOGIN = "user_remembers_login";
 
+//Server country
+  static const String SERVER_ALL_COUNTRY = "$API_VERSION/country/getAllCountry";
   static const List<String> ETHNICITY = [
     'Bana',
     'Bố Y',
