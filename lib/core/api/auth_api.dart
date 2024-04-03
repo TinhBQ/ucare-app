@@ -1,3 +1,5 @@
+
+
 import 'package:mobile_advanced_project_fe/core/exceptions/http_status_code.dart';
 import 'package:mobile_advanced_project_fe/core/utils/http_util.dart';
 
@@ -5,6 +7,7 @@ import '../exceptions/exceptions.dart';
 import '../model/request_models/request_models.dart';
 import '../model/response_models/response_models.dart';
 import '../values/constant.dart';
+
 
 class AuthApi {
   // * User login
@@ -14,7 +17,6 @@ class AuthApi {
         AppConstants.SERVER_LOGIN,
         mydata: body.toJson(),
       );
-
       if (response.statusCode == HttpStatusCode.OK) {
         return LoginResponeModel.fromJson(response.data);
       } else {

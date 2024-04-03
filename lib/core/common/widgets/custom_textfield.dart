@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class CustomTextfield extends StatefulWidget {
   final String label;
-  final IconData icon;
+  final IconData? icon;
   final TextEditingController controller;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
@@ -12,6 +12,7 @@ class CustomTextfield extends StatefulWidget {
   final bool disabled;
   final int? maxLength;
   final int? minLength;
+  final TextStyle? labelStyle;
   final IconData? suffixIcon;
   final Function()? onSuffixIcon;
   final bool? isObscureText;
@@ -19,9 +20,9 @@ class CustomTextfield extends StatefulWidget {
   const CustomTextfield({
     super.key,
     required this.label,
-    required this.icon,
+    this.icon,
     required this.controller,
-    this.onChanged,
+    required this.onChanged,
     this.content,
     this.disabled = false,
     this.maxLength,
@@ -30,6 +31,7 @@ class CustomTextfield extends StatefulWidget {
     this.suffixIcon,
     this.onSuffixIcon,
     this.isObscureText,
+    this.labelStyle,
   });
 
   @override
@@ -59,7 +61,7 @@ class _CustomTextFieldState extends State<CustomTextfield> {
         enabled: !widget.disabled,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-          prefixIcon: Icon(widget.icon),
+          prefixIcon: widget.icon != null ? Icon(widget.icon) : null,
           suffixIcon: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -80,6 +82,7 @@ class _CustomTextFieldState extends State<CustomTextfield> {
             ],
           ),
           labelText: widget.label,
+          labelStyle: widget.labelStyle ?? null,
           hintStyle: Theme.of(context).textTheme.bodyLarge,
         ),
         onChanged: (text) {

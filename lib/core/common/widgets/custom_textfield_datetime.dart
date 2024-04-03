@@ -7,10 +7,14 @@ class CustomTextfieldDatetime extends StatefulWidget {
     required this.label,
     required this.controller,
     this.content,
+    this.labelStyle,
+    this.onChanged,
   });
   final String label;
   final TextEditingController controller;
   final DateTime? content;
+  final TextStyle? labelStyle;
+  final Function(String)? onChanged;
 
   @override
   State<StatefulWidget> createState() => _CustomTextfieldDatetimeState();
@@ -51,6 +55,7 @@ class _CustomTextfieldDatetimeState extends State<CustomTextfieldDatetime> {
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           labelText: widget.label,
+          labelStyle: widget.labelStyle,
           suffixIcon: IconButton(
             onPressed: () => _selectDate(context),
             icon: const Icon(Icons.calendar_today),
