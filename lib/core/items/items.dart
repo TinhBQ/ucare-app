@@ -17,3 +17,5 @@ export './country_get_item.dart';
 export './country_item.dart';
 export './patient_item.dart';
 export './patient_get_item.dart';
+export 'patient_schedule_get_item.dart';
+export 'patient_schedule_item.dart';

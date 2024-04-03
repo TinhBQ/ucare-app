@@ -12,7 +12,6 @@ class HistoryItemWidget extends StatelessWidget {
   final String? day;
   final String? firstName;
   final String? lastName;
-  final String? statusName;
 
   const HistoryItemWidget({
     super.key,
@@ -24,7 +23,6 @@ class HistoryItemWidget extends StatelessWidget {
     required this.day,
     required this.firstName,
     required this.lastName,
-    required this.statusName,
   });
 
   @override

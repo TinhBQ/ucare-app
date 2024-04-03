@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient_schedule/app_patient_schedule_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/medicine_sessions/medicine_sessions_cubit.dart';
 import 'package:mobile_advanced_project_fe/features/auth/data/datasources/auth_remote_data_source.dart';
@@ -6,6 +7,11 @@ import 'package:mobile_advanced_project_fe/features/auth/data/repositories/auth_
 import 'package:mobile_advanced_project_fe/features/auth/domain/repository/auth_repository.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/user_forgot_password.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/history_booking/data/datasources/patient_schedule_remote_data_source.dart';
+import 'package:mobile_advanced_project_fe/features/history_booking/data/repositories/patient_schedule_repository_impl.dart';
+import 'package:mobile_advanced_project_fe/features/history_booking/domain/repository/patient_schedule_repository.dart';
+import 'package:mobile_advanced_project_fe/features/history_booking/domain/usecases/user_get_list_patient.dart';
+import 'package:mobile_advanced_project_fe/features/history_booking/presentation/bloc/patient_schedule_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/domain/usecases/usecases.dart';
 import 'package:mobile_advanced_project_fe/features/patient/data/datasources/patient_remote_data_source.dart';
 import 'package:mobile_advanced_project_fe/features/patient/data/repositories/patient_repository_impl.dart';
@@ -67,6 +73,10 @@ Future<void> initDependencies() async {
   );
 
   serviceLocator.registerLazySingleton(
+    () => AppPatientScheduleCubit(),
+  );
+
+  serviceLocator.registerLazySingleton(
     () => MedicineSessionsCubit(),
   );
 
@@ -81,6 +91,7 @@ Future<void> initDependencies() async {
   _initMedicineSchedule();
   _initCountry();
   _initPatient();
+  _initPatientSchedule();
 }
 
 void _initAuth() {
@@ -344,6 +355,33 @@ void _initPatient() {
       () => PatientBloc(
         userGetListPatient: serviceLocator(),
         appPatientCubit: serviceLocator(),
+      ),
+    );
+}
+
+void _initPatientSchedule() {
+  // Datasource
+  serviceLocator
+    ..registerFactory<PatientScheduleRemoteDataSource>(
+      () => PatientScheduleRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<PatientScheduleRepository>(
+      () => PatientScheduleRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserGetListPatientSchedule(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => PatientScheduleBloc(
+        appPatientScheduleCubit: serviceLocator(),
+        userGetListPatientSchedule: serviceLocator(),
       ),
     );
 }
