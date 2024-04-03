@@ -5,3 +5,4 @@ export './degree_entity.dart';
 export './doctor_entity.dart';
 export './medicine_schedule_entity.dart';
 export './session_of_day_entity.dart';
+export './country_entity.dart';

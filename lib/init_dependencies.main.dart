@@ -15,6 +15,11 @@ import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/pr
 import 'core/common/cubits/app_doctor/app_doctor_cubit.dart';
 import 'features/application/presentation/bloc/application_bloc.dart';
 import 'features/auth/domain/usecases/usecases.dart';
+import 'features/book/data/datasources/country_remote_data_source.dart';
+import 'features/book/data/repositories/country_repository_impl.dart';
+import 'features/book/domain/repository/country_repository.dart';
+import 'features/book/domain/usecases/user_get_list_country.dart';
+import 'features/book/presentation/bloc/country/country_bloc.dart';
 import 'features/deparment/data/datasources/deparment_remote_data_source.dart';
 import 'features/deparment/data/repositories/department_repository_impl.dart';
 import 'features/deparment/domain/repository/department_repository.dart';
@@ -64,6 +69,7 @@ Future<void> initDependencies() async {
   _initSessionOfDay();
   _initDoctor();
   _initMedicineSchedule();
+  _initCountry();
 }
 
 void _initAuth() {
@@ -183,6 +189,31 @@ void _initDepartment() {
     ..registerLazySingleton(
       () => DepartmentBloc(
         userGetListDepartment: serviceLocator(),
+      ),
+    );
+}
+
+void _initCountry() {
+  serviceLocator
+    ..registerFactory<CountryRemoteDataSource>(
+      () => CountryRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<CountryRepository>(
+      () => CountryRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserGetListCountry(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => CountryBloc(
+        userGetListCountry: serviceLocator(),
       ),
     );
 }
