@@ -14,7 +14,7 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
   bool? isChoseSpecilty =
       true; // null: không iconRight, false: icon right là arrow_left, true: icon checked
   bool? isChoseDate = false;
-  bool? isChoseTime;
+  bool? isChoseTime = false;
   bool? isChoseDoctor;
   @override
   void initState() {
