@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
 import 'package:mobile_advanced_project_fe/core/values/constant.dart';
+import 'package:mobile_advanced_project_fe/core/values/logger.dart';
+import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/country/country_bloc.dart';
+import 'package:provider/provider.dart';
 
 class CreateProfileWidget extends StatefulWidget {
   const CreateProfileWidget({super.key});
@@ -27,6 +30,8 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
       _districtController = TextEditingController(),
       _wardsController = TextEditingController(),
       _addressController = TextEditingController();
+
+  final CountryGetList _countryGetList = const CountryGetList();
 
   bool _isButtonDisabled = true;
 
@@ -58,9 +63,16 @@ class _CreateProfileWidgetState extends State<CreateProfileWidget> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    context.read<CountryBloc>().add(_countryGetList);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
-
+    // AppLogger.logger.d(_countryGetList.props);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: const CustomAppBar(

@@ -11,3 +11,7 @@ export './session_of_day_get_item.dart';
 export './doctor_item.dart';
 export './doctor_get_item.dart';
 export './docter_filer_item.dart';
+export 'info_medical_item.dart';
+export 'specialty_item.dart';
+export './country_get_item.dart';
+export './country_item.dart';
