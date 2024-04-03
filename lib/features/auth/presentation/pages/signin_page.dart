@@ -70,9 +70,9 @@ class _SignInPageState extends State<SignInPage> {
 
         if (state is AuthFailure) {
           if (state.onAuthEvent == OnAuthEvent.onAuthUserLoggedIn) {
+            LoadingOverlay.dismissLoading();
             Navigator.of(context).pushNamedAndRemoveUntil(
                 AppRoutes.APPLICATION, (route) => false);
-            LoadingOverlay.dismissLoading();
             ShowSnackBar.success(InforMassage.LOGIN_SUCCESS, context);
           } else {
             _clearFields();
@@ -83,9 +83,9 @@ class _SignInPageState extends State<SignInPage> {
 
         if (state is AuthSuccess) {
           if (state.onAuthEvent == OnAuthEvent.onAuthUserLoggedIn) {
+            LoadingOverlay.dismissLoading();
             Navigator.of(context).pushNamedAndRemoveUntil(
                 AppRoutes.APPLICATION, (route) => false);
-            LoadingOverlay.dismissLoading();
             ShowSnackBar.success(InforMassage.LOGIN_SUCCESS, context);
           }
 

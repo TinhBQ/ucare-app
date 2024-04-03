@@ -22,7 +22,7 @@ class CustomTextfield extends StatefulWidget {
     required this.label,
     this.icon,
     required this.controller,
-    required this.onChanged,
+    this.onChanged,
     this.content,
     this.disabled = false,
     this.maxLength,

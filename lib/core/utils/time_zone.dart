@@ -10,29 +10,36 @@ class DateStrFormat {
   static List<String> formats = [DATE, DATE_AND_TIME];
 }
 
-class TimeZone {
-  late final Location targetLocationObject;
-
-  Future<TimeZone> init(String targetLocation) async {
-    targetLocationObject = getLocation(targetLocation);
-    return this;
-  }
-
-// Hàm định dạng ngày
-  String fDate(DateTime date, [String fm = DateStrFormat.DATE]) {
+class UCARETimeZone {
+  static String fDate(
+    DateTime date, [
+    String fm = DateStrFormat.DATE,
+    String targetLocation = "Asia/Ho_Chi_Minh",
+  ]) {
+    Location targetLocationObject = getLocation(targetLocation);
     final targetDateTime = TZDateTime.from(date, targetLocationObject);
     return formatDate(targetDateTime, [fm]);
   }
 
   // Hàm định dạng ngày giờ
-  String fDateTime(DateTime date, [String fm = DateStrFormat.DATE_AND_TIME]) {
+  static String fDateTime(
+    DateTime date, [
+    String fm = DateStrFormat.DATE_AND_TIME,
+    String targetLocation = "Asia/Ho_Chi_Minh",
+  ]) {
+    Location targetLocationObject = getLocation(targetLocation);
     final targetDateTime = TZDateTime.from(date, targetLocationObject);
     return formatDate(targetDateTime, [fm]);
   }
 
-  String? fStrDateToUTC(String date, [String fm = DateStrFormat.DATE]) {
+  String? fStrDateToUTC(
+    String date, [
+    String fm = DateStrFormat.DATE,
+    String targetLocation = "Asia/Ho_Chi_Minh",
+  ]) {
     if (!DateStrFormat.formats.contains(fm)) return null;
     try {
+      Location targetLocationObject = getLocation(targetLocation);
       return TZDateTime.from(DateTime.parse(date), targetLocationObject)
           .toUtc()
           .toString();
@@ -41,9 +48,14 @@ class TimeZone {
     }
   }
 
-  String? fStrDateToLocal(String date, [String fm = DateStrFormat.DATE]) {
+  String? fStrDateToLocal(
+    String date, [
+    String fm = DateStrFormat.DATE,
+    String targetLocation = "Asia/Ho_Chi_Minh",
+  ]) {
     if (!DateStrFormat.formats.contains(fm)) return null;
     try {
+      Location targetLocationObject = getLocation(targetLocation);
       return TZDateTime.from(DateTime.parse(date), targetLocationObject)
           .toLocal()
           .toString();
@@ -52,9 +64,13 @@ class TimeZone {
     }
   }
 
-  String? fStrDateFromUTCToTargetLocation(String date,
-      [String fm = DateStrFormat.DATE]) {
+  String? fStrDateFromUTCToTargetLocation(
+    String date, [
+    String fm = DateStrFormat.DATE,
+    String targetLocation = "Asia/Ho_Chi_Minh",
+  ]) {
     try {
+      Location targetLocationObject = getLocation(targetLocation);
       final targetDateTime =
           TZDateTime.from(DateTime.parse(date), targetLocationObject);
       final formattedDate = formatDate(targetDateTime, [date]);

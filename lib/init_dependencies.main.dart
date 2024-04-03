@@ -9,7 +9,7 @@ import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/domain/usecases/usecases.dart';
 
 import 'package:mobile_advanced_project_fe/features/profile/domain/repository/profile_repository.dart';
-import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/user_change_password.dart';
+import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/usecases.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
 
 import 'core/common/cubits/app_doctor/app_doctor_cubit.dart';
@@ -147,10 +147,17 @@ void _initProfile() {
         serviceLocator(),
       ),
     )
+    ..registerFactory(
+      () => UserChangeProfile(
+        serviceLocator(),
+      ),
+    )
     // Bloc
     ..registerLazySingleton(
       () => ProfileBloc(
         userChangePassword: serviceLocator(),
+        userChangeProfile: serviceLocator(),
+        appUserCubit: serviceLocator(),
       ),
     );
 }

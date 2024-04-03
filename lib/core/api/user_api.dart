@@ -1,3 +1,4 @@
+import 'package:mobile_advanced_project_fe/core/items/items.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 
 import '../exceptions/exceptions.dart';
@@ -37,6 +38,23 @@ class UserApi {
       }
     } catch (e) {
       throw ServerException(ServerException.GET_INFO_FAILUARE);
+    }
+  }
+
+  static changeProfile(UserItem body) async {
+    try {
+      var response = await HttpUtil().patch(
+        AppConstants.SERVER_CHANGE_INFO,
+        mydata: body.updateFofileToJson(),
+      );
+
+      if (response.statusCode == HttpStatusCode.OK) {
+        return UserResponeModel.fromJson(response.data);
+      } else {
+        throw ServerException(ServerException.CHANGE_PROFILE_FAILURE);
+      }
+    } catch (e) {
+      throw ServerException(ServerException.CHANGE_PROFILE_FAILURE);
     }
   }
 }

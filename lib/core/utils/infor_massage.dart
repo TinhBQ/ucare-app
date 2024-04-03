@@ -13,6 +13,7 @@ class InforMassage {
   static String GET_INFO_SUCCESS = 'Lấy thông tin thành công.';
   static String CHANGE_PASSWORD_SUCCESS =
       'Thay đổi mật khẩu thành công. Vui lòng đăng nhập lại để xử dụng.';
+  static String CHANGE_PROFLE_SUCCESS = 'Thay đổi thông tin thành công.';
 
   static String GET_DEPARTMENTS_SUCCESS =
       'Lấy danh sách chuyên khoa thành công.';

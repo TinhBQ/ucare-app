@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile_advanced_project_fe/global.dart';
 
 class CustomTextfieldDatetime extends StatefulWidget {
+  final String label;
+  final TextEditingController controller;
+  final DateTime? content;
+  final TextStyle? labelStyle;
+  final Function(String)? onChanged;
+  final DateTime? firstDate;
+  final DateTime? lastDate;
+  final bool isValid;
+
   const CustomTextfieldDatetime({
     super.key,
     required this.label,
@@ -9,12 +19,10 @@ class CustomTextfieldDatetime extends StatefulWidget {
     this.content,
     this.labelStyle,
     this.onChanged,
+    this.firstDate,
+    this.lastDate,
+    this.isValid = false,
   });
-  final String label;
-  final TextEditingController controller;
-  final DateTime? content;
-  final TextStyle? labelStyle;
-  final Function(String)? onChanged;
 
   @override
   State<StatefulWidget> createState() => _CustomTextfieldDatetimeState();
@@ -27,12 +35,12 @@ class _CustomTextfieldDatetimeState extends State<CustomTextfieldDatetime> {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
-      firstDate: DateTime(1900),
-      lastDate: DateTime(2101),
+      firstDate: widget.firstDate ?? DateTime(DateTime.now().year - 120),
+      lastDate: widget.lastDate ?? DateTime.now(),
     );
-    if (picked != null && picked != selectedDate) {
+    if ((picked != null && picked != selectedDate) || widget.isValid) {
       setState(() {
-        selectedDate = picked;
+        selectedDate = picked ?? DateTime.now();
         widget.controller.text = DateFormat('dd-MM-yyyy').format(selectedDate);
       });
     }

@@ -18,3 +18,11 @@ final class ProfileChangePassword extends ProfileEvent {
     required this.confirmPass,
   });
 }
+
+final class ProfileChangeProflie extends ProfileEvent {
+  final UserItem userItem;
+
+  const ProfileChangeProflie({
+    required this.userItem,
+  });
+}

@@ -115,12 +115,17 @@ class AppPages {
                     listener: (context, state) {},
                     builder: (context, state) {
                       if (state is AuthLoading) {
-                        LoadingOverlay.showLoading(context);
+                        // LoadingOverlay.showLoading(context);
                       }
 
                       if (state is AuthSuccess) {
-                        LoadingOverlay.dismissLoading();
+                        // LoadingOverlay.dismissLoading();
                         return const ApplicationPage();
+                      }
+
+                      if (state is AuthSuccess) {
+                        // LoadingOverlay.dismissLoading();
+                        return const SignInPage();
                       }
 
                       LoadingOverlay.dismissLoading();
