@@ -8,16 +8,16 @@ class DepartmentItem extends DepartmentEntity {
   DepartmentItem({
     required super.id,
     required super.name,
-    super.enable = false,
     super.description = '',
     super.service_charge = 0,
   });
 
   factory DepartmentItem.fromJson(Map<String, dynamic> json) {
+    print('bQT json 6 ${json}');
+
     return DepartmentItem(
       id: json['id'] ?? '',
       name: json['name'] ?? '',
-      enable: json['enable'] ?? false,
       description: json['description'] ?? '',
       service_charge: convertToInt(json['service_charge']) ?? 0,
     );

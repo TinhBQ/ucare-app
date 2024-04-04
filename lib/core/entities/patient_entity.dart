@@ -17,7 +17,6 @@ class PatientEntity {
   final String district;
   final String wards;
   final String address;
-  final bool enable;
 
   PatientEntity({
     required this.id,
@@ -36,6 +35,5 @@ class PatientEntity {
     required this.district,
     required this.wards,
     required this.address,
-    required this.enable,
   });
 }

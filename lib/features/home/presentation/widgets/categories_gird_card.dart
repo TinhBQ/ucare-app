@@ -25,7 +25,9 @@ List<CategoryCardItem> getCategoryCardItems(BuildContext context) => [
       CategoryCardItem(
         title: 'Lịch sử Đặt khám',
         icon: Icons.local_hospital,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.HISTORY_BOOK);
+        },
       ),
       CategoryCardItem(
         title: 'Đặt lịch uống thuốc',

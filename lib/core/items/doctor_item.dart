@@ -8,28 +8,33 @@ import 'session_of_day_item.dart';
 
 class DoctorItem extends DoctorEntity {
   DoctorItem({
-    required super.id,
-    required super.name,
-    required super.avatar,
-    required super.birthday,
-    required super.description,
-    required super.degree,
-    required super.department,
-    required super.session_of_day,
-    required super.enable,
+    super.id,
+    super.name,
+    super.avatar,
+    super.birthday,
+    super.description,
+    super.degree,
+    super.department,
+    super.session_of_day,
   });
 
   factory DoctorItem.fromJson(Map<String, dynamic> json) {
+    print('bQT json 4 ${json}');
+
     return DoctorItem(
       id: json['id'] ?? '',
       name: json['name'] ?? '',
       avatar: json['avatar'] ?? '',
       birthday: json['birthday'] ?? '',
       description: json['description'] ?? '',
-      degree: DegreeItem.fromJson(json['degree']),
-      department: DepartmentItem.fromJson(json['department']),
-      session_of_day: SessionOfDayItem.fromJson(json['session_of_day']),
-      enable: json['enable'] ?? false,
+      degree:
+          json['degree'] != null ? DegreeItem.fromJson(json['degree']) : null,
+      department: json['department'] != null
+          ? DepartmentItem.fromJson(json['department'])
+          : null,
+      session_of_day: json['session_of_day'] != null
+          ? SessionOfDayItem.fromJson(json['session_of_day'])
+          : null,
     );
   }
 }

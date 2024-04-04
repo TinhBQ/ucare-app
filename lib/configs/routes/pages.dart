@@ -11,6 +11,7 @@ import 'package:mobile_advanced_project_fe/features/auth/presentation/pages/page
 import 'package:mobile_advanced_project_fe/features/book/presentation/pages/book_by_specialty_page.dart';
 import 'package:mobile_advanced_project_fe/features/deparment/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/doctor/presentation/pages/pages.dart';
+import 'package:mobile_advanced_project_fe/features/history_booking/presentation/pages/history_book_page.dart';
 import 'package:mobile_advanced_project_fe/features/home/presentation/pages/home_page.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/pages.dart';
@@ -82,6 +83,11 @@ class AppPages {
       PageEntity(
         route: AppRoutes.BOOK_BY_SPECIALTY,
         pageBuilder: (_) => const BookBySpecialtyPage(),
+      ),
+
+      PageEntity(
+        route: AppRoutes.HISTORY_BOOK,
+        pageBuilder: (_) => const HistoryBookPage(),
       ),
       // * App --> Find Exam Times
       PageEntity(

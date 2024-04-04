@@ -9,14 +9,13 @@ class ScheduleEntity {
   final DepartmentEntity department;
   final SessionOfDayEntity session;
   final String day;
-  final bool? enable;
 
-  ScheduleEntity(
-      {required this.schedule_id,
-      required this.doctor,
-      required this.room,
-      required this.department,
-      required this.session,
-      required this.day,
-      this.enable});
+  ScheduleEntity({
+    required this.schedule_id,
+    required this.doctor,
+    required this.room,
+    required this.department,
+    required this.session,
+    required this.day,
+  });
 }

@@ -4,14 +4,13 @@ class SessionOfDayItem extends SessionOfDayEntity {
   SessionOfDayItem({
     required super.id,
     required super.content,
-    super.enable = false,
   });
 
   factory SessionOfDayItem.fromJson(Map<String, dynamic> json) {
+    print('bQT json 7 ${json}');
     return SessionOfDayItem(
       id: json['id'] ?? '',
       content: json['content'] ?? '',
-      enable: json['enable'] ?? false,
     );
   }
 }

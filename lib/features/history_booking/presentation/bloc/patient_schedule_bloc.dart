@@ -52,6 +52,7 @@ class PatientScheduleBloc
       )),
       (patientGetItem) {
         _appPatientScheduleCubit.updatePatientSchedule(patientGetItem);
+        print('patientGetItem ${patientGetItem.count}');
         return emit(PatientScheduleSuccess(
           InforMassage.GET_SUCCESS,
           OnPatientScheduleEvent.onPatientScheduleGetList,

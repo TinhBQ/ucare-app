@@ -7,12 +7,11 @@ class PatientScheduleEntity {
   final ScheduleEntity schedule;
   final PatientEntity patient;
   final StatusEntity status;
-  final bool? enable;
 
-  PatientScheduleEntity(
-      {required this.patient_schedule_id,
-      required this.schedule,
-      required this.patient,
-      required this.status,
-      this.enable});
+  PatientScheduleEntity({
+    required this.patient_schedule_id,
+    required this.schedule,
+    required this.patient,
+    required this.status,
+  });
 }

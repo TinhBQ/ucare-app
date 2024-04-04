@@ -6,15 +6,19 @@ import 'package:mobile_advanced_project_fe/core/model/request_models/request_mod
 import 'package:mobile_advanced_project_fe/core/model/response_models/response_models.dart';
 
 abstract interface class PatientScheduleRemoteDataSource {
-  Future<PatientScheduleGetItem?> getListPatientSchedule(BaseGetRequestModel params);
+  Future<PatientScheduleGetItem?> getListPatientSchedule(
+      BaseGetRequestModel params);
 }
 
-class PatientScheduleRemoteDataSourceImpl implements PatientScheduleRemoteDataSource {
+class PatientScheduleRemoteDataSourceImpl
+    implements PatientScheduleRemoteDataSource {
   PatientScheduleRemoteDataSourceImpl();
 
   @override
-  Future<PatientScheduleGetItem?> getListPatientSchedule(BaseGetRequestModel params) async {
-    PatientScheduleGetResponseModel response = await PatientScheduleApi.getListPatientSchedule(params);
+  Future<PatientScheduleGetItem?> getListPatientSchedule(
+      BaseGetRequestModel params) async {
+    PatientScheduleGetResponseModel response =
+        await PatientScheduleApi.getListPatientSchedule(params);
     return response.status == StatusResponse.success.name
         ? response.responseData
         : throw ServerException(ServerException.GET_FAIL);

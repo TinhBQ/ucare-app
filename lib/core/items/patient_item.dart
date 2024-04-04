@@ -20,10 +20,10 @@ class PatientItem extends PatientEntity {
     required super.district,
     required super.wards,
     required super.address,
-    required super.enable,
   });
 
   factory PatientItem.fromJson(Map<String, dynamic> json) {
+    print('bQT json 9 ${json}');
     return PatientItem(
       id: json['id'] ?? '',
       user_id: json['user_id'] ?? '',
@@ -41,7 +41,6 @@ class PatientItem extends PatientEntity {
       district: json['district'] ?? '',
       wards: json['wards'] ?? '',
       address: json['address'] ?? '',
-      enable: json['enable'] ?? false,
     );
   }
 }
