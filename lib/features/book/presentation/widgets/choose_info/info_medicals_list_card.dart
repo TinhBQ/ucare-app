@@ -22,7 +22,7 @@ class InfoMedicalsListCardWidget extends StatelessWidget {
         for (int index = 0; index < listInfoMedicalItems.length; index++)
           InfoMedicalCardWidget(
             infoMedicalItem: listInfoMedicalItems[index],
-            disabled: index + 1 > numFlow ? true : false,
+            disabled: index > numFlow ? true : false,
           ),
       ]),
     );

@@ -57,7 +57,7 @@ class MedicineScheduleRemoteDataSourceImpl
           payload: "This is schedule data",
           hour: items.hour,
           minute: items.minute,
-          numRepeat: 10,
+          numRepeat: 25,
           id: items.id,
         );
       }

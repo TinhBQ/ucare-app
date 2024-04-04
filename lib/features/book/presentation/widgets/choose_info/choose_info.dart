@@ -23,7 +23,6 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     infoMedicalItems = [
       InfoMedicalItem(
@@ -38,9 +37,8 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
                   .updateDepartmentItem(item);
               Navigator.of(context).pop();
             }
-          }).then((value) {
-            context.read<AppMedicalAppointmentBodyCubit>().returnDepartmentId();
           });
+          context.read<AppMedicalAppointmentBodyCubit>().updateNumFlow(1);
         },
         iconRight: isChoseSpecilty == null
             ? null
@@ -58,7 +56,7 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
                     .pushNamed(AppRoutes.CHOOSE_DATE_MEDICAL_PAGE)
                     .then((value) => context
                         .read<AppMedicalAppointmentBodyCubit>()
-                        .returnStrDate());
+                        .updateNumFlow(2));
               },
         iconRight: isChoseDate == null
             ? null
@@ -77,6 +75,7 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
                     builder: (context) => const ChooseTimeMedicalWidget(),
                   ),
                 );
+                context.read<AppMedicalAppointmentBodyCubit>().updateNumFlow(3);
               },
         iconRight: isChoseTime == null
             ? null
@@ -84,15 +83,15 @@ class _ChooseInfoWidgetState extends State<ChooseInfoWidget> {
                 ? Icons.keyboard_arrow_right_outlined
                 : Icons.check_circle,
       ),
-      InfoMedicalItem(
-        title: 'Bác sĩ',
-        icon: Icons.medical_services_outlined,
-        iconRight: isChoseDoctor == null
-            ? null
-            : isChoseDoctor == true
-                ? Icons.keyboard_arrow_right_outlined
-                : Icons.check_circle,
-      ),
+      // InfoMedicalItem(
+      //   title: 'Bác sĩ',
+      //   icon: Icons.medical_services_outlined,
+      //   iconRight: isChoseDoctor == null
+      //       ? null
+      //       : isChoseDoctor == true
+      //           ? Icons.keyboard_arrow_right_outlined
+      //           : Icons.check_circle,
+      // ),
     ];
   }
 

@@ -13,16 +13,16 @@ class AppMedicalAppointmentBodyCubit
       patientId: patientId,
       departmentItem: null,
       strDate: null,
-      numFlow: 1,
+      numFlow: 0,
     ));
   }
 
-  void returnPatientId() {
-    emit(const AppMedicalAppointmentBodyLoaded(
-      patientId: null,
-      departmentItem: null,
-      strDate: null,
-      numFlow: 0,
+  void updateNumFlow(int numFlow) {
+    emit(AppMedicalAppointmentBodyLoaded(
+      patientId: state.patientId,
+      departmentItem: state.departmentItem,
+      strDate: state.strDate,
+      numFlow: numFlow,
     ));
   }
 
@@ -32,15 +32,6 @@ class AppMedicalAppointmentBodyCubit
     emit(AppMedicalAppointmentBodyLoaded(
       patientId: state.patientId,
       departmentItem: departmentItem,
-      strDate: null,
-      numFlow: 2,
-    ));
-  }
-
-  void returnDepartmentId() {
-    emit(AppMedicalAppointmentBodyLoaded(
-      patientId: state.patientId,
-      departmentItem: null,
       strDate: null,
       numFlow: 1,
     ));
@@ -53,17 +44,8 @@ class AppMedicalAppointmentBodyCubit
       patientId: state.patientId,
       departmentItem: state.departmentItem,
       strDate: strDate,
-      numFlow: 3,
-    ));
-    return true;
-  }
-
-  void returnStrDate() {
-    emit(AppMedicalAppointmentBodyLoaded(
-      patientId: state.patientId,
-      departmentItem: state.departmentItem,
-      strDate: null,
       numFlow: 2,
     ));
+    return true;
   }
 }

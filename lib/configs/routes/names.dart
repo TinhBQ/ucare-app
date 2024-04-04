@@ -43,4 +43,6 @@ class AppRoutes {
   static const CHOOSE_DATE_MEDICAL_PAGE = "/choose_date_medication_page";
 
   // Book Page NameChooseDateMedicalPage
+
+  static const BOOK_BY_SPECIALTY = 'book_by_specialty';
 }

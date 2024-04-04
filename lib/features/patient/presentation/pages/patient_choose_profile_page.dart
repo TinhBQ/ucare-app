@@ -74,7 +74,7 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
                         .pushNamed(AppRoutes.CHOOSE_INFOR)
                         .then((value) => context
                             .read<AppMedicalAppointmentBodyCubit>()
-                            .returnPatientId());
+                            .updateNumFlow(0));
                   },
                   patients: patientGetItem?.rows ?? [],
                 ),

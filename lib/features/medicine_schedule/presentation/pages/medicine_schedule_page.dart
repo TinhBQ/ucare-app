@@ -98,14 +98,14 @@ class _MedicinePageState extends State<MedicineSchedulePage> {
                       medicineSessions: medicineSessions,
                     ),
                   ),
-                  SliverPadding(
-                    padding: const EdgeInsets.only(top: 16),
-                    sliver: SliverToBoxAdapter(
-                      child: MedicineDaysWidget(
-                        medicineDays: medicineDays,
-                      ),
-                    ),
-                  ),
+                  // SliverPadding(
+                  //   padding: const EdgeInsets.only(top: 16),
+                  //   sliver: SliverToBoxAdapter(
+                  //     child: MedicineDaysWidget(
+                  //       medicineDays: medicineDays,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

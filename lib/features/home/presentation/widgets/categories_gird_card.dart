@@ -18,10 +18,12 @@ List<CategoryCardItem> getCategoryCardItems(BuildContext context) => [
       CategoryCardItem(
         title: 'Đặt khám',
         icon: Icons.local_hospital,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.BOOK_BY_SPECIALTY);
+        },
       ),
       CategoryCardItem(
-        title: 'Đặt khám',
+        title: 'Lịch sử Đặt khám',
         icon: Icons.local_hospital,
         onPressed: () {},
       ),

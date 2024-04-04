@@ -8,6 +8,7 @@ import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
 import 'package:mobile_advanced_project_fe/features/application/presentation/pages/application_page.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/pages/pages.dart';
+import 'package:mobile_advanced_project_fe/features/book/presentation/pages/book_by_specialty_page.dart';
 import 'package:mobile_advanced_project_fe/features/deparment/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/doctor/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/home/presentation/pages/home_page.dart';
@@ -76,6 +77,11 @@ class AppPages {
       PageEntity(
         route: AppRoutes.CHANGE_PROFILE,
         pageBuilder: (_) => const EditProfilePage(),
+      ),
+
+      PageEntity(
+        route: AppRoutes.BOOK_BY_SPECIALTY,
+        pageBuilder: (_) => const BookBySpecialtyPage(),
       ),
       // * App --> Find Exam Times
       PageEntity(
