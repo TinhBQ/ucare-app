@@ -22,4 +22,22 @@ class PatientApi {
       throw ServerException(ServerException.GET_PATIENT_FAILURE);
     }
   }
+
+  //create patient
+  static createPatient(CreatePatientRequestModel params) async {
+    try {
+      print(params.toJson());
+      var response = await HttpUtil().post(
+        AppConstants.SERVER_PATIENT,
+        mydata: params.toJson(),
+      );
+      if (response.statusCode == HttpStatusCode.OK) {
+        return BaseReponseModel.fromJson(response.data);
+      } else {
+        throw ServerException(ServerException.CREATE_PATIENT_FAILURE);
+      }
+    } catch (e) {
+        throw ServerException(ServerException.CREATE_PATIENT_FAILURE);
+    }
+  }
 }

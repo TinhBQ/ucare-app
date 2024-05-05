@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_info/app_choose_exam_info_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_countries/countries_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_doctor/app_doctor_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient_schedule/app_patient_schedule_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_status/app_status_cubit.dart';
@@ -8,6 +9,7 @@ import 'package:mobile_advanced_project_fe/core/common/cubits/medicine_sessions/
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/book_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/country/country_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/medical_profile/medical_profile_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/deparment/presentation/bloc/department_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/doctor/presentation/bloc/doctor_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/history_booking/presentation/bloc/patient_schedule_bloc.dart';
@@ -36,13 +38,18 @@ class AppBlocProviders {
         BlocProvider(create: (_) => serviceLocator<MedicineSessionsCubit>()),
         BlocProvider(create: (_) => serviceLocator<AppPatientScheduleCubit>()),
         BlocProvider(create: (_) => serviceLocator<AppStatusCubit>()),
-        // Bloc
+        BlocProvider(create: (_) => serviceLocator<CountriesCubit>()),
         BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
         BlocProvider(create: (_) => serviceLocator<ApplicationBloc>()),
         BlocProvider(create: (_) => serviceLocator<ProfileBloc>()),
         BlocProvider(create: (_) => serviceLocator<DepartmentBloc>()),
         BlocProvider(create: (_) => serviceLocator<SessionOfDayBloc>()),
-        BlocProvider(create: (_) => serviceLocator<CountryBloc>()),
+        BlocProvider(
+          create: (_) => serviceLocator<CountryBloc>()
+            ..add(
+              const CountryGetList(),
+            ),
+        ),
         BlocProvider(create: (_) => serviceLocator<PatientScheduleBloc>()),
         BlocProvider(
             create: (_) =>
@@ -57,5 +64,6 @@ class AppBlocProviders {
             create: (_) =>
                 serviceLocator<StatusBloc>()..add(const StatusGetList())),
         BlocProvider(create: (_) => serviceLocator<OrderBloc>()),
+        BlocProvider(create: (_) => serviceLocator<MedicalProfileBloc>()),
       ];
 }

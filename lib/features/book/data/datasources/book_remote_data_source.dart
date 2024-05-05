@@ -13,8 +13,7 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
 
   @override
   Future<CountryGetItem?> getCountries() async {
-    BaseReponseModel response = await CountryApi.getCountries();
-
+    CountryGetResponseModel response = await CountryApi.getCountries();
     return response.status == StatusResponse.success.name
         ? response.responseData
         : throw ServerException(ServerException.GET_FAIL);
