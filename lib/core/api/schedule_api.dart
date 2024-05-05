@@ -1,0 +1,25 @@
+import '../exceptions/exceptions.dart';
+import '../exceptions/http_status_code.dart';
+import '../model/request_models/request_models.dart';
+import '../model/response_models/response_models.dart';
+import '../utils/utils.dart';
+import '../values/constant.dart';
+
+class ScheduleApi {
+  static getSchedule(ScheduleGetRequestModel params) async {
+    try {
+      var response = await HttpUtil().get(
+        AppConstants.SERVER_SCHEDULE,
+        queryParameters: params.toJson(),
+      );
+
+      if (response.statusCode == HttpStatusCode.OK) {
+        return ScheduleGetResponseModel.fromJson(response.data);
+      } else {
+        throw ServerException(ServerException.GET_FAIL);
+      }
+    } catch (e) {
+      throw ServerException(ServerException.GET_FAIL);
+    }
+  }
+}

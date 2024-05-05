@@ -19,8 +19,8 @@ import 'package:mobile_advanced_project_fe/features/session_of_day/presentation/
 import 'package:mobile_advanced_project_fe/features/splash/presentation/splash_page.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
 
-import '../../core/utils/utils.dart';
-import 'names.dart';
+import '../../../core/utils/utils.dart';
+import '../names/app_names.dart';
 
 class AppPages {
   static List<PageEntity> routes() {
@@ -104,9 +104,15 @@ class AppPages {
             );
           }),
       PageEntity(
-        route: AppRoutes.CHOOSE_SESSION_OF_DAY,
-        pageBuilder: (_) => const ChooseSessionOfDayPage(),
-      ),
+          route: AppRoutes.CHOOSE_SESSION_OF_DAY,
+          pageBuilder: (arguments) {
+            final Function(SessionOfDayItem) onSessionOfDaySelected =
+                arguments['onSessionOfDaySelected'] as Function(
+                    SessionOfDayItem);
+            return ChooseSessionOfDayPage(
+              onSessionOfDaySelected: onSessionOfDaySelected,
+            );
+          }),
     ];
   }
 
@@ -171,6 +177,7 @@ class AppPages {
 
         Map<String, dynamic>? arguments =
             settings.arguments as Map<String, dynamic>?;
+
         return MaterialPageRoute(
             builder: (_) => result.first.pageBuilder(arguments ?? {}),
             settings: settings);

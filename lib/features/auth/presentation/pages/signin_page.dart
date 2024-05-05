@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/configs/routes/names.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/names/app_names.dart';
 import 'package:mobile_advanced_project_fe/core/utils/infor_massage.dart';
 import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
 import 'package:mobile_advanced_project_fe/core/utils/show_snackbar.dart';

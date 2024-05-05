@@ -5,11 +5,13 @@ import 'profile_detail_card.dart';
 
 class ProfileDetailsListCardWidget extends StatelessWidget {
   final List<PatientItem> patients;
+
   const ProfileDetailsListCardWidget({
     super.key,
     required this.onChoose,
     required this.patients,
   });
+
   final Function(PatientItem) onChoose;
 
   @override

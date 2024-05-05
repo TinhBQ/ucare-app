@@ -37,14 +37,8 @@ class AppRoutes {
   //  choose choose_session_of_day of find_exam_times
   static const CHOOSE_SESSION_OF_DAY = "/choose_session_of_day";
 
-  // Book Page Name
-  static const CHOOSE_INFOR = "/choose_infor";
-  static const PATIENT_CHOOSE_PROFILE = "/patient_choose_infor";
-  static const CHOOSE_DATE_MEDICAL_PAGE = "/choose_date_medication_page";
-
   // Book Page NameChooseDateMedicalPage
+  static const BOOK_BY_SPECIALTY = '/book_by_specialty';
 
-  static const BOOK_BY_SPECIALTY = 'book_by_specialty';
-
-  static const HISTORY_BOOK = 'history_book';
+  static const HISTORY_BOOK = '/history_book';
 }

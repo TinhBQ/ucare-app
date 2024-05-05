@@ -19,8 +19,6 @@ class DoctorItem extends DoctorEntity {
   });
 
   factory DoctorItem.fromJson(Map<String, dynamic> json) {
-    print('bQT json 4 ${json}');
-
     return DoctorItem(
       id: json['id'] ?? '',
       name: json['name'] ?? '',

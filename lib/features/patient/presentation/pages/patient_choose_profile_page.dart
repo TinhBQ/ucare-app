@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
-import 'package:mobile_advanced_project_fe/core/common/cubits/app_medical_appointment_body/app_medical_appointment_body_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_info/app_choose_exam_info_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient/app_patient_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
@@ -46,7 +46,7 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
         return Scaffold(
           backgroundColor: Theme.of(context).colorScheme.background,
           appBar: const CustomSubAppBar(
-            title: 'Chọn chuyên Khoa',
+            title: 'Chọn hồ sơ đặt khám',
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(
@@ -68,13 +68,13 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
                 ProfileDetailsListCardWidget(
                   onChoose: (PatientItem item) {
                     context
-                        .read<AppMedicalAppointmentBodyCubit>()
+                        .read<AppChooseExamInfoCubit>()
                         .updatePatientId(item.id);
                     Navigator.of(context)
-                        .pushNamed(AppRoutes.CHOOSE_INFOR)
+                        .pushNamed(BookRoutes.BOOK_CHOOSE_EXAM_INFOR)
                         .then((value) => context
-                            .read<AppMedicalAppointmentBodyCubit>()
-                            .updateNumFlow(0));
+                            .read<AppChooseExamInfoCubit>()
+                            .updateInitial());
                   },
                   patients: patientGetItem?.rows ?? [],
                 ),

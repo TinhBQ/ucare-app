@@ -6,3 +6,6 @@ export './doctor_api.dart';
 export './country_api.dart';
 export './patient_api.dart';
 export './patient_schedule_api.dart';
+export './schedule_api.dart';
+export './order_api.dart';
+export './status_api.dart';

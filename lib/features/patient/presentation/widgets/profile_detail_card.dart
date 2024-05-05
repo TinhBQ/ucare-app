@@ -27,12 +27,12 @@ class ProfileDetailCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(
             vertical: 16,
-            horizontal: 20,
+            horizontal: 16,
           ),
           decoration: BoxDecoration(
             border: Border.all(
-                color: Theme.of(context).colorScheme.secondary, width: 1),
-            borderRadius: BorderRadius.circular(12),
+                color: Theme.of(context).colorScheme.primary, width: 2),
+            borderRadius: BorderRadius.circular(10),
             color: Theme.of(context).colorScheme.background,
           ),
           child: Column(
@@ -43,28 +43,18 @@ class ProfileDetailCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //     builder: (context) => ProfileDetailWidget(),
-                          //   ),
-                          // );
-                        },
-                        child: Container(
-                          height: 36,
-                          width: 36,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Theme.of(context)
-                                .colorScheme
-                                .secondaryContainer,
-                          ),
-                          child: Icon(
-                            Icons.info,
-                            size: 32,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+                      Container(
+                        height: 32,
+                        width: 32,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color:
+                              Theme.of(context).colorScheme.secondaryContainer,
+                        ),
+                        child: Icon(
+                          Icons.info,
+                          size: 28,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                       const SizedBox(
@@ -75,33 +65,34 @@ class ProfileDetailCard extends StatelessWidget {
                         style:
                             Theme.of(context).textTheme.titleMedium!.copyWith(
                                   color: Theme.of(context).colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
                                 ),
                       ),
                     ],
                   ),
                   Icon(
                     Icons.arrow_forward_ios_outlined,
-                    size: 20,
+                    size: 18,
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Theme.of(context).colorScheme.secondaryContainer,
-                      ),
-                      width: 20,
-                      height: 20,
-                      child: Icon(
-                        Icons.phone_android_outlined,
-                        color: Theme.of(context).colorScheme.primary,
-                        size: 16,
-                      ),
+                  Container(
+                    height: 32,
+                    width: 32,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Theme.of(context).colorScheme.secondaryContainer,
+                    ),
+                    child: Icon(
+                      Icons.phone_android_outlined,
+                      size: 24,
+                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(
@@ -109,7 +100,10 @@ class ProfileDetailCard extends StatelessWidget {
                   ),
                   Text(
                     phone,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ],
               )

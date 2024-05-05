@@ -105,6 +105,7 @@ class _FindExamTimesPageState extends State<FindExamTimesPage> {
   Widget build(BuildContext context) {
     DoctorGetItem? doctorGetItem =
         context.select((AppDoctorCubit cubit) => cubit.state.doctorGetItem);
+
     DocterFilerItem? docterFilerItem =
         context.select((AppDoctorCubit cubit) => cubit.state.docterFilerItem);
 

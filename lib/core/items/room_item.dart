@@ -7,7 +7,6 @@ class RoomItem extends RoomEntity {
   });
 
   factory RoomItem.fromJson(Map<String, dynamic> json) {
-    print('bQT json 8 ${json}');
     return RoomItem(
       id: json['id'] ?? '',
       name: json['name'] ?? '',

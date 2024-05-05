@@ -1,8 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:mobile_advanced_project_fe/core/entities/entities.dart';
-import 'package:mobile_advanced_project_fe/core/items/deparment_item.dart';
-import 'package:mobile_advanced_project_fe/core/items/doctor_item.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 
 import 'room_item.dart';
@@ -18,8 +16,6 @@ class ScheduleItem extends ScheduleEntity {
   });
 
   factory ScheduleItem.fromJson(Map<String, dynamic> json) {
-    print('bQT json 3 ${json}');
-
     return ScheduleItem(
       schedule_id: json['schedule_id'] ?? '',
       doctor: DoctorItem.fromJson(json['doctor']),

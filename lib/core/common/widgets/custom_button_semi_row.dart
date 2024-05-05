@@ -4,8 +4,11 @@ class CustomButtonSemiRow extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
 
-  const CustomButtonSemiRow(
-      {super.key, required this.title, required this.onPressed});
+  const CustomButtonSemiRow({
+    super.key,
+    required this.title,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/configs/routes/names.dart';
-import 'package:mobile_advanced_project_fe/core/common/cubits/app_medical_appointment_body/app_medical_appointment_body_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/utils/time_zone.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/widgets/widgets.dart';
-import 'package:provider/provider.dart';
 
-class ChooseDateMedicalPage extends StatefulWidget {
-  const ChooseDateMedicalPage({super.key});
+class ChooseDateMedicalPage extends StatelessWidget {
+  final Function(DateTime) onDateMedicalPageSelected;
+  const ChooseDateMedicalPage({
+    super.key,
+    required this.onDateMedicalPageSelected,
+  });
 
-  @override
-  State<ChooseDateMedicalPage> createState() => _ChooseDateMedicalPageState();
-}
-
-class _ChooseDateMedicalPageState extends State<ChooseDateMedicalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +18,9 @@ class _ChooseDateMedicalPageState extends State<ChooseDateMedicalPage> {
         children: [
           PickerDateWidget(
             onSelected: (DateTime dateTime) {
-              bool isSucess = context
-                  .read<AppMedicalAppointmentBodyCubit>()
-                  .updateStrDate(UCARETimeZone.fDate(dateTime));
-              if (isSucess) {
-                Navigator.of(context).pushNamed(AppRoutes.CHOOSE_INFOR);
-              }
+              onDateMedicalPageSelected(dateTime);
             },
+            strSelectedDate: '',
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),

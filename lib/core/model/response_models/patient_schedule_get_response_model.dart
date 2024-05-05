@@ -14,7 +14,6 @@ class PatientScheduleGetResponseModel
 
   @override
   factory PatientScheduleGetResponseModel.fromJson(Map<String, dynamic> json) {
-    print('bQT json ${json}');
     return PatientScheduleGetResponseModel(
       message: json["message"] ?? '',
       responseData: PatientScheduleGetItem.fromJson(json["responseData"]),

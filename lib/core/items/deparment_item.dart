@@ -13,8 +13,6 @@ class DepartmentItem extends DepartmentEntity {
   });
 
   factory DepartmentItem.fromJson(Map<String, dynamic> json) {
-    print('bQT json 6 ${json}');
-
     return DepartmentItem(
       id: json['id'] ?? '',
       name: json['name'] ?? '',

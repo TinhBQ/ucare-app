@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import 'bloc_providers.dart';
-import 'configs/routes/pages.dart';
+import 'configs/routes/pages/app_pages.dart';
 import 'configs/themes/theme_provider.dart';
 import 'global.dart';
 

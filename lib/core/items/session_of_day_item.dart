@@ -7,7 +7,6 @@ class SessionOfDayItem extends SessionOfDayEntity {
   });
 
   factory SessionOfDayItem.fromJson(Map<String, dynamic> json) {
-    print('bQT json 7 ${json}');
     return SessionOfDayItem(
       id: json['id'] ?? '',
       content: json['content'] ?? '',

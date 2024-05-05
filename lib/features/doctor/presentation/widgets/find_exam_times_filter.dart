@@ -70,8 +70,34 @@ class FindExamTimesFilter extends StatelessWidget {
               subtitle: sessionOfDayName ?? 'Chọn ngày khám bệnh',
               width: sizeScreen.width / 2 - 0.5,
               onTap: () {
+                // Navigator.of(context)
+                //     .pushNamed(AppRoutes.CHOOSE_SESSION_OF_DAY);
+
                 Navigator.of(context)
-                    .pushNamed(AppRoutes.CHOOSE_SESSION_OF_DAY);
+                    .pushNamed(AppRoutes.CHOOSE_SESSION_OF_DAY, arguments: {
+                  'onSessionOfDaySelected': (SessionOfDayItem item) {
+                    context
+                        .read<AppDoctorCubit>()
+                        .updateSessionOfDayFilterItem(item);
+                    DoctorGetRequestModel doctorGetRequestModel = context
+                        .read<AppDoctorCubit>()
+                        .state
+                        .doctorGetRequestModel;
+                    context.read<DoctorBloc>().add(
+                          DoctorFindExamTimes(
+                            currentPage: doctorGetRequestModel.currentPage,
+                            pageSize: doctorGetRequestModel.pageSize,
+                            filters: doctorGetRequestModel.filters,
+                            sortField: doctorGetRequestModel.sortField,
+                            sortOrder: doctorGetRequestModel.sortOrder,
+                            full_name: doctorGetRequestModel.full_name,
+                            session_of_day:
+                                doctorGetRequestModel.session_of_day,
+                          ),
+                        );
+                    Navigator.of(context).pop();
+                  }
+                });
               },
             ),
           ],

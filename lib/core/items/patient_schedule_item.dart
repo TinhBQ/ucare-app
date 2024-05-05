@@ -14,7 +14,6 @@ class PatientScheduleItem extends PatientScheduleEntity {
   });
 
   factory PatientScheduleItem.fromJson(Map<String, dynamic> json) {
-    print('bQT json 2 ${json}');
     return PatientScheduleItem(
       patient_schedule_id: json['patient_schedule_id'] ?? '',
       schedule: ScheduleItem.fromJson(json['schedule']),

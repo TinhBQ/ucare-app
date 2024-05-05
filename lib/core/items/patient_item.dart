@@ -23,7 +23,6 @@ class PatientItem extends PatientEntity {
   });
 
   factory PatientItem.fromJson(Map<String, dynamic> json) {
-    print('bQT json 9 ${json}');
     return PatientItem(
       id: json['id'] ?? '',
       user_id: json['user_id'] ?? '',

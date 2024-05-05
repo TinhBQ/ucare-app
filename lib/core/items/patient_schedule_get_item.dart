@@ -11,7 +11,6 @@ class PatientScheduleGetItem extends BaseGetItem<PatientScheduleItem> {
   });
 
   factory PatientScheduleGetItem.fromJson(Map<String, dynamic> json) {
-    print('bQT json 1 ${json}');
     return PatientScheduleGetItem(
       count: convertToInt(json['count']) ?? 0,
       rows: List<PatientScheduleItem>.from(

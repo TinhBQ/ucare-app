@@ -1,11 +1,16 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/core/utils/time_zone.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class PickerDateWidget extends StatefulWidget {
   final Function(DateTime) onSelected;
-  const PickerDateWidget({super.key, required this.onSelected});
+  final String strSelectedDate;
+
+  const PickerDateWidget({
+    super.key,
+    required this.onSelected,
+    required this.strSelectedDate,
+  });
 
   @override
   State<StatefulWidget> createState() => _PickerDateWidgetState();
@@ -13,7 +18,7 @@ class PickerDateWidget extends StatefulWidget {
 
 class _PickerDateWidgetState extends State<PickerDateWidget> {
   final DateTime _currentDate = DateTime.now();
-  DateTime _selectedDate = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,8 +26,11 @@ class _PickerDateWidgetState extends State<PickerDateWidget> {
         color: Theme.of(context).colorScheme.background,
       ),
       child: TableCalendar(
-        // locale: 'vi_VN',
-        focusedDay: _selectedDate,
+        // locale: 'vi_VN',s
+        focusedDay: widget.strSelectedDate.isEmpty
+            ? _currentDate
+            : UCARETimeZone.fStrDateToUTC(widget.strSelectedDate) ??
+                _currentDate,
         firstDay: _currentDate,
         lastDay: _currentDate.add(
           const Duration(days: 60),
@@ -33,13 +41,13 @@ class _PickerDateWidgetState extends State<PickerDateWidget> {
         ),
         onDaySelected: (date, events) {
           if (date.weekday != DateTime.sunday) {
-            setState(() {
-              _selectedDate = date;
-              widget.onSelected(date);
-            });
+            widget.onSelected(date);
           }
         },
-        selectedDayPredicate: (day) => isSameDay(day, _selectedDate),
+        selectedDayPredicate: (day) => isSameDay(
+            day,
+            UCARETimeZone.fStrDateToUTC(widget.strSelectedDate) ??
+                _currentDate),
         startingDayOfWeek: StartingDayOfWeek.sunday,
         calendarStyle: CalendarStyle(
           disabledDecoration: BoxDecoration(

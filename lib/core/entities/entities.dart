@@ -11,3 +11,5 @@ export './room_entity.dart';
 export './schedule_entity.dart';
 export './status_entity.dart';
 export './patient_schedule_entity.dart';
+export './payment_entity.dart';
+export './order_entity.dart';

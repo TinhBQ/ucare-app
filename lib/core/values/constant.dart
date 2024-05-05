@@ -31,7 +31,6 @@ class AppConstants {
   // Server Doctor
   static const String SERVER_DOCTOR = "$API_VERSION/doctor";
 
-
   // Server Patient
   static const String SERVER_PATIENT = "$API_VERSION/patient";
 
@@ -44,8 +43,21 @@ class AppConstants {
   static const String STORAGE_USER_REFRESH_TOKEN_KEY = "user_refresh_token_key";
   static const String STORAGE_USER_REMEMBERS_LOGIN = "user_remembers_login";
 
-//Server country
+  //Server country
   static const String SERVER_ALL_COUNTRY = "$API_VERSION/country/getAllCountry";
+
+  //Server schedule
+  static const String SERVER_SCHEDULE = "$API_VERSION/schedule";
+
+  // Server order
+  static const String SERVER_ORDER_PAYMENT_RETURN_URL =
+      "$API_VERSION/order/payment/VNPAY/generatePaymentLink";
+  static const String SERVER_ORDER_PAYMENT = "$API_VERSION/order/payment";
+  static const String SERVER_ORDER = "$API_VERSION/order";
+
+  // Server STATUS
+  static const String SERVER_STATUS = "$API_VERSION/status";
+
   static const List<String> ETHNICITY = [
     'Bana',
     'Bố Y',

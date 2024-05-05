@@ -26,7 +26,7 @@ class _MedicinePageState extends State<MedicineSchedulePage> {
         icon: Icons.fast_forward_outlined,
         day: fromDay,
         onChangedDay: () async {
-          fromDay = (await _selectDate(context, fromDay)) ?? fromDay;
+          fromDay = (await selectDate(context, fromDay)) ?? fromDay;
           setState(() {
             _updateMedicineDays();
           });
@@ -37,7 +37,7 @@ class _MedicinePageState extends State<MedicineSchedulePage> {
         icon: Icons.fast_rewind_outlined,
         day: toDay,
         onChangedDay: () async {
-          toDay = (await _selectDate(context, toDay)) ?? toDay;
+          toDay = (await selectDate(context, toDay)) ?? toDay;
           setState(() {
             _updateMedicineDays();
           });
@@ -46,7 +46,7 @@ class _MedicinePageState extends State<MedicineSchedulePage> {
     ];
   }
 
-  Future<DateTime?> _selectDate(BuildContext context, DateTime day) async {
+  Future<DateTime?> selectDate(BuildContext context, DateTime day) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: day,
@@ -56,6 +56,7 @@ class _MedicinePageState extends State<MedicineSchedulePage> {
     if (picked != null && picked != day) {
       return picked;
     }
+    return null;
   }
 
   @override
@@ -98,14 +99,14 @@ class _MedicinePageState extends State<MedicineSchedulePage> {
                       medicineSessions: medicineSessions,
                     ),
                   ),
-                  // SliverPadding(
-                  //   padding: const EdgeInsets.only(top: 16),
-                  //   sliver: SliverToBoxAdapter(
-                  //     child: MedicineDaysWidget(
-                  //       medicineDays: medicineDays,
-                  //     ),
-                  //   ),
-                  // ),
+                  SliverPadding(
+                    padding: const EdgeInsets.only(top: 16),
+                    sliver: SliverToBoxAdapter(
+                      child: MedicineDaysWidget(
+                        medicineDays: medicineDays,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
