@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:mobile_advanced_project_fe/core/items/patient_schedule_item.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/history_booking/presentation/widgets/history_item.dart';
 
 class HistoryListCardWidget extends StatelessWidget {

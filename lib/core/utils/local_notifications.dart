@@ -1,9 +1,4 @@
-// ignore_for_file: deprecated_member_use
-
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
+part of 'utils_dependencies.dart';
 
 class LocalNotifications {
   static final FlutterLocalNotificationsPlugin

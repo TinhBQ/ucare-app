@@ -1,10 +1,4 @@
-import 'package:mobile_advanced_project_fe/core/model/response_models/response_models.dart';
-import 'package:mobile_advanced_project_fe/core/utils/http_util.dart';
-import 'package:mobile_advanced_project_fe/core/values/constant.dart';
-
-import '../exceptions/exceptions.dart';
-import '../exceptions/http_status_code.dart';
-import '../model/request_models/request_models.dart';
+part of 'api_dependencies.dart';
 
 class PatientScheduleApi {
   static getListPatientSchedule(BaseGetRequestModel params) async {

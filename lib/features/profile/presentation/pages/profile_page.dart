@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
-import 'package:mobile_advanced_project_fe/core/utils/show_snackbar.dart';
-import 'package:mobile_advanced_project_fe/core/utils/string_ternary_operator.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 
 import '../widgets/widgets.dart';

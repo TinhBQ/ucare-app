@@ -1,6 +1,4 @@
-import 'package:jwt_decode/jwt_decode.dart';
-import 'package:mobile_advanced_project_fe/core/values/constant.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+part of 'service_dependencies.dart';
 
 class StorageService {
   late final SharedPreferences _prefs;

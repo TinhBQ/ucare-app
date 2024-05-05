@@ -1,15 +1,6 @@
-// ignore_for_file: avoid_print, deprecated_member_use
+// ignore_for_file: deprecated_member_use
 
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jwt_decode/jwt_decode.dart';
-import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
-import 'package:mobile_advanced_project_fe/core/utils/show_snackbar.dart';
-import 'package:mobile_advanced_project_fe/core/values/constant.dart';
-import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:mobile_advanced_project_fe/core/values/logger.dart';
-import 'package:mobile_advanced_project_fe/global.dart';
+part of 'utils_dependencies.dart';
 
 const noToken = [
   AppConstants.SERVER_API_URL + AppConstants.SERVER_REFRESH_TOKEN,
@@ -45,7 +36,6 @@ class HttpUtil {
 
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
-      print('options ${options.path}');
       if (!options.path.contains('http')) {
         options.path = AppConstants.SERVER_API_URL + options.path;
       }
@@ -66,8 +56,6 @@ class HttpUtil {
 
       // Giải mã access token
       // Kiểm tra token còn hạn hay không?
-      Map<String, dynamic> decodedAccessToken = Jwt.parseJwt(accessToken);
-      print("Decoded access token: $decodedAccessToken");
       if (Jwt.isExpired(accessToken)) {
         try {
           final response = await dio.post(
@@ -75,7 +63,6 @@ class HttpUtil {
             data: refreshToken,
           );
 
-          print("response: $response");
           if (response.statusCode == 200) {
             if (response.data != false) {
               options.headers['Authorization'] =

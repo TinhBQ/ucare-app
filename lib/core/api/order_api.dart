@@ -1,9 +1,4 @@
-import '../exceptions/exceptions.dart';
-import '../exceptions/http_status_code.dart';
-import '../model/request_models/request_models.dart';
-import '../model/response_models/response_models.dart';
-import '../utils/utils.dart';
-import '../values/constant.dart';
+part of 'api_dependencies.dart';
 
 class OrderApi {
   static onOrder(OrderRequestModel body) async {

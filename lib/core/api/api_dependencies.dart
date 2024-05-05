@@ -1,0 +1,19 @@
+import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
+import 'package:mobile_advanced_project_fe/core/exceptions/http_status_code.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
+import 'package:mobile_advanced_project_fe/core/model/response_models/response_models.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/values/constant.dart';
+
+part 'auth_api.dart';
+part 'country_api.dart';
+part 'department_api.dart';
+part 'doctor_api.dart';
+part 'order_api.dart';
+part 'patient_api.dart';
+part 'patient_schedule_api.dart';
+part 'schedule_api.dart';
+part 'session_of_day_api.dart';
+part 'status_api.dart';
+part 'user_api.dart';

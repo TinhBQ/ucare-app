@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'widget_dependencies.dart';
 
 class CustomTextfieldPassword extends StatefulWidget {
   final String label;

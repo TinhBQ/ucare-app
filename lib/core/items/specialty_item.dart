@@ -1,3 +1,5 @@
+part of 'item_dependencies.dart';
+
 class SpecialtyItem {
   final String title;
   final int price;

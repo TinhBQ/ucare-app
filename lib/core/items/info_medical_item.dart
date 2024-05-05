@@ -1,3 +1,5 @@
+part of 'item_dependencies.dart';
+
 class InfoMedicalItem {
   final String id;
   final int numStep;

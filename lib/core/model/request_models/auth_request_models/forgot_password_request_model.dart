@@ -1,4 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
+part of 'auth_request_model_dependencies.dart';
 
 class ForgotPasswordRequestModel {
   final String code;

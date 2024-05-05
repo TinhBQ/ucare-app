@@ -1,10 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
-
-import 'package:mobile_advanced_project_fe/core/entities/doctor_entity.dart';
-
-import 'degree_item.dart';
-import 'deparment_item.dart';
-import 'session_of_day_item.dart';
+part of 'item_dependencies.dart';
 
 class DoctorItem extends DoctorEntity {
   DoctorItem({

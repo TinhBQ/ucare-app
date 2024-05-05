@@ -1,0 +1,33 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
+import 'package:elegant_notification/elegant_notification.dart';
+import 'package:elegant_notification/resources/arrays.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:jwt_decode/jwt_decode.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/values/constant.dart';
+import 'package:mobile_advanced_project_fe/core/values/logger.dart';
+import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile_advanced_project_fe/global.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/timezone.dart';
+
+part 'convert_to_int.dart';
+part 'get_icon.dart';
+part 'http_util.dart';
+part 'infor_massage.dart';
+part 'loading_overlay.dart';
+part 'local_notifications.dart';
+part 'show_dialog.dart';
+part 'show_snackbar.dart';
+part 'string_ternary_operator.dart';
+part 'time_zone.dart';
+part 'validate.dart';

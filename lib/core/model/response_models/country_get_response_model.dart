@@ -1,7 +1,4 @@
-import 'package:mobile_advanced_project_fe/core/enum/status_response.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-
-import 'base_response_model.dart';
+part of './response_models.dart';
 
 class CountryGetResponseModel extends BaseReponseModel<CountryGetItem> {
   CountryGetResponseModel({

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'item_dependencies.dart';
 
 class MedicineDayItem {
   final String title;

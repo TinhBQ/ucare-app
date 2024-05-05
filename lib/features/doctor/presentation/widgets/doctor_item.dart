@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
 
 class DoctorItemWidget extends StatelessWidget {
   final String? avatar;

@@ -1,4 +1,4 @@
-import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+part of './item_dependencies.dart';
 
 class BaseGetItem<T> {
   final int count;

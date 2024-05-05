@@ -1,5 +1,5 @@
-export './confirm_register_page.dart';
-export 'forgot_pass_page.dart';
-export './signin_page.dart';
-export './signup_page.dart';
-export './forgot_pass_send_OTP_page.dart';
+export 'auth_confirm_register_page.dart';
+export 'auth_forgot_pass_page.dart';
+export 'auth_signin_page.dart';
+export 'auth_signup_page.dart';
+export 'auth_forgot_pass_send_OTP_page.dart';

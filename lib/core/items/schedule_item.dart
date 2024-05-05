@@ -1,9 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:mobile_advanced_project_fe/core/entities/entities.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-
-import 'room_item.dart';
+part of 'item_dependencies.dart';
 
 class ScheduleItem extends ScheduleEntity {
   ScheduleItem({

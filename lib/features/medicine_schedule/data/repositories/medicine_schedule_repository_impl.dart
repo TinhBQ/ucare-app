@@ -1,8 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/failures.dart';
-
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 
 import '../../domain/repository/medicine_schedule_repository.dart';
 import '../datasources/medicine_schedule_remote_data_source.dart';

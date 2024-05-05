@@ -1,7 +1,7 @@
 import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/service/database_helper.dart';
-import 'package:mobile_advanced_project_fe/core/utils/local_notifications.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/service/service_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
 abstract interface class MedicineScheduleRemoteDataSource {
   Future<List<MedicineSessionItem>> getMedicineSessionItems();

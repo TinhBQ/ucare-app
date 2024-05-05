@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:mobile_advanced_project_fe/core/entities/entities.dart';
+part of 'entity_dependencies.dart';
 
 class PatientScheduleEntity {
   final String patient_schedule_id;

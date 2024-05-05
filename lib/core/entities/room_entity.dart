@@ -1,3 +1,5 @@
+part of 'entity_dependencies.dart';
+
 class RoomEntity {
   final String id;
   final String name;

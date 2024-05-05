@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/patient_request_models/create_patient_request_model.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/patient_request_models/patient_request_model_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/book/domain/usecases/usecases.dart';
 import 'package:mobile_advanced_project_fe/features/book/domain/usecases/user_create_patient_profile.dart';
 

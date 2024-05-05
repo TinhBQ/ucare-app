@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_countries/countries_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 
 import 'package:mobile_advanced_project_fe/core/usecase/usecase.dart';
-import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
 import '../../../domain/usecases/usecases.dart';
 

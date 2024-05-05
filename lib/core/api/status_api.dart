@@ -1,10 +1,4 @@
-import 'package:mobile_advanced_project_fe/core/model/request_models/base_get_request_model.dart';
-
-import '../exceptions/exceptions.dart';
-import '../exceptions/http_status_code.dart';
-import '../model/response_models/response_models.dart';
-import '../utils/utils.dart';
-import '../values/constant.dart';
+part of 'api_dependencies.dart';
 
 class StatusApi {
   static getStatuses(BaseGetRequestModel params) async {

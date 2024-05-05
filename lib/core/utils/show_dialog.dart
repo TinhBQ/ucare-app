@@ -1,7 +1,4 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+part of 'utils_dependencies.dart';
 
 class ShowDialog {
   static void confirm(

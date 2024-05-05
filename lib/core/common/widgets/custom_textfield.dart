@@ -1,5 +1,4 @@
-// ignore_for_file: unnecessary_null_in_if_null_operators
-import 'package:flutter/material.dart';
+part of 'widget_dependencies.dart';
 
 // ignore: must_be_immutable
 class CustomTextfield extends StatefulWidget {
@@ -54,8 +53,8 @@ class _CustomTextFieldState extends State<CustomTextfield> {
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: TextFormField(
-        maxLength: widget.maxLength ?? null, // Check if maxLength is null
-        minLines: widget.minLength ?? null,
+        maxLength: widget.maxLength, // Check if maxLength is null
+        minLines: widget.minLength,
         controller: widget.controller,
         obscureText: widget.isObscureText == true,
         enabled: !widget.disabled,

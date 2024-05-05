@@ -1,5 +1,4 @@
-import 'deparment_item.dart';
-import 'session_of_day_item.dart';
+part of './item_dependencies.dart';
 
 class DocterFilerItem {
   final DepartmentItem? departmentFilterItem;

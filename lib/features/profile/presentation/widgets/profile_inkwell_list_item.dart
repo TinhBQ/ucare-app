@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 
 import 'proflie_inkwell_item.dart';

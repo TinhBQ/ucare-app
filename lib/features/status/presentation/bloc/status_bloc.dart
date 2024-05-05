@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_status/app_status_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/items/status_get_item.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 
 import '../../domain/usecases/user_get_statuses.dart';

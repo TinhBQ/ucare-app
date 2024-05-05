@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'widget_dependencies.dart';
 
 class CustomCheckbox extends StatefulWidget {
   final String description;

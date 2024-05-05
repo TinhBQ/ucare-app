@@ -1,4 +1,4 @@
-import 'package:mobile_advanced_project_fe/core/entities/session_of_day_entity.dart';
+part of 'item_dependencies.dart';
 
 class SessionOfDayItem extends SessionOfDayEntity {
   SessionOfDayItem({

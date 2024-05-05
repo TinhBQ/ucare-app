@@ -1,9 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
-import 'package:mobile_advanced_project_fe/core/entities/entities.dart';
-import 'package:mobile_advanced_project_fe/core/items/patient_item.dart';
-import 'package:mobile_advanced_project_fe/core/items/status_item.dart';
-
-import 'schedule_item.dart';
+part of 'item_dependencies.dart';
 
 class PatientScheduleItem extends PatientScheduleEntity {
   PatientScheduleItem({

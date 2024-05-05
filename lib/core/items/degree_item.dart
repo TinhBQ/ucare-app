@@ -1,4 +1,4 @@
-import 'package:mobile_advanced_project_fe/core/entities/degree_entity.dart';
+part of './item_dependencies.dart';
 
 class DegreeItem extends DegreeEntity {
   DegreeItem({

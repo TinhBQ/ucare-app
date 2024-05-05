@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:lottie/lottie.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
+import 'package:pinput/pinput.dart';
+
+part 'custom_appbar.dart';
+part 'custom_button.dart';
+part 'custom_button_semi_row.dart';
+part 'custom_checkbox.dart';
+part 'custom_circular_progressin_dicator.dart';
+part 'custom_image.dart';
+part 'custom_inkwell.dart';
+part 'custom_navbar.dart';
+part 'custom_no_data.dart';
+part 'custom_otp.dart';
+part 'custom_searchbar.dart';
+part 'custom_select_value_dialog.dart';
+part 'custom_sub_appbar.dart';
+part 'custom_text_introduce.dart';
+part 'custom_textfield.dart';
+part 'custom_textfield_datetime.dart';
+part 'custom_textfield_dropdown.dart';
+part 'custom_textfield_password.dart';
+part 'custom_textfield_profile.dart';

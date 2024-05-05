@@ -1,38 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:pinput/pinput.dart';
+part of 'widget_dependencies.dart';
 
 class CustomOTP extends StatelessWidget {
   final String label;
   final TextEditingController controller;
   final Function(String) onChanged;
 
-  const CustomOTP(
-      {super.key,
-      required this.label,
-      required this.controller,
-      required this.onChanged});
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return TextFormField(
-  //     controller: controller,
-  //     textAlign: TextAlign.center,
-  //     decoration: InputDecoration(
-  //       border: const OutlineInputBorder(),
-  //       suffixIcon: IconButton(
-  //         onPressed: controller.clear,
-  //         icon: const Icon(Icons.clear),
-  //       ),
-  //       labelText: label,
-  //       hintStyle: Theme.of(context).textTheme.bodyLarge,
-  //     ),
-  //     onChanged: onChanged,
-  //     keyboardType: TextInputType.number,
-  //     maxLength: 6,
-  //     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-  //   );
-  // }
+  const CustomOTP({
+    super.key,
+    required this.label,
+    required this.controller,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +18,7 @@ class CustomOTP extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: Pinput(
-        onChanged: onChanged,
+          onChanged: onChanged,
           controller: controller,
           length: 6,
           autofocus: true,

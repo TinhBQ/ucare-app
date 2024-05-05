@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/features/book/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
 
 class ProfileDetailWidget extends StatelessWidget {
   const ProfileDetailWidget({super.key});
@@ -8,7 +8,7 @@ class ProfileDetailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      appBar: const SubAppBarWidget(
+      appBar: const CustomSubAppBar(
         title: 'Hồ sơ người bệnh',
       ),
     );

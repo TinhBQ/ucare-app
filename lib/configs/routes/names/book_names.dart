@@ -1,4 +1,6 @@
 // ignore_for_file: constant_identifier_names
+part of 'names.dart';
+
 class BookRoutes {
   // Book Page Name
   static const BOOK_PATIENT_CHOOSE_PROFILE = "/book/patient_choose_infor";

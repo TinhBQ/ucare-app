@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'widget_dependencies.dart';
 
 class CustomNavBar extends StatefulWidget {
   const CustomNavBar({

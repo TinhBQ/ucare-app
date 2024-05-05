@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 
-import '../../../../core/model/request_models/request_models.dart';
 import '../../domain/usecases/usecases.dart';
 
 part 'order_event.dart';

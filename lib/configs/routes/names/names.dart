@@ -1,2 +1,2 @@
-export './app_names.dart';
-export './book_names.dart';
+part './app_names.dart';
+part './book_names.dart';

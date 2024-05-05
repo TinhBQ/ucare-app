@@ -1,7 +1,4 @@
-import 'package:mobile_advanced_project_fe/core/items/status_item.dart';
-
-import '../utils/convert_to_int.dart';
-import 'base_get_item.dart';
+part of 'item_dependencies.dart';
 
 class StatusGetItem extends BaseGetItem<StatusItem> {
   StatusGetItem({

@@ -1,14 +1,12 @@
-import 'package:mobile_advanced_project_fe/core/api/api.dart';
-import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
-import 'package:mobile_advanced_project_fe/core/utils/infor_massage.dart';
-
-import 'package:mobile_advanced_project_fe/core/values/constant.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
-
-import '../../../../core/enum/enum.dart';
-import '../../../../core/model/response_models/response_models.dart';
+import 'package:mobile_advanced_project_fe/core/api/api_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/enum/enum_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/model/response_models/response_models.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
+import 'package:mobile_advanced_project_fe/core/values/constant.dart';
 
 abstract interface class AuthRemoteDataSource {
   Future<String> signUpWithEmailPassword(UserSignUpRequestModel body);

@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import '../entities/user_entity.dart';
+part of 'item_dependencies.dart';
 
 class UserItem extends UserEntity {
   UserItem({

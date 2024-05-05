@@ -1,3 +1,5 @@
+part of 'entity_dependencies.dart';
+
 class MedicineSessionEntity {
   final int id;
   final String session;

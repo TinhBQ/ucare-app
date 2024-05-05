@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
+part of 'utils_dependencies.dart';
 
 class LoadingOverlay {
   static OverlayEntry? _overlayEntry;

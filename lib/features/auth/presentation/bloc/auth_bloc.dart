@@ -2,11 +2,11 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/auth_request_models/auth_request_models.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/auth_request_models/auth_request_model_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/core/usecase/usecase.dart';
-import 'package:mobile_advanced_project_fe/core/utils/infor_massage.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/usecases.dart';
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/user_forgot_password.dart';
 

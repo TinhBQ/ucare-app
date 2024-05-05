@@ -1,6 +1,4 @@
-import '../../enum/status_response.dart';
-import '../../items/items.dart';
-import 'base_response_model.dart';
+part of 'response_models.dart';
 
 class PatientScheduleGetResponseModel
     extends BaseReponseModel<PatientScheduleGetItem> {

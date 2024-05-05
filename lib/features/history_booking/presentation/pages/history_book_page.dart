@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient_schedule/app_patient_schedule_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/core/items/patient_schedule_get_item.dart';
-import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/history_booking/presentation/bloc/patient_schedule_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/history_booking/presentation/widgets/history_list_card.dart';
 import 'package:mobile_advanced_project_fe/features/history_booking/presentation/widgets/multi_optional.dart';

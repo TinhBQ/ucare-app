@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
-import 'package:mobile_advanced_project_fe/core/entities/entities.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/entities/entity_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 
 part 'app_choose_exam_info_state.dart';
 

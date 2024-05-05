@@ -1,11 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/user_request_models/change_password_request_model.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
-import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
-import '../../../../core/common/cubits/app_user/app_user_cubit.dart';
 import '../../domain/usecases/usecases.dart';
 
 part 'profile_event.dart';

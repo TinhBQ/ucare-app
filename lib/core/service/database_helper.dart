@@ -1,5 +1,4 @@
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+part of 'service_dependencies.dart';
 
 class DatabaseHelperTableNames {
   static const String medicineSchedule = 'medicine_schedule';
@@ -13,7 +12,6 @@ class DatabaseHelper {
   DatabaseHelper._internal();
 
   Future<Database> _initializeDatabase() async {
-    print('BQT 100');
     String documentsDirectory = await getDatabasesPath();
     String path = join(documentsDirectory, 'medicine_schedule.db');
     return await openDatabase(path, version: 1, onCreate: _onCreate);

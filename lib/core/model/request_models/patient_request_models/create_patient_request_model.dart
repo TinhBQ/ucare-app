@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
+part of 'patient_request_model_dependencies.dart';
+
 class CreatePatientRequestModel {
   final String first_name;
   final String last_name;

@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+part of 'widget_dependencies.dart';
 
 class CustomNoData extends StatelessWidget {
   final String? text;

@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
+part of 'utils_dependencies.dart';
+
 class InforMassage {
   // Successful process
   static String LOGIN_SUCCESS = 'Đăng nhập thành công.';

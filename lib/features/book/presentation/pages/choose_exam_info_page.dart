@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/configs/routes/names/book_names.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/names/names.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_info/app_choose_exam_info_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/book_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/features/status/presentation/bloc/status_bloc.dart';
 
 import '../widgets/choose_exam_info_list_item.dart';
 
@@ -46,7 +46,7 @@ class ChooseExamInfoPage extends StatelessWidget {
       ],
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-        appBar: const SubAppBarWidget(
+        appBar: const CustomSubAppBar(
           title: 'Đặt lịch khám',
         ),
         body: Stack(

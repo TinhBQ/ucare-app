@@ -1,26 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/core/entities/page_entity.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
-import 'package:mobile_advanced_project_fe/features/application/presentation/pages/application_page.dart';
-import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:mobile_advanced_project_fe/features/auth/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/book/presentation/pages/book_by_specialty_page.dart';
-import 'package:mobile_advanced_project_fe/features/deparment/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/doctor/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/history_booking/presentation/pages/history_book_page.dart';
-import 'package:mobile_advanced_project_fe/features/home/presentation/pages/home_page.dart';
-import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/session_of_day/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/splash/presentation/splash_page.dart';
-import 'package:mobile_advanced_project_fe/global.dart';
-
-import '../../../core/utils/utils.dart';
-import '../names/app_names.dart';
+part of 'pages.dart';
 
 class AppPages {
   static List<PageEntity> routes() {
@@ -30,23 +10,23 @@ class AppPages {
       // * Auth
       PageEntity(
         route: AppRoutes.SING_IN,
-        pageBuilder: (_) => const SignInPage(),
+        pageBuilder: (_) => const AuthSignInPage(),
       ),
       PageEntity(
         route: AppRoutes.SIGN_UP,
-        pageBuilder: (_) => const SignUpPage(),
+        pageBuilder: (_) => const AuthSignUpPage(),
       ),
       PageEntity(
         route: AppRoutes.CONFIRM_SIGN_UP,
-        pageBuilder: (_) => const ConfirmRegisterPage(),
+        pageBuilder: (_) => const AuthConfirmRegisterPage(),
       ),
       PageEntity(
         route: AppRoutes.FORGOT_PASSWORD,
-        pageBuilder: (_) => const ForgotPassPage(),
+        pageBuilder: (_) => const AuthForgotPassPage(),
       ),
       PageEntity(
         route: AppRoutes.FORGOT_PASSWORD_SEND_OTP,
-        pageBuilder: (_) => const ForgotPassSendOTPPage(),
+        pageBuilder: (_) => const AuthForgotPassSendOTPPage(),
       ),
       // * App
       PageEntity(
@@ -69,15 +49,15 @@ class AppPages {
       ),
       PageEntity(
         route: AppRoutes.SETTINGS,
-        pageBuilder: (_) => const SettingsPage(),
+        pageBuilder: (_) => const ProflieSettingsPage(),
       ),
       PageEntity(
         route: AppRoutes.CHANGE_PASSWORD,
-        pageBuilder: (_) => const ChangePasswordPage(),
+        pageBuilder: (_) => const ProfileChangePasswordPage(),
       ),
       PageEntity(
         route: AppRoutes.CHANGE_PROFILE,
-        pageBuilder: (_) => const EditProfilePage(),
+        pageBuilder: (_) => const ProfileEditPage(),
       ),
 
       PageEntity(
@@ -92,24 +72,25 @@ class AppPages {
       // * App --> Find Exam Times
       PageEntity(
         route: AppRoutes.FIND_EXAM_TIMES,
-        pageBuilder: (_) => const FindExamTimesPage(),
+        pageBuilder: (_) => const DoctorFindExamTimesPage(),
       ),
       PageEntity(
           route: AppRoutes.CHOOSE_DEPARTMET_PAGE,
           pageBuilder: (arguments) {
             final Function(DepartmentItem) onDepartmentSelected =
                 arguments['onDepartmentSelected'] as Function(DepartmentItem);
-            return ChooseDepartmentPage(
+            return DepartmentChooseItemPage(
               onDepartmentSelected: onDepartmentSelected,
             );
           }),
+      // * Section of Day
       PageEntity(
           route: AppRoutes.CHOOSE_SESSION_OF_DAY,
           pageBuilder: (arguments) {
             final Function(SessionOfDayItem) onSessionOfDaySelected =
                 arguments['onSessionOfDaySelected'] as Function(
                     SessionOfDayItem);
-            return ChooseSessionOfDayPage(
+            return SessionOfDayChooseItemPage(
               onSessionOfDaySelected: onSessionOfDaySelected,
             );
           }),
@@ -160,11 +141,11 @@ class AppPages {
 
                       if (state is AuthSuccess) {
                         // LoadingOverlay.dismissLoading();
-                        return const SignInPage();
+                        return const AuthSignInPage();
                       }
 
                       LoadingOverlay.dismissLoading();
-                      return const SignInPage();
+                      return const AuthSignInPage();
                     },
                   );
                 },
@@ -172,7 +153,7 @@ class AppPages {
           }
 
           return MaterialPageRoute(
-              builder: (_) => const SignInPage(), settings: settings);
+              builder: (_) => const AuthSignInPage(), settings: settings);
         }
 
         Map<String, dynamic>? arguments =
@@ -185,6 +166,6 @@ class AppPages {
     }
 
     return MaterialPageRoute(
-        builder: (_) => const SignInPage(), settings: settings);
+        builder: (_) => const AuthSignInPage(), settings: settings);
   }
 }

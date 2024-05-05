@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/core/utils/time_zone.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class PickerDateWidget extends StatefulWidget {

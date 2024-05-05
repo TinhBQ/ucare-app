@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/widgets/widgets.dart';
 
 class ChooseTimeMedicalWidget extends StatefulWidget {
@@ -67,7 +68,7 @@ class _ChooseTimeMedicalWidgetState extends State<ChooseTimeMedicalWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      appBar: const SubAppBarWidget(
+      appBar: const CustomSubAppBar(
         title: 'Chọn giờ khám',
       ),
       body: Padding(

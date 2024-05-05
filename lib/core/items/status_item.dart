@@ -1,6 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
-
-import 'package:mobile_advanced_project_fe/core/entities/entities.dart';
+part of 'item_dependencies.dart';
 
 class StatusItem extends StatusEntity {
   StatusItem({

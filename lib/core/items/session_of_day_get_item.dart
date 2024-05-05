@@ -1,6 +1,4 @@
-import '../utils/convert_to_int.dart';
-import 'base_get_item.dart';
-import 'session_of_day_item.dart';
+part of 'item_dependencies.dart';
 
 class SessionOfDayGetItem extends BaseGetItem<SessionOfDayItem> {
   SessionOfDayGetItem({

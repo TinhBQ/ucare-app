@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 
 part 'app_medical_appointment_body_state.dart';
 

@@ -1,10 +1,10 @@
-import 'package:mobile_advanced_project_fe/core/api/api.dart';
-import 'package:mobile_advanced_project_fe/core/enum/status_response.dart';
+import 'package:mobile_advanced_project_fe/core/api/api_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/enum/enum_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/core/model/response_models/response_models.dart';
-import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
 abstract interface class ProfileRemoteDataSource {
   Future<String> changePassWord(ChangePasswordRequestModel body);

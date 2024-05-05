@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/medicine_sessions/medicine_sessions_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentation/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 
 import '../bloc/medicine_schedule_bloc.dart';
 
@@ -95,14 +95,14 @@ class _MedicinePageState extends State<MedicineSchedulePage> {
               child: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
-                    child: MedicineSessionsWidget(
+                    child: MedicineScheduleSessions(
                       medicineSessions: medicineSessions,
                     ),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.only(top: 16),
                     sliver: SliverToBoxAdapter(
-                      child: MedicineDaysWidget(
+                      child: MedicineScheduleDays(
                         medicineDays: medicineDays,
                       ),
                     ),

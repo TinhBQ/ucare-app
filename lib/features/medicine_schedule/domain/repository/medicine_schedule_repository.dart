@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/failures.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 
 abstract interface class MedicineScheduleRepository {
   Future<Either<Failure, List<MedicineSessionItem>>> getMedicineSessionItems();

@@ -1,3 +1,5 @@
+part of './item_dependencies.dart';
+
 class AuthItem {
   final String accessToken;
   final String refreshToken;

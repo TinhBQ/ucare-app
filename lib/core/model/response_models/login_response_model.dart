@@ -1,7 +1,4 @@
-import 'package:mobile_advanced_project_fe/core/items/auth_item.dart';
-
-import '../../enum/status_response.dart';
-import 'base_response_model.dart';
+part of './response_models.dart';
 
 class LoginResponeModel extends BaseReponseModel<AuthItem> {
   LoginResponeModel({

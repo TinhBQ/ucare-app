@@ -1,10 +1,10 @@
-import 'package:mobile_advanced_project_fe/core/api/api.dart';
-import 'package:mobile_advanced_project_fe/core/enum/enum.dart';
+import 'package:mobile_advanced_project_fe/core/api/api_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/enum/enum_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/core/model/response_models/response_models.dart';
 
-import '../../../../core/items/items.dart';
+import '../../../../core/items/item_dependencies.dart';
 
 abstract interface class OrderRemoteDataSource {
   Future<List<PaymentItem>?> onOrderPayment(OrderPaymentRequestModel body);

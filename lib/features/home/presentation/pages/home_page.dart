@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_user/app_user_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/utils/string_ternary_operator.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
 import '../widgets/widgets.dart';
 
@@ -24,17 +24,17 @@ class _HomePageState extends State<HomePage> {
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: IntroduceWidget(
+            child: HomeIntroduce(
               email: stringTernaryOperatir(userItem?.email, 'No Name'),
               avatar: stringTernaryOperatir(
                   userItem?.avatar, 'assets/logo/no-image.png'),
             ),
           ),
           const SliverToBoxAdapter(
-            child: CategoriesGirdCardWidget(),
+            child: HomeCategoriesGirdCard(),
           ),
           const SliverToBoxAdapter(
-            child: NewsWidget(),
+            child: HomeNewsWidget(),
           ),
         ],
       ),

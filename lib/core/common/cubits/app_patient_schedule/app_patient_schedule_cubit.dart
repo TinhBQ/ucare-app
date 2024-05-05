@@ -1,6 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:mobile_advanced_project_fe/core/items/patient_schedule_get_item.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/base_get_request_model.dart';
 
 part 'app_patient_schedule_state.dart';

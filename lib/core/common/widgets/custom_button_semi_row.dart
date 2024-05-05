@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'widget_dependencies.dart';
 
 class CustomButtonSemiRow extends StatelessWidget {
   final String title;

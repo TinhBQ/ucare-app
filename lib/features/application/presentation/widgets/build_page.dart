@@ -8,7 +8,7 @@ Widget buildPage(int index) {
   List<Widget> widget = [
     const HomePage(),
     const BookPaymentConfirmPage(),
-    const FindExamTimesPage(),
+    const DoctorFindExamTimesPage(),
     const ProfilePage(),
   ];
 

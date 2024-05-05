@@ -1,4 +1,4 @@
-import '../../enum/status_response.dart';
+part of './response_models.dart';
 
 class BaseReponseModel<Item> {
   final String message;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_countries/countries_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/values/constant.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/country/country_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/medical_profile/medical_profile_bloc.dart';

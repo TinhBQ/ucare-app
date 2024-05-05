@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_info/app_choose_exam_info_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient/app_patient_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
 import '../bloc/patient_bloc.dart';
 import '../widgets/widget.dart';
@@ -55,7 +55,7 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
             ),
             child: Column(
               children: [
-                const ProfilesListCardWidget(),
+                const PatientProfilesListCardWidget(),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 8,
@@ -65,7 +65,7 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
                     color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
-                ProfileDetailsListCardWidget(
+                PatientProfileDetailsListCardWidget(
                   onChoose: (PatientItem item) {
                     context
                         .read<AppChooseExamInfoCubit>()

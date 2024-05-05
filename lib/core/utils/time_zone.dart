@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:intl/intl.dart';
-import 'package:timezone/timezone.dart';
+part of 'utils_dependencies.dart';
 
 class DateStrFormat {
   static const String DATE = 'dd-MM-yyyy';

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'utils_dependencies.dart';
 
 IconData getIcon(String iconName) {
   switch (iconName) {

@@ -1,5 +1,6 @@
 //unify BlocProvider and routes and pages
-import 'package:flutter/material.dart';
+
+part of 'entity_dependencies.dart';
 
 class PageEntity {
   String route;

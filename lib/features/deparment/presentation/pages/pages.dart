@@ -1,1 +1,1 @@
-export './choose_department_page.dart';
+export 'department_choose_item_page.dart';

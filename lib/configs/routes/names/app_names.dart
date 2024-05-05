@@ -1,4 +1,5 @@
 // ignore_for_file: constant_identifier_names
+part of 'names.dart';
 class AppRoutes {
   //welcome page or on boarding
   static const INITIAL = "/";

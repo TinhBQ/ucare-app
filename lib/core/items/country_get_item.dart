@@ -1,4 +1,4 @@
-import 'country_item.dart';
+part of './item_dependencies.dart';
 
 class CountryGetItem {
   final List<CountryItem> countries;

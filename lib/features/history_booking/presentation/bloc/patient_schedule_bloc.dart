@@ -2,9 +2,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient_schedule/app_patient_schedule_cubit.dart';
 
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
-import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
 import '../../domain/usecases/usecases.dart';
 
@@ -52,7 +52,6 @@ class PatientScheduleBloc
       )),
       (patientGetItem) {
         _appPatientScheduleCubit.updatePatientSchedule(patientGetItem);
-        print('patientGetItem ${patientGetItem.count}');
         return emit(PatientScheduleSuccess(
           InforMassage.GET_SUCCESS,
           OnPatientScheduleEvent.onPatientScheduleGetList,

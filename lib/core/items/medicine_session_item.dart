@@ -1,4 +1,4 @@
-import 'package:mobile_advanced_project_fe/core/entities/entities.dart';
+part of 'item_dependencies.dart';
 
 class MedicineSessionItem extends MedicineSessionEntity {
   MedicineSessionItem({

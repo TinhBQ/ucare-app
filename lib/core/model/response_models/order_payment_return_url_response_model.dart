@@ -1,5 +1,4 @@
-import '../../enum/status_response.dart';
-import 'base_response_model.dart';
+part of 'response_models.dart';
 
 class OrderPaymentReturnURLResponseModel extends BaseReponseModel<String> {
   OrderPaymentReturnURLResponseModel({

@@ -1,6 +1,4 @@
-import 'package:elegant_notification/elegant_notification.dart';
-import 'package:elegant_notification/resources/arrays.dart';
-import 'package:flutter/material.dart';
+part of 'utils_dependencies.dart';
 
 const Color inforColor = Color(0xff0066FF);
 const Color successColor = Color(0xff01CB67);

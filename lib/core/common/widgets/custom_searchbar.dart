@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'custom_circular_progressin_dicator.dart';
+part of 'widget_dependencies.dart';
 
 class CustomSearchBar extends StatefulWidget {
   final TextEditingController controller;

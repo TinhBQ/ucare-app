@@ -1,3 +1,5 @@
+part of 'user_request_model_dependencies.dart';
+
 class ChangePasswordRequestModel {
   final String oldPass;
   final String newPass;

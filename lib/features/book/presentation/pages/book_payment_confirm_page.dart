@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_advanced_project_fe/configs/routes/names/book_names.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_info/app_choose_exam_info_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_status/app_status_cubit.dart';
-import 'package:mobile_advanced_project_fe/core/common/widgets/custom_appbar.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/order_payment_request_model.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/order_request_model.dart';
-import 'package:mobile_advanced_project_fe/core/utils/loading_overlay.dart';
-import 'package:mobile_advanced_project_fe/core/utils/show_snackbar.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/entities/entity_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/order_request_models/order_request_model_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/order/presentation/bloc/order_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/status/presentation/bloc/status_bloc.dart';
 
-import '../../../../core/entities/entities.dart';
 import '../widgets/widgets.dart';
 
 class BookPaymentConfirmPage extends StatelessWidget {

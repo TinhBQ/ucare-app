@@ -1,3 +1,5 @@
+part of 'entity_dependencies.dart';
+
 class DegreeEntity {
   final String id;
   final String name;

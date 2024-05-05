@@ -1,6 +1,4 @@
-import '../../enum/status_response.dart';
-import '../../items/user_item.dart';
-import 'base_response_model.dart';
+part of 'response_models.dart';
 
 class UserResponeModel extends BaseReponseModel<UserItem> {
   UserResponeModel({

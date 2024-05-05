@@ -1,15 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/configs/routes/names/book_names.dart';
-import 'package:mobile_advanced_project_fe/core/entities/page_entity.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
-import 'package:mobile_advanced_project_fe/features/book/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/book/presentation/pages/book_payment_confirm_page.dart';
-import 'package:mobile_advanced_project_fe/features/deparment/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/patient/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/schedule/presentation/pages/choose_doctor_exam_page.dart';
-import 'package:mobile_advanced_project_fe/features/session_of_day/presentation/pages/choose_session_of_day_page.dart';
+part of 'pages.dart';
 
 class BookPages {
   static List<PageEntity> routes() {
@@ -37,7 +28,7 @@ class BookPages {
           pageBuilder: (arguments) {
             final Function(DepartmentItem) onDepartmentSelected =
                 arguments['onDepartmentSelected'] as Function(DepartmentItem);
-            return ChooseDepartmentPage(
+            return DepartmentChooseItemPage(
               onDepartmentSelected: onDepartmentSelected,
             );
           }),
@@ -47,7 +38,7 @@ class BookPages {
             final Function(SessionOfDayItem) onSessionOfDaySelected =
                 arguments['onSessionOfDaySelected'] as Function(
                     SessionOfDayItem);
-            return ChooseSessionOfDayPage(
+            return SessionOfDayChooseItemPage(
               onSessionOfDaySelected: onSessionOfDaySelected,
             );
           }),
@@ -59,7 +50,7 @@ class BookPages {
             final Function(ScheduleItem) onChooseDoctorExamPage =
                 arguments['onChooseDoctorExamPage'] as Function(ScheduleItem);
 
-            return ChooseDoctorExamPage(
+            return ScheduleChooseDoctorExamPage(
               department_id: department_id,
               day: day,
               onChooseDoctorExamPage: onChooseDoctorExamPage,

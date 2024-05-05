@@ -1,7 +1,4 @@
-// ignore: unnecessary_null_in_if_null_operators
-
-import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
+part of 'widget_dependencies.dart';
 
 class CustomTextfieldDropdown extends StatefulWidget {
   const CustomTextfieldDropdown({

@@ -1,10 +1,4 @@
-import 'package:mobile_advanced_project_fe/core/model/response_models/response_models.dart';
-import 'package:mobile_advanced_project_fe/core/utils/http_util.dart';
-import 'package:mobile_advanced_project_fe/core/values/constant.dart';
-
-import '../exceptions/exceptions.dart';
-import '../exceptions/http_status_code.dart';
-import '../model/request_models/request_models.dart';
+part of 'api_dependencies.dart';
 
 class PatientApi {
   static getListPatient(BaseGetRequestModel params) async {
@@ -37,7 +31,7 @@ class PatientApi {
         throw ServerException(ServerException.CREATE_PATIENT_FAILURE);
       }
     } catch (e) {
-        throw ServerException(ServerException.CREATE_PATIENT_FAILURE);
+      throw ServerException(ServerException.CREATE_PATIENT_FAILURE);
     }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 
 class SpecialtyCardWidget extends StatelessWidget {
   const SpecialtyCardWidget({

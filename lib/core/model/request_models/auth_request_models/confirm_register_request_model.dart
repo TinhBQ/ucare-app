@@ -1,3 +1,5 @@
+part of 'auth_request_model_dependencies.dart';
+
 class ConfirmRegisterRequestModel {
   final String token;
 

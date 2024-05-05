@@ -1,10 +1,10 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/failures.dart';
-import 'package:mobile_advanced_project_fe/core/items/user_item.dart';
-import 'package:mobile_advanced_project_fe/core/model/request_models/user_request_models/change_password_request_model.dart';
-import 'package:mobile_advanced_project_fe/features/profile/domain/repository/profile_repository.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/user_request_models/user_request_model_dependencies.dart';
 
+import '../../domain/repository/profile_repository.dart';
 import '../datasources/profile_remote_data_source.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {

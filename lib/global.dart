@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mobile_advanced_project_fe/core/service/storage_service.dart';
-import 'package:mobile_advanced_project_fe/core/utils/utils.dart';
+import 'package:mobile_advanced_project_fe/core/service/service_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
+
 import 'package:timezone/data/latest.dart' as tz;
 
-import 'init_dependencies.main.dart';
+import 'init_dependencies.dart';
 
 class Global {
   static late StorageService storageService;

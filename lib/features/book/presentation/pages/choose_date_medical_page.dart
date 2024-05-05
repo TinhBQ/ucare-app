@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/book/presentation/widgets/widgets.dart';
 
 class ChooseDateMedicalPage extends StatelessWidget {
@@ -11,7 +12,7 @@ class ChooseDateMedicalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SubAppBarWidget(
+      appBar: const CustomSubAppBar(
         title: 'Chọn ngày khám',
       ),
       body: Column(

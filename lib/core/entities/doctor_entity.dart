@@ -1,8 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'degree_entity.dart';
-import 'department_entity.dart';
-import 'session_of_day_entity.dart';
+part of 'entity_dependencies.dart';
 
 class DoctorEntity {
   final String? id;

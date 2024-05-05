@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
-import 'package:mobile_advanced_project_fe/core/items/items.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'doctor_item.dart';

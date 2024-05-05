@@ -1,6 +1,6 @@
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_advanced_project_fe/configs/routes/names/app_names.dart';
+import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 import 'package:mobile_advanced_project_fe/core/values/constant.dart';
 import 'package:mobile_advanced_project_fe/global.dart';
 
