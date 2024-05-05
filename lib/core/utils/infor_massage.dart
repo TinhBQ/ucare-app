@@ -24,6 +24,7 @@ class InforMassage {
       'Lấy danh sách ngày khám thành công.';
   static String GET_PATIENT_SUCCESS =
       'Lấy danh sách hồ sơ bệnh nhân thành công';
+  static String CREATE_PATIENT_SUCCESS = 'Tạo hồ sơ bệnh nhân thành công.';
 
   // Valid form
   static String emailValid = 'Email không hợp lệ.';

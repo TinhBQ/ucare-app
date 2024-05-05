@@ -145,7 +145,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         controller: _genderController,
                         label: 'Giới tính',
                         listOption: const ['Nữ', 'Nam'],
-                        onChanged: () {
+                        onChanged: (value) {
                           _onSetDisableButton();
                         },
                       ),

@@ -40,9 +40,10 @@ class _CustomTextfieldDatetimeState extends State<CustomTextfieldDatetime> {
     );
     if ((picked != null && picked != selectedDate) || widget.isValid) {
       setState(() {
-        widget.onChange!.call();
+        widget.onChange?.call();
         selectedDate = picked ?? DateTime.now();
-        widget.controller.text = UCARETimeZone.fDate(selectedDate);
+        widget.controller.text =
+            UCARETimeZone.fDate(selectedDate, fm: 'yyyy-MM-dd');
       });
     }
   }
@@ -52,6 +53,10 @@ class _CustomTextfieldDatetimeState extends State<CustomTextfieldDatetime> {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: TextFormField(
+        onTap: () {
+          _selectDate(
+              context); // Hiển thị DatePicker khi người dùng chạm vào TextField
+        },
         controller: widget.controller,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
