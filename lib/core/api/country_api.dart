@@ -12,7 +12,7 @@ class CountryApi {
       );
 
       if (response.statusCode == HttpStatusCode.OK) {
-        return BaseReponseModel.fromJson(response.data);
+        return CountryGetResponseModel.fromJson(response.data);
       } else {
         throw ServerException(ServerException.GET_FAIL);
       }

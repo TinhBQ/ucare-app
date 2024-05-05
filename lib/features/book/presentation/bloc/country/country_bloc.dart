@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_countries/countries_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/items/items.dart';
 
 import 'package:mobile_advanced_project_fe/core/usecase/usecase.dart';
@@ -17,10 +18,12 @@ enum OnCountryEvent {
 
 class CountryBloc extends Bloc<CountryEvent, CountryState> {
   final UserGetListCountry _userGetListCountry;
-
+  final CountriesCubit _countryCubit;
   CountryBloc({
     required UserGetListCountry userGetListCountry,
+    required CountriesCubit countryCubit,
   })  : _userGetListCountry = userGetListCountry,
+        _countryCubit = countryCubit,
         super(CountryInitial()) {
     on<CountryEvent>((_, emit) => emit(CountryLoading()));
     on<CountryGetList>(_onCountryGetList);
@@ -38,6 +41,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
         OnCountryEvent.onCountryGetList,
       )),
       (countryGetItem) {
+        _countryCubit.updateCountries(countryGetItem);
         return emit(CountrySuccess(
           InforMassage.GET_SUCCESS,
           OnCountryEvent.onCountryGetList,

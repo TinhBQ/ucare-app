@@ -1,3 +1,5 @@
+// ignore: unnecessary_null_in_if_null_operators
+
 import 'package:flutter/material.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widgets.dart';
 
@@ -9,13 +11,17 @@ class CustomTextfieldDropdown extends StatefulWidget {
     required this.listOption,
     this.content,
     this.onChanged,
+    this.labelStyle,
+    this.disabled = false,
   });
 
   final TextEditingController controller;
   final String label;
   final List<String> listOption;
   final String? content;
-  final VoidCallback? onChanged;
+  final Function(String)? onChanged;
+  final TextStyle? labelStyle;
+  final bool disabled;
 
   @override
   State<StatefulWidget> createState() => _CustomTextfieldDropdown();
@@ -35,7 +41,7 @@ class _CustomTextfieldDropdown extends State<CustomTextfieldDropdown> {
     );
     if (selectedValue != null) {
       setState(() {
-        widget.onChanged?.call();
+        widget.onChanged?.call(selectedValue);
         widget.controller.text = selectedValue;
       });
     }
@@ -57,6 +63,10 @@ class _CustomTextfieldDropdown extends State<CustomTextfieldDropdown> {
         children: [
           Expanded(
             child: TextFormField(
+              onTap: () {
+                _openSelectValueDialog();
+              },
+              enabled: !widget.disabled,
               controller: widget.controller,
               readOnly: true,
               decoration: InputDecoration(
@@ -68,6 +78,7 @@ class _CustomTextfieldDropdown extends State<CustomTextfieldDropdown> {
                   icon: const Icon(Icons.arrow_drop_down),
                 ),
                 labelText: widget.label,
+                labelStyle: widget.labelStyle ?? null,
                 hintStyle: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
