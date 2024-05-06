@@ -12,21 +12,25 @@ part 'patient_state.dart';
 
 enum OnPatientEvent {
   onPatientGetList,
+  onPatientCreateProfile,
 }
 
 class PatientBloc extends Bloc<PatientEvent, PatientState> {
   final UserGetListPatient _userGetListPatient;
-
+  final UserCreatePatientProfile _userCreatePatientProfile;
   final AppPatientCubit _appPatientCubit;
 
   PatientBloc({
     required UserGetListPatient userGetListPatient,
+    required UserCreatePatientProfile userCreatePatientProfile,
     required AppPatientCubit appPatientCubit,
   })  : _userGetListPatient = userGetListPatient,
+        _userCreatePatientProfile = userCreatePatientProfile,
         _appPatientCubit = appPatientCubit,
         super(PatientInitial()) {
     on<PatientEvent>((_, emit) => emit(PatientLoading()));
     on<PatientGetList>(_onPatientGetList);
+    on<PatientCreateProfile>(_onPatientCreateProfile);
   }
 
   void _onPatientGetList(
@@ -56,6 +60,44 @@ class PatientBloc extends Bloc<PatientEvent, PatientState> {
           patientGetItem: patientGetItem,
         ));
       },
+    );
+  }
+
+  void _onPatientCreateProfile(
+    PatientCreateProfile event,
+    Emitter<PatientState> emit,
+  ) async {
+    final res = await _userCreatePatientProfile(
+      CreatePatientRequestModel(
+        first_name: event.first_name,
+        last_name: event.last_name,
+        phone: event.phone,
+        email: event.email,
+        citizen_id: event.citizen_id,
+        birthday: event.birthday,
+        male: event.male,
+        nation: event.nation,
+        job: event.job,
+        address: event.address,
+        district: event.district,
+        ethnicity: event.ethnicity,
+        province: event.province,
+        wards: event.wards,
+      ),
+    );
+    res.fold(
+      (failure) => emit(
+        PatientFailure(
+          failure.message.toString(),
+          OnPatientEvent.onPatientCreateProfile,
+        ),
+      ),
+      (message) => emit(
+        PatientSuccess(
+          message.toString(),
+          OnPatientEvent.onPatientCreateProfile,
+        ),
+      ),
     );
   }
 }

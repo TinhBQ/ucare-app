@@ -23,4 +23,15 @@ class PatientRepositoryImpl implements PatientRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> createPatient(
+      CreatePatientRequestModel body) async {
+    try {
+      final message = await patientRemoteDataSource.createPatient(body);
+      return right(message);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

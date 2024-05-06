@@ -6,23 +6,30 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.iconAction,
     this.onPressed,
+    this.background,
+    this.color,
   });
 
   final String title;
   final IconData? iconAction;
   final VoidCallback? onPressed;
+  final Color? background;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: background ?? Theme.of(context).colorScheme.background,
       elevation: 0,
       title: Text(
         title,
-        style: Theme.of(context).textTheme.titleLarge,
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              color: color ?? Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
       ),
       iconTheme: IconThemeData(
-        color: Theme.of(context).colorScheme.onBackground,
+        color: color ?? Colors.black,
       ),
       centerTitle: true,
       actions: iconAction != null
@@ -30,7 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               IconButton(
                 icon: Icon(
                   iconAction,
-                  color: Colors.black,
+                  color: color ?? Colors.black,
                 ), // Icon bạn muốn thêm
                 onPressed: onPressed,
               ),

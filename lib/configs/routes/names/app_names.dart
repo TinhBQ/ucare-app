@@ -42,4 +42,7 @@ class AppRoutes {
   static const BOOK_BY_SPECIALTY = '/book_by_specialty';
 
   static const HISTORY_BOOK = '/history_book';
+
+  // patient
+  static const PATIENT_ADD = '/patient_add';
 }

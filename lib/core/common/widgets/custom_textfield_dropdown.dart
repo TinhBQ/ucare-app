@@ -25,25 +25,6 @@ class CustomTextfieldDropdown extends StatefulWidget {
 }
 
 class _CustomTextfieldDropdown extends State<CustomTextfieldDropdown> {
-  void _openSelectValueDialog() async {
-    final selectedValue = await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return CustomSelectValueDialog(
-          onSelect: (value) => Navigator.pop(context, value),
-          listOption: widget.listOption,
-          title: widget.label,
-        );
-      },
-    );
-    if (selectedValue != null) {
-      setState(() {
-        widget.onChanged?.call(selectedValue);
-        widget.controller.text = selectedValue;
-      });
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -54,6 +35,25 @@ class _CustomTextfieldDropdown extends State<CustomTextfieldDropdown> {
 
   @override
   Widget build(BuildContext context) {
+    void _openSelectValueDialog() async {
+      final selectedValue = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CustomSelectValueDialog(
+            onSelect: (value) => Navigator.pop(context, value),
+            listOption: widget.listOption,
+            title: widget.label,
+          );
+        },
+      );
+      if (selectedValue != null) {
+        setState(() {
+          widget.onChanged?.call(selectedValue);
+          widget.controller.text = selectedValue;
+        });
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: Row(
@@ -75,7 +75,7 @@ class _CustomTextfieldDropdown extends State<CustomTextfieldDropdown> {
                   icon: const Icon(Icons.arrow_drop_down),
                 ),
                 labelText: widget.label,
-                labelStyle: widget.labelStyle ?? null,
+                labelStyle: widget.labelStyle,
                 hintStyle: Theme.of(context).textTheme.bodyLarge,
               ),
             ),

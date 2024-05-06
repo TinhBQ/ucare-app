@@ -53,7 +53,7 @@ class ScheduleChooseDoctorExamDoctorListItem extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.only(top: 8, right: 20, left: 20, bottom: 16),
+      padding: const EdgeInsets.only(top: 12, right: 20, left: 20, bottom: 16),
       child: Column(
         children: [
           ...listScheduleItem.map(

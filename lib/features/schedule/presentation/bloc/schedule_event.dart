@@ -19,7 +19,7 @@ final class ScheduleGetList extends ScheduleEvent {
 
   const ScheduleGetList({
     this.currentPage = '1',
-    this.pageSize = '10',
+    this.pageSize = '1000',
     this.filters,
     this.sortField,
     this.sortOrder,

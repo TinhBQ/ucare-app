@@ -3,11 +3,15 @@
 part of 'utils_dependencies.dart';
 
 class DateStrFormat {
-  static const String DATE = 'dd-MM-yyyy';
-  static const String DateInput = 'yyyy-MM-dd';
+  static const String DATE = ' dd-MM-yyyy';
+  static const String DATEINPUT = 'yyyy-MM-dd';
   static const String DATE_AND_TIME = 'dd-MM-yyyy hh:mm';
 
-  static List<String> formats = [DATE, DATE_AND_TIME];
+  static List<String> formats = [
+    DATE,
+    DATE_AND_TIME,
+    DATEINPUT,
+  ];
 }
 
 class UCARETimeZone {
@@ -18,6 +22,19 @@ class UCARETimeZone {
   }) {
     Location targetLocationObject = getLocation(targetLocation);
     final targetDateTime = TZDateTime.from(date, targetLocationObject);
+    return DateFormat(fm).format(targetDateTime);
+  }
+
+  static String fDateInput(
+    String date, {
+    String inFM = DateStrFormat.DATE,
+    String fm = DateStrFormat.DATEINPUT,
+    String targetLocation = "Asia/Ho_Chi_Minh",
+  }) {
+    Location targetLocationObject = getLocation(targetLocation);
+    final inputFormat = DateFormat(inFM);
+    final parsedDate = inputFormat.parse(date);
+    final targetDateTime = TZDateTime.from(parsedDate, targetLocationObject);
     return DateFormat(fm).format(targetDateTime);
   }
 
@@ -34,14 +51,15 @@ class UCARETimeZone {
 
   static DateTime? fStrDateToUTC(
     String date, {
+    String inFM = DateStrFormat.DATE,
     String fm = DateStrFormat.DATE,
     String targetLocation = "Asia/Ho_Chi_Minh",
   }) {
-    // if (!DateStrFormat.formats.contains(fm)) return null;
     try {
       Location targetLocationObject = getLocation(targetLocation);
-      return TZDateTime.from(DateTime.parse(date), targetLocationObject)
-          .toUtc();
+      final inputFormat = DateFormat(inFM);
+      final parsedDate = inputFormat.parse(date);
+      return TZDateTime.from(parsedDate, targetLocationObject);
     } catch (e) {
       return null;
     }

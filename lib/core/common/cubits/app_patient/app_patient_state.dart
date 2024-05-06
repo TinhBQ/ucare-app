@@ -13,7 +13,9 @@ sealed class AppPatientState extends Equatable {
 }
 
 final class AppPatientInitial extends AppPatientState {
-  const AppPatientInitial({required super.baseGetRequestModel});
+  const AppPatientInitial({
+    required super.baseGetRequestModel,
+  });
 
   @override
   List<Object?> get props => [baseGetRequestModel];

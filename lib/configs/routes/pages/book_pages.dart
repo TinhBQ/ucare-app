@@ -69,6 +69,10 @@ class BookPages {
         route: BookRoutes.BOOK_PAYMENT_CONFIRM,
         pageBuilder: (_) => const BookPaymentConfirmPage(),
       ),
+      PageEntity(
+        route: BookRoutes.BOOK_PATIENT_ADD,
+        pageBuilder: (_) => const PatientCreateProfilePage(),
+      ),
     ];
   }
 
@@ -89,8 +93,5 @@ class BookPages {
 
     return MaterialPageRoute(
         builder: (_) => const PatientChooseProfilePage(), settings: settings);
-
-    // return MaterialPageRoute(
-    //     builder: (_) => const ChooseExamInfoPage(), settings: settings);
   }
 }

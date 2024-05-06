@@ -11,9 +11,7 @@ import 'package:mobile_advanced_project_fe/core/common/cubits/medicine_sessions/
 import 'package:mobile_advanced_project_fe/features/application/presentation/bloc/application_bloc.dart';
 
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/book_bloc.dart';
-import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/country/country_bloc.dart';
-import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/medical_profile/medical_profile_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/country/presentation/bloc/country/country_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/deparment/presentation/bloc/department_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/doctor/presentation/bloc/doctor_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/history_booking/presentation/bloc/patient_schedule_bloc.dart';
@@ -56,13 +54,13 @@ class AppBlocProviders {
         BlocProvider(
             create: (_) => serviceLocator<MedicineScheduleBloc>()
               ..add(MedicineScheduleGetList())),
-        BlocProvider(create: (_) => serviceLocator<PatientBloc>()),
+        BlocProvider(
+            create: (_) =>
+                serviceLocator<PatientBloc>()..add(const PatientGetList())),
         BlocProvider(create: (_) => serviceLocator<ScheduleBloc>()),
-        BlocProvider(create: (_) => serviceLocator<BookBloc>()),
         BlocProvider(
             create: (_) =>
                 serviceLocator<StatusBloc>()..add(const StatusGetList())),
         BlocProvider(create: (_) => serviceLocator<OrderBloc>()),
-        BlocProvider(create: (_) => serviceLocator<MedicalProfileBloc>()),
       ];
 }

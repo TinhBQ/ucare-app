@@ -12,6 +12,7 @@ Future<void> initDependencies() async {
   serviceLocator.registerLazySingleton(() => MedicineSessionsCubit());
   serviceLocator.registerLazySingleton(() => AppPatientScheduleCubit());
   serviceLocator.registerLazySingleton(() => AppStatusCubit());
+  serviceLocator.registerLazySingleton(() => CountriesCubit());
 
   // Bloc
   serviceLocator.registerLazySingleton(() => ApplicationBloc());
@@ -24,9 +25,9 @@ Future<void> initDependencies() async {
   _initPatient();
   _initPatientSchedule();
   _initSchedule();
-  _initBook();
   _initStatus();
   _initOrder();
+  _initCountry();
 }
 
 // Auth
@@ -206,11 +207,17 @@ void _initPatient() {
         serviceLocator(),
       ),
     )
+    ..registerFactory(
+      () => UserCreatePatientProfile(
+        serviceLocator(),
+      ),
+    )
     // Bloc
     ..registerLazySingleton(
       () => PatientBloc(
         userGetListPatient: serviceLocator(),
         appPatientCubit: serviceLocator(),
+        userCreatePatientProfile: serviceLocator(),
       ),
     );
 }
@@ -267,25 +274,6 @@ void _initSchedule() {
       () => ScheduleBloc(
         userGetSchedule: serviceLocator(),
       ),
-    );
-}
-
-// Book
-void _initBook() {
-  // Datasource
-  serviceLocator
-    ..registerFactory<BookRemoteDataSource>(
-      () => BookRemoteDataSourceImpl(),
-    )
-    // Repository
-    ..registerFactory<BookRepository>(
-      () => BookRepositoryImpl(
-        serviceLocator(),
-      ),
-    )
-    // Bloc
-    ..registerLazySingleton(
-      () => BookBloc(),
     );
 }
 
@@ -352,6 +340,34 @@ void _initOrder() {
         userOrderPayment: serviceLocator(),
         userOrder: serviceLocator(),
         userOrderReturnURL: serviceLocator(),
+      ),
+    );
+}
+
+// Country
+void _initCountry() {
+  // Datasource
+  serviceLocator
+    ..registerFactory<CountryRemoteDataSource>(
+      () => CountryRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<CountryRepository>(
+      () => CountryRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserGetListCountry(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => CountryBloc(
+        userGetListCountry: serviceLocator(),
+        countryCubit: serviceLocator(),
       ),
     );
 }

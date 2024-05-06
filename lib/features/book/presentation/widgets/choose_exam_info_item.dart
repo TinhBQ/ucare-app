@@ -23,13 +23,13 @@ class ChooseExamInfoItem extends StatelessWidget {
             Icons.keyboard_arrow_right_outlined,
             color: Theme.of(context).colorScheme.onBackground,
           )
-        : const Icon(
+        : Icon(
             Icons.check_circle,
-            color: Colors.green,
+            color: Theme.of(context).colorScheme.primary,
           );
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: InkWell(
         onTap: disable ? null : onTap,
         child: Container(

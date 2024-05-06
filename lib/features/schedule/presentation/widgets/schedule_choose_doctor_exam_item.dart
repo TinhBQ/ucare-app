@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
 class ScheduleChooseDoctorExamDoctorItem extends StatelessWidget {
   final String? avatar;
@@ -48,7 +49,7 @@ class ScheduleChooseDoctorExamDoctorItem extends StatelessWidget {
                   imageUrl: avatar,
                   placeholderStr: 'assets/images/placeholder_doctor.jpg',
                   imageStr: 'assets/images/placeholder_doctor.jpg',
-                  height: 111,
+                  height: 118,
                   width: 111,
                 ),
                 Positioned(
@@ -120,7 +121,13 @@ class ScheduleChooseDoctorExamDoctorItem extends StatelessWidget {
                           ),
                     ),
                     Text(
-                      day ?? "No day",
+                      day != null
+                          ? 'Ngày ${UCARETimeZone.fDateInput(
+                              day!,
+                              inFM: DateStrFormat.DATEINPUT,
+                              fm: DateStrFormat.DATE,
+                            )}'
+                          : "No day",
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,

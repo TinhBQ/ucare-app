@@ -5,6 +5,7 @@ import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_in
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient/app_patient_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/model/request_models/request_models.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
 import '../bloc/patient_bloc.dart';
@@ -19,10 +20,60 @@ class PatientChooseProfilePage extends StatefulWidget {
 }
 
 class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
+  bool _isLoading = false;
+  PatientGetItem? _patientGetItem;
+  BaseGetRequestModel? _baseGetRequestModel;
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
-    context.read<PatientBloc>().add(const PatientGetList());
+    _scrollController.addListener(_scrollListener);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollListener() {
+    print('BQt');
+    _patientGetItem = context.read<AppPatientCubit>().state.patientGetItem;
+
+    if (_patientGetItem?.totalPages.toString() ==
+        _patientGetItem?.currentPage.toString()) {
+      return;
+    }
+
+    if (!_isLoading &&
+        _scrollController.offset >=
+            _scrollController.position.maxScrollExtent &&
+        !_scrollController.position.outOfRange) {
+      setState(() {
+        _isLoading = true;
+      });
+      context
+          .read<AppPatientCubit>()
+          .nextPage((_patientGetItem!.currentPage + 1).toString());
+      _loadData();
+    }
+  }
+
+  void _loadData() {
+    _baseGetRequestModel =
+        context.read<AppPatientCubit>().state.baseGetRequestModel;
+
+    context.read<PatientBloc>().add(
+          PatientGetList(
+            currentPage: _baseGetRequestModel!.currentPage,
+            pageSize: _baseGetRequestModel!.pageSize,
+            filters: _baseGetRequestModel!.filters,
+            sortField: _baseGetRequestModel!.sortField,
+            sortOrder: _baseGetRequestModel!.sortOrder,
+          ),
+        );
   }
 
   @override
@@ -48,38 +99,46 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
           appBar: const CustomSubAppBar(
             title: 'Chọn hồ sơ đặt khám',
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 8,
-            ),
-            child: Column(
-              children: [
-                const PatientProfilesListCardWidget(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
+          body: Stack(
+            children: [
+              CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  PatientProfileDetailsListCardWidget(
+                    onChoose: (PatientItem item) {
+                      print('id: ${item.id}');
+                      context
+                          .read<AppChooseExamInfoCubit>()
+                          .updatePatientId(item.id);
+                      Navigator.of(context)
+                          .pushNamed(BookRoutes.BOOK_CHOOSE_EXAM_INFOR);
+                      //     .then((value) => context
+                      //         .read<AppChooseExamInfoCubit>()
+                      //         .updateInitial());
+                    },
+                    patients: patientGetItem?.rows ?? [],
                   ),
-                  child: Divider(
-                    thickness: 1,
-                    color: Theme.of(context).colorScheme.secondary,
+                  const SliverPadding(
+                    padding: EdgeInsets.only(bottom: 96),
                   ),
-                ),
-                PatientProfileDetailsListCardWidget(
-                  onChoose: (PatientItem item) {
-                    context
-                        .read<AppChooseExamInfoCubit>()
-                        .updatePatientId(item.id);
-                    Navigator.of(context)
-                        .pushNamed(BookRoutes.BOOK_CHOOSE_EXAM_INFOR)
-                        .then((value) => context
-                            .read<AppChooseExamInfoCubit>()
-                            .updateInitial());
+                ],
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                left: 0,
+                child: CustomCta(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      BookRoutes.BOOK_PATIENT_ADD,
+                    );
                   },
-                  patients: patientGetItem?.rows ?? [],
+                  disable: false,
+                  title: 'THÊM HỒ SƠ',
+                  background: Theme.of(context).colorScheme.tertiary,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

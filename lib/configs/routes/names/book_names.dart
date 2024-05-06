@@ -12,4 +12,7 @@ class BookRoutes {
   static const BOOK_CHOOSE_DOCTOR_EXAM_PAGE = "/book/choose_doctor_exam_page";
   static const BOOK_PAYMENT = "/book/payment";
   static const BOOK_PAYMENT_CONFIRM = "/book/payment_confirm";
+
+  // book patient
+  static const BOOK_PATIENT_ADD = '/book/patient_add';
 }

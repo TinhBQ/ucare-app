@@ -6,4 +6,5 @@ import 'package:mobile_advanced_project_fe/core/model/request_models/request_mod
 abstract interface class PatientRepository {
   Future<Either<Failure, PatientGetItem>> getListPatient(
       BaseGetRequestModel params);
+  Future<Either<Failure, String>> createPatient(CreatePatientRequestModel body);
 }

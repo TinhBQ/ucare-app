@@ -11,11 +11,14 @@ class CustomSubAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      elevation: 0,
+      backgroundColor: Theme.of(context).colorScheme.background,
+      elevation: 1,
       title: Text(
         title,
-        style: Theme.of(context).textTheme.titleLarge,
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              color: Theme.of(context).colorScheme.onTertiaryContainer,
+              fontWeight: FontWeight.bold,
+            ),
       ),
       iconTheme: IconThemeData(
         color: Theme.of(context).colorScheme.onBackground,

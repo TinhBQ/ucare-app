@@ -20,7 +20,6 @@ class PatientApi {
   //create patient
   static createPatient(CreatePatientRequestModel params) async {
     try {
-      print(params.toJson());
       var response = await HttpUtil().post(
         AppConstants.SERVER_PATIENT,
         mydata: params.toJson(),

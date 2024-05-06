@@ -2,6 +2,7 @@ part of 'service_dependencies.dart';
 
 class DatabaseHelperTableNames {
   static const String medicineSchedule = 'medicine_schedule';
+  static const String orderRequest = 'order_request';
 }
 
 class DatabaseHelper {
@@ -34,6 +35,16 @@ class DatabaseHelper {
             minute INTEGER
           )
       ''');
+
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS ${DatabaseHelperTableNames.orderRequest}(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        payment_id TEXT,
+        patient_id TEXT,
+        schedule TEXT,
+        sum TEXT
+      )
+    ''');
 
     List<Map<String, dynamic>> data =
         await db.query(DatabaseHelperTableNames.medicineSchedule);

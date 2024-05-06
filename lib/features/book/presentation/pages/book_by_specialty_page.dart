@@ -19,8 +19,10 @@ class _BookBySpecialtyPageState extends State<BookBySpecialtyPage> {
         context.select((AppChooseExamInfoCubit bloc) => bloc.state.numFlow);
 
     return Scaffold(
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         title: 'Đặt lịch khám',
+        background: Theme.of(context).colorScheme.tertiary,
+        color: Colors.white,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,

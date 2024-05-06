@@ -94,6 +94,10 @@ class AppPages {
               onSessionOfDaySelected: onSessionOfDaySelected,
             );
           }),
+      PageEntity(
+        route: AppRoutes.PATIENT_ADD,
+        pageBuilder: (_) => const PatientCreateProfilePage(),
+      ),
     ];
   }
 

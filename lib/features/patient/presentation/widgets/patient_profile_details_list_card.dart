@@ -18,21 +18,27 @@ class PatientProfileDetailsListCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: patients.length,
-        itemBuilder: (context, index) {
-          return PatientProfileDetailCard(
+    return SliverList.separated(
+      itemCount: patients.length,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: PatientProfileDetailCard(
             onChoose: () {
               onChoose(patients[index]);
             },
             first_name: patients[index].first_name,
             last_name: patients[index].last_name,
             phone: patients[index].phone,
-          );
-        },
-      ),
+            email: patients[index].email,
+          ),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return const SizedBox(
+          height: 12,
+        );
+      },
     );
   }
 }

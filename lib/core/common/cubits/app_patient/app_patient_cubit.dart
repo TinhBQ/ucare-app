@@ -9,7 +9,10 @@ class AppPatientCubit extends Cubit<AppPatientState> {
   PatientGetItem? _previouPatientGetItem;
 
   AppPatientCubit()
-      : super(AppPatientInitial(baseGetRequestModel: BaseGetRequestModel()));
+      : super(AppPatientInitial(
+            baseGetRequestModel: BaseGetRequestModel(
+          pageSize: '5',
+        )));
 
   void updatePatient(PatientGetItem? patientGetItem) {
     if (patientGetItem == null) {
@@ -35,5 +38,19 @@ class AppPatientCubit extends Cubit<AppPatientState> {
       );
     }
     _previouPatientGetItem = patientGetItem;
+  }
+
+  void nextPage(String? currentPage) {
+    if (currentPage == null) {
+      return;
+    }
+    emit(
+      PatientDataLoaded(
+        patientGetItem: state.patientGetItem,
+        baseGetRequestModel: state.baseGetRequestModel.copyWith(
+          currentPage: currentPage,
+        ),
+      ),
+    );
   }
 }

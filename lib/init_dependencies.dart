@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 
 // Cubit
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_info/app_choose_exam_info_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_countries/countries_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_doctor/app_doctor_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_medical_appointment_body/app_medical_appointment_body_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient/app_patient_cubit.dart';
@@ -26,11 +27,12 @@ import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/user_lo
 import 'package:mobile_advanced_project_fe/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 
-// Book
-import 'package:mobile_advanced_project_fe/features/book/data/datasources/book_remote_data_source.dart';
-import 'package:mobile_advanced_project_fe/features/book/data/repositories/book_repository_impl.dart';
-import 'package:mobile_advanced_project_fe/features/book/domain/repository/book_repository.dart';
-import 'package:mobile_advanced_project_fe/features/book/presentation/bloc/book_bloc.dart';
+// Country
+import 'package:mobile_advanced_project_fe/features/country/data/datasources/country_remote_data_source.dart';
+import 'package:mobile_advanced_project_fe/features/country/data/repositories/country_repository_impl.dart';
+import 'package:mobile_advanced_project_fe/features/country/domain/repository/country_repository.dart';
+import 'package:mobile_advanced_project_fe/features/country/domain/usecases/user_get_list_country.dart';
+import 'package:mobile_advanced_project_fe/features/country/presentation/bloc/country/country_bloc.dart';
 
 // Doctor
 import 'package:mobile_advanced_project_fe/features/doctor/data/datasources/doctor_remote_data_source.dart';
@@ -67,6 +69,7 @@ import 'package:mobile_advanced_project_fe/features/order/presentation/bloc/orde
 import 'package:mobile_advanced_project_fe/features/patient/data/datasources/patient_remote_data_source.dart';
 import 'package:mobile_advanced_project_fe/features/patient/data/repositories/patient_repository_impl.dart';
 import 'package:mobile_advanced_project_fe/features/patient/domain/repository/patient_repository.dart';
+import 'package:mobile_advanced_project_fe/features/patient/domain/usecases/usecases.dart';
 import 'package:mobile_advanced_project_fe/features/patient/domain/usecases/user_get_list_patient.dart';
 import 'package:mobile_advanced_project_fe/features/patient/presentation/bloc/patient_bloc.dart';
 

@@ -19,34 +19,41 @@ class _MultiStepperWidgetState extends State<MultiStepperWidget> {
     Icons.wallet_outlined,
     Icons.receipt_outlined,
   ];
+
   @override
   Widget build(BuildContext context) {
-    return IconStepper(
-      stepReachedAnimationDuration: const Duration(microseconds: 1),
-      enableNextPreviousButtons: false,
-      enableStepTapping: false,
-      lineLength: 28,
-      icons: listIcons
-          .asMap()
-          .entries
-          .map(
-            (entry) => Icon(
-              entry.value,
-              weight: 50,
-              color: widget.currentStep == entry.key
-                  ? Theme.of(context).colorScheme.onPrimary
-                  : Theme.of(context).colorScheme.onPrimaryContainer,
-            ),
-          )
-          .toList(),
-      activeStep: widget.currentStep,
-      lineColor: Theme.of(context).colorScheme.secondary,
-      activeStepBorderColor: Theme.of(context).colorScheme.primaryContainer,
-      activeStepColor: Theme.of(context).colorScheme.primary,
-      stepColor: Theme.of(context).colorScheme.surfaceVariant,
-      activeStepBorderWidth: 8,
-      activeStepBorderPadding: 0,
-      stepReachedAnimationEffect: Curves.linear,
+    return Container(
+      padding: const EdgeInsets.only(bottom: 8),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.tertiary,
+      ),
+      child: IconStepper(
+        stepReachedAnimationDuration: const Duration(microseconds: 1),
+        enableNextPreviousButtons: false,
+        enableStepTapping: false,
+        lineLength: 28,
+        icons: listIcons
+            .asMap()
+            .entries
+            .map(
+              (entry) => Icon(
+                entry.value,
+                weight: 50,
+                color: widget.currentStep == entry.key
+                    ? Theme.of(context).colorScheme.onTertiary
+                    : Theme.of(context).colorScheme.onTertiaryContainer,
+              ),
+            )
+            .toList(),
+        activeStep: widget.currentStep,
+        lineColor: Colors.white,
+        activeStepBorderColor: Theme.of(context).colorScheme.tertiaryContainer,
+        activeStepColor: Theme.of(context).colorScheme.tertiary,
+        stepColor: Theme.of(context).colorScheme.surfaceVariant,
+        activeStepBorderWidth: 8,
+        activeStepBorderPadding: 0,
+        stepReachedAnimationEffect: Curves.linear,
+      ),
     );
   }
 }

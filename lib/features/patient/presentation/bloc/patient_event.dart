@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 part of 'patient_bloc.dart';
 
 sealed class PatientEvent extends Equatable {
@@ -16,7 +18,7 @@ final class PatientGetList extends PatientEvent {
 
   const PatientGetList({
     this.currentPage = '1',
-    this.pageSize = '10',
+    this.pageSize = '5',
     this.filters,
     this.sortField,
     this.sortOrder,
@@ -37,4 +39,38 @@ final class PatientGetList extends PatientEvent {
       sortOrder: sortOrder ?? this.sortOrder,
     );
   }
+}
+
+final class PatientCreateProfile extends PatientEvent {
+  final String first_name;
+  final String last_name;
+  final String phone;
+  final String email;
+  final String citizen_id;
+  final String birthday;
+  final bool male;
+  final String nation;
+  final String? ethnicity;
+  final String job;
+  final String? province;
+  final String? district;
+  final String? wards;
+  final String? address;
+
+  const PatientCreateProfile({
+    required this.first_name,
+    required this.last_name,
+    required this.phone,
+    required this.email,
+    required this.citizen_id,
+    required this.birthday,
+    required this.male,
+    required this.nation,
+    required this.job,
+    this.ethnicity,
+    this.province,
+    this.district,
+    this.wards,
+    this.address,
+  });
 }

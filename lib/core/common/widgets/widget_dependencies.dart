@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
+import 'package:path/path.dart';
 import 'package:pinput/pinput.dart';
 
 part 'custom_appbar.dart';
@@ -23,3 +24,4 @@ part 'custom_textfield_datetime.dart';
 part 'custom_textfield_dropdown.dart';
 part 'custom_textfield_password.dart';
 part 'custom_textfield_profile.dart';
+part 'custom_cta.dart';
