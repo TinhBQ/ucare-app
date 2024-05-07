@@ -32,3 +32,5 @@ part 'order_payment_get_item.dart';
 part 'order_item.dart';
 part 'degree_item.dart';
 part 'room_item.dart';
+part 'new_item.dart';
+part 'new_get_item.dart';

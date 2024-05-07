@@ -17,3 +17,4 @@ part 'schedule_api.dart';
 part 'session_of_day_api.dart';
 part 'status_api.dart';
 part 'user_api.dart';
+part 'new_api.dart';

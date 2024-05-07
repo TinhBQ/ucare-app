@@ -55,6 +55,8 @@ class AppConstants {
   static const String SERVER_ORDER_PAYMENT = "$API_VERSION/order/payment";
   static const String SERVER_ORDER = "$API_VERSION/order";
 
+  static const String SERVER_NEW = "$API_VERSION/news";
+
   // Server STATUS
   static const String SERVER_STATUS = "$API_VERSION/status";
 

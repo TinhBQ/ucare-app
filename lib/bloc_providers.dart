@@ -3,6 +3,7 @@ import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_in
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_countries/countries_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_doctor/app_doctor_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_medical_appointment_body/app_medical_appointment_body_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_new/app_new_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient/app_patient_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient_schedule/app_patient_schedule_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_status/app_status_cubit.dart';
@@ -16,6 +17,7 @@ import 'package:mobile_advanced_project_fe/features/deparment/presentation/bloc/
 import 'package:mobile_advanced_project_fe/features/doctor/presentation/bloc/doctor_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/history_booking/presentation/bloc/patient_schedule_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentation/bloc/medicine_schedule_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/new/presentation/bloc/news_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/order/presentation/bloc/order_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/patient/presentation/bloc/patient_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
@@ -37,6 +39,7 @@ class AppBlocProviders {
         BlocProvider(create: (_) => serviceLocator<MedicineSessionsCubit>()),
         BlocProvider(create: (_) => serviceLocator<AppPatientScheduleCubit>()),
         BlocProvider(create: (_) => serviceLocator<AppStatusCubit>()),
+        BlocProvider(create: (_) => serviceLocator<AppNewCubit>()),
         BlocProvider(create: (_) => serviceLocator<CountriesCubit>()),
         // Bloc
         BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
@@ -62,5 +65,7 @@ class AppBlocProviders {
             create: (_) =>
                 serviceLocator<StatusBloc>()..add(const StatusGetList())),
         BlocProvider(create: (_) => serviceLocator<OrderBloc>()),
+        BlocProvider(
+            create: (_) => serviceLocator<NewsBloc>()..add(const NewGetList())),
       ];
 }

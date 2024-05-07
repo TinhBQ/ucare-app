@@ -13,6 +13,7 @@ Future<void> initDependencies() async {
   serviceLocator.registerLazySingleton(() => AppPatientScheduleCubit());
   serviceLocator.registerLazySingleton(() => AppStatusCubit());
   serviceLocator.registerLazySingleton(() => CountriesCubit());
+  serviceLocator.registerLazySingleton(() => AppNewCubit());
 
   // Bloc
   serviceLocator.registerLazySingleton(() => ApplicationBloc());
@@ -28,6 +29,7 @@ Future<void> initDependencies() async {
   _initStatus();
   _initOrder();
   _initCountry();
+  _initNew();
 }
 
 // Auth
@@ -368,6 +370,33 @@ void _initCountry() {
       () => CountryBloc(
         userGetListCountry: serviceLocator(),
         countryCubit: serviceLocator(),
+      ),
+    );
+}
+
+void _initNew() {
+  // Datasource
+  serviceLocator
+    ..registerFactory<NewRemoteDataSource>(
+      () => NewRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<NewRepository>(
+      () => NewRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserGetListNew(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => NewsBloc(
+        userGetListNew: serviceLocator(),
+        appNewCubit: serviceLocator(),
       ),
     );
 }

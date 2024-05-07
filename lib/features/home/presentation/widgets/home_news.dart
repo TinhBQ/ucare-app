@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:pinput/pinput.dart';
 
 import 'home_slide_news.dart';
 
@@ -26,7 +28,12 @@ const listNews = [
 ];
 
 class HomeNewsWidget extends StatefulWidget {
-  const HomeNewsWidget({super.key});
+  final List<NewItem> newItems;
+
+  const HomeNewsWidget({
+    super.key,
+    required this.newItems,
+  });
 
   @override
   State<HomeNewsWidget> createState() => _HomeNewsWidgetState();
@@ -52,7 +59,14 @@ class _HomeNewsWidgetState extends State<HomeNewsWidget> {
             height: 8,
           ),
           CarouselSlider(
-            items: listNews,
+            items: widget.newItems
+                .map((item) => HomeSlideNews(
+                      content: item.content,
+                      title: item.title,
+                      imagePath:
+                          'https://mobile-advanced-be-r7xe.onrender.com/v1.0/api/files/image/${item.image}',
+                    ))
+                .toList(),
             options: CarouselOptions(
               height: 250,
               autoPlay: true,
@@ -72,19 +86,20 @@ class _HomeNewsWidgetState extends State<HomeNewsWidget> {
           const SizedBox(
             height: 12,
           ),
-          Center(
-            child: DotsIndicator(
-              dotsCount: 3,
-              position: myCurrentIndex,
-              decorator: DotsDecorator(
-                  color: Theme.of(context).colorScheme.secondary,
-                  activeColor: Theme.of(context).colorScheme.primary,
-                  size: const Size.square(5.0),
-                  activeSize: const Size(17.0, 5.0),
-                  activeShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0))),
+          if (widget.newItems.isNotEmpty)
+            Center(
+              child: DotsIndicator(
+                dotsCount: widget.newItems.length,
+                position: myCurrentIndex,
+                decorator: DotsDecorator(
+                    color: Theme.of(context).colorScheme.secondary,
+                    activeColor: Theme.of(context).colorScheme.primary,
+                    size: const Size.square(5.0),
+                    activeSize: const Size(17.0, 5.0),
+                    activeShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0))),
+              ),
             ),
-          ),
         ],
       ),
     );

@@ -15,3 +15,4 @@ part './status_entity.dart';
 part './patient_schedule_entity.dart';
 part './payment_entity.dart';
 part './order_entity.dart';
+part './new_entity.dart';

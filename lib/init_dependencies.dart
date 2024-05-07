@@ -5,6 +5,7 @@ import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_in
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_countries/countries_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_doctor/app_doctor_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_medical_appointment_body/app_medical_appointment_body_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_new/app_new_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient/app_patient_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient_schedule/app_patient_schedule_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_status/app_status_cubit.dart';
@@ -55,6 +56,11 @@ import 'package:mobile_advanced_project_fe/features/medicine_schedule/domain/use
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/domain/usecases/user_turn_on_of_time_of_medicine_session.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/domain/usecases/user_update_time_of_medicine_session.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentation/bloc/medicine_schedule_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/new/data/datasources/new_remote_data_source.dart';
+import 'package:mobile_advanced_project_fe/features/new/data/repositories/new_repository_impl.dart';
+import 'package:mobile_advanced_project_fe/features/new/domain/repository/new_repository.dart';
+import 'package:mobile_advanced_project_fe/features/new/domain/usecases/user_get_list_new.dart';
+import 'package:mobile_advanced_project_fe/features/new/presentation/bloc/news_bloc.dart';
 
 // order
 import 'package:mobile_advanced_project_fe/features/order/data/datasources/order_remote_data_source.dart';
@@ -70,7 +76,6 @@ import 'package:mobile_advanced_project_fe/features/patient/data/datasources/pat
 import 'package:mobile_advanced_project_fe/features/patient/data/repositories/patient_repository_impl.dart';
 import 'package:mobile_advanced_project_fe/features/patient/domain/repository/patient_repository.dart';
 import 'package:mobile_advanced_project_fe/features/patient/domain/usecases/usecases.dart';
-import 'package:mobile_advanced_project_fe/features/patient/domain/usecases/user_get_list_patient.dart';
 import 'package:mobile_advanced_project_fe/features/patient/presentation/bloc/patient_bloc.dart';
 
 // Profile

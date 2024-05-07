@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
 
 class HomeSlideNews extends StatelessWidget {
   final String title;
@@ -54,9 +55,10 @@ class HomeSlideNews extends StatelessWidget {
             height: 12,
           ),
           Expanded(
-            child: Image(
-              image: AssetImage(imagePath),
-              fit: BoxFit.cover,
+            child: CustomImage(
+              imageUrl: imagePath,
+              placeholderStr: 'assets/images/placeholder_doctor.jpg',
+              imageStr: 'assets/images/placeholder_doctor.jpg',
               width: double.infinity,
             ),
           ),
