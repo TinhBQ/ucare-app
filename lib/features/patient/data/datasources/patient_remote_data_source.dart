@@ -9,6 +9,8 @@ import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 abstract interface class PatientRemoteDataSource {
   Future<PatientGetItem?> getListPatient(BaseGetRequestModel params);
   Future<String> createPatient(CreatePatientRequestModel body);
+
+  Future<String> patientBookSchedule(PatientBookScheduleRequestModel body);
 }
 
 class PatientRemoteDataSourceImpl implements PatientRemoteDataSource {
@@ -25,6 +27,15 @@ class PatientRemoteDataSourceImpl implements PatientRemoteDataSource {
   @override
   Future<String> createPatient(CreatePatientRequestModel body) async {
     BaseReponseModel response = await PatientApi.createPatient(body);
+    return response.status == StatusResponse.success.name
+        ? InforMassage.CREATE_PATIENT_SUCCESS
+        : throw ServerException(ServerException.CREATE_PATIENT_FAILURE);
+  }
+
+  @override
+  Future<String> patientBookSchedule(
+      PatientBookScheduleRequestModel body) async {
+    BaseReponseModel response = await PatientApi.patientBookSchedule(body);
     return response.status == StatusResponse.success.name
         ? InforMassage.CREATE_PATIENT_SUCCESS
         : throw ServerException(ServerException.CREATE_PATIENT_FAILURE);

@@ -9,7 +9,8 @@ class AppPatientScheduleCubit extends Cubit<AppPatientScheduleState> {
   PatientScheduleGetItem? _previouPatientGetItem;
 
   AppPatientScheduleCubit()
-      : super(AppPatientScheduleInitial(baseGetRequestModel: BaseGetRequestModel()));
+      : super(AppPatientScheduleInitial(
+            baseGetRequestModel: BaseGetRequestModel()));
 
   void updatePatientSchedule(PatientScheduleGetItem? patientGetItem) {
     if (patientGetItem == null) {
@@ -35,5 +36,30 @@ class AppPatientScheduleCubit extends Cubit<AppPatientScheduleState> {
       );
     }
     _previouPatientGetItem = patientGetItem;
+  }
+
+  void nextPage(String? currentPage) {
+    if (currentPage == null) {
+      return;
+    }
+    emit(
+      PatientScheduleDataLoaded(
+        patientScheduleGetItem: state.patientScheduleGetItem,
+        baseGetRequestModel: state.baseGetRequestModel.copyWith(
+          currentPage: currentPage,
+        ),
+      ),
+    );
+  }
+
+  void onChangeStatus(String statusId) {
+    emit(
+      PatientScheduleDataLoaded(
+        patientScheduleGetItem: state.patientScheduleGetItem,
+        baseGetRequestModel: state.baseGetRequestModel.copyWith(
+          filters: 'status_id==$statusId',
+        ),
+      ),
+    );
   }
 }

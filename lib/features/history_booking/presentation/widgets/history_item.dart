@@ -25,31 +25,31 @@ class HistoryItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 24, top: 16, right: 24, bottom: 24),
-      width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.only(left: 24, top: 8, right: 24, bottom: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondaryContainer,
+        color: const Color.fromRGBO(0, 0, 0, 0),
         borderRadius: BorderRadius.circular(10.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: const Offset(0, 3), // changes position of shadow
-          ),
-        ],
+        border: Border.all(
+          color: Theme.of(context).colorScheme.primary,
+          width: 1.8,
+        ),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Icon(Icons.account_box_rounded),
+            Icon(
+              Icons.person,
+              color: Theme.of(context).colorScheme.primary,
+            ),
             const SizedBox(width: 8),
             Text(
               '$degree $doctorName',
-              style: const TextStyle(
-                fontSize: 16,
+              style: TextStyle(
+                fontSize: 20,
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
@@ -58,12 +58,17 @@ class HistoryItemWidget extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.headset_mic_outlined),
+            Icon(
+              Icons.headset_mic_outlined,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             const SizedBox(width: 8),
             Text(
               '$departmentName',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
+                color: Theme.of(context).colorScheme.secondary,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
@@ -72,12 +77,17 @@ class HistoryItemWidget extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.business_outlined),
+            Icon(
+              Icons.business_outlined,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             const SizedBox(width: 8),
             Text(
               '$roomName',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
+                color: Theme.of(context).colorScheme.secondary,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
@@ -86,12 +96,17 @@ class HistoryItemWidget extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.calendar_today),
+            Icon(
+              Icons.calendar_today,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             const SizedBox(width: 8),
             Text(
               '$day',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
+                color: Theme.of(context).colorScheme.secondary,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
@@ -100,27 +115,40 @@ class HistoryItemWidget extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.access_time_outlined),
+            Icon(
+              Icons.access_time_outlined,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             const SizedBox(width: 8),
             Text(
               '$sessionName',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
+                color: Theme.of(context).colorScheme.secondary,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
         ),
-        const Divider(),
-        const SizedBox(height: 16),
+        const SizedBox(height: 8),
+        Divider(
+          color: Theme.of(context).colorScheme.primary,
+        ),
+        const SizedBox(height: 8),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.medical_services_outlined),
+            Icon(
+              Icons.medical_services_outlined,
+              color: Theme.of(context).colorScheme.primary,
+            ),
             const SizedBox(width: 8),
             Text(
               '$lastName $firstName',
-              style: const TextStyle(
-                fontSize: 16,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
           ],

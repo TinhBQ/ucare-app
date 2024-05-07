@@ -33,6 +33,8 @@ class AppConstants {
 
   // Server Patient
   static const String SERVER_PATIENT = "$API_VERSION/patient";
+  static const String SERVER_PATIENT_BOOK_SCHEDULE =
+      "$API_VERSION/patient/bookSchedule";
 
   // Server Patient schedule
   static const String SERVER_PATIENT_SCHEDULE = "$API_VERSION/patient_schedule";

@@ -7,4 +7,8 @@ abstract interface class PatientRepository {
   Future<Either<Failure, PatientGetItem>> getListPatient(
       BaseGetRequestModel params);
   Future<Either<Failure, String>> createPatient(CreatePatientRequestModel body);
+
+
+   Future<Either<Failure, String>> patientBookSchedule(
+      PatientBookScheduleRequestModel body);
 }

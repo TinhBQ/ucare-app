@@ -32,6 +32,12 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
   }
 
   @override
+  void didChangeDependencies() {
+    context.read<AppChooseExamInfoCubit>().updateInitial();
+    super.didChangeDependencies();
+  }
+
+  @override
   void dispose() {
     _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
@@ -39,7 +45,6 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
   }
 
   void _scrollListener() {
-    print('BQt');
     _patientGetItem = context.read<AppPatientCubit>().state.patientGetItem;
 
     if (_patientGetItem?.totalPages.toString() ==
@@ -106,15 +111,14 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
                 slivers: [
                   PatientProfileDetailsListCardWidget(
                     onChoose: (PatientItem item) {
-                      print('id: ${item.id}');
                       context
                           .read<AppChooseExamInfoCubit>()
                           .updatePatientId(item.id);
                       Navigator.of(context)
-                          .pushNamed(BookRoutes.BOOK_CHOOSE_EXAM_INFOR);
-                      //     .then((value) => context
-                      //         .read<AppChooseExamInfoCubit>()
-                      //         .updateInitial());
+                          .pushNamed(BookRoutes.BOOK_CHOOSE_EXAM_INFOR)
+                          .then((value) => context
+                              .read<AppChooseExamInfoCubit>()
+                              .updateInitial());
                     },
                     patients: patientGetItem?.rows ?? [],
                   ),

@@ -72,7 +72,7 @@ class ChooseExamInfoListItem extends StatelessWidget {
                               item.numStep,
                               id: schedule.schedule_id,
                               value: schedule.doctor.name ?? "",
-                              section: schedule.session,
+                              scheduleItem: schedule,
                             );
                         Navigator.of(context).pop();
                       }

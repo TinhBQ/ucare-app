@@ -13,24 +13,31 @@ part 'patient_state.dart';
 enum OnPatientEvent {
   onPatientGetList,
   onPatientCreateProfile,
+  onPatientBookSchedule,
 }
 
 class PatientBloc extends Bloc<PatientEvent, PatientState> {
   final UserGetListPatient _userGetListPatient;
   final UserCreatePatientProfile _userCreatePatientProfile;
+  final UserPatientBookSchedule _userPatientBookSchedule;
+
   final AppPatientCubit _appPatientCubit;
 
   PatientBloc({
     required UserGetListPatient userGetListPatient,
     required UserCreatePatientProfile userCreatePatientProfile,
+    required UserPatientBookSchedule userPatientBookSchedule,
     required AppPatientCubit appPatientCubit,
   })  : _userGetListPatient = userGetListPatient,
         _userCreatePatientProfile = userCreatePatientProfile,
+        _userPatientBookSchedule = userPatientBookSchedule,
         _appPatientCubit = appPatientCubit,
         super(PatientInitial()) {
     on<PatientEvent>((_, emit) => emit(PatientLoading()));
     on<PatientGetList>(_onPatientGetList);
     on<PatientCreateProfile>(_onPatientCreateProfile);
+
+    on<PatientBookSchedule>(_onPatientBookSchedule);
   }
 
   void _onPatientGetList(
@@ -96,6 +103,32 @@ class PatientBloc extends Bloc<PatientEvent, PatientState> {
         PatientSuccess(
           message.toString(),
           OnPatientEvent.onPatientCreateProfile,
+        ),
+      ),
+    );
+  }
+
+  void _onPatientBookSchedule(
+    PatientBookSchedule event,
+    Emitter<PatientState> emit,
+  ) async {
+    final res = await _userPatientBookSchedule(
+      PatientBookScheduleRequestModel(
+        schedule_id: event.schedule_id,
+        patient_id: event.patient_id,
+      ),
+    );
+    res.fold(
+      (failure) => emit(
+        PatientFailure(
+          failure.message.toString(),
+          OnPatientEvent.onPatientBookSchedule,
+        ),
+      ),
+      (message) => emit(
+        PatientSuccess(
+          message.toString(),
+          OnPatientEvent.onPatientBookSchedule,
         ),
       ),
     );

@@ -3,30 +3,29 @@
 part of "order_request_model_dependencies.dart";
 
 class OrderRequestItem {
-  final String? id;
   final String payment_id;
   final String patient_id;
   final List<String> schedule;
   final String sum;
+  final String description;
 
   OrderRequestItem({
-    this.id,
     required this.payment_id,
     required this.patient_id,
     required this.schedule,
     required this.sum,
+    required this.description,
   });
 
   Map<String, dynamic> toJson() => {
-        "id": id,
         "payment_id": payment_id,
         "patient_id": patient_id,
         "schedule": schedule,
         "sum": sum,
+        "description": description,
       };
 
   Map<String, dynamic> toJsonLocal() => {
-        "id": id,
         "payment_id": payment_id,
         "patient_id": patient_id,
         "schedule": schedule[0].toString(),
@@ -35,13 +34,13 @@ class OrderRequestItem {
 
   factory OrderRequestItem.fromJson(Map<String, dynamic> json) {
     return OrderRequestItem(
-      id: json['id'],
       payment_id: json['payment_id'],
       patient_id: json['patient_id'],
       schedule: [
         json['schedule'],
       ],
       sum: json['sum'],
+      description: json['description'],
     );
   }
 
@@ -56,15 +55,65 @@ class OrderRequestItem {
     String? patient_id,
     List<String>? schedule,
     String? sum,
+    String? description,
   }) {
     return OrderRequestItem(
-      id: id ?? this.id,
       payment_id: payment_id ?? this.payment_id,
       patient_id: patient_id ?? this.patient_id,
       schedule: schedule ?? this.schedule,
       sum: sum ?? this.sum,
+      description: description ?? this.description,
     );
   }
+}
+
+class OrderDescription {
+  final String type;
+  final int totalPrice;
+  final List<OrderDescriptionSchedule> schedules;
+
+  OrderDescription({
+    required this.type,
+    required this.totalPrice,
+    required this.schedules,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "type": type,
+        "totalPrice": totalPrice,
+        "schedules": schedules
+            .map(
+              (item) => item.toJson(),
+            )
+            .toList(),
+      };
+}
+
+class OrderDescriptionSchedule {
+  final String id;
+  final String doctorName;
+  final String roomName;
+  final String day;
+  final String session;
+  final String department;
+
+  OrderDescriptionSchedule({
+    required this.id,
+    required this.doctorName,
+    required this.roomName,
+    required this.day,
+    required this.session,
+    required this.department,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "doctorName": doctorName,
+        "roomName": roomName,
+        "day": day,
+        "department": department,
+        "session": session,
+      };
 }
 
 class OrderRequestModel {

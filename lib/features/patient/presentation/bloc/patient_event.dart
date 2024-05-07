@@ -74,3 +74,13 @@ final class PatientCreateProfile extends PatientEvent {
     this.address,
   });
 }
+
+final class PatientBookSchedule extends PatientEvent {
+  final String schedule_id;
+  final String patient_id;
+
+  const PatientBookSchedule({
+    required this.schedule_id,
+    required this.patient_id,
+  });
+}

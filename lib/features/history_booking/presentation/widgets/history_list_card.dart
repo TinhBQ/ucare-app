@@ -11,24 +11,26 @@ class HistoryListCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: patientSchedules.length,
-        itemBuilder: (context, index) {
-          return HistoryItemWidget(
-            doctorName: patientSchedules[index].schedule.doctor.name,
-            degree: patientSchedules[index].schedule.doctor.degree?.name,
-            roomName: patientSchedules[index].schedule.room.name,
-            sessionName: patientSchedules[index].schedule.session.content,
-            departmentName:
-                patientSchedules[index].schedule.doctor.department?.name,
-            day: patientSchedules[index].schedule.day,
-            firstName: patientSchedules[index].patient.first_name,
-            lastName: patientSchedules[index].patient.last_name,
-          );
-        },
-      ),
+    return SliverList.separated(
+      itemCount: patientSchedules.length,
+      itemBuilder: (context, index) {
+        return HistoryItemWidget(
+          doctorName: patientSchedules[index].schedule.doctor.name,
+          degree: patientSchedules[index].schedule.doctor.degree?.name,
+          roomName: patientSchedules[index].schedule.room.name,
+          sessionName: patientSchedules[index].schedule.session.content,
+          departmentName:
+              patientSchedules[index].schedule.doctor.department?.name,
+          day: patientSchedules[index].schedule.day,
+          firstName: patientSchedules[index].patient.first_name,
+          lastName: patientSchedules[index].patient.last_name,
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return const SizedBox(
+          height: 0,
+        );
+      },
     );
   }
 }

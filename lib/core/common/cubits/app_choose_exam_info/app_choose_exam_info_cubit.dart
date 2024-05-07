@@ -21,7 +21,7 @@ class AppChooseExamInfoCubit extends Cubit<AppChooseExamInfoState> {
     required String value,
     String? id,
     int? price,
-    SessionOfDayEntity? section,
+    ScheduleItem? scheduleItem,
   }) {
     emit(
       AppChooseExamInfoLoaded(
@@ -64,7 +64,7 @@ class AppChooseExamInfoCubit extends Cubit<AppChooseExamInfoState> {
         ).toList(),
         price: numStep == 0 ? price : state.price,
         numFlow: 1,
-        section: numStep == 2 ? section : null,
+        scheduleItem: numStep == 2 ? scheduleItem : null,
         patientId: state.patientId,
       ),
     );
@@ -77,7 +77,7 @@ class AppChooseExamInfoCubit extends Cubit<AppChooseExamInfoState> {
         price: state.price,
         patientId: id,
         numFlow: 1,
-        section: null,
+        scheduleItem: null,
       ),
     );
   }
@@ -89,7 +89,7 @@ class AppChooseExamInfoCubit extends Cubit<AppChooseExamInfoState> {
         price: state.price,
         patientId: state.patientId,
         numFlow: id,
-        section: state.section,
+        scheduleItem: state.scheduleItem,
       ),
     );
   }

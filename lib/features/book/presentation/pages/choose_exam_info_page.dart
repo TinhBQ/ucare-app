@@ -49,7 +49,7 @@ class ChooseExamInfoPage extends StatelessWidget {
                     .pushNamed(BookRoutes.BOOK_PAYMENT_CONFIRM)
                     .then(
                       (value) =>
-                          context.read<AppChooseExamInfoCubit>().nextStep(1),
+                          context.read<AppChooseExamInfoCubit>().nextStep(0),
                     );
               },
               disable: listInfoMedicalItems[2].value == "",

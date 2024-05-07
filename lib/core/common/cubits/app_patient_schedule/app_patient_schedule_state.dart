@@ -1,9 +1,9 @@
 part of 'app_patient_schedule_cubit.dart';
 
-
 sealed class AppPatientScheduleState extends Equatable {
   final PatientScheduleGetItem? patientScheduleGetItem;
   final BaseGetRequestModel baseGetRequestModel;
+
   const AppPatientScheduleState({
     this.patientScheduleGetItem,
     required this.baseGetRequestModel,
@@ -31,7 +31,8 @@ final class PatientScheduleDataLoaded extends AppPatientScheduleState {
     BaseGetRequestModel? baseGetRequestModel,
   }) {
     return PatientScheduleDataLoaded(
-      patientScheduleGetItem: patientScheduleGetItem ?? this.patientScheduleGetItem,
+      patientScheduleGetItem:
+          patientScheduleGetItem ?? this.patientScheduleGetItem,
       baseGetRequestModel: baseGetRequestModel ?? this.baseGetRequestModel,
     );
   }

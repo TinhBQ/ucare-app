@@ -5,14 +5,14 @@ sealed class AppChooseExamInfoState extends Equatable {
   final int? price;
   final String? patientId;
   final int numFlow;
-  final SessionOfDayEntity? section;
+  final ScheduleItem? scheduleItem;
 
   const AppChooseExamInfoState({
     required this.listInfoMedicalItem,
     this.price,
     this.patientId,
     required this.numFlow,
-    this.section,
+    this.scheduleItem,
   });
 
   @override
@@ -21,7 +21,7 @@ sealed class AppChooseExamInfoState extends Equatable {
         price,
         patientId,
         numFlow,
-        section,
+        scheduleItem,
       ];
 }
 
@@ -56,7 +56,7 @@ final class AppChooseExamInfoInitial extends AppChooseExamInfoState {
           price: 0,
           patientId: '',
           numFlow: 0,
-          section: null,
+          scheduleItem: null,
         );
 
   @override
@@ -65,7 +65,7 @@ final class AppChooseExamInfoInitial extends AppChooseExamInfoState {
         price,
         patientId,
         numFlow,
-        section,
+        scheduleItem,
       ];
 }
 
@@ -75,7 +75,7 @@ final class AppChooseExamInfoLoaded extends AppChooseExamInfoState {
     super.price,
     super.patientId,
     required super.numFlow,
-    super.section,
+    super.scheduleItem,
   });
 
   @override
@@ -84,6 +84,6 @@ final class AppChooseExamInfoLoaded extends AppChooseExamInfoState {
         price,
         patientId,
         numFlow,
-        section,
+        scheduleItem,
       ];
 }

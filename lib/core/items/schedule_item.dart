@@ -22,4 +22,6 @@ class ScheduleItem extends ScheduleEntity {
       day: json['day'] ?? '',
     );
   }
+
+  get id => null;
 }

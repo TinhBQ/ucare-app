@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
@@ -24,8 +26,8 @@ class BookPaymentConfirmPage extends StatelessWidget {
     final int? price =
         context.select((AppChooseExamInfoCubit cubit) => cubit.state.price);
 
-    final SessionOfDayEntity? section =
-        context.select((AppChooseExamInfoCubit cubit) => cubit.state.section);
+    final ScheduleItem? scheduleItem = context
+        .select((AppChooseExamInfoCubit cubit) => cubit.state.scheduleItem);
 
     final StatusGetItem? statusGetItem =
         context.select((AppStatusCubit cubit) => cubit.state.statusGetItem);
@@ -57,7 +59,8 @@ class BookPaymentConfirmPage extends StatelessWidget {
               if (state.onOrderEvent == OnOrderEvent.onOrderPayment) {
                 if (patientId == null ||
                     listInfoMedicalItems[2].id == '' ||
-                    state.paymentItems == null) {
+                    state.paymentItems == null ||
+                    scheduleItem == null) {
                   ShowSnackBar.error('Thất bại', context);
                 } else {
                   context.read<OrderBloc>().add(
@@ -67,6 +70,22 @@ class BookPaymentConfirmPage extends StatelessWidget {
                             payment_id: state.paymentItems!.first.id.toString(),
                             schedule: [listInfoMedicalItems[2].id],
                             sum: price.toString(),
+                            description: jsonEncode(
+                              OrderDescription(
+                                  type: 'VNPAY',
+                                  totalPrice: price ?? 0,
+                                  schedules: [
+                                    OrderDescriptionSchedule(
+                                      id: scheduleItem.schedule_id,
+                                      doctorName:
+                                          scheduleItem.doctor.name ?? 'No name',
+                                      roomName: scheduleItem.room.name,
+                                      day: scheduleItem.day,
+                                      session: scheduleItem.session.content,
+                                      department: scheduleItem.department.name,
+                                    )
+                                  ]).toJson(),
+                            ),
                           )
                         ]),
                       );
@@ -137,7 +156,7 @@ class BookPaymentConfirmPage extends StatelessWidget {
                       day: listInfoMedicalItems[1].value,
                       doctor: listInfoMedicalItems[2].value,
                       price: '$price VNĐ',
-                      section: section?.content.toString() ?? "",
+                      section: scheduleItem?.session.content ?? '',
                     ),
                   ],
                 ),
