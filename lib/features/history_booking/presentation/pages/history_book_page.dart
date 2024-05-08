@@ -32,14 +32,22 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
   @override
   void initState() {
     _scrollController.addListener(_scrollListener);
-    statusItems = context
-        .read<AppStatusCubit>()
-        .state
-        .statusGetItem!
-        .rows
-        .where((item) => item.group == 'SCHEDULE')
-        .toList();
-    _loadData();
+
+    if (context.read<AppStatusCubit>().state.statusGetItem?.rows != null) {
+      setState(() {
+        statusItems = context
+            .read<AppStatusCubit>()
+            .state
+            .statusGetItem!
+            .rows
+            .where((item) => item.group == 'SCHEDULE')
+            .toList();
+        context
+            .read<AppPatientScheduleCubit>()
+            .onChangeStatus(statusItems.first.id.toString());
+        _loadData();
+      });
+    }
 
     super.initState();
   }
@@ -115,12 +123,36 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
           },
         ),
         BlocListener<StatusBloc, StatusState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state is StatusLoading) {
+              LoadingOverlay.showLoading(context);
+            } else if (state is StatusFailure) {
+              LoadingOverlay.dismissLoading();
+              // ShowSnackBar.error(state.message, context);
+            } else if (state is StatusSuccess) {
+              if (state.onStatusEvent == OnStatusEvent.onStatusGetList) {
+                setState(() {
+                  statusItems = context
+                      .read<AppStatusCubit>()
+                      .state
+                      .statusGetItem!
+                      .rows
+                      .where((item) => item.group == 'SCHEDULE')
+                      .toList();
+                  context
+                      .read<AppPatientScheduleCubit>()
+                      .onChangeStatus(statusItems.first.id.toString());
+                  _loadData();
+                });
+              }
+              LoadingOverlay.dismissLoading();
+            }
+          },
         ),
       ],
       child: Scaffold(
         appBar: CustomAppBar(
-          title: 'Phiếu khám bệnh',
+          title: 'Lịch sử khám bệnh',
           background: Theme.of(context).colorScheme.tertiary,
           color: Colors.white,
         ),

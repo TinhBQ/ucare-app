@@ -19,8 +19,7 @@ class HistoryListCardWidget extends StatelessWidget {
           degree: patientSchedules[index].schedule.doctor.degree?.name,
           roomName: patientSchedules[index].schedule.room.name,
           sessionName: patientSchedules[index].schedule.session.content,
-          departmentName:
-              patientSchedules[index].schedule.doctor.department?.name,
+          departmentName: patientSchedules[index].schedule.department.name,
           day: patientSchedules[index].schedule.day,
           firstName: patientSchedules[index].patient.first_name,
           lastName: patientSchedules[index].patient.last_name,

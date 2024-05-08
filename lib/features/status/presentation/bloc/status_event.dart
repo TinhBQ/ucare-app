@@ -18,8 +18,8 @@ final class StatusGetList extends StatusEvent {
     this.currentPage = '1',
     this.pageSize = '20',
     this.filters,
-    this.sortField,
-    this.sortOrder,
+    this.sortField = 'name',
+    this.sortOrder = 'ASC',
   });
 
   StatusGetList copyWith({
