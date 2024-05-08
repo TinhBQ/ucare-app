@@ -31,6 +31,7 @@ Future<void> initDependencies() async {
   _initOrder();
   _initCountry();
   _initNew();
+  _initStatistic();
 }
 
 // Auth
@@ -428,6 +429,32 @@ void _initNew() {
       () => NewsBloc(
         userGetListNew: serviceLocator(),
         appNewCubit: serviceLocator(),
+      ),
+    );
+}
+
+void _initStatistic() {
+  // Datasource
+  serviceLocator
+    ..registerFactory<StatisticRemoteDataSource>(
+      () => StatisticRemoteDataSourceImpl(),
+    )
+    // Repository
+    ..registerFactory<StatisticRepository>(
+      () => StatisticRepositoryImpl(
+        serviceLocator(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserGetStatisticMonthToMonth(
+        serviceLocator(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => StatisticBloc(
+        userGetStatisticMonthToMonth: serviceLocator(),
       ),
     );
 }

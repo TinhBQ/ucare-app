@@ -103,6 +103,11 @@ import 'package:mobile_advanced_project_fe/features/session_of_day/data/reposito
 import 'package:mobile_advanced_project_fe/features/session_of_day/domain/repository/session_of_day_repository.dart';
 import 'package:mobile_advanced_project_fe/features/session_of_day/domain/usecases/user_get_list_session_of_day.dart';
 import 'package:mobile_advanced_project_fe/features/session_of_day/presentation/bloc/session_of_day_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/statistic/data/datasources/statistic_remote_data_source.dart';
+import 'package:mobile_advanced_project_fe/features/statistic/data/repositories/statistic_repository_impl.dart';
+import 'package:mobile_advanced_project_fe/features/statistic/domain/repository/statistic_repository.dart';
+import 'package:mobile_advanced_project_fe/features/statistic/domain/usecases/user_get_statistic_month_to_month.dart';
+import 'package:mobile_advanced_project_fe/features/statistic/presentation/bloc/statistic_bloc.dart';
 
 // Status
 import 'package:mobile_advanced_project_fe/features/status/data/datasources/status_remote_data_source.dart';

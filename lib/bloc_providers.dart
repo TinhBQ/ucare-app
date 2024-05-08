@@ -24,6 +24,7 @@ import 'package:mobile_advanced_project_fe/features/patient/presentation/bloc/pa
 import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/schedule/presentation/bloc/schedule_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/session_of_day/presentation/bloc/session_of_day_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/statistic/presentation/bloc/statistic_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/status/presentation/bloc/status_bloc.dart';
 
 import 'package:mobile_advanced_project_fe/init_dependencies.dart';
@@ -69,5 +70,6 @@ class AppBlocProviders {
         BlocProvider(create: (_) => serviceLocator<OrderBloc>()),
         BlocProvider(
             create: (_) => serviceLocator<NewsBloc>()..add(const NewGetList())),
+        BlocProvider(create: (_) => serviceLocator<StatisticBloc>()),
       ];
 }

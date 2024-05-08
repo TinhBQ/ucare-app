@@ -9,6 +9,6 @@ class StatisticMonthToMonthRequestModel {
 
   Map<String, dynamic> toJson() => {
         "start": start,
-        "end": end,
+        "end": start,
       };
 }

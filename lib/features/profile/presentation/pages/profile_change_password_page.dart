@@ -4,7 +4,6 @@ import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
-
 import 'package:mobile_advanced_project_fe/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
 
@@ -70,12 +69,13 @@ class _ProfileChangePasswordPageState extends State<ProfileChangePasswordPage> {
         }
 
         if (state is ProfileSuccess) {
+          ShowSnackBar.success(state.message, context);
           LoadingOverlay.dismissLoading();
           if (state.onProfileEvent == OnProfileEvent.onProfileChangePassword) {
             Navigator.of(context)
                 .pushNamedAndRemoveUntil(AppRoutes.SING_IN, (route) => false);
+            LoadingOverlay.dismissLoading();
           }
-          ShowSnackBar.success(state.message, context);
         }
       },
       builder: (context, state) {

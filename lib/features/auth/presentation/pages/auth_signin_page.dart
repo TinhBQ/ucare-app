@@ -76,6 +76,7 @@ class _AuthSignInPageState extends State<AuthSignInPage> {
             LoadingOverlay.dismissLoading();
             ShowSnackBar.error(state.message, context);
           }
+          LoadingOverlay.dismissLoading();
         }
 
         if (state is AuthSuccess) {
@@ -93,6 +94,7 @@ class _AuthSignInPageState extends State<AuthSignInPage> {
                   AuthUserLoggedIn(),
                 );
           }
+          LoadingOverlay.dismissLoading();
         }
       },
       builder: (context, state) {

@@ -28,6 +28,9 @@ class AppConstants {
   // Server Department
   static const String SERVER_DEPARTMENT = "$API_VERSION/department";
 
+  // Server statistic
+  static const String SERVER_STATISTIC_MONTH_TO_MONTH = "$API_VERSION/statistic/getUserMonthToMonth";
+
   // Server SessionOfDay
   static const String SERVER_SESSION_OF_DAY = "$API_VERSION/sessionOfDay";
   // Server Doctor
