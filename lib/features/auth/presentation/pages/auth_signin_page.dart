@@ -67,13 +67,11 @@ class _AuthSignInPageState extends State<AuthSignInPage> {
 
         if (state is AuthFailure) {
           if (state.onAuthEvent == OnAuthEvent.onAuthUserLoggedIn) {
-            LoadingOverlay.dismissLoading();
             Navigator.of(context).pushNamedAndRemoveUntil(
                 AppRoutes.APPLICATION, (route) => false);
             ShowSnackBar.success(InforMassage.LOGIN_SUCCESS, context);
           } else {
             _clearFields();
-            LoadingOverlay.dismissLoading();
             ShowSnackBar.error(state.message, context);
           }
           LoadingOverlay.dismissLoading();

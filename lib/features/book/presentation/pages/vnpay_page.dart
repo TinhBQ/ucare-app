@@ -37,14 +37,12 @@ class VnpayPage extends StatelessWidget {
         }
 
         if (state is PatientSuccess) {
+          LoadingOverlay.dismissLoading();
           if (state.onPatientEvent == OnPatientEvent.onPatientBookSchedule) {
             context.read<AppChooseExamInfoCubit>().updateInitial();
             Navigator.of(context)
                 .pushReplacementNamed(BookRoutes.BOOK_PATIENT_CHOOSE_PROFILE);
-            LoadingOverlay.dismissLoading();
           }
-
-          LoadingOverlay.dismissLoading();
         }
       },
       child: Scaffold(
@@ -67,6 +65,7 @@ class VnpayPage extends StatelessWidget {
                           patient_id: patientId ?? '',
                           schedule_id: scheduleItem?.schedule_id ?? '',
                         ));
+                    return NavigationDecision.navigate;
                   }
                   return NavigationDecision.navigate;
                 },

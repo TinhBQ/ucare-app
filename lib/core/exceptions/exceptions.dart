@@ -7,7 +7,7 @@ class ServerException implements Exception {
   static String LOGIN_SUCCESS = 'Đăng nhập thành công.';
   static String LOGIN_FAILURE = 'Đăng nhập thất bại.';
 
-  static String SIGN_UP_FAILURE = 'Đăng nhập thất bại.';
+  static String SIGN_UP_FAILURE = 'Đăng ký thất bại.';
   static String CONFIRM_SIGN_UP_FAILUARE = 'Xác thực đăg ký thất bại.';
   static String CREATE_OTP_FAILUARE = 'Gửi OTP không thành công.';
   static String FORGOT_PASSWORD_FAILUARE = 'Đổi mật khẩu không thành công.';
@@ -31,7 +31,9 @@ class ServerException implements Exception {
 
   static String GET_PATIENT_FAILURE = 'Lấy hồ sơ bệnh nhân không thành công.';
 
-  static String CREATE_PATIENT_FAILURE = 'Tạo hồ sơ khám bệnh không thành công.';
+  static String CREATE_PATIENT_FAILURE =
+      'Tạo hồ sơ khám bệnh không thành công.';
 
-  static String DELETE_PATIENT_FAILURE = 'Xóa hồ sơ người bệnh không thành công.';
+  static String DELETE_PATIENT_FAILURE =
+      'Xóa hồ sơ người bệnh không thành công.';
 }
