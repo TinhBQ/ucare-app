@@ -18,7 +18,7 @@ final class PatientGetList extends PatientEvent {
 
   const PatientGetList({
     this.currentPage = '1',
-    this.pageSize = '5',
+    this.pageSize = '7',
     this.filters,
     this.sortField,
     this.sortOrder,

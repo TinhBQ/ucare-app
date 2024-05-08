@@ -10,7 +10,10 @@ class AppMyOrderCubit extends Cubit<AppMyOrderState> {
 
   AppMyOrderCubit()
       : super(AppMyOrderScheduleInitial(
-          baseGetRequestModel: BaseGetRequestModel(),
+          baseGetRequestModel: BaseGetRequestModel(
+            sortField: 'create_at',
+            sortOrder: 'DESC',
+          ),
         ));
 
   void updateMyOrder(MyOrderGetItem? myOrderGetItem) {

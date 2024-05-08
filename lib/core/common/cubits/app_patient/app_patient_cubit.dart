@@ -11,7 +11,7 @@ class AppPatientCubit extends Cubit<AppPatientState> {
   AppPatientCubit()
       : super(AppPatientInitial(
             baseGetRequestModel: BaseGetRequestModel(
-          pageSize: '5',
+          pageSize: '7',
         )));
 
   void updatePatient(PatientGetItem? patientGetItem) {

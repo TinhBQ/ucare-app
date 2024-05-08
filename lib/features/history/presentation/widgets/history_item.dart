@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 
 class HistoryItemWidget extends StatelessWidget {
   final String? doctorName;
@@ -167,7 +168,14 @@ class HistoryItemWidget extends StatelessWidget {
             ElevatedButton(
               onPressed: code == 'WAITING'
                   ? () {
-                      onCancel();
+                      ShowDialog.confirm(
+                        context,
+                        title: 'Bạn chắc chắn muốn xóa?',
+                        description: 'Bạn hủy lịch sẽ mất phí tam thu.',
+                        callback: () {
+                          onCancel();
+                        },
+                      );
                     }
                   : () {
                       onRest();

@@ -23,7 +23,6 @@ class HistoryBookPage extends StatefulWidget {
 class _HistoryBookPageState extends State<HistoryBookPage> {
   int _currentStep = 0;
 
-  bool _isLoading = false;
   PatientScheduleGetItem? _patientScheduleGetItem;
   BaseGetRequestModel? _baseGetRequestModel;
   final ScrollController _scrollController = ScrollController();
@@ -32,6 +31,7 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
 
   @override
   void initState() {
+    super.initState();
     _scrollController.addListener(_scrollListener);
 
     if (context.read<AppStatusCubit>().state.statusGetItem?.rows != null) {
@@ -49,7 +49,6 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
         _loadData();
       });
     }
-    super.initState();
   }
 
   @override
@@ -68,17 +67,14 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
       return;
     }
 
-    if (!_isLoading &&
-        _scrollController.offset >=
+    if (_scrollController.offset >=
             _scrollController.position.maxScrollExtent &&
         !_scrollController.position.outOfRange) {
-      setState(() {
-        _isLoading = true;
-      });
       context
           .read<AppPatientScheduleCubit>()
           .nextPage((_patientScheduleGetItem!.currentPage + 1).toString());
       _loadData();
+      print('BQT');
     }
   }
 
@@ -114,7 +110,6 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
             id: id,
             status_id:
                 statusItems.firstWhere((item) => item.code == 'CANCEL').id));
-        _loadData();
       },
     );
 
@@ -139,6 +134,7 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
               if (state.onPatientScheduleEvent ==
                   OnPatientScheduleEvent.onPatientOnCancel) {
                 ShowSnackBar.success(state.message, context);
+                _loadData();
               }
               LoadingOverlay.dismissLoading();
               // ShowSnackBar.success(state.message, context);

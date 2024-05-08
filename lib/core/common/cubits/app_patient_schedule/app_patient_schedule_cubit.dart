@@ -10,7 +10,10 @@ class AppPatientScheduleCubit extends Cubit<AppPatientScheduleState> {
 
   AppPatientScheduleCubit()
       : super(AppPatientScheduleInitial(
-            baseGetRequestModel: BaseGetRequestModel()));
+            baseGetRequestModel: BaseGetRequestModel(
+          sortField: 'create_at',
+          sortOrder: 'DESC',
+        )));
 
   void updatePatientSchedule(PatientScheduleGetItem? patientGetItem) {
     if (patientGetItem == null) {

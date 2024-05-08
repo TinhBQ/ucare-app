@@ -110,7 +110,7 @@ class HistoryPaymentItemWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Icon(
-              Icons.calendar_today,
+              Icons.payment,
               color: Theme.of(context).colorScheme.secondary,
             ),
             const SizedBox(width: 8),
