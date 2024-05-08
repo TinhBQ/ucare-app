@@ -14,6 +14,27 @@ class HomeIntroduce extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currenPaddingTop = MediaQuery.of(context).padding.top;
+
+    print('Trinh123@@ $avatar');
+
+    Widget image = (avatar == null ||
+            avatar?.toUpperCase() == 'String'.toUpperCase() ||
+            avatar == '')
+        ? const CustomImage(
+            imageUrl: null,
+            placeholderStr: 'assets/logo/no-image.png',
+            imageStr: 'assets/logo/no-image.png',
+            height: 78,
+            width: 78,
+          )
+        : CustomImage(
+            imageUrl:
+                'https://mobile-advanced-be-r7xe.onrender.com/v1.0/api/files/image/$avatar',
+            placeholderStr: 'assets/logo/no-image.png',
+            imageStr: 'assets/logo/no-image.png',
+            height: 78,
+            width: 78,
+          );
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -40,15 +61,7 @@ class HomeIntroduce extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(9999),
-              child: CustomImage(
-                imageUrl: avatar != null
-                    ? 'https://mobile-advanced-be-r7xe.onrender.com/v1.0/api/files/image/$avatar'
-                    : null,
-                placeholderStr: 'assets/logo/no-image.png',
-                imageStr: 'assets/logo/no-image.png',
-                height: 58,
-                width: 58,
-              ),
+              child: image,
             ),
           ),
           const SizedBox(
