@@ -11,6 +11,7 @@ abstract interface class PatientRemoteDataSource {
   Future<String> createPatient(CreatePatientRequestModel body);
 
   Future<String> patientBookSchedule(PatientBookScheduleRequestModel body);
+  Future<String> deletePatient(DeletePatientProfileRequestModel params);
 }
 
 class PatientRemoteDataSourceImpl implements PatientRemoteDataSource {
@@ -39,5 +40,13 @@ class PatientRemoteDataSourceImpl implements PatientRemoteDataSource {
     return response.status == StatusResponse.success.name
         ? InforMassage.CREATE_PATIENT_SUCCESS
         : throw ServerException(ServerException.CREATE_PATIENT_FAILURE);
+  }
+
+  @override
+  Future<String> deletePatient(DeletePatientProfileRequestModel params) async {
+    BaseReponseModel response = await PatientApi.deletePatient(params);
+    return response.status == StatusResponse.success.name
+        ? InforMassage.DELETE_PATIENT_SUCCESS
+        : throw ServerException(ServerException.DELETE_PATIENT_FAILURE);
   }
 }

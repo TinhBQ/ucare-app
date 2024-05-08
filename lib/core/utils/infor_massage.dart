@@ -27,6 +27,8 @@ class InforMassage {
   static String GET_PATIENT_SUCCESS =
       'Lấy danh sách hồ sơ bệnh nhân thành công';
   static String CREATE_PATIENT_SUCCESS = 'Tạo hồ sơ bệnh nhân thành công.';
+  static String DELETE_PATIENT_SUCCESS = 'Xóa hồ sơ người bệnh thành công.';
+
 
   // Valid form
   static String emailValid = 'Email không hợp lệ.';

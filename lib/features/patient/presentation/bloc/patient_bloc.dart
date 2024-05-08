@@ -14,30 +14,33 @@ enum OnPatientEvent {
   onPatientGetList,
   onPatientCreateProfile,
   onPatientBookSchedule,
+  onPatientDeleteProfile,
 }
 
 class PatientBloc extends Bloc<PatientEvent, PatientState> {
   final UserGetListPatient _userGetListPatient;
   final UserCreatePatientProfile _userCreatePatientProfile;
   final UserPatientBookSchedule _userPatientBookSchedule;
-
+  final UserDeletePatientProfile _userDeletePatientProfile;
   final AppPatientCubit _appPatientCubit;
 
   PatientBloc({
     required UserGetListPatient userGetListPatient,
     required UserCreatePatientProfile userCreatePatientProfile,
     required UserPatientBookSchedule userPatientBookSchedule,
+    required UserDeletePatientProfile userDeletePatientProfile,
     required AppPatientCubit appPatientCubit,
   })  : _userGetListPatient = userGetListPatient,
         _userCreatePatientProfile = userCreatePatientProfile,
         _userPatientBookSchedule = userPatientBookSchedule,
+        _userDeletePatientProfile = userDeletePatientProfile,
         _appPatientCubit = appPatientCubit,
         super(PatientInitial()) {
     on<PatientEvent>((_, emit) => emit(PatientLoading()));
     on<PatientGetList>(_onPatientGetList);
     on<PatientCreateProfile>(_onPatientCreateProfile);
-
     on<PatientBookSchedule>(_onPatientBookSchedule);
+    on<PatientDeleteProfile>(_onPatientDeleteProfile);
   }
 
   void _onPatientGetList(
@@ -130,6 +133,22 @@ class PatientBloc extends Bloc<PatientEvent, PatientState> {
           message.toString(),
           OnPatientEvent.onPatientBookSchedule,
         ),
+      ),
+    );
+  }
+
+  void _onPatientDeleteProfile(
+    PatientDeleteProfile event,
+    Emitter<PatientState> emit,
+  ) async {
+    final res = await _userDeletePatientProfile(
+        DeletePatientProfileRequestModel(patient_id: event.patient_id));
+    res.fold(
+      (failure) => emit(PatientFailure(
+          failure.message.toString(), OnPatientEvent.onPatientDeleteProfile)),
+      (message) => emit(
+        PatientSuccess(
+            message.toString(), OnPatientEvent.onPatientDeleteProfile),
       ),
     );
   }

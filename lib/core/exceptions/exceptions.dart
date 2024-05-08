@@ -33,4 +33,5 @@ class ServerException implements Exception {
 
   static String CREATE_PATIENT_FAILURE = 'Tạo hồ sơ khám bệnh không thành công.';
 
+  static String DELETE_PATIENT_FAILURE = 'Xóa hồ sơ người bệnh không thành công.';
 }

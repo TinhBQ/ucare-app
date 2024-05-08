@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/patient/presentation/pages/patient_create_profile.dart';
+import 'package:mobile_advanced_project_fe/features/patient_profile/presentation/pages/pages.dart';
 
 import 'package:mobile_advanced_project_fe/global.dart';
 
