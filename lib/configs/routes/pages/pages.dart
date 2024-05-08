@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/history/presentation/pages/history_payment_page.dart';
+import 'package:mobile_advanced_project_fe/features/new/presentation/bloc/news_bloc.dart';
 import 'package:mobile_advanced_project_fe/features/patient/presentation/pages/patient_create_profile.dart';
 
 import 'package:mobile_advanced_project_fe/global.dart';
@@ -14,7 +16,7 @@ import 'package:mobile_advanced_project_fe/features/auth/presentation/pages/page
 import 'package:mobile_advanced_project_fe/features/book/presentation/pages/book_by_specialty_page.dart';
 import 'package:mobile_advanced_project_fe/features/deparment/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/doctor/presentation/pages/pages.dart';
-import 'package:mobile_advanced_project_fe/features/history_booking/presentation/pages/history_book_page.dart';
+import 'package:mobile_advanced_project_fe/features/history/presentation/pages/history_book_page.dart';
 import 'package:mobile_advanced_project_fe/features/home/presentation/pages/home_page.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentation/pages/pages.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/pages/pages.dart';

@@ -8,6 +8,8 @@ import 'package:mobile_advanced_project_fe/core/model/response_models/response_m
 abstract interface class PatientScheduleRemoteDataSource {
   Future<PatientScheduleGetItem?> getListPatientSchedule(
       BaseGetRequestModel params);
+
+  Future<String> onCancel(ScheduleCancelRequestModel params);
 }
 
 class PatientScheduleRemoteDataSourceImpl
@@ -22,5 +24,15 @@ class PatientScheduleRemoteDataSourceImpl
     return response.status == StatusResponse.success.name
         ? response.responseData
         : throw ServerException(ServerException.GET_FAIL);
+  }
+
+  @override
+  Future<String> onCancel(ScheduleCancelRequestModel params) async {
+    BaseReponseModel response =
+        await PatientScheduleApi.onCancel(params);
+
+    return response.status == StatusResponse.success.name
+        ? 'Hủy thành công!'
+        : throw ServerException(ServerException.CONFIRM_SIGN_UP_FAILUARE);
   }
 }

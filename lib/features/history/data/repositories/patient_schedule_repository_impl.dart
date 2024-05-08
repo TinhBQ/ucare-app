@@ -23,4 +23,15 @@ class PatientScheduleRepositoryImpl implements PatientScheduleRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> onCancel(
+      ScheduleCancelRequestModel params) async {
+    try {
+      final message = await patientScheduleRemoteDataSource.onCancel(params);
+      return right(message);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

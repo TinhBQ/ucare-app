@@ -13,22 +13,50 @@ part 'patient_schedule_state.dart';
 
 enum OnPatientScheduleEvent {
   onPatientScheduleGetList,
+  onPatientOnCancel,
 }
 
 class PatientScheduleBloc
     extends Bloc<PatientScheduleEvent, PatientScheduleState> {
   final UserGetListPatientSchedule _userGetListPatientSchedule;
+  final UseCancelSchedule _useCancelSchedule;
 
   final AppPatientScheduleCubit _appPatientScheduleCubit;
 
   PatientScheduleBloc({
     required UserGetListPatientSchedule userGetListPatientSchedule,
     required AppPatientScheduleCubit appPatientScheduleCubit,
+    required UseCancelSchedule useCancelSchedule,
   })  : _userGetListPatientSchedule = userGetListPatientSchedule,
         _appPatientScheduleCubit = appPatientScheduleCubit,
+        _useCancelSchedule = useCancelSchedule,
         super(PatientScheduleInitial()) {
     on<PatientScheduleEvent>((_, emit) => emit(PatientScheduleLoading()));
     on<PatientScheduleGetList>(_onPatientScheduleGetList);
+    on<PatientOnCancel>(_onPatientOnCancel);
+  }
+
+  void _onPatientOnCancel(
+    PatientOnCancel event,
+    Emitter<PatientScheduleState> emit,
+  ) async {
+    final res = await _useCancelSchedule(ScheduleCancelRequestModel(
+      id: event.id,
+      status_id: event.status_id,
+    ));
+
+    res.fold(
+      (failure) => emit(PatientScheduleFailure(
+        failure.message.toString(),
+        OnPatientScheduleEvent.onPatientOnCancel,
+      )),
+      (message) {
+        return emit(PatientScheduleSuccess(
+          message,
+          OnPatientScheduleEvent.onPatientOnCancel,
+        ));
+      },
+    );
   }
 
   void _onPatientScheduleGetList(

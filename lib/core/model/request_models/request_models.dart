@@ -5,3 +5,4 @@ export 'order_request_models/order_request_model_dependencies.dart';
 export 'patient_request_models/patient_request_model_dependencies.dart';
 export 'schedule_request_models/schedule_request_model_dependencies.dart';
 export 'user_request_models/user_request_model_dependencies.dart';
+export './statistic_month_to_month_request_model.dart';

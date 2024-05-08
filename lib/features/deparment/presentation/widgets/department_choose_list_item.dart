@@ -10,6 +10,7 @@ class DepartmentChooseListItem extends StatefulWidget {
   final bool isLoading;
   final bool isFirstLoading;
   final Function(DepartmentItem item) onClick;
+  final bool isAll;
 
   const DepartmentChooseListItem({
     super.key,
@@ -17,6 +18,7 @@ class DepartmentChooseListItem extends StatefulWidget {
     this.isLoading = false,
     this.isFirstLoading = true,
     required this.onClick,
+    this.isAll = true,
   });
 
   @override
@@ -61,16 +63,28 @@ class _DepartmentChooseListItemState extends State<DepartmentChooseListItem> {
       padding: const EdgeInsets.only(top: 16, right: 20, left: 20),
       child: Column(
         children: [
-          ...[departmentItem, ...widget.listChooseDepartmentItem].map(
-            (item) => DepartmentChooseItem(
-              name: item.name,
-              description: item.description,
-              onClick: () {
-                widget.onClick(item);
-              },
-              service_charge: item.service_charge.toString(),
+          if (widget.isAll)
+            ...[departmentItem, ...widget.listChooseDepartmentItem].map(
+              (item) => DepartmentChooseItem(
+                name: item.name,
+                description: item.description,
+                onClick: () {
+                  widget.onClick(item);
+                },
+                service_charge: item.service_charge.toString(),
+              ),
             ),
-          ),
+          if (!widget.isAll)
+            ...widget.listChooseDepartmentItem.map(
+              (item) => DepartmentChooseItem(
+                name: item.name,
+                description: item.description,
+                onClick: () {
+                  widget.onClick(item);
+                },
+                service_charge: item.service_charge.toString(),
+              ),
+            ),
           if (widget.isLoading)
             Container(
               padding: const EdgeInsets.only(bottom: 16),

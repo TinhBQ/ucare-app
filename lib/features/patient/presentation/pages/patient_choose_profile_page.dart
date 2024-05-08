@@ -33,7 +33,7 @@ class _PatientChooseProfilePageState extends State<PatientChooseProfilePage> {
 
   @override
   void didChangeDependencies() {
-    context.read<AppChooseExamInfoCubit>().updateInitial();
+    context.read<AppChooseExamInfoCubit>().nextStep(0);
     super.didChangeDependencies();
   }
 

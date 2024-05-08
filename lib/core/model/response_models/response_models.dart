@@ -17,3 +17,4 @@ part 'order_response_model.dart';
 part './country_get_response_model.dart';
 part './new_get_response_model.dart';
 part 'file_get_response_model.dart';
+part 'my_order_get_response_model.dart';

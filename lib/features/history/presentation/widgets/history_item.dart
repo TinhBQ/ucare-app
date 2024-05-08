@@ -9,6 +9,9 @@ class HistoryItemWidget extends StatelessWidget {
   final String? day;
   final String? firstName;
   final String? lastName;
+  final String code;
+  final VoidCallback onRest;
+  final VoidCallback onCancel;
 
   const HistoryItemWidget({
     super.key,
@@ -20,6 +23,9 @@ class HistoryItemWidget extends StatelessWidget {
     required this.day,
     required this.firstName,
     required this.lastName,
+    required this.code,
+    required this.onRest,
+    required this.onCancel,
   });
 
   @override
@@ -31,7 +37,7 @@ class HistoryItemWidget extends StatelessWidget {
         color: const Color.fromRGBO(0, 0, 0, 0),
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.tertiary,
           width: 1.8,
         ),
       ),
@@ -132,23 +138,52 @@ class HistoryItemWidget extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Divider(
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.tertiary,
+          thickness: 1.8,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 4),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              Icons.medical_services_outlined,
-              color: Theme.of(context).colorScheme.primary,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.medical_services_outlined,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  '$lastName $firstName',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(width: 8),
-            Text(
-              '$lastName $firstName',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.primary,
+            ElevatedButton(
+              onPressed: code == 'WAITING'
+                  ? () {
+                      onCancel();
+                    }
+                  : () {
+                      onRest();
+                    },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                backgroundColor: Theme.of(context).colorScheme.tertiary,
+              ),
+              child: Text(
+                code == 'WAITING' ? 'Hủy' : 'Đặt lại',
+                style: Theme.of(context)
+                    .textTheme
+                    .labelLarge!
+                    .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ),
           ],

@@ -17,7 +17,6 @@ class _MultiStepperWidgetState extends State<MultiStepperWidget> {
     Icons.local_hospital_outlined,
     Icons.list_alt_outlined,
     Icons.wallet_outlined,
-    Icons.receipt_outlined,
   ];
 
   @override

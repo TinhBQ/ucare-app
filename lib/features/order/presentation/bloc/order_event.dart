@@ -55,3 +55,19 @@ final class OrderPaymentReturnURL extends OrderEvent {
     required this.returnUrl,
   });
 }
+
+final class OrderGetMyList extends OrderEvent {
+  final String? currentPage;
+  final String? pageSize;
+  final String? filters;
+  final String? sortField;
+  final String? sortOrder;
+
+  const OrderGetMyList({
+    this.currentPage = "1",
+    this.pageSize = "10",
+    this.filters,
+    this.sortField,
+    this.sortOrder,
+  });
+}

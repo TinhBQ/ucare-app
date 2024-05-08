@@ -46,4 +46,15 @@ class OrderRepositoryImpl implements OrderRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, MyOrderGetItem>> getMyOrder(
+      BaseGetRequestModel params) async {
+    try {
+      final myOrderGetItem = await orderRemoteDataSource.getMyOrder(params);
+      return right(myOrderGetItem!);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

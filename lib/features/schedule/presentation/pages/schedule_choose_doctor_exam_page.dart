@@ -43,10 +43,33 @@ class _CScheduleChooseDoctorExamPageState
 
   @override
   Widget build(BuildContext context) {
+    Widget content = SliverToBoxAdapter(
+      child: ScheduleChooseDoctorExamDoctorListItem(
+        listScheduleItem: _scheduleGetItem?.rows ?? [],
+        isLoading: false,
+        isFirstLoading: false,
+        onChooseScheduleItem: (ScheduleItem item) {
+          widget.onChooseDoctorExamPage?.call(item);
+        },
+      ),
+    );
+
+    if (_scheduleGetItem != null &&
+        (_scheduleGetItem?.rows == null || _scheduleGetItem!.rows.isEmpty)) {
+      content = const SliverToBoxAdapter(
+          child: CustomNoData(
+        text: 'Lịch khám không chưa có.',
+      ));
+    }
+
     return BlocConsumer<ScheduleBloc, ScheduleState>(
       listener: (context, state) {
+        if (state is ScheduleLoading) {
+          LoadingOverlay.showLoading(context);
+        }
         if (state is ScheduleFailure) {
           ShowSnackBar.error(state.message, context);
+          LoadingOverlay.dismissLoading();
         }
 
         if (state is ScheduleSuccess) {
@@ -55,6 +78,7 @@ class _CScheduleChooseDoctorExamPageState
               _scheduleGetItem = state.scheduleGetItem;
             });
           }
+          LoadingOverlay.dismissLoading();
         }
       },
       builder: (context, state) {
@@ -64,18 +88,7 @@ class _CScheduleChooseDoctorExamPageState
           ),
           body: SafeArea(
             child: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: ScheduleChooseDoctorExamDoctorListItem(
-                    listScheduleItem: _scheduleGetItem?.rows ?? [],
-                    isLoading: false,
-                    isFirstLoading: false,
-                    onChooseScheduleItem: (ScheduleItem item) {
-                      widget.onChooseDoctorExamPage?.call(item);
-                    },
-                  ),
-                )
-              ],
+              slivers: [content],
             ),
           ),
         );

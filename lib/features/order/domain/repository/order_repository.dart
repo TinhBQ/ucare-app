@@ -11,4 +11,7 @@ abstract interface class OrderRepository {
 
   Future<Either<Failure, String>> onOrderPaymentReturnURL(
       OrderPaymentReturnURLRequestModel body);
+
+  Future<Either<Failure, MyOrderGetItem>> getMyOrder(
+      BaseGetRequestModel params);
 }

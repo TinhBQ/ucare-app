@@ -5,7 +5,6 @@ List<BottomNavigationBarItem> bottomTabs = const [
     icon: Icon(Icons.home),
     label: 'Trang chủ',
   ),
-  
   BottomNavigationBarItem(
     icon: Icon(Icons.search),
     label: 'Tra cứu lịch khám',

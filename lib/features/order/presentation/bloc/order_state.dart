@@ -17,6 +17,7 @@ final class OrderSuccess extends OrderState {
   final List<PaymentItem>? paymentItems;
   final List<OrderItem>? orderItems;
   final String? link;
+  final MyOrderGetItem? myOrderGetItem;
 
   const OrderSuccess(
     this.message,
@@ -24,6 +25,7 @@ final class OrderSuccess extends OrderState {
     this.paymentItems,
     this.orderItems,
     this.link,
+    this.myOrderGetItem,
   });
 }
 

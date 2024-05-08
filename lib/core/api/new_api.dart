@@ -8,14 +8,11 @@ class NewApi {
         queryParameters: params.toJson(),
       );
       if (response.statusCode == HttpStatusCode.OK) {
-        print(1);
         return NewGetResponseModel.fromJson(response.data);
       } else {
-        print(2);
         throw ServerException(ServerException.GET_FAIL);
       }
     } catch (e) {
-      print(3);
       throw ServerException(ServerException.GET_FAIL);
     }
   }

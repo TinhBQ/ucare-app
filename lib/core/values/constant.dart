@@ -58,6 +58,7 @@ class AppConstants {
       "$API_VERSION/order/payment/VNPAY/generatePaymentLink";
   static const String SERVER_ORDER_PAYMENT = "$API_VERSION/order/payment";
   static const String SERVER_ORDER = "$API_VERSION/order";
+  static const String SERVER_GET_MY_ORDER = "$API_VERSION/order/getMyOrders";
 
   static const String SERVER_NEW = "$API_VERSION/news";
 

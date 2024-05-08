@@ -52,12 +52,12 @@ class MedicineScheduleRemoteDataSourceImpl
 
       if (items.isActived == 1) {
         LocalNotifications.scheduleRepeatingNotification(
-          title: "Schedule Notification",
-          body: "This is a Schedule Notification",
+          title: "Lịch uống thuốc",
+          body: "Đã đến giờ uống thuốc. Bạn hãy ăn uống đầy đủ trước khi uông.",
           payload: "This is schedule data",
           hour: items.hour,
           minute: items.minute,
-          numRepeat: 25,
+          numRepeat: 100,
           id: items.id,
         );
       }

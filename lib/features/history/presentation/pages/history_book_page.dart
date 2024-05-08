@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_info/app_choose_exam_info_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient_schedule/app_patient_schedule_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_status/app_status_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/base_get_request_model.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
-import 'package:mobile_advanced_project_fe/features/history_booking/presentation/bloc/patient_schedule_bloc.dart';
-import 'package:mobile_advanced_project_fe/features/history_booking/presentation/widgets/history_list_card.dart';
-import 'package:mobile_advanced_project_fe/features/history_booking/presentation/widgets/multi_optional.dart';
-import 'package:mobile_advanced_project_fe/features/history_booking/presentation/widgets/widgets.dart';
+import 'package:mobile_advanced_project_fe/features/history/presentation/bloc/patient_schedule_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/history/presentation/widgets/history_list_card.dart';
+import 'package:mobile_advanced_project_fe/features/history/presentation/widgets/multi_optional.dart';
+import 'package:mobile_advanced_project_fe/features/history/presentation/widgets/widgets.dart';
 import 'package:mobile_advanced_project_fe/features/status/presentation/bloc/status_bloc.dart';
 
 class HistoryBookPage extends StatefulWidget {
@@ -48,7 +49,6 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
         _loadData();
       });
     }
-
     super.initState();
   }
 
@@ -107,6 +107,25 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
     PatientScheduleGetItem? patientScheduleGetItem = context.select(
         (AppPatientScheduleCubit cubit) => cubit.state.patientScheduleGetItem);
 
+    Widget content = HistoryListCardWidget(
+      patientSchedules: patientScheduleGetItem?.rows ?? [],
+      onCancel: (String id) {
+        context.read<PatientScheduleBloc>().add(PatientOnCancel(
+            id: id,
+            status_id:
+                statusItems.firstWhere((item) => item.code == 'CANCEL').id));
+        _loadData();
+      },
+    );
+
+    if (patientScheduleGetItem == null ||
+        ((patientScheduleGetItem.rows.isEmpty))) {
+      content = const SliverToBoxAdapter(
+          child: CustomNoData(
+        text: 'Không có dữ liệu.',
+      ));
+    }
+
     return MultiBlocListener(
       listeners: [
         BlocListener<PatientScheduleBloc, PatientScheduleState>(
@@ -115,8 +134,12 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
               LoadingOverlay.showLoading(context);
             } else if (state is PatientScheduleFailure) {
               LoadingOverlay.dismissLoading();
-              // ShowSnackBar.error(state.message, context);
+              ShowSnackBar.error(state.message, context);
             } else if (state is PatientScheduleSuccess) {
+              if (state.onPatientScheduleEvent ==
+                  OnPatientScheduleEvent.onPatientOnCancel) {
+                ShowSnackBar.success(state.message, context);
+              }
               LoadingOverlay.dismissLoading();
               // ShowSnackBar.success(state.message, context);
             }
@@ -171,9 +194,7 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
                 statusItems: statusItems,
               ),
             ),
-            HistoryListCardWidget(
-              patientSchedules: patientScheduleGetItem?.rows ?? [],
-            ),
+            content
           ],
         ),
       ),

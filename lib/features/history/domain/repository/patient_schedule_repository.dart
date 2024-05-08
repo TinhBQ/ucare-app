@@ -6,4 +6,6 @@ import 'package:mobile_advanced_project_fe/core/model/request_models/request_mod
 abstract interface class PatientScheduleRepository {
   Future<Either<Failure, PatientScheduleGetItem>> getListPatientSchedule(
       BaseGetRequestModel params);
+
+  Future<Either<Failure, String>> onCancel(ScheduleCancelRequestModel params);
 }

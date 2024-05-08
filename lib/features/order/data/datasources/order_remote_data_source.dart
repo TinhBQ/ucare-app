@@ -8,11 +8,10 @@ import '../../../../core/items/item_dependencies.dart';
 
 abstract interface class OrderRemoteDataSource {
   Future<List<PaymentItem>?> onOrderPayment(OrderPaymentRequestModel body);
-
   Future<List<OrderItem>?> onOrder(OrderRequestModel body);
-
   Future<String?> onOrderPaymentReturnURL(
       OrderPaymentReturnURLRequestModel body);
+  Future<MyOrderGetItem?> getMyOrder(BaseGetRequestModel params);
 }
 
 class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
@@ -42,6 +41,14 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
       OrderPaymentReturnURLRequestModel body) async {
     OrderPaymentReturnURLResponseModel response =
         await OrderApi.onOrderPaymentReturnURL(body);
+    return response.status == StatusResponse.success.name
+        ? response.responseData
+        : throw ServerException(ServerException.GET_FAIL);
+  }
+
+  @override
+  Future<MyOrderGetItem?> getMyOrder(BaseGetRequestModel params) async {
+    MyOrderGetResponseModel response = await OrderApi.getMyOrder(params);
     return response.status == StatusResponse.success.name
         ? response.responseData
         : throw ServerException(ServerException.GET_FAIL);

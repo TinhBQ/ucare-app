@@ -5,6 +5,7 @@ final serviceLocator = GetIt.instance;
 Future<void> initDependencies() async {
   // Cubits
   serviceLocator.registerLazySingleton(() => AppUserCubit());
+  serviceLocator.registerLazySingleton(() => AppNewCubit());
   serviceLocator.registerLazySingleton(() => AppDoctorCubit());
   serviceLocator.registerLazySingleton(() => AppChooseExamInfoCubit());
   serviceLocator.registerLazySingleton(() => AppPatientCubit());
@@ -13,7 +14,7 @@ Future<void> initDependencies() async {
   serviceLocator.registerLazySingleton(() => AppPatientScheduleCubit());
   serviceLocator.registerLazySingleton(() => AppStatusCubit());
   serviceLocator.registerLazySingleton(() => CountriesCubit());
-  serviceLocator.registerLazySingleton(() => AppNewCubit());
+  serviceLocator.registerLazySingleton(() => AppMyOrderCubit());
 
   // Bloc
   serviceLocator.registerLazySingleton(() => ApplicationBloc());
@@ -253,11 +254,18 @@ void _initPatientSchedule() {
         serviceLocator(),
       ),
     )
+    ..registerFactory(
+      () => UseCancelSchedule(
+        serviceLocator(),
+      ),
+    )
+
     // Bloc
     ..registerLazySingleton(
       () => PatientScheduleBloc(
         appPatientScheduleCubit: serviceLocator(),
         userGetListPatientSchedule: serviceLocator(),
+        useCancelSchedule: serviceLocator(),
       ),
     );
 }
@@ -346,12 +354,19 @@ void _initOrder() {
         serviceLocator(),
       ),
     )
+    ..registerFactory(
+      () => UserGetMyOrder(
+        serviceLocator(),
+      ),
+    )
     // Bloc
     ..registerLazySingleton(
       () => OrderBloc(
         userOrderPayment: serviceLocator(),
         userOrder: serviceLocator(),
         userOrderReturnURL: serviceLocator(),
+        userGetMyOrder: serviceLocator(),
+        appMyOrderCubit: serviceLocator(),
       ),
     );
 }

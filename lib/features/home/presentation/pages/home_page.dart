@@ -17,6 +17,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     UserItem? userItem =
         context.select((AppUserCubit cubit) => cubit.state.userItem);
@@ -37,7 +42,6 @@ class _HomePageState extends State<HomePage> {
 
         if (state is NewsSuccess) {
           LoadingOverlay.dismissLoading();
-          ShowSnackBar.success(state.message, context);
         }
       },
       child: Scaffold(
@@ -53,11 +57,12 @@ class _HomePageState extends State<HomePage> {
             const SliverToBoxAdapter(
               child: HomeCategoriesGirdCard(),
             ),
-            SliverToBoxAdapter(
-              child: HomeNewsWidget(
-                newItems: newGetItem?.rows ?? [],
+            if (newGetItem != null)
+              SliverToBoxAdapter(
+                child: HomeNewsWidget(
+                  newItems: newGetItem.rows,
+                ),
               ),
-            ),
           ],
         ),
       ),

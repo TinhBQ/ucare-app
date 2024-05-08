@@ -37,10 +37,10 @@ List<CategoryCardItem> getCategoryCardItems(BuildContext context) => [
         },
       ),
       CategoryCardItem(
-        title: 'Theo dõi sức khỏe',
+        title: 'Lịch sử thanh toán',
         icon: Icons.monitor_heart,
         onPressed: () {
-          Navigator.of(context).pushNamed(AppRoutes.MEDICINE_SCHEDULE);
+          Navigator.of(context).pushNamed(AppRoutes.PAYMENT_HISTORY);
         },
       ),
     ];

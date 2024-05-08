@@ -30,6 +30,7 @@ class BookPages {
                 arguments['onDepartmentSelected'] as Function(DepartmentItem);
             return DepartmentChooseItemPage(
               onDepartmentSelected: onDepartmentSelected,
+              isShowAll: false,
             );
           }),
       PageEntity(

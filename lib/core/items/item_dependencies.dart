@@ -35,3 +35,5 @@ part 'room_item.dart';
 part 'new_item.dart';
 part 'new_get_item.dart';
 part 'file_item.dart';
+part 'my_order_item.dart';
+part 'my_order_get_item.dart';

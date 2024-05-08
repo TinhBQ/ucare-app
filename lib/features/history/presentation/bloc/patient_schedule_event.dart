@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 part of 'patient_schedule_bloc.dart';
 
 sealed class PatientScheduleEvent extends Equatable {
@@ -37,4 +39,14 @@ final class PatientScheduleGetList extends PatientScheduleEvent {
       sortOrder: sortOrder ?? this.sortOrder,
     );
   }
+}
+
+final class PatientOnCancel extends PatientScheduleEvent {
+  final String id;
+  final String status_id;
+
+  const PatientOnCancel({
+    required this.id,
+    required this.status_id,
+  });
 }

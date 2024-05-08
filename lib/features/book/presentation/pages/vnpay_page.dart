@@ -38,6 +38,7 @@ class VnpayPage extends StatelessWidget {
 
         if (state is PatientSuccess) {
           if (state.onPatientEvent == OnPatientEvent.onPatientBookSchedule) {
+            context.read<AppChooseExamInfoCubit>().updateInitial();
             Navigator.of(context)
                 .pushReplacementNamed(BookRoutes.BOOK_PATIENT_CHOOSE_PROFILE);
           }
@@ -60,12 +61,13 @@ class VnpayPage extends StatelessWidget {
                 onWebResourceError: (WebResourceError error) {},
                 onNavigationRequest: (NavigationRequest request) {
                   if (request.url.startsWith('https://online.hcmute.edu.vn/')) {
+                    ShowSnackBar.success('Thanh toán thành công', context);
                     context.read<PatientBloc>().add(PatientBookSchedule(
                           patient_id: patientId ?? '',
                           schedule_id: scheduleItem?.schedule_id ?? '',
                         ));
 
-                    // return NavigationDecision.prevent;
+                    return NavigationDecision.prevent;
                   }
                   return NavigationDecision.navigate;
                 },

@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
-import 'package:mobile_advanced_project_fe/core/entities/entity_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 
 part 'app_choose_exam_info_state.dart';
@@ -22,6 +21,7 @@ class AppChooseExamInfoCubit extends Cubit<AppChooseExamInfoState> {
     String? id,
     int? price,
     ScheduleItem? scheduleItem,
+    int? numFlow,
   }) {
     emit(
       AppChooseExamInfoLoaded(
@@ -63,7 +63,7 @@ class AppChooseExamInfoCubit extends Cubit<AppChooseExamInfoState> {
           },
         ).toList(),
         price: numStep == 0 ? price : state.price,
-        numFlow: 1,
+        numFlow: numFlow ?? 1,
         scheduleItem: numStep == 2 ? scheduleItem : null,
         patientId: state.patientId,
       ),

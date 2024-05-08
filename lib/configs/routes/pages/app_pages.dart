@@ -81,6 +81,7 @@ class AppPages {
                 arguments['onDepartmentSelected'] as Function(DepartmentItem);
             return DepartmentChooseItemPage(
               onDepartmentSelected: onDepartmentSelected,
+              isShowAll: true,
             );
           }),
       // * Section of Day
@@ -97,6 +98,10 @@ class AppPages {
       PageEntity(
         route: AppRoutes.PATIENT_ADD,
         pageBuilder: (_) => const PatientCreateProfilePage(),
+      ),
+      PageEntity(
+        route: AppRoutes.PAYMENT_HISTORY,
+        pageBuilder: (_) => const HistoryHistoryPage(),
       ),
     ];
   }

@@ -181,6 +181,29 @@ class HttpUtil {
     return response;
   }
 
+  Future put(
+    String path, {
+    dynamic mydata,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
+    Options requestOptions = options ?? Options();
+    requestOptions.headers = requestOptions.headers ?? {};
+
+    var response = await dio.put(
+      path,
+      data: mydata,
+      queryParameters: queryParameters,
+      options: requestOptions,
+    );
+
+    AppLogger.logger.d("my response is ${response.toString()}\n"
+        "my status code is ${response.statusCode}\n"
+        "my body is ${response.data}\n"
+        "my headers are ${response.headers}");
+    return response;
+  }
+
   Future delete(
     String path, {
     dynamic mydata,

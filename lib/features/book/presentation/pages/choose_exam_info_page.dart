@@ -44,6 +44,9 @@ class ChooseExamInfoPage extends StatelessWidget {
               titleAction: 'TIẾP THEO',
               price: price.toString(),
               onTap: () {
+                if (listInfoMedicalItems[2].value == "") {
+                  return;
+                }
                 context.read<AppChooseExamInfoCubit>().nextStep(2);
                 Navigator.of(context)
                     .pushNamed(BookRoutes.BOOK_PAYMENT_CONFIRM)

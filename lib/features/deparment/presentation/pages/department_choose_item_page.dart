@@ -11,8 +11,9 @@ import '../widgets/widget.dart';
 
 class DepartmentChooseItemPage extends StatefulWidget {
   final Function(DepartmentItem) onDepartmentSelected;
+  final bool isShowAll;
   const DepartmentChooseItemPage(
-      {super.key, required this.onDepartmentSelected});
+      {super.key, required this.onDepartmentSelected, required this.isShowAll});
 
   @override
   State<DepartmentChooseItemPage> createState() =>
@@ -106,6 +107,7 @@ class _DepartmentChooseItemPageState extends State<DepartmentChooseItemPage> {
         isFirstLoading:
             _departmentGetItem == null || _departmentGetItem?.rows == null,
         onClick: widget.onDepartmentSelected,
+        isAll: widget.isShowAll,
       ),
     );
 

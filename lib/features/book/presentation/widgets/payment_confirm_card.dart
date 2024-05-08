@@ -38,22 +38,28 @@ class PaymentConfirmCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(
-                      'Chuyên khoa:',
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                      overflow: TextOverflow.ellipsis,
+                    Flexible(
+                      // Wrap the first Text widget in Flexible to allow it to shrink if needed
+                      child: Text(
+                        'Chuyên khoa:',
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              color: Theme.of(context).colorScheme.secondary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     const SizedBox(width: 16),
-                    Text(
-                      department,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                      overflow: TextOverflow.ellipsis,
+                    Flexible(
+                      // Wrap the second Text widget in Flexible to allow it to shrink if needed
+                      child: Text(
+                        department,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),

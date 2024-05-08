@@ -87,6 +87,18 @@ class OrderDescription {
             )
             .toList(),
       };
+
+  factory OrderDescription.fromJson(Map<String, dynamic> json) {
+    return OrderDescription(
+      type: json['type'],
+      totalPrice: json['totalPrice'],
+      schedules: List<OrderDescriptionSchedule>.from(
+        json['schedules'].map(
+          (item) => OrderDescriptionSchedule.fromJson(item),
+        ),
+      ),
+    );
+  }
 }
 
 class OrderDescriptionSchedule {
@@ -114,6 +126,17 @@ class OrderDescriptionSchedule {
         "department": department,
         "session": session,
       };
+
+  factory OrderDescriptionSchedule.fromJson(Map<String, dynamic> json) {
+    return OrderDescriptionSchedule(
+      id: json['id'],
+      doctorName: json['doctorName'],
+      roomName: json['roomName'],
+      day: json['day'],
+      session: json['session'],
+      department: json['department'],
+    );
+  }
 }
 
 class OrderRequestModel {

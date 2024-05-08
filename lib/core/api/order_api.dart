@@ -51,4 +51,20 @@ class OrderApi {
       throw ServerException(ServerException.GET_FAIL);
     }
   }
+
+  static getMyOrder(BaseGetRequestModel params) async {
+    try {
+      var response = await HttpUtil().get(
+        AppConstants.SERVER_GET_MY_ORDER,
+        queryParameters: params.toJson(),
+      );
+      if (response.statusCode == HttpStatusCode.OK) {
+        return MyOrderGetResponseModel.fromJson(response.data);
+      } else {
+        throw ServerException(ServerException.GET_FAIL);
+      }
+    } catch (e) {
+      throw ServerException(ServerException.GET_FAIL);
+    }
+  }
 }

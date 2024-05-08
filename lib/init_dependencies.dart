@@ -5,6 +5,7 @@ import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_in
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_countries/countries_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_doctor/app_doctor_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_medical_appointment_body/app_medical_appointment_body_cubit.dart';
+import 'package:mobile_advanced_project_fe/core/common/cubits/app_my_order/app_my_order_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_new/app_new_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient/app_patient_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_patient_schedule/app_patient_schedule_cubit.dart';
@@ -42,11 +43,10 @@ import 'package:mobile_advanced_project_fe/features/doctor/domain/repository/doc
 import 'package:mobile_advanced_project_fe/features/doctor/domain/usecases/user_find_exam_times.dart';
 import 'package:mobile_advanced_project_fe/features/doctor/presentation/bloc/doctor_bloc.dart';
 
-import 'package:mobile_advanced_project_fe/features/history_booking/data/datasources/patient_schedule_remote_data_source.dart';
-import 'package:mobile_advanced_project_fe/features/history_booking/data/repositories/patient_schedule_repository_impl.dart';
-import 'package:mobile_advanced_project_fe/features/history_booking/domain/repository/patient_schedule_repository.dart';
-import 'package:mobile_advanced_project_fe/features/history_booking/domain/usecases/user_get_list_patient.dart';
-import 'package:mobile_advanced_project_fe/features/history_booking/presentation/bloc/patient_schedule_bloc.dart';
+import 'package:mobile_advanced_project_fe/features/history/data/datasources/patient_schedule_remote_data_source.dart';
+import 'package:mobile_advanced_project_fe/features/history/data/repositories/patient_schedule_repository_impl.dart';
+import 'package:mobile_advanced_project_fe/features/history/domain/repository/patient_schedule_repository.dart';
+import 'package:mobile_advanced_project_fe/features/history/presentation/bloc/patient_schedule_bloc.dart';
 
 // MedicineSchedule
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/data/datasources/medicine_schedule_remote_data_source.dart';
@@ -66,9 +66,7 @@ import 'package:mobile_advanced_project_fe/features/new/presentation/bloc/news_b
 import 'package:mobile_advanced_project_fe/features/order/data/datasources/order_remote_data_source.dart';
 import 'package:mobile_advanced_project_fe/features/order/data/repositories/order_repository_impl.dart';
 import 'package:mobile_advanced_project_fe/features/order/domain/repository/order_repository.dart';
-import 'package:mobile_advanced_project_fe/features/order/domain/usecases/user_order.dart';
-import 'package:mobile_advanced_project_fe/features/order/domain/usecases/user_order_payment.dart';
-import 'package:mobile_advanced_project_fe/features/order/domain/usecases/user_order_payment_return_url.dart';
+import 'package:mobile_advanced_project_fe/features/order/domain/usecases/usecases.dart';
 import 'package:mobile_advanced_project_fe/features/order/presentation/bloc/order_bloc.dart';
 
 // Patient
@@ -112,5 +110,7 @@ import 'package:mobile_advanced_project_fe/features/status/data/repositories/sta
 import 'package:mobile_advanced_project_fe/features/status/domain/repository/status_repository.dart';
 import 'package:mobile_advanced_project_fe/features/status/domain/usecases/user_get_statuses.dart';
 import 'package:mobile_advanced_project_fe/features/status/presentation/bloc/status_bloc.dart';
+
+import 'features/history/domain/usecases/usecases.dart';
 
 part 'init_dependencies.main.dart';

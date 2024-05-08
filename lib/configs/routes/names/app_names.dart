@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 part of 'names.dart';
+
 class AppRoutes {
   //welcome page or on boarding
   static const INITIAL = "/";
@@ -45,4 +46,5 @@ class AppRoutes {
 
   // patient
   static const PATIENT_ADD = '/patient_add';
+  static const PAYMENT_HISTORY = '/payment_history';
 }

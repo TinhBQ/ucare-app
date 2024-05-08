@@ -6,7 +6,6 @@ import 'package:mobile_advanced_project_fe/configs/routes/routes.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_choose_exam_info/app_choose_exam_info_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/cubits/app_status/app_status_cubit.dart';
 import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
-import 'package:mobile_advanced_project_fe/core/entities/entity_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/model/request_models/order_request_models/order_request_model_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';

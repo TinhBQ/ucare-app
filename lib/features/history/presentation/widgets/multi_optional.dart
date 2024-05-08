@@ -21,7 +21,7 @@ class _MultiOptionalWidgetState extends State<MultiOptionalWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
+        color: Theme.of(context).colorScheme.tertiaryContainer.withOpacity(0.3),
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
