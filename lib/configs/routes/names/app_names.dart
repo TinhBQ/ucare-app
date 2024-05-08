@@ -53,4 +53,8 @@ class AppRoutes {
 
   // patient profiles
   static const PATIENT_PROFILES = '/patient_profiles';
+
+  // Statistic
+  static const STATISTIC = '/statistic';
+
 }

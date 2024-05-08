@@ -114,6 +114,10 @@ class AppPages {
         route: AppRoutes.PATIENT_PROFILES,
         pageBuilder: (_) => const PatientProfilesPage(),
       ),
+      PageEntity(
+        route: AppRoutes.STATISTIC,
+        pageBuilder: (_) => const StatisticPage(),
+      ),
     ];
   }
 

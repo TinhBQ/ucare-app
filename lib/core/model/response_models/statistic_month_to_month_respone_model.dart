@@ -17,7 +17,7 @@ class StatisticMonthToMonthResponseModel
         message: json["message"] ?? '',
         responseData: List<MonthToMonthItem>.from(
           json['responseData'].map(
-            (item) => OrderItem.fromJson(item),
+            (item) => MonthToMonthItem.fromJson(item),
           ),
         ),
         status: json["status"] ?? StatusResponse.fail.name,
