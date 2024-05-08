@@ -8,7 +8,8 @@ abstract interface class PatientRepository {
       BaseGetRequestModel params);
   Future<Either<Failure, String>> createPatient(CreatePatientRequestModel body);
 
-
-   Future<Either<Failure, String>> patientBookSchedule(
+  Future<Either<Failure, String>> patientBookSchedule(
       PatientBookScheduleRequestModel body);
+  Future<Either<Failure, String>> deletePatient(
+      DeletePatientProfileRequestModel params);
 }

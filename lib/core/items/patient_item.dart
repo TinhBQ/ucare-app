@@ -29,7 +29,7 @@ class PatientItem extends PatientEntity {
       last_name: json['last_name'] ?? '',
       phone: json['phone'] ?? '',
       email: json['email'] ?? '',
-      citizen_id: json['citizen_ids'] ?? '',
+      citizen_id: json['citizen_id'] ?? '',
       birthday: json['birthday'] ?? '',
       male: json['male'] ?? false,
       nation: json['nation'] ?? '',

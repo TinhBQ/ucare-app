@@ -50,4 +50,20 @@ class PatientApi {
       throw ServerException(ServerException.CREATE_PATIENT_FAILURE);
     }
   }
+
+  //delete patient
+  static deletePatient(DeletePatientProfileRequestModel params) async{
+try {
+      var response = await HttpUtil().delete(
+        '${AppConstants.SERVER_PATIENT}/${params.patient_id}',
+      );
+      if (response.statusCode == HttpStatusCode.OK) {
+        return BaseReponseModel.fromJson(response.data);
+      } else {
+        throw ServerException(ServerException.DELETE_PATIENT_FAILURE);
+      }
+    } catch (e) {
+      throw ServerException(ServerException.DELETE_PATIENT_FAILURE);
+    }
+  }
 }

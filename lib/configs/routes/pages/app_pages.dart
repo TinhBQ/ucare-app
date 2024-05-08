@@ -98,6 +98,19 @@ class AppPages {
         route: AppRoutes.PATIENT_ADD,
         pageBuilder: (_) => const PatientCreateProfilePage(),
       ),
+      // patient profile
+      PageEntity(
+          route: AppRoutes.PATIENT_PROFILE_DETAIL,
+          pageBuilder: (arguments) {
+            final PatientItem patientItem = arguments['patientItem'];
+            return PatientProfileDetailPage(
+              patientItem: patientItem,
+            );
+          }),
+      PageEntity(
+        route: AppRoutes.PATIENT_PROFILES,
+        pageBuilder: (_) => const PatientProfilesPage(),
+      ),
     ];
   }
 
