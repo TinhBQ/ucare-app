@@ -37,6 +37,13 @@ List<CategoryCardItem> getCategoryCardItems(BuildContext context) => [
         },
       ),
       CategoryCardItem(
+        title: 'Hồ sơ người bệnh',
+        icon: Icons.people,
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.PATIENT_PROFILES);
+        },
+      ),
+      CategoryCardItem(
         title: 'Lịch sử thanh toán',
         icon: Icons.monitor_heart,
         onPressed: () {

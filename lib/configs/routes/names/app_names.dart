@@ -47,4 +47,10 @@ class AppRoutes {
   // patient
   static const PATIENT_ADD = '/patient_add';
   static const PAYMENT_HISTORY = '/payment_history';
+
+  // patient profile detail
+  static const PATIENT_PROFILE_DETAIL = '/patient_profile_detail';
+
+  // patient profiles
+  static const PATIENT_PROFILES = '/patient_profiles';
 }

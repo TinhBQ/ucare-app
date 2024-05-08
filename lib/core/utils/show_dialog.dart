@@ -22,6 +22,7 @@ class ShowDialog {
             ),
             TextButton(
               onPressed: () {
+                Navigator.pop(ctx);
                 callback();
               },
               child: const Text('Đồng ý'),
@@ -44,6 +45,7 @@ class ShowDialog {
             ),
             TextButton(
               onPressed: () {
+                Navigator.pop(ctx);
                 callback();
               },
               child: const Text('Đồng ý'),

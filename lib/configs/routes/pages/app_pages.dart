@@ -59,12 +59,10 @@ class AppPages {
         route: AppRoutes.CHANGE_PROFILE,
         pageBuilder: (_) => const ProfileEditPage(),
       ),
-
       PageEntity(
         route: AppRoutes.BOOK_BY_SPECIALTY,
         pageBuilder: (_) => const BookBySpecialtyPage(),
       ),
-
       PageEntity(
         route: AppRoutes.HISTORY_BOOK,
         pageBuilder: (_) => const HistoryBookPage(),
@@ -102,6 +100,19 @@ class AppPages {
       PageEntity(
         route: AppRoutes.PAYMENT_HISTORY,
         pageBuilder: (_) => const HistoryHistoryPage(),
+      ),
+      // patient profile
+      PageEntity(
+          route: AppRoutes.PATIENT_PROFILE_DETAIL,
+          pageBuilder: (arguments) {
+            final PatientItem patientItem = arguments['patientItem'];
+            return PatientProfileDetailPage(
+              patientItem: patientItem,
+            );
+          }),
+      PageEntity(
+        route: AppRoutes.PATIENT_PROFILES,
+        pageBuilder: (_) => const PatientProfilesPage(),
       ),
     ];
   }

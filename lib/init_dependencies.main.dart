@@ -224,6 +224,11 @@ void _initPatient() {
         serviceLocator(),
       ),
     )
+    ..registerFactory(
+      () => UserDeletePatientProfile(
+        serviceLocator(),
+      ),
+    )
     // Bloc
     ..registerLazySingleton(
       () => PatientBloc(
@@ -231,6 +236,7 @@ void _initPatient() {
         appPatientCubit: serviceLocator(),
         userCreatePatientProfile: serviceLocator(),
         userPatientBookSchedule: serviceLocator(),
+        userDeletePatientProfile: serviceLocator(),
       ),
     );
 }
