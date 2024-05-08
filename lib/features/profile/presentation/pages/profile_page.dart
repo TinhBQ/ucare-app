@@ -96,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               .state
                               .userItem!
                               .copyWith(
-                                avatar: state.fileItem?.fileName ?? '',
+                                avatar: state.fileItem?.fileName ?? 'String',
                               ),
                         ),
                       );
