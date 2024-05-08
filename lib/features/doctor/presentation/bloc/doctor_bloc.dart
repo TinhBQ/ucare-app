@@ -39,7 +39,7 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
         filters: event.filters,
         sortField: event.sortField,
         sortOrder: event.sortOrder,
-        full_name: event.full_name,
+        user_name: event.user_name,
         session_of_day: event.session_of_day,
       ),
     );

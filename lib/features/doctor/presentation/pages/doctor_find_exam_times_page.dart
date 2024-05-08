@@ -32,7 +32,7 @@ class _DoctorFindExamTimesPageState extends State<DoctorFindExamTimesPage> {
   @override
   void initState() {
     _searchController.setText(
-        context.read<AppDoctorCubit>().state.doctorGetRequestModel.full_name ??
+        context.read<AppDoctorCubit>().state.doctorGetRequestModel.user_name  ??
             '');
     _scrollController.addListener(_scrollListener);
     super.initState();
@@ -91,7 +91,7 @@ class _DoctorFindExamTimesPageState extends State<DoctorFindExamTimesPage> {
             filters: _doctorGetRequestModel!.filters,
             sortField: _doctorGetRequestModel!.sortField,
             sortOrder: _doctorGetRequestModel!.sortOrder,
-            full_name: _doctorGetRequestModel!.full_name,
+            user_name: _doctorGetRequestModel!.user_name,
             session_of_day: _doctorGetRequestModel!.session_of_day,
           ),
         );

@@ -49,7 +49,7 @@ class DoctorFindExamTimesFilter extends StatelessWidget {
                             filters: doctorGetRequestModel.filters,
                             sortField: doctorGetRequestModel.sortField,
                             sortOrder: doctorGetRequestModel.sortOrder,
-                            full_name: doctorGetRequestModel.full_name,
+                            user_name: doctorGetRequestModel.user_name,
                             session_of_day:
                                 doctorGetRequestModel.session_of_day,
                           ),
@@ -90,7 +90,7 @@ class DoctorFindExamTimesFilter extends StatelessWidget {
                             filters: doctorGetRequestModel.filters,
                             sortField: doctorGetRequestModel.sortField,
                             sortOrder: doctorGetRequestModel.sortOrder,
-                            full_name: doctorGetRequestModel.full_name,
+                            user_name: doctorGetRequestModel.user_name,
                             session_of_day:
                                 doctorGetRequestModel.session_of_day,
                           ),

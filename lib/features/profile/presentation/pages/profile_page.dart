@@ -123,8 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: ProfileShortWidget(
                   name: stringTernaryOperatir(userItem?.user_name, 'No Name'),
                   email: stringTernaryOperatir(userItem?.email, 'No Email'),
-                  avatar: stringTernaryOperatir(
-                      userItem?.avatar, 'assets/logo/no-image.png'),
+                  avatar: stringTernaryOperatir(userItem?.avatar, 'String'),
                   onTap: () {
                     pickImage(context);
                   },

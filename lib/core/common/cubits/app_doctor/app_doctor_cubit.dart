@@ -99,7 +99,7 @@ class AppDoctorCubit extends Cubit<AppDoctorState> {
         docterFilerItem: docterFilerItem,
         doctorGetRequestModel: state.doctorGetRequestModel.copyWith(
           currentPage: '1',
-          full_name: docterFilerItem.strDoctorSearchName(),
+          user_name: docterFilerItem.strDoctorSearchName(),
         ),
       ),
     );

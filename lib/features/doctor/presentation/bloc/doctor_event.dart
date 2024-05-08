@@ -15,7 +15,7 @@ final class DoctorFindExamTimes extends DoctorEvent {
   final String? filters;
   final String? sortField;
   final String? sortOrder;
-  final String? full_name;
+  final String? user_name;
   final String? session_of_day;
 
   const DoctorFindExamTimes({
@@ -24,7 +24,7 @@ final class DoctorFindExamTimes extends DoctorEvent {
     this.filters,
     this.sortField,
     this.sortOrder,
-    this.full_name,
+    this.user_name,
     this.session_of_day,
   });
 
@@ -34,7 +34,7 @@ final class DoctorFindExamTimes extends DoctorEvent {
       String? filters,
       String? sortField,
       String? sortOrder,
-      String? full_name,
+      String? user_name,
       String? session_of_day}) {
     return DoctorFindExamTimes(
       currentPage: currentPage ?? this.currentPage,
@@ -42,7 +42,7 @@ final class DoctorFindExamTimes extends DoctorEvent {
       filters: filters ?? this.filters,
       sortField: sortField ?? this.sortField,
       sortOrder: sortOrder ?? this.sortOrder,
-      full_name: full_name ?? this.full_name,
+      user_name: user_name ?? this.user_name,
       session_of_day: session_of_day ?? this.session_of_day,
     );
   }
