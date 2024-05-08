@@ -10,9 +10,10 @@ class ProflieIntroduceWidget extends StatelessWidget {
     final currenPaddingTop = MediaQuery.of(context).padding.top;
     return Container(
       decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/background-profile.jpg'),
-          fit: BoxFit.cover,
+        gradient: LinearGradient(
+          colors: [Colors.teal, Colors.yellow],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(66),
@@ -53,10 +54,10 @@ class ProflieIntroduceWidget extends StatelessWidget {
           ),
           Text(
             'Cá nhân',
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge!
-                .copyWith(color: Colors.white),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ],
       ),

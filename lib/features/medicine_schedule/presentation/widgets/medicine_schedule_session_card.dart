@@ -17,12 +17,12 @@ class MedicineScheduleSessionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding: const EdgeInsets.only(bottom: 16.0),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            width: 1,
-            color: Theme.of(context).colorScheme.secondary,
+            width: 1.8,
+            color: Theme.of(context).colorScheme.primary,
           ),
           borderRadius: BorderRadius.circular(8),
         ),

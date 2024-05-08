@@ -34,3 +34,4 @@ part 'degree_item.dart';
 part 'room_item.dart';
 part 'new_item.dart';
 part 'new_get_item.dart';
+part 'file_item.dart';

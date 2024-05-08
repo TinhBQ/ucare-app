@@ -80,12 +80,16 @@ void _initProfile() {
     ..registerFactory(
       () => UserChangeProfile(serviceLocator()),
     )
+    ..registerFactory(
+      () => UserUploadFile(serviceLocator()),
+    )
     // Bloc
     ..registerLazySingleton(
       () => ProfileBloc(
         userChangePassword: serviceLocator(),
         userChangeProfile: serviceLocator(),
         appUserCubit: serviceLocator(),
+        userUploadFile: serviceLocator(),
       ),
     );
 }

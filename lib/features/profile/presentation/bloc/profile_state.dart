@@ -14,8 +14,13 @@ final class ProfileLoading extends ProfileState {}
 final class ProfileSuccess extends ProfileState {
   final String message;
   final OnProfileEvent onProfileEvent;
+  final FileItem? fileItem;
 
-  const ProfileSuccess(this.message, this.onProfileEvent);
+  const ProfileSuccess(
+    this.message,
+    this.onProfileEvent, {
+    this.fileItem,
+  });
 }
 
 final class ProfileFailure extends ProfileState {

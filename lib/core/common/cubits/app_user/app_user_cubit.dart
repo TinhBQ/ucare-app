@@ -13,7 +13,12 @@ class AppUserCubit extends Cubit<AppUserState> {
       emit(AppUserInitial());
     } else {
       emit(AppUserLoggedIn(userItem: userItem));
-      print(userItem.user_name);
     }
+  }
+
+  void updateAvatar(String avatar) {
+    emit(AppUserLoggedIn(
+      userItem: state.userItem?.copyWith(avatar: avatar),
+    ));
   }
 }

@@ -27,10 +27,18 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
   BaseGetRequestModel? _baseGetRequestModel;
   final ScrollController _scrollController = ScrollController();
 
+  List<StatusItem> statusItems = [];
+
   @override
   void initState() {
     _scrollController.addListener(_scrollListener);
-
+    statusItems = context
+        .read<AppStatusCubit>()
+        .state
+        .statusGetItem!
+        .rows
+        .where((item) => item.group == 'SCHEDULE')
+        .toList();
     _loadData();
 
     super.initState();
@@ -91,9 +99,6 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
     PatientScheduleGetItem? patientScheduleGetItem = context.select(
         (AppPatientScheduleCubit cubit) => cubit.state.patientScheduleGetItem);
 
-    final StatusGetItem? statusGetItem =
-        context.select((AppStatusCubit cubit) => cubit.state.statusGetItem);
-
     return MultiBlocListener(
       listeners: [
         BlocListener<PatientScheduleBloc, PatientScheduleState>(
@@ -131,7 +136,7 @@ class _HistoryBookPageState extends State<HistoryBookPage> {
                   });
                   _onChangeStatus(statusId);
                 },
-                statusItems: statusGetItem?.rows ?? [],
+                statusItems: statusItems,
               ),
             ),
             HistoryListCardWidget(

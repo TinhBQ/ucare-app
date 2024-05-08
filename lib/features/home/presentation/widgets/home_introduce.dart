@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_advanced_project_fe/core/common/widgets/widget_dependencies.dart';
 
 class HomeIntroduce extends StatelessWidget {
-  final String avatar;
+  final String? avatar;
   final String email;
-  
+
   const HomeIntroduce({
     super.key,
     required this.avatar,
@@ -37,9 +38,17 @@ class HomeIntroduce extends StatelessWidget {
                 width: 1,
               ),
             ),
-            child: CircleAvatar(
-              radius: 26,
-              backgroundImage: AssetImage(avatar),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(9999),
+              child: CustomImage(
+                imageUrl: avatar != null
+                    ? 'https://mobile-advanced-be-r7xe.onrender.com/v1.0/api/files/image/$avatar'
+                    : null,
+                placeholderStr: 'assets/logo/no-image.png',
+                imageStr: 'assets/logo/no-image.png',
+                height: 58,
+                width: 58,
+              ),
             ),
           ),
           const SizedBox(

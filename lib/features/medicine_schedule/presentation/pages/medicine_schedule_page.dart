@@ -19,33 +19,6 @@ class _MedicinePageState extends State<MedicineSchedulePage> {
   DateTime fromDay = DateTime.utc(2024, 3, 12);
   DateTime toDay = DateTime(2024, 4, 30);
 
-  void _updateMedicineDays() {
-    medicineDays = [
-      MedicineDayItem(
-        title: 'Từ ngày',
-        icon: Icons.fast_forward_outlined,
-        day: fromDay,
-        onChangedDay: () async {
-          fromDay = (await selectDate(context, fromDay)) ?? fromDay;
-          setState(() {
-            _updateMedicineDays();
-          });
-        },
-      ),
-      MedicineDayItem(
-        title: 'Đến ngày',
-        icon: Icons.fast_rewind_outlined,
-        day: toDay,
-        onChangedDay: () async {
-          toDay = (await selectDate(context, toDay)) ?? toDay;
-          setState(() {
-            _updateMedicineDays();
-          });
-        },
-      ),
-    ];
-  }
-
   Future<DateTime?> selectDate(BuildContext context, DateTime day) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -62,7 +35,7 @@ class _MedicinePageState extends State<MedicineSchedulePage> {
   @override
   void initState() {
     super.initState();
-    _updateMedicineDays();
+    // _updateMedicineDays();
   }
 
   @override
@@ -97,14 +70,6 @@ class _MedicinePageState extends State<MedicineSchedulePage> {
                   SliverToBoxAdapter(
                     child: MedicineScheduleSessions(
                       medicineSessions: medicineSessions,
-                    ),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.only(top: 16),
-                    sliver: SliverToBoxAdapter(
-                      child: MedicineScheduleDays(
-                        medicineDays: medicineDays,
-                      ),
                     ),
                   ),
                 ],

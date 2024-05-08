@@ -82,8 +82,7 @@ import 'package:mobile_advanced_project_fe/features/patient/presentation/bloc/pa
 import 'package:mobile_advanced_project_fe/features/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:mobile_advanced_project_fe/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:mobile_advanced_project_fe/features/profile/domain/repository/profile_repository.dart';
-import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/user_change_password.dart';
-import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/user_change_profile.dart';
+import 'package:mobile_advanced_project_fe/features/profile/domain/usecases/usecases.dart';
 import 'package:mobile_advanced_project_fe/features/profile/presentation/bloc/profile_bloc.dart';
 
 // Department

@@ -23,7 +23,8 @@ class CustomImage extends StatelessWidget {
         image: imageUrl!,
         width: width,
         height: height,
-        fit: BoxFit.cover, // Adjust the fit as per your requirement
+        fit: BoxFit.cover, 
+        // Adjust the fit as per your requirement
       );
     }
 
@@ -32,6 +33,7 @@ class CustomImage extends StatelessWidget {
       width: width,
       height: height,
       fit: BoxFit.cover,
+    
     );
   }
 }

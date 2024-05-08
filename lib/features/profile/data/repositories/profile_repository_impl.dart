@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/failures.dart';
@@ -28,6 +29,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
     try {
       final userItem = await remoteDataSource.changeProfile(body);
       return right(userItem!);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, FileItem>> uploadAvatar(FormData formData) async {
+    try {
+      final fileItem = await remoteDataSource.uploadAvatar(formData);
+      return right(fileItem!);
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }
