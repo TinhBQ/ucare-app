@@ -50,6 +50,13 @@ List<CategoryCardItem> getCategoryCardItems(BuildContext context) => [
           Navigator.of(context).pushNamed(AppRoutes.PAYMENT_HISTORY);
         },
       ),
+      CategoryCardItem(
+        title: 'Thống kê',
+        icon: Icons.bar_chart_rounded,
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.STATISTIC);
+        },
+      ),
     ];
 
 class HomeCategoriesGirdCard extends StatelessWidget {
