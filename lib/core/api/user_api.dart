@@ -50,4 +50,21 @@ class UserApi {
       throw ServerException(ServerException.CHANGE_PROFILE_FAILURE);
     }
   }
+
+  static uploadAvatar(FormData formData) async {
+    try {
+      var response = await HttpUtil().post(
+        AppConstants.SERVER_UPLOAD_FILE,
+        mydata: formData,
+      );
+
+      if (response.statusCode == HttpStatusCode.OK) {
+        return FileGetResponseModel.fromJson(response.data);
+      } else {
+        throw ServerException(ServerException.GET_FAIL);
+      }
+    } catch (e) {
+      throw ServerException(ServerException.GET_FAIL);
+    }
+  }
 }

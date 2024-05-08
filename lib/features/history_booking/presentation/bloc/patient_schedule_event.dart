@@ -8,7 +8,6 @@ sealed class PatientScheduleEvent extends Equatable {
 }
 
 final class PatientScheduleGetList extends PatientScheduleEvent {
-  
   final String? currentPage;
   final String? pageSize;
   final String? filters;

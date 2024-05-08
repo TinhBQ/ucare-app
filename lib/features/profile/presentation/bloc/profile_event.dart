@@ -26,3 +26,11 @@ final class ProfileChangeProflie extends ProfileEvent {
     required this.userItem,
   });
 }
+
+final class ProfileUploadFile extends ProfileEvent {
+  final FormData formData;
+
+  const ProfileUploadFile({
+    required this.formData,
+  });
+}

@@ -39,6 +39,7 @@ class UserItem extends UserEntity {
       'user_name': user_name,
       'birthday': birthday!.isEmpty ? null : birthday,
       'male': male.toString(),
+      'avatar': avatar,
     };
   }
 

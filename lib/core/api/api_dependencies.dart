@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/http_status_code.dart';
 import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';

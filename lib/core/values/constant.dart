@@ -23,6 +23,8 @@ class AppConstants {
   static const String SERVER_CHANGE_PASSWORD = "$API_VERSION/auth/changePass";
   static const String SERVER_CHANGE_INFO = "$API_VERSION/user/changeInfor";
 
+  static const String SERVER_UPLOAD_FILE = "$API_VERSION/files";
+
   // Server Department
   static const String SERVER_DEPARTMENT = "$API_VERSION/department";
 

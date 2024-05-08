@@ -1,3 +1,5 @@
+
+import 'package:dio/dio.dart';
 import 'package:mobile_advanced_project_fe/core/api/api_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/enum/enum_dependencies.dart';
 import 'package:mobile_advanced_project_fe/core/exceptions/exceptions.dart';
@@ -9,6 +11,8 @@ import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 abstract interface class ProfileRemoteDataSource {
   Future<String> changePassWord(ChangePasswordRequestModel body);
   Future<UserItem?> changeProfile(UserItem body);
+
+  Future<FileItem?> uploadAvatar(FormData formData);
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
@@ -30,5 +34,14 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     return response.status == StatusResponse.success.name
         ? response.responseData
         : throw ServerException(ServerException.CHANGE_PROFILE_FAILURE);
+  }
+
+  @override
+  Future<FileItem?> uploadAvatar(FormData formData) async {
+    FileGetResponseModel response = await UserApi.uploadAvatar(formData);
+
+    return response.status == StatusResponse.success.name
+        ? response.responseData
+        : throw ServerException(ServerException.GET_FAIL);
   }
 }

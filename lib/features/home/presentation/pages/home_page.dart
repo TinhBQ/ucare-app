@@ -24,8 +24,6 @@ class _HomePageState extends State<HomePage> {
     NewGetItem? newGetItem =
         context.select((AppNewCubit cubit) => cubit.state.newGetItem);
 
-    print('newGetItem: ${newGetItem?.rows.first.id}');
-
     return BlocListener<NewsBloc, NewsState>(
       listener: (context, state) {
         if (state is NewsLoading) {
@@ -49,8 +47,7 @@ class _HomePageState extends State<HomePage> {
             SliverToBoxAdapter(
               child: HomeIntroduce(
                 email: stringTernaryOperatir(userItem?.email, 'No Name'),
-                avatar: stringTernaryOperatir(
-                    userItem?.avatar, 'assets/logo/no-image.png'),
+                avatar: userItem!.avatar,
               ),
             ),
             const SliverToBoxAdapter(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_advanced_project_fe/core/items/item_dependencies.dart';
+import 'package:mobile_advanced_project_fe/core/utils/utils_dependencies.dart';
 import 'package:mobile_advanced_project_fe/features/medicine_schedule/presentation/bloc/medicine_schedule_bloc.dart';
 
 import 'medicine_schedule_session_card.dart';
@@ -48,14 +49,14 @@ class _MedicineSessionsWidgetState extends State<MedicineScheduleSessions> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'ĐẶT GIỜ UỐNG THUỐC',
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: Theme.of(context).colorScheme.primary),
+            'KHUNG GIỜ UỐNG THUỐC',
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           const SizedBox(
-            height: 8,
+            height: 16,
           ),
           ...widget.medicineSessions.map(
             (session) => MedicineScheduleSessionCard(
@@ -80,6 +81,9 @@ class _MedicineSessionsWidgetState extends State<MedicineScheduleSessions> {
                         isActived: value == true ? 1 : 0,
                       )),
                     );
+                ShowSnackBar.success(
+                    value ? 'Đặt lịch thành công' : 'Hủy lịch thành công',
+                    context);
               },
             ),
           ),
