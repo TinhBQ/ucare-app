@@ -41,6 +41,7 @@ class VnpayPage extends StatelessWidget {
             context.read<AppChooseExamInfoCubit>().updateInitial();
             Navigator.of(context)
                 .pushReplacementNamed(BookRoutes.BOOK_PATIENT_CHOOSE_PROFILE);
+            LoadingOverlay.dismissLoading();
           }
 
           LoadingOverlay.dismissLoading();

@@ -113,10 +113,12 @@ class BookPaymentConfirmPage extends StatelessWidget {
                   (value) => context.read<AppChooseExamInfoCubit>().nextStep(2),
                 );
               }
+              LoadingOverlay.dismissLoading();
             }
 
             if (state is OrderFailure) {
               ShowSnackBar.error(state.message, context);
+              LoadingOverlay.dismissLoading();
             }
           },
         )
