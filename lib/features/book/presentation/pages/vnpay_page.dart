@@ -67,8 +67,6 @@ class VnpayPage extends StatelessWidget {
                           patient_id: patientId ?? '',
                           schedule_id: scheduleItem?.schedule_id ?? '',
                         ));
-
-                    return NavigationDecision.prevent;
                   }
                   return NavigationDecision.navigate;
                 },
