@@ -15,8 +15,6 @@ class HomeIntroduce extends StatelessWidget {
   Widget build(BuildContext context) {
     final currenPaddingTop = MediaQuery.of(context).padding.top;
 
-    print('Trinh123@@ $avatar');
-
     Widget image = (avatar == null ||
             avatar?.toUpperCase() == 'String'.toUpperCase() ||
             avatar == '')
@@ -24,16 +22,16 @@ class HomeIntroduce extends StatelessWidget {
             imageUrl: null,
             placeholderStr: 'assets/logo/no-image.png',
             imageStr: 'assets/logo/no-image.png',
-            height: 78,
-            width: 78,
+            height: 48,
+            width: 48,
           )
         : CustomImage(
             imageUrl:
                 'https://mobile-advanced-be-r7xe.onrender.com/v1.0/api/files/image/$avatar',
             placeholderStr: 'assets/logo/no-image.png',
             imageStr: 'assets/logo/no-image.png',
-            height: 78,
-            width: 78,
+            height: 48,
+            width: 48,
           );
     return Container(
       decoration: const BoxDecoration(

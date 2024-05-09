@@ -32,6 +32,7 @@ class UserItem extends UserEntity {
       return {
         'user_name': user_name,
         'male': male.toString(),
+        'avatar': avatar,
       };
     }
 
